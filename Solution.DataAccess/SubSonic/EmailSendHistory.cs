@@ -1,0 +1,831 @@
+ 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Data;
+using SubSonic.DataProviders;
+using SubSonic.Extensions;
+using System.Linq.Expressions;
+using SubSonic.Schema;
+using SubSonic.Repository;
+using System.Data.Common;
+using SubSonic.SqlGeneration.Schema;
+
+namespace Solution.DataAccess.DataModel
+{    
+    /// <summary>
+    /// A class which represents the EmailSendHistory table in the SolutionDataBase_standard Database.
+    /// </summary>
+    public partial class EmailSendHistory: IActiveRecord
+    {
+    
+        #region Built-in testing
+        static TestRepository<EmailSendHistory> _testRepo;
+        
+
+        
+        static void SetTestRepo(){
+            _testRepo = _testRepo ?? new TestRepository<EmailSendHistory>(new Solution.DataAccess.DataModel.SolutionDataBase_standardDB());
+        }
+        public static void ResetTestRepo(){
+            _testRepo = null;
+            SetTestRepo();
+        }
+        public static void Setup(List<EmailSendHistory> testlist){
+            SetTestRepo();
+            foreach (var item in testlist)
+            {
+                _testRepo._items.Add(item);
+            }
+        }
+        public static void Setup(EmailSendHistory item) {
+            SetTestRepo();
+            _testRepo._items.Add(item);
+        }
+        public static void Setup(int testItems) {
+            SetTestRepo();
+            for(int i=0;i<testItems;i++){
+                EmailSendHistory item=new EmailSendHistory();
+                _testRepo._items.Add(item);
+            }
+        }
+        
+        public bool TestMode = false;
+
+
+        #endregion
+
+        IRepository<EmailSendHistory> _repo;
+        ITable tbl;
+        bool _isNew;
+        public bool IsNew(){
+            return _isNew;
+        }
+        
+        public void SetIsLoaded(bool isLoaded){
+            _isLoaded=isLoaded;
+            if(isLoaded)
+                OnLoaded();
+        }
+        
+        public void SetIsNew(bool isNew){
+            _isNew=isNew;
+        }
+        bool _isLoaded;
+        public bool IsLoaded(){
+            return _isLoaded;
+        }
+                
+        List<IColumn> _dirtyColumns;
+        public bool IsDirty(){
+            return _dirtyColumns.Count>0;
+        }
+        
+        public List<IColumn> GetDirtyColumns (){
+            return _dirtyColumns;
+        }
+
+        Solution.DataAccess.DataModel.SolutionDataBase_standardDB _db;
+        public EmailSendHistory(string connectionString, string providerName) {
+
+            _db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB(connectionString, providerName);
+            Init();            
+         }
+        void Init(){
+            TestMode=this._db.DataProvider.ConnectionString.Equals("test", StringComparison.InvariantCultureIgnoreCase);
+            _dirtyColumns=new List<IColumn>();
+            if(TestMode){
+                EmailSendHistory.SetTestRepo();
+                _repo=_testRepo;
+            }else{
+                _repo = new SubSonicRepository<EmailSendHistory>(_db);
+            }
+            tbl=_repo.GetTable();
+            SetIsNew(true);
+            OnCreated();       
+
+        }
+        
+        public EmailSendHistory(){
+			_db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB();
+            Init();            
+        }
+
+		public void ORMapping(IDataRecord dataRecord)
+        {
+            IReadRecord readRecord = SqlReadRecord.GetIReadRecord();
+            readRecord.DataRecord = dataRecord;   
+               
+            Id = readRecord.get_int("Id",null);
+               
+            SendUsers_Id = readRecord.get_int("SendUsers_Id",null);
+               
+            SendUsers_Name = readRecord.get_string("SendUsers_Name",null);
+               
+            SendUsers_Email = readRecord.get_string("SendUsers_Email",null);
+               
+            RecUsers_Id = readRecord.get_int("RecUsers_Id",null);
+               
+            RecUsers_Name = readRecord.get_string("RecUsers_Name",null);
+               
+            RecUsers_Email = readRecord.get_string("RecUsers_Email",null);
+               
+            RecUserLevel_Id = readRecord.get_int("RecUserLevel_Id",null);
+               
+            RecUserLevel_Name = readRecord.get_string("RecUserLevel_Name",null);
+               
+            EmailSubject = readRecord.get_string("EmailSubject",null);
+               
+            EmailContent = readRecord.get_string("EmailContent",null);
+               
+            SendDate = readRecord.get_datetime("SendDate",null);
+               
+            Status = readRecord.get_byte("Status",null);
+               
+            StatusName = readRecord.get_string("StatusName",null);
+               
+            ErrorMsg = readRecord.get_string("ErrorMsg",null);
+               
+            Template_Id = readRecord.get_int("Template_Id",null);
+               
+            Template_Name = readRecord.get_string("Template_Name",null);
+                }   
+
+        partial void OnCreated();
+            
+        partial void OnLoaded();
+        
+        partial void OnSaved();
+        
+        partial void OnChanged();
+        
+        public IList<IColumn> Columns{
+            get{
+                return tbl.Columns;
+            }
+        }
+
+        public EmailSendHistory(Expression<Func<EmailSendHistory, bool>> expression):this() {
+
+            SetIsLoaded(_repo.Load(this,expression));
+        }
+        
+       
+        
+        internal static IRepository<EmailSendHistory> GetRepo(string connectionString, string providerName){
+            Solution.DataAccess.DataModel.SolutionDataBase_standardDB db;
+            if(String.IsNullOrEmpty(connectionString)){
+                db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB();
+            }else{
+                db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB(connectionString, providerName);
+            }
+            IRepository<EmailSendHistory> _repo;
+            
+            if(db.TestMode){
+                EmailSendHistory.SetTestRepo();
+                _repo=_testRepo;
+            }else{
+                _repo = new SubSonicRepository<EmailSendHistory>(db);
+            }
+            return _repo;        
+        }       
+        
+        internal static IRepository<EmailSendHistory> GetRepo(){
+            return GetRepo("","");
+        }
+        
+        public static EmailSendHistory SingleOrDefault(Expression<Func<EmailSendHistory, bool>> expression) {
+
+            var repo = GetRepo();
+            var results=repo.Find(expression);
+            EmailSendHistory single=null;
+            if(results.Count() > 0){
+                single=results.ToList()[0];
+                single.OnLoaded();
+                single.SetIsLoaded(true);
+                single.SetIsNew(false);
+            }
+
+            return single;
+        }      
+        
+        public static EmailSendHistory SingleOrDefault(Expression<Func<EmailSendHistory, bool>> expression,string connectionString, string providerName) {
+            var repo = GetRepo(connectionString,providerName);
+            var results=repo.Find(expression);
+            EmailSendHistory single=null;
+            if(results.Count() > 0){
+                single=results.ToList()[0];
+            }
+
+            return single;
+
+
+        }
+        
+        
+        public static bool Exists(Expression<Func<EmailSendHistory, bool>> expression,string connectionString, string providerName) {
+           
+            return All(connectionString,providerName).Any(expression);
+        }        
+        public static bool Exists(Expression<Func<EmailSendHistory, bool>> expression) {
+           
+            return All().Any(expression);
+        }        
+
+        public static IList<EmailSendHistory> Find(Expression<Func<EmailSendHistory, bool>> expression) {
+            
+            var repo = GetRepo();
+            return repo.Find(expression).ToList();
+        }
+        
+        public static IList<EmailSendHistory> Find(Expression<Func<EmailSendHistory, bool>> expression,string connectionString, string providerName) {
+
+            var repo = GetRepo(connectionString,providerName);
+            return repo.Find(expression).ToList();
+
+        }
+        public static IQueryable<EmailSendHistory> All(string connectionString, string providerName) {
+            return GetRepo(connectionString,providerName).GetAll();
+        }
+        public static IQueryable<EmailSendHistory> All() {
+            return GetRepo().GetAll();
+        }
+        
+        public static PagedList<EmailSendHistory> GetPaged(string sortBy, int pageIndex, int pageSize,string connectionString, string providerName) {
+            return GetRepo(connectionString,providerName).GetPaged(sortBy, pageIndex, pageSize);
+        }
+      
+        public static PagedList<EmailSendHistory> GetPaged(string sortBy, int pageIndex, int pageSize) {
+            return GetRepo().GetPaged(sortBy, pageIndex, pageSize);
+        }
+
+        public static PagedList<EmailSendHistory> GetPaged(int pageIndex, int pageSize,string connectionString, string providerName) {
+            return GetRepo(connectionString,providerName).GetPaged(pageIndex, pageSize);
+            
+        }
+
+
+        public static PagedList<EmailSendHistory> GetPaged(int pageIndex, int pageSize) {
+            return GetRepo().GetPaged(pageIndex, pageSize);
+            
+        }
+
+        public string KeyName()
+        {
+            return "Id";
+        }
+
+        public object KeyValue()
+        {
+            return this.Id;
+        }
+        
+        public void SetKeyValue(object value) {
+            if (value != null && value!=DBNull.Value) {
+                var settable = value.ChangeTypeTo<int>();
+                this.GetType().GetProperty(this.KeyName()).SetValue(this, settable, null);
+            }
+        }
+        
+        public override string ToString(){
+                            return this.SendUsers_Name.ToString();
+                    }
+
+        public override bool Equals(object obj){
+            if(obj.GetType()==typeof(EmailSendHistory)){
+                EmailSendHistory compare=(EmailSendHistory)obj;
+                return compare.KeyValue()==this.KeyValue();
+            }else{
+                return base.Equals(obj);
+            }
+        }
+
+        
+        public override int GetHashCode() {
+            return this.Id;
+        }
+        
+        public string DescriptorValue()
+        {
+                            return this.SendUsers_Name.ToString();
+                    }
+
+        public string DescriptorColumn() {
+            return "SendUsers_Name";
+        }
+        public static string GetKeyColumn()
+        {
+            return "Id";
+        }        
+        public static string GetDescriptorColumn()
+        {
+            return "SendUsers_Name";
+        }
+        
+        #region ' Foreign Keys '
+        #endregion
+        
+
+        int _Id;
+		/// <summary>
+		/// 站内信ID
+		/// </summary>
+		[SubSonicPrimaryKey]
+        public int Id
+        {
+            get { return _Id; }
+            set
+            {
+                if(_Id!=value || _isLoaded){
+                    _Id=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Id");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _SendUsers_Id;
+		/// <summary>
+		/// 发送者编号ID，0=系统管理员
+		/// </summary>
+        public int SendUsers_Id
+        {
+            get { return _SendUsers_Id; }
+            set
+            {
+                if(_SendUsers_Id!=value || _isLoaded){
+                    _SendUsers_Id=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="SendUsers_Id");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _SendUsers_Name;
+		/// <summary>
+		/// 发送者账号
+		/// </summary>
+        public string SendUsers_Name
+        {
+            get { return _SendUsers_Name; }
+            set
+            {
+                if(_SendUsers_Name!=value || _isLoaded){
+                    _SendUsers_Name=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="SendUsers_Name");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _SendUsers_Email;
+		/// <summary>
+		/// 发送者邮箱
+		/// </summary>
+        public string SendUsers_Email
+        {
+            get { return _SendUsers_Email; }
+            set
+            {
+                if(_SendUsers_Email!=value || _isLoaded){
+                    _SendUsers_Email=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="SendUsers_Email");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _RecUsers_Id;
+		/// <summary>
+		/// 接受者编号ID，0=所有人
+		/// </summary>
+        public int RecUsers_Id
+        {
+            get { return _RecUsers_Id; }
+            set
+            {
+                if(_RecUsers_Id!=value || _isLoaded){
+                    _RecUsers_Id=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="RecUsers_Id");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _RecUsers_Name;
+		/// <summary>
+		/// 接收者账号
+		/// </summary>
+        public string RecUsers_Name
+        {
+            get { return _RecUsers_Name; }
+            set
+            {
+                if(_RecUsers_Name!=value || _isLoaded){
+                    _RecUsers_Name=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="RecUsers_Name");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _RecUsers_Email;
+		/// <summary>
+		/// 接收者邮箱
+		/// </summary>
+        public string RecUsers_Email
+        {
+            get { return _RecUsers_Email; }
+            set
+            {
+                if(_RecUsers_Email!=value || _isLoaded){
+                    _RecUsers_Email=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="RecUsers_Email");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _RecUserLevel_Id;
+		/// <summary>
+		/// 接受者编号ID，0=所有人
+		/// </summary>
+        public int RecUserLevel_Id
+        {
+            get { return _RecUserLevel_Id; }
+            set
+            {
+                if(_RecUserLevel_Id!=value || _isLoaded){
+                    _RecUserLevel_Id=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="RecUserLevel_Id");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _RecUserLevel_Name;
+		/// <summary>
+		/// 接受者账号
+		/// </summary>
+        public string RecUserLevel_Name
+        {
+            get { return _RecUserLevel_Name; }
+            set
+            {
+                if(_RecUserLevel_Name!=value || _isLoaded){
+                    _RecUserLevel_Name=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="RecUserLevel_Name");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _EmailSubject;
+		/// <summary>
+		/// 邮件主题
+		/// </summary>
+        public string EmailSubject
+        {
+            get { return _EmailSubject; }
+            set
+            {
+                if(_EmailSubject!=value || _isLoaded){
+                    _EmailSubject=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EmailSubject");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _EmailContent;
+		/// <summary>
+		/// 邮件内容
+		/// </summary>
+        public string EmailContent
+        {
+            get { return _EmailContent; }
+            set
+            {
+                if(_EmailContent!=value || _isLoaded){
+                    _EmailContent=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EmailContent");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime _SendDate;
+		/// <summary>
+		/// 站内信发送时间
+		/// </summary>
+        public DateTime SendDate
+        {
+            get { return _SendDate; }
+            set
+            {
+                if(_SendDate!=value || _isLoaded){
+                    _SendDate=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="SendDate");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        byte _Status;
+		/// <summary>
+		/// 发送状态：0：发送失败；1发送成功
+		/// </summary>
+        public byte Status
+        {
+            get { return _Status; }
+            set
+            {
+                if(_Status!=value || _isLoaded){
+                    _Status=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Status");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _StatusName;
+		/// <summary>
+		/// 发送状态名称
+		/// </summary>
+        public string StatusName
+        {
+            get { return _StatusName; }
+            set
+            {
+                if(_StatusName!=value || _isLoaded){
+                    _StatusName=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="StatusName");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _ErrorMsg;
+		/// <summary>
+		/// 异常信息
+		/// </summary>
+        public string ErrorMsg
+        {
+            get { return _ErrorMsg; }
+            set
+            {
+                if(_ErrorMsg!=value || _isLoaded){
+                    _ErrorMsg=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="ErrorMsg");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _Template_Id;
+		/// <summary>
+		/// 模板ID
+		/// </summary>
+        public int Template_Id
+        {
+            get { return _Template_Id; }
+            set
+            {
+                if(_Template_Id!=value || _isLoaded){
+                    _Template_Id=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Template_Id");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _Template_Name;
+		/// <summary>
+		/// 模板名称
+		/// </summary>
+        public string Template_Name
+        {
+            get { return _Template_Name; }
+            set
+            {
+                if(_Template_Name!=value || _isLoaded){
+                    _Template_Name=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Template_Name");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+
+
+        public DbCommand GetUpdateCommand() {
+            if(TestMode)
+                return _db.DataProvider.CreateCommand();
+            else
+                return this.ToUpdateQuery(_db.Provider).GetCommand().ToDbCommand();
+            
+        }
+        public DbCommand GetInsertCommand() {
+ 
+            if(TestMode)
+                return _db.DataProvider.CreateCommand();
+            else
+                return this.ToInsertQuery(_db.Provider).GetCommand().ToDbCommand();
+        }
+        
+        public DbCommand GetDeleteCommand() {
+            if(TestMode)
+                return _db.DataProvider.CreateCommand();
+            else
+                return this.ToDeleteQuery(_db.Provider).GetCommand().ToDbCommand();
+        }
+       
+        
+        public void Update(){
+            Update(_db.DataProvider);
+        }
+        
+        public void Update(IDataProvider provider){
+        
+            
+            if(this._dirtyColumns.Count>0){
+				_repo.Update(this,provider);
+                _dirtyColumns.Clear();    
+            }
+            OnSaved();
+       }
+
+        public void Add(){
+            Add(_db.DataProvider);
+        }
+        
+        
+       
+        public void Add(IDataProvider provider){
+
+            
+            var key=KeyValue();
+            if(key==null){
+                var newKey=_repo.Add(this,provider);
+                this.SetKeyValue(newKey);
+            }else{
+                _repo.Add(this,provider);
+            }
+            SetIsNew(false);
+            OnSaved();
+        }
+        
+                
+        
+        public void Save() {
+            Save(_db.DataProvider);
+        }      
+        public void Save(IDataProvider provider) {
+            
+           
+            if (_isNew) {
+                Add(provider);
+                
+            } else {
+                Update(provider);
+            }
+            
+        }
+
+        
+
+        public void Delete(IDataProvider provider) {
+                   
+                 
+            _repo.Delete(KeyValue());
+            
+                    }
+
+
+        public void Delete() {
+            Delete(_db.DataProvider);
+        }
+
+
+        public static void Delete(Expression<Func<EmailSendHistory, bool>> expression) {
+            var repo = GetRepo();
+            
+       
+            
+            repo.DeleteMany(expression);
+            
+        }
+
+        
+
+        public void Load(IDataReader rdr) {
+            Load(rdr, true);
+        }
+        public void Load(IDataReader rdr, bool closeReader) {
+            if (rdr.Read()) {
+
+                try {
+                    rdr.Load(this);
+                    SetIsNew(false);
+                    SetIsLoaded(true);
+                } catch {
+                    SetIsLoaded(false);
+                    throw;
+                }
+            }else{
+                SetIsLoaded(false);
+            }
+
+            if (closeReader)
+                rdr.Dispose();
+        }
+        
+
+    } 
+}
+

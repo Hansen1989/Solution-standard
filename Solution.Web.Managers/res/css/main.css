@@ -1,0 +1,67 @@
+﻿body.f-body
+{
+    height: auto;
+	background-image: url(../images/square.gif);
+	padding: 10px;
+}
+
+body.f-body.theme-access {
+    background-image: none;
+}
+
+.inline
+{
+    margin-right: 5px;
+    float: left;
+}
+
+.clear
+{
+    clear: both;
+}
+
+/*
+table.result
+{
+    margin: 0px;
+    padding: 0px;
+    width: 500px;
+}
+
+table.result th
+{
+    border-bottom: solid 1px #ccc;
+    font-weight: bold;
+    padding: 3px;
+}
+
+table.result td
+{
+    padding: 3px;
+}
+*/
+ol.result
+{
+    list-style-type:decimal;
+    margin: 10px 0 10px 25px;
+    
+}
+
+table.result
+{
+    margin: 10px 0;
+    width: 500px;
+}
+
+table.result th
+{
+    font-weight: bold;
+    font-size: 13px;
+}
+
+table.result td, table.result th
+{
+    border-bottom: solid 1px #efefef;
+    padding: 5px;
+    text-align: left;
+}

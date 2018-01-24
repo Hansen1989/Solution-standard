@@ -1,0 +1,543 @@
+ 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Data;
+using SubSonic.DataProviders;
+using SubSonic.Extensions;
+using System.Linq.Expressions;
+using SubSonic.Schema;
+using SubSonic.Repository;
+using System.Data.Common;
+using SubSonic.SqlGeneration.Schema;
+
+namespace Solution.DataAccess.DataModel
+{    
+    /// <summary>
+    /// A class which represents the TEST table in the SolutionDataBase_standard Database.
+    /// </summary>
+    public partial class TEST: IActiveRecord
+    {
+    
+        #region Built-in testing
+        static TestRepository<TEST> _testRepo;
+        
+
+        
+        static void SetTestRepo(){
+            _testRepo = _testRepo ?? new TestRepository<TEST>(new Solution.DataAccess.DataModel.SolutionDataBase_standardDB());
+        }
+        public static void ResetTestRepo(){
+            _testRepo = null;
+            SetTestRepo();
+        }
+        public static void Setup(List<TEST> testlist){
+            SetTestRepo();
+            foreach (var item in testlist)
+            {
+                _testRepo._items.Add(item);
+            }
+        }
+        public static void Setup(TEST item) {
+            SetTestRepo();
+            _testRepo._items.Add(item);
+        }
+        public static void Setup(int testItems) {
+            SetTestRepo();
+            for(int i=0;i<testItems;i++){
+                TEST item=new TEST();
+                _testRepo._items.Add(item);
+            }
+        }
+        
+        public bool TestMode = false;
+
+
+        #endregion
+
+        IRepository<TEST> _repo;
+        ITable tbl;
+        bool _isNew;
+        public bool IsNew(){
+            return _isNew;
+        }
+        
+        public void SetIsLoaded(bool isLoaded){
+            _isLoaded=isLoaded;
+            if(isLoaded)
+                OnLoaded();
+        }
+        
+        public void SetIsNew(bool isNew){
+            _isNew=isNew;
+        }
+        bool _isLoaded;
+        public bool IsLoaded(){
+            return _isLoaded;
+        }
+                
+        List<IColumn> _dirtyColumns;
+        public bool IsDirty(){
+            return _dirtyColumns.Count>0;
+        }
+        
+        public List<IColumn> GetDirtyColumns (){
+            return _dirtyColumns;
+        }
+
+        Solution.DataAccess.DataModel.SolutionDataBase_standardDB _db;
+        public TEST(string connectionString, string providerName) {
+
+            _db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB(connectionString, providerName);
+            Init();            
+         }
+        void Init(){
+            TestMode=this._db.DataProvider.ConnectionString.Equals("test", StringComparison.InvariantCultureIgnoreCase);
+            _dirtyColumns=new List<IColumn>();
+            if(TestMode){
+                TEST.SetTestRepo();
+                _repo=_testRepo;
+            }else{
+                _repo = new SubSonicRepository<TEST>(_db);
+            }
+            tbl=_repo.GetTable();
+            SetIsNew(true);
+            OnCreated();       
+
+        }
+        
+        public TEST(){
+			_db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB();
+            Init();            
+        }
+
+		public void ORMapping(IDataRecord dataRecord)
+        {
+            IReadRecord readRecord = SqlReadRecord.GetIReadRecord();
+            readRecord.DataRecord = dataRecord;   
+               
+            Id = readRecord.get_int("Id",null);
+               
+            COL1 = readRecord.get_string("COL1",null);
+               
+            COL2 = readRecord.get_string("COL2",null);
+               
+            COL3 = readRecord.get_string("COL3",null);
+               
+            COL4 = readRecord.get_int("COL4",null);
+                }   
+
+        partial void OnCreated();
+            
+        partial void OnLoaded();
+        
+        partial void OnSaved();
+        
+        partial void OnChanged();
+        
+        public IList<IColumn> Columns{
+            get{
+                return tbl.Columns;
+            }
+        }
+
+        public TEST(Expression<Func<TEST, bool>> expression):this() {
+
+            SetIsLoaded(_repo.Load(this,expression));
+        }
+        
+       
+        
+        internal static IRepository<TEST> GetRepo(string connectionString, string providerName){
+            Solution.DataAccess.DataModel.SolutionDataBase_standardDB db;
+            if(String.IsNullOrEmpty(connectionString)){
+                db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB();
+            }else{
+                db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB(connectionString, providerName);
+            }
+            IRepository<TEST> _repo;
+            
+            if(db.TestMode){
+                TEST.SetTestRepo();
+                _repo=_testRepo;
+            }else{
+                _repo = new SubSonicRepository<TEST>(db);
+            }
+            return _repo;        
+        }       
+        
+        internal static IRepository<TEST> GetRepo(){
+            return GetRepo("","");
+        }
+        
+        public static TEST SingleOrDefault(Expression<Func<TEST, bool>> expression) {
+
+            var repo = GetRepo();
+            var results=repo.Find(expression);
+            TEST single=null;
+            if(results.Count() > 0){
+                single=results.ToList()[0];
+                single.OnLoaded();
+                single.SetIsLoaded(true);
+                single.SetIsNew(false);
+            }
+
+            return single;
+        }      
+        
+        public static TEST SingleOrDefault(Expression<Func<TEST, bool>> expression,string connectionString, string providerName) {
+            var repo = GetRepo(connectionString,providerName);
+            var results=repo.Find(expression);
+            TEST single=null;
+            if(results.Count() > 0){
+                single=results.ToList()[0];
+            }
+
+            return single;
+
+
+        }
+        
+        
+        public static bool Exists(Expression<Func<TEST, bool>> expression,string connectionString, string providerName) {
+           
+            return All(connectionString,providerName).Any(expression);
+        }        
+        public static bool Exists(Expression<Func<TEST, bool>> expression) {
+           
+            return All().Any(expression);
+        }        
+
+        public static IList<TEST> Find(Expression<Func<TEST, bool>> expression) {
+            
+            var repo = GetRepo();
+            return repo.Find(expression).ToList();
+        }
+        
+        public static IList<TEST> Find(Expression<Func<TEST, bool>> expression,string connectionString, string providerName) {
+
+            var repo = GetRepo(connectionString,providerName);
+            return repo.Find(expression).ToList();
+
+        }
+        public static IQueryable<TEST> All(string connectionString, string providerName) {
+            return GetRepo(connectionString,providerName).GetAll();
+        }
+        public static IQueryable<TEST> All() {
+            return GetRepo().GetAll();
+        }
+        
+        public static PagedList<TEST> GetPaged(string sortBy, int pageIndex, int pageSize,string connectionString, string providerName) {
+            return GetRepo(connectionString,providerName).GetPaged(sortBy, pageIndex, pageSize);
+        }
+      
+        public static PagedList<TEST> GetPaged(string sortBy, int pageIndex, int pageSize) {
+            return GetRepo().GetPaged(sortBy, pageIndex, pageSize);
+        }
+
+        public static PagedList<TEST> GetPaged(int pageIndex, int pageSize,string connectionString, string providerName) {
+            return GetRepo(connectionString,providerName).GetPaged(pageIndex, pageSize);
+            
+        }
+
+
+        public static PagedList<TEST> GetPaged(int pageIndex, int pageSize) {
+            return GetRepo().GetPaged(pageIndex, pageSize);
+            
+        }
+
+        public string KeyName()
+        {
+            return "Id";
+        }
+
+        public object KeyValue()
+        {
+            return this.Id;
+        }
+        
+        public void SetKeyValue(object value) {
+            if (value != null && value!=DBNull.Value) {
+                var settable = value.ChangeTypeTo<int>();
+                this.GetType().GetProperty(this.KeyName()).SetValue(this, settable, null);
+            }
+        }
+        
+        public override string ToString(){
+                            return this.COL1.ToString();
+                    }
+
+        public override bool Equals(object obj){
+            if(obj.GetType()==typeof(TEST)){
+                TEST compare=(TEST)obj;
+                return compare.KeyValue()==this.KeyValue();
+            }else{
+                return base.Equals(obj);
+            }
+        }
+
+        
+        public override int GetHashCode() {
+            return this.Id;
+        }
+        
+        public string DescriptorValue()
+        {
+                            return this.COL1.ToString();
+                    }
+
+        public string DescriptorColumn() {
+            return "COL1";
+        }
+        public static string GetKeyColumn()
+        {
+            return "Id";
+        }        
+        public static string GetDescriptorColumn()
+        {
+            return "COL1";
+        }
+        
+        #region ' Foreign Keys '
+        #endregion
+        
+
+        int _Id;
+		/// <summary>
+		/// 
+		/// </summary>
+		[SubSonicPrimaryKey]
+        public int Id
+        {
+            get { return _Id; }
+            set
+            {
+                if(_Id!=value || _isLoaded){
+                    _Id=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Id");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _COL1;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string COL1
+        {
+            get { return _COL1; }
+            set
+            {
+                if(_COL1!=value || _isLoaded){
+                    _COL1=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="COL1");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _COL2;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string COL2
+        {
+            get { return _COL2; }
+            set
+            {
+                if(_COL2!=value || _isLoaded){
+                    _COL2=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="COL2");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _COL3;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string COL3
+        {
+            get { return _COL3; }
+            set
+            {
+                if(_COL3!=value || _isLoaded){
+                    _COL3=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="COL3");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _COL4;
+		/// <summary>
+		/// 
+		/// </summary>
+        public int COL4
+        {
+            get { return _COL4; }
+            set
+            {
+                if(_COL4!=value || _isLoaded){
+                    _COL4=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="COL4");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+
+
+        public DbCommand GetUpdateCommand() {
+            if(TestMode)
+                return _db.DataProvider.CreateCommand();
+            else
+                return this.ToUpdateQuery(_db.Provider).GetCommand().ToDbCommand();
+            
+        }
+        public DbCommand GetInsertCommand() {
+ 
+            if(TestMode)
+                return _db.DataProvider.CreateCommand();
+            else
+                return this.ToInsertQuery(_db.Provider).GetCommand().ToDbCommand();
+        }
+        
+        public DbCommand GetDeleteCommand() {
+            if(TestMode)
+                return _db.DataProvider.CreateCommand();
+            else
+                return this.ToDeleteQuery(_db.Provider).GetCommand().ToDbCommand();
+        }
+       
+        
+        public void Update(){
+            Update(_db.DataProvider);
+        }
+        
+        public void Update(IDataProvider provider){
+        
+            
+            if(this._dirtyColumns.Count>0){
+				_repo.Update(this,provider);
+                _dirtyColumns.Clear();    
+            }
+            OnSaved();
+       }
+
+        public void Add(){
+            Add(_db.DataProvider);
+        }
+        
+        
+       
+        public void Add(IDataProvider provider){
+
+            
+            var key=KeyValue();
+            if(key==null){
+                var newKey=_repo.Add(this,provider);
+                this.SetKeyValue(newKey);
+            }else{
+                _repo.Add(this,provider);
+            }
+            SetIsNew(false);
+            OnSaved();
+        }
+        
+                
+        
+        public void Save() {
+            Save(_db.DataProvider);
+        }      
+        public void Save(IDataProvider provider) {
+            
+           
+            if (_isNew) {
+                Add(provider);
+                
+            } else {
+                Update(provider);
+            }
+            
+        }
+
+        
+
+        public void Delete(IDataProvider provider) {
+                   
+                 
+            _repo.Delete(KeyValue());
+            
+                    }
+
+
+        public void Delete() {
+            Delete(_db.DataProvider);
+        }
+
+
+        public static void Delete(Expression<Func<TEST, bool>> expression) {
+            var repo = GetRepo();
+            
+       
+            
+            repo.DeleteMany(expression);
+            
+        }
+
+        
+
+        public void Load(IDataReader rdr) {
+            Load(rdr, true);
+        }
+        public void Load(IDataReader rdr, bool closeReader) {
+            if (rdr.Read()) {
+
+                try {
+                    rdr.Load(this);
+                    SetIsNew(false);
+                    SetIsLoaded(true);
+                } catch {
+                    SetIsLoaded(false);
+                    throw;
+                }
+            }else{
+                SetIsLoaded(false);
+            }
+
+            if (closeReader)
+                rdr.Dispose();
+        }
+        
+
+    } 
+}
+

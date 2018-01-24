@@ -1,0 +1,108 @@
+<#@ include file="SQLServer.ttinclude" #>
+<#@ include file="MultipleOutputHelper.ttinclude"#> 
+<#
+    var tables = LoadTables();
+     
+    var manager = Manager.Create(Host, GenerationEnvironment);  
+
+	//遍历所有表
+	foreach(var tbl in tables){
+		if(!ExcludeTables.Contains(tbl.Name))
+		{
+			// 设置输出的文件名
+			manager.StartNewFile(tbl.ClassName+"Model.cs");
+#> 
+using System;
+
+namespace Solution.DataAccess.Model
+{
+    /// <summary>
+    /// <#=tbl.Name #>表实体类
+    /// </summary>
+    public partial class <#=tbl.ClassName#>
+    {
+<#
+        foreach(Column col in tbl.Columns)
+        {
+			if (tbl.ClassName == col.CleanName)
+			{
+				col.CleanName += "X";
+			}
+			if (col.SysType == "string") 
+			{ 
+#>
+
+		<#=col.SysType #> _<#=col.CleanName #> = "";
+		/// <summary>
+		/// <#=Replace(col.Description) #>
+		/// </summary>
+		public <#=col.SysType #> <#=col.CleanName #>
+		{
+			get { return _<#=col.CleanName #>; }
+			set { _<#=col.CleanName #> = value; }
+		}
+<# 
+			} 
+			else if (col.SysType == "DateTime") 
+			{
+#>
+
+		<#=col.SysType #> _<#=col.CleanName #> = new DateTime(1900,1,1);
+		/// <summary>
+		/// <#=Replace(col.Description) #>
+		/// </summary>
+		public <#=col.SysType #> <#=col.CleanName #>
+		{
+			get { return _<#=col.CleanName #>; }
+			set { _<#=col.CleanName #> = value; }
+		}
+<# 
+			}
+			else if (col.SysType == "bool")
+						{
+#>
+
+		<#=col.SysType #> _<#=col.CleanName #> = true;
+		/// <summary>
+		/// <#=Replace(col.Description) #>
+		/// </summary>
+		public <#=col.SysType #> <#=col.CleanName #>
+		{
+			get { return _<#=col.CleanName #>; }
+			set { _<#=col.CleanName #> = value; }
+		}
+<# 
+			}
+			else
+			{ 
+#>
+
+		<#=col.SysType #> _<#=col.CleanName #> = 0;
+		/// <summary>
+		/// <#=Replace(col.Description) #>
+		/// </summary>
+		public <#=col.SysType #> <#=col.CleanName #>
+		{
+			get { return _<#=col.CleanName #>; }
+			set { _<#=col.CleanName #> = value; }
+		}
+<# 
+			}
+
+        }
+#>
+    } 
+
+}
+
+
+<# 
+			// 输出文件结束
+			manager.EndBlock();
+		} //if(!ExcludeTables.Contains(tbl.Name)) 判断结束
+       
+	}// end foreach
+
+	// 执行编译，生成文件
+    manager.Process(true);  
+#> 

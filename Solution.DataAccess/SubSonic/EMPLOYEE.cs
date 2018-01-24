@@ -1,0 +1,1023 @@
+ 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Data;
+using SubSonic.DataProviders;
+using SubSonic.Extensions;
+using System.Linq.Expressions;
+using SubSonic.Schema;
+using SubSonic.Repository;
+using System.Data.Common;
+using SubSonic.SqlGeneration.Schema;
+
+namespace Solution.DataAccess.DataModel
+{    
+    /// <summary>
+    /// A class which represents the EMPLOYEE table in the SolutionDataBase_standard Database.
+    /// </summary>
+    public partial class EMPLOYEE: IActiveRecord
+    {
+    
+        #region Built-in testing
+        static TestRepository<EMPLOYEE> _testRepo;
+        
+
+        
+        static void SetTestRepo(){
+            _testRepo = _testRepo ?? new TestRepository<EMPLOYEE>(new Solution.DataAccess.DataModel.SolutionDataBase_standardDB());
+        }
+        public static void ResetTestRepo(){
+            _testRepo = null;
+            SetTestRepo();
+        }
+        public static void Setup(List<EMPLOYEE> testlist){
+            SetTestRepo();
+            foreach (var item in testlist)
+            {
+                _testRepo._items.Add(item);
+            }
+        }
+        public static void Setup(EMPLOYEE item) {
+            SetTestRepo();
+            _testRepo._items.Add(item);
+        }
+        public static void Setup(int testItems) {
+            SetTestRepo();
+            for(int i=0;i<testItems;i++){
+                EMPLOYEE item=new EMPLOYEE();
+                _testRepo._items.Add(item);
+            }
+        }
+        
+        public bool TestMode = false;
+
+
+        #endregion
+
+        IRepository<EMPLOYEE> _repo;
+        ITable tbl;
+        bool _isNew;
+        public bool IsNew(){
+            return _isNew;
+        }
+        
+        public void SetIsLoaded(bool isLoaded){
+            _isLoaded=isLoaded;
+            if(isLoaded)
+                OnLoaded();
+        }
+        
+        public void SetIsNew(bool isNew){
+            _isNew=isNew;
+        }
+        bool _isLoaded;
+        public bool IsLoaded(){
+            return _isLoaded;
+        }
+                
+        List<IColumn> _dirtyColumns;
+        public bool IsDirty(){
+            return _dirtyColumns.Count>0;
+        }
+        
+        public List<IColumn> GetDirtyColumns (){
+            return _dirtyColumns;
+        }
+
+        Solution.DataAccess.DataModel.SolutionDataBase_standardDB _db;
+        public EMPLOYEE(string connectionString, string providerName) {
+
+            _db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB(connectionString, providerName);
+            Init();            
+         }
+        void Init(){
+            TestMode=this._db.DataProvider.ConnectionString.Equals("test", StringComparison.InvariantCultureIgnoreCase);
+            _dirtyColumns=new List<IColumn>();
+            if(TestMode){
+                EMPLOYEE.SetTestRepo();
+                _repo=_testRepo;
+            }else{
+                _repo = new SubSonicRepository<EMPLOYEE>(_db);
+            }
+            tbl=_repo.GetTable();
+            SetIsNew(true);
+            OnCreated();       
+
+        }
+        
+        public EMPLOYEE(){
+			_db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB();
+            Init();            
+        }
+
+		public void ORMapping(IDataRecord dataRecord)
+        {
+            IReadRecord readRecord = SqlReadRecord.GetIReadRecord();
+            readRecord.DataRecord = dataRecord;   
+               
+            Id = readRecord.get_int("Id",null);
+               
+            EMP_ID = readRecord.get_string("EMP_ID",null);
+               
+            EMP_NAME = readRecord.get_string("EMP_NAME",null);
+               
+            EMP_Birthday = readRecord.get_datetime("EMP_Birthday",null);
+               
+            EMP_ADD = readRecord.get_string("EMP_ADD",null);
+               
+            EMP_TEL = readRecord.get_string("EMP_TEL",null);
+               
+            EMP_ZIP = readRecord.get_string("EMP_ZIP",null);
+               
+            EMP_EMAIL = readRecord.get_string("EMP_EMAIL",null);
+               
+            EMP_MOBILE = readRecord.get_string("EMP_MOBILE",null);
+               
+            EMP_MEMO = readRecord.get_string("EMP_MEMO",null);
+               
+            EMP_ENABLE = readRecord.get_int("EMP_ENABLE",null);
+               
+            EMP_SEX = readRecord.get_int("EMP_SEX",null);
+               
+            EMP_CodeID = readRecord.get_string("EMP_CodeID",null);
+               
+            EMP_LEVEL = readRecord.get_int("EMP_LEVEL",null);
+               
+            EMP_PASSWORD = readRecord.get_string("EMP_PASSWORD",null);
+               
+            EMP_BDATE = readRecord.get_datetime("EMP_BDATE",null);
+               
+            EMP_EDATE = readRecord.get_datetime("EMP_EDATE",null);
+               
+            EMP_WAGE = readRecord.get_decimal("EMP_WAGE",null);
+               
+            EMP_Education = readRecord.get_int("EMP_Education",null);
+               
+            CRT_DATETIME = readRecord.get_datetime("CRT_DATETIME",null);
+               
+            CRT_USER_ID = readRecord.get_string("CRT_USER_ID",null);
+               
+            MOD_DATETIME = readRecord.get_datetime("MOD_DATETIME",null);
+               
+            MOD_USER_ID = readRecord.get_string("MOD_USER_ID",null);
+               
+            LAST_UPDATE = readRecord.get_datetime("LAST_UPDATE",null);
+               
+            STATUS = readRecord.get_byte("STATUS",null);
+                }   
+
+        partial void OnCreated();
+            
+        partial void OnLoaded();
+        
+        partial void OnSaved();
+        
+        partial void OnChanged();
+        
+        public IList<IColumn> Columns{
+            get{
+                return tbl.Columns;
+            }
+        }
+
+        public EMPLOYEE(Expression<Func<EMPLOYEE, bool>> expression):this() {
+
+            SetIsLoaded(_repo.Load(this,expression));
+        }
+        
+       
+        
+        internal static IRepository<EMPLOYEE> GetRepo(string connectionString, string providerName){
+            Solution.DataAccess.DataModel.SolutionDataBase_standardDB db;
+            if(String.IsNullOrEmpty(connectionString)){
+                db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB();
+            }else{
+                db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB(connectionString, providerName);
+            }
+            IRepository<EMPLOYEE> _repo;
+            
+            if(db.TestMode){
+                EMPLOYEE.SetTestRepo();
+                _repo=_testRepo;
+            }else{
+                _repo = new SubSonicRepository<EMPLOYEE>(db);
+            }
+            return _repo;        
+        }       
+        
+        internal static IRepository<EMPLOYEE> GetRepo(){
+            return GetRepo("","");
+        }
+        
+        public static EMPLOYEE SingleOrDefault(Expression<Func<EMPLOYEE, bool>> expression) {
+
+            var repo = GetRepo();
+            var results=repo.Find(expression);
+            EMPLOYEE single=null;
+            if(results.Count() > 0){
+                single=results.ToList()[0];
+                single.OnLoaded();
+                single.SetIsLoaded(true);
+                single.SetIsNew(false);
+            }
+
+            return single;
+        }      
+        
+        public static EMPLOYEE SingleOrDefault(Expression<Func<EMPLOYEE, bool>> expression,string connectionString, string providerName) {
+            var repo = GetRepo(connectionString,providerName);
+            var results=repo.Find(expression);
+            EMPLOYEE single=null;
+            if(results.Count() > 0){
+                single=results.ToList()[0];
+            }
+
+            return single;
+
+
+        }
+        
+        
+        public static bool Exists(Expression<Func<EMPLOYEE, bool>> expression,string connectionString, string providerName) {
+           
+            return All(connectionString,providerName).Any(expression);
+        }        
+        public static bool Exists(Expression<Func<EMPLOYEE, bool>> expression) {
+           
+            return All().Any(expression);
+        }        
+
+        public static IList<EMPLOYEE> Find(Expression<Func<EMPLOYEE, bool>> expression) {
+            
+            var repo = GetRepo();
+            return repo.Find(expression).ToList();
+        }
+        
+        public static IList<EMPLOYEE> Find(Expression<Func<EMPLOYEE, bool>> expression,string connectionString, string providerName) {
+
+            var repo = GetRepo(connectionString,providerName);
+            return repo.Find(expression).ToList();
+
+        }
+        public static IQueryable<EMPLOYEE> All(string connectionString, string providerName) {
+            return GetRepo(connectionString,providerName).GetAll();
+        }
+        public static IQueryable<EMPLOYEE> All() {
+            return GetRepo().GetAll();
+        }
+        
+        public static PagedList<EMPLOYEE> GetPaged(string sortBy, int pageIndex, int pageSize,string connectionString, string providerName) {
+            return GetRepo(connectionString,providerName).GetPaged(sortBy, pageIndex, pageSize);
+        }
+      
+        public static PagedList<EMPLOYEE> GetPaged(string sortBy, int pageIndex, int pageSize) {
+            return GetRepo().GetPaged(sortBy, pageIndex, pageSize);
+        }
+
+        public static PagedList<EMPLOYEE> GetPaged(int pageIndex, int pageSize,string connectionString, string providerName) {
+            return GetRepo(connectionString,providerName).GetPaged(pageIndex, pageSize);
+            
+        }
+
+
+        public static PagedList<EMPLOYEE> GetPaged(int pageIndex, int pageSize) {
+            return GetRepo().GetPaged(pageIndex, pageSize);
+            
+        }
+
+        public string KeyName()
+        {
+            return "Id";
+        }
+
+        public object KeyValue()
+        {
+            return this.Id;
+        }
+        
+        public void SetKeyValue(object value) {
+            if (value != null && value!=DBNull.Value) {
+                var settable = value.ChangeTypeTo<int>();
+                this.GetType().GetProperty(this.KeyName()).SetValue(this, settable, null);
+            }
+        }
+        
+        public override string ToString(){
+                            return this.EMP_ID.ToString();
+                    }
+
+        public override bool Equals(object obj){
+            if(obj.GetType()==typeof(EMPLOYEE)){
+                EMPLOYEE compare=(EMPLOYEE)obj;
+                return compare.KeyValue()==this.KeyValue();
+            }else{
+                return base.Equals(obj);
+            }
+        }
+
+        
+        public override int GetHashCode() {
+            return this.Id;
+        }
+        
+        public string DescriptorValue()
+        {
+                            return this.EMP_ID.ToString();
+                    }
+
+        public string DescriptorColumn() {
+            return "EMP_ID";
+        }
+        public static string GetKeyColumn()
+        {
+            return "Id";
+        }        
+        public static string GetDescriptorColumn()
+        {
+            return "EMP_ID";
+        }
+        
+        #region ' Foreign Keys '
+        #endregion
+        
+
+        int _Id;
+		/// <summary>
+		/// 
+		/// </summary>
+		[SubSonicPrimaryKey]
+        public int Id
+        {
+            get { return _Id; }
+            set
+            {
+                if(_Id!=value || _isLoaded){
+                    _Id=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Id");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _EMP_ID;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string EMP_ID
+        {
+            get { return _EMP_ID; }
+            set
+            {
+                if(_EMP_ID!=value || _isLoaded){
+                    _EMP_ID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_ID");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _EMP_NAME;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string EMP_NAME
+        {
+            get { return _EMP_NAME; }
+            set
+            {
+                if(_EMP_NAME!=value || _isLoaded){
+                    _EMP_NAME=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_NAME");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime _EMP_Birthday;
+		/// <summary>
+		/// 
+		/// </summary>
+        public DateTime EMP_Birthday
+        {
+            get { return _EMP_Birthday; }
+            set
+            {
+                if(_EMP_Birthday!=value || _isLoaded){
+                    _EMP_Birthday=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_Birthday");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _EMP_ADD;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string EMP_ADD
+        {
+            get { return _EMP_ADD; }
+            set
+            {
+                if(_EMP_ADD!=value || _isLoaded){
+                    _EMP_ADD=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_ADD");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _EMP_TEL;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string EMP_TEL
+        {
+            get { return _EMP_TEL; }
+            set
+            {
+                if(_EMP_TEL!=value || _isLoaded){
+                    _EMP_TEL=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_TEL");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _EMP_ZIP;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string EMP_ZIP
+        {
+            get { return _EMP_ZIP; }
+            set
+            {
+                if(_EMP_ZIP!=value || _isLoaded){
+                    _EMP_ZIP=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_ZIP");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _EMP_EMAIL;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string EMP_EMAIL
+        {
+            get { return _EMP_EMAIL; }
+            set
+            {
+                if(_EMP_EMAIL!=value || _isLoaded){
+                    _EMP_EMAIL=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_EMAIL");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _EMP_MOBILE;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string EMP_MOBILE
+        {
+            get { return _EMP_MOBILE; }
+            set
+            {
+                if(_EMP_MOBILE!=value || _isLoaded){
+                    _EMP_MOBILE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_MOBILE");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _EMP_MEMO;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string EMP_MEMO
+        {
+            get { return _EMP_MEMO; }
+            set
+            {
+                if(_EMP_MEMO!=value || _isLoaded){
+                    _EMP_MEMO=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_MEMO");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _EMP_ENABLE;
+		/// <summary>
+		/// 
+		/// </summary>
+        public int EMP_ENABLE
+        {
+            get { return _EMP_ENABLE; }
+            set
+            {
+                if(_EMP_ENABLE!=value || _isLoaded){
+                    _EMP_ENABLE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_ENABLE");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _EMP_SEX;
+		/// <summary>
+		/// 
+		/// </summary>
+        public int EMP_SEX
+        {
+            get { return _EMP_SEX; }
+            set
+            {
+                if(_EMP_SEX!=value || _isLoaded){
+                    _EMP_SEX=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_SEX");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _EMP_CodeID;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string EMP_CodeID
+        {
+            get { return _EMP_CodeID; }
+            set
+            {
+                if(_EMP_CodeID!=value || _isLoaded){
+                    _EMP_CodeID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_CodeID");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _EMP_LEVEL;
+		/// <summary>
+		/// 
+		/// </summary>
+        public int EMP_LEVEL
+        {
+            get { return _EMP_LEVEL; }
+            set
+            {
+                if(_EMP_LEVEL!=value || _isLoaded){
+                    _EMP_LEVEL=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_LEVEL");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _EMP_PASSWORD;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string EMP_PASSWORD
+        {
+            get { return _EMP_PASSWORD; }
+            set
+            {
+                if(_EMP_PASSWORD!=value || _isLoaded){
+                    _EMP_PASSWORD=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_PASSWORD");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime _EMP_BDATE;
+		/// <summary>
+		/// 
+		/// </summary>
+        public DateTime EMP_BDATE
+        {
+            get { return _EMP_BDATE; }
+            set
+            {
+                if(_EMP_BDATE!=value || _isLoaded){
+                    _EMP_BDATE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_BDATE");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime _EMP_EDATE;
+		/// <summary>
+		/// 
+		/// </summary>
+        public DateTime EMP_EDATE
+        {
+            get { return _EMP_EDATE; }
+            set
+            {
+                if(_EMP_EDATE!=value || _isLoaded){
+                    _EMP_EDATE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_EDATE");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        decimal _EMP_WAGE;
+		/// <summary>
+		/// 
+		/// </summary>
+        public decimal EMP_WAGE
+        {
+            get { return _EMP_WAGE; }
+            set
+            {
+                if(_EMP_WAGE!=value || _isLoaded){
+                    _EMP_WAGE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_WAGE");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _EMP_Education;
+		/// <summary>
+		/// 
+		/// </summary>
+        public int EMP_Education
+        {
+            get { return _EMP_Education; }
+            set
+            {
+                if(_EMP_Education!=value || _isLoaded){
+                    _EMP_Education=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EMP_Education");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime _CRT_DATETIME;
+		/// <summary>
+		/// 
+		/// </summary>
+        public DateTime CRT_DATETIME
+        {
+            get { return _CRT_DATETIME; }
+            set
+            {
+                if(_CRT_DATETIME!=value || _isLoaded){
+                    _CRT_DATETIME=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="CRT_DATETIME");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _CRT_USER_ID;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string CRT_USER_ID
+        {
+            get { return _CRT_USER_ID; }
+            set
+            {
+                if(_CRT_USER_ID!=value || _isLoaded){
+                    _CRT_USER_ID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="CRT_USER_ID");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime _MOD_DATETIME;
+		/// <summary>
+		/// 
+		/// </summary>
+        public DateTime MOD_DATETIME
+        {
+            get { return _MOD_DATETIME; }
+            set
+            {
+                if(_MOD_DATETIME!=value || _isLoaded){
+                    _MOD_DATETIME=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MOD_DATETIME");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _MOD_USER_ID;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string MOD_USER_ID
+        {
+            get { return _MOD_USER_ID; }
+            set
+            {
+                if(_MOD_USER_ID!=value || _isLoaded){
+                    _MOD_USER_ID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MOD_USER_ID");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        DateTime _LAST_UPDATE;
+		/// <summary>
+		/// 
+		/// </summary>
+        public DateTime LAST_UPDATE
+        {
+            get { return _LAST_UPDATE; }
+            set
+            {
+                if(_LAST_UPDATE!=value || _isLoaded){
+                    _LAST_UPDATE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="LAST_UPDATE");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        byte _STATUS;
+		/// <summary>
+		/// 
+		/// </summary>
+        public byte STATUS
+        {
+            get { return _STATUS; }
+            set
+            {
+                if(_STATUS!=value || _isLoaded){
+                    _STATUS=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="STATUS");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+
+
+        public DbCommand GetUpdateCommand() {
+            if(TestMode)
+                return _db.DataProvider.CreateCommand();
+            else
+                return this.ToUpdateQuery(_db.Provider).GetCommand().ToDbCommand();
+            
+        }
+        public DbCommand GetInsertCommand() {
+ 
+            if(TestMode)
+                return _db.DataProvider.CreateCommand();
+            else
+                return this.ToInsertQuery(_db.Provider).GetCommand().ToDbCommand();
+        }
+        
+        public DbCommand GetDeleteCommand() {
+            if(TestMode)
+                return _db.DataProvider.CreateCommand();
+            else
+                return this.ToDeleteQuery(_db.Provider).GetCommand().ToDbCommand();
+        }
+       
+        
+        public void Update(){
+            Update(_db.DataProvider);
+        }
+        
+        public void Update(IDataProvider provider){
+        
+            
+            if(this._dirtyColumns.Count>0){
+				_repo.Update(this,provider);
+                _dirtyColumns.Clear();    
+            }
+            OnSaved();
+       }
+
+        public void Add(){
+            Add(_db.DataProvider);
+        }
+        
+        
+       
+        public void Add(IDataProvider provider){
+
+            
+            var key=KeyValue();
+            if(key==null){
+                var newKey=_repo.Add(this,provider);
+                this.SetKeyValue(newKey);
+            }else{
+                _repo.Add(this,provider);
+            }
+            SetIsNew(false);
+            OnSaved();
+        }
+        
+                
+        
+        public void Save() {
+            Save(_db.DataProvider);
+        }      
+        public void Save(IDataProvider provider) {
+            
+           
+            if (_isNew) {
+                Add(provider);
+                
+            } else {
+                Update(provider);
+            }
+            
+        }
+
+        
+
+        public void Delete(IDataProvider provider) {
+                   
+                 
+            _repo.Delete(KeyValue());
+            
+                    }
+
+
+        public void Delete() {
+            Delete(_db.DataProvider);
+        }
+
+
+        public static void Delete(Expression<Func<EMPLOYEE, bool>> expression) {
+            var repo = GetRepo();
+            
+       
+            
+            repo.DeleteMany(expression);
+            
+        }
+
+        
+
+        public void Load(IDataReader rdr) {
+            Load(rdr, true);
+        }
+        public void Load(IDataReader rdr, bool closeReader) {
+            if (rdr.Read()) {
+
+                try {
+                    rdr.Load(this);
+                    SetIsNew(false);
+                    SetIsLoaded(true);
+                } catch {
+                    SetIsLoaded(false);
+                    throw;
+                }
+            }else{
+                SetIsLoaded(false);
+            }
+
+            if (closeReader)
+                rdr.Dispose();
+        }
+        
+
+    } 
+}
+

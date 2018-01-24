@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{33DA201E-C035-47CD-9CAC-0C53033F2833}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Solution.Logic.Managers</RootNamespace>
+    <AssemblyName>Solution.Logic.Managers</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FineUI">
+      <HintPath>..\Dll\FineUI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\CommonBll.cs" />
+    <Compile Include="Application\ILogicBase.cs" />
+    <Compile Include="Application\LogicBase.cs" />
+    <Compile Include="Application\UploadFileBll.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubSonic\Adjust00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Adjust01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\BranchBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Col_Order00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\COL_ORDER01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\COL_ORDER02Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\COMPONENT00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\COMPONENT01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\CONTRACT00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\CONTRACT01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\CreateBll.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Dispose00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Dispose01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\DIVISIONBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\EmailSendHistoryBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\EMPLOYEEBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\GROUPAREABll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\IN00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\IN01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\InformationBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\InformationClassBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Inventory00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Inventory01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\IN_BACK00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\IN_BACK01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\LoginLogBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ManagerBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Material00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Material01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\MenuInfoBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OnlineUsersBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ORDER00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ORDER01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ORDER_DEP00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ORDER_DEP01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\ORDER_DEP02Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OUT00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OUT01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OUT_BACK00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\OUT_BACK01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PagePowerSignBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PagePowerSignPublicBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PLAN00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PLAN01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PLAN02Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PositionBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PREPARE00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PREPARE01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PRODUCT00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PRODUCT01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PROD_CateBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PROD_DEPBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PROD_KINDBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\PROD_UNITBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Purchase00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\Purchase01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\SHOP00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\SHOP_PRICE_AREABll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\STOCK01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\STOCK02Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\STOCKBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\STOCK_SHOP00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\SUPPLIERSBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\SYS_PARAMATERSBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\TABLE_SEEDBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\TAKEIN00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\TAKEIN01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\TAKEIN10Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\TAKEIN11Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\TESTBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadConfigBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadFileBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UploadTypeBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\UseLogBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_COMPONENT01_PRODUCT00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_ORDERDEP02_PRODDEPBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_Position_BranchBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_Product01_PRCAREABll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_PRODUCT_COMPONENT00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_PROD_CATEBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_PROD_DEPBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_STOCK01_PRODUCT00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_STOCK02_PRODUCT00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_STOCK_SHOP00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\WebConfigBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Systems\BranchBll.cs" />
+    <Compile Include="Systems\Col_Order00Bll.cs" />
+    <Compile Include="Systems\COMPONENT00Bll.cs" />
+    <Compile Include="Systems\COMPONENT01Bll.cs" />
+    <Compile Include="Systems\GROUPAREABll.cs" />
+    <Compile Include="Systems\LoginLogBll.cs" />
+    <Compile Include="Systems\MenuInfoBll.cs" />
+    <Compile Include="Systems\OnlineUsersBll.cs" />
+    <Compile Include="Systems\ORDER00Bll.cs" />
+    <Compile Include="Systems\ORDER_DEP00Bll.cs" />
+    <Compile Include="Systems\ORDER_DEP01Bll.cs" />
+    <Compile Include="Systems\ORDER_DEP02Bll.cs" />
+    <Compile Include="Systems\PagePowerSignPublicBll.cs" />
+    <Compile Include="Systems\PRODUCT00Bll.cs" />
+    <Compile Include="Systems\PROD_CateBll.cs" />
+    <Compile Include="Systems\PROD_DEPBll.cs" />
+    <Compile Include="Systems\PROD_KINDBll.cs" />
+    <Compile Include="Systems\PROD_UNITBll.cs" />
+    <Compile Include="Systems\Purchase00Bll.cs" />
+    <Compile Include="Systems\SHOP00Bll.cs" />
+    <Compile Include="Systems\SHOP_PRICE_AREABll.cs" />
+    <Compile Include="Systems\SUPPLIERSBll.cs" />
+    <Compile Include="Systems\TABLE_SEEDBll.cs" />
+    <Compile Include="Systems\UseLogBll.cs" />
+    <Compile Include="Systems\PositionBll.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotNet.Utilities\DotNet.Utilities.csproj">
+      <Project>{0A9704F9-7864-45AF-BFA7-E09F2B30A29F}</Project>
+      <Name>DotNet.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Solution.DataAccess\Solution.DataAccess.csproj">
+      <Project>{CA4F4CC6-75DF-40EB-98D6-BD60112B412E}</Project>
+      <Name>Solution.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SubSonic.Core\SubSonic.Core.csproj">
+      <Project>{53FF90B2-2D33-4EC0-91B6-A30FDF1B3374}</Project>
+      <Name>SubSonic.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bin\Debug\Solution.Logic.Managers.dll.config" />
+    <None Include="obj\Debug\build.force" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\ResolveAssemblyReference.cache" />
+    <None Include="obj\Debug\Solution.Logic.Managers.csprojResolveAssemblyReference.cache" />
+    <None Include="SubSonic\CreateBll.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CreateBll.cs</LastGenOutput>
+    </None>
+    <None Include="SubSonic\MultipleOutputHelper.ttinclude" />
+    <None Include="SubSonic\Settings.ttinclude" />
+    <None Include="SubSonic\SQLServer.ttinclude" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Castle.Core.dll" />
+    <Content Include="bin\Debug\DotNet.Utilities.dll" />
+    <Content Include="bin\Debug\DotNet.Utilities.pdb" />
+    <Content Include="bin\Debug\DotNet.Utilities.xml" />
+    <Content Include="bin\Debug\FineUI.dll" />
+    <Content Include="bin\Debug\FineUI.pdb" />
+    <Content Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="bin\Debug\log4net.dll" />
+    <Content Include="bin\Debug\Maticsoft.DBUtility.dll" />
+    <Content Include="bin\Debug\MySql.Data.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Solution.DataAccess.dll" />
+    <Content Include="bin\Debug\Solution.DataAccess.pdb" />
+    <Content Include="bin\Debug\Solution.Logic.Managers.dll" />
+    <Content Include="bin\Debug\Solution.Logic.Managers.pdb" />
+    <Content Include="bin\Debug\SubSonic.Core.dll" />
+    <Content Include="bin\Debug\SubSonic.Core.pdb" />
+    <Content Include="bin\Debug\SubSonic.Core.xml" />
+    <Content Include="bin\Debug\System.Data.SQLite.dll" />
+    <Content Include="obj\Debug\Solution.Logic.Managers.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Solution.Logic.Managers.dll" />
+    <Content Include="obj\Debug\Solution.Logic.Managers.pdb" />
+    <Content Include="obj\Debug\TempPE\SubSonic.CreateBll.cs.dll" />
+    <Content Include="obj\Debug\TempPE\SubSonic.Test.cs.dll" />
+    <Content Include="obj\Debug\TempPE\SubSonic.Test.txt.dll" />
+    <Content Include="obj\Debug\TempPE\SubSonic.Test2.cs.dll" />
+    <Content Include="obj\Debug\TempPE\SubSonic.Test2.txt.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
