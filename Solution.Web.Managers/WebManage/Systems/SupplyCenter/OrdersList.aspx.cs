@@ -178,7 +178,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     Random ran = new Random();
                     txtORDER_ID.Text = ddlShop.SelectedValue + "OR" + DateTime.Now.ToString("yyyy-MM-dd").Replace("-", "") + ran.Next(1000, 9999);
 
-                    //获取当前节点的父节点url
+                    /////获取当前节点的父节点url
                     //  txtUrl.Text = MenuInfoBll.GetInstence().GetFieldValue(ConvertHelper.Cint0(ddlParentId.SelectedValue), MenuInfoTable.Url) + "";
                 }
                 catch
