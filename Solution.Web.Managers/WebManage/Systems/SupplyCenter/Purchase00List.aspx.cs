@@ -17,6 +17,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //这里更改了
             if (!IsPostBack)
             {
                 DatePicker1.SelectedDate = DateTime.Now;
