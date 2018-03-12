@@ -58,6 +58,24 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Toolbar Toolbar1;
         
         /// <summary>
+        /// ButtonAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonAdd;
+        
+        /// <summary>
+        /// ButtonSave 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonSave;
+        
+        /// <summary>
         /// ButtonUpdate 控件。
         /// </summary>
         /// <remarks>
@@ -94,6 +112,24 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Form Form5;
         
         /// <summary>
+        /// hidPurchase_ID 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.HiddenField hidPurchase_ID;
+        
+        /// <summary>
+        /// hidId 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.HiddenField hidId;
+        
+        /// <summary>
         /// tbxPurchase_ID 控件。
         /// </summary>
         /// <remarks>
@@ -103,22 +139,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.TextBox tbxPurchase_ID;
         
         /// <summary>
-        /// tbxSHOP_ID 控件。
+        /// ddlSHOP_NAME 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxSHOP_ID;
-        
-        /// <summary>
-        /// tbxSHOP_NAME1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox tbxSHOP_NAME1;
+        protected global::FineUI.DropDownList ddlSHOP_NAME;
         
         /// <summary>
         /// ddlStatus 控件。
@@ -148,31 +175,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.DatePicker dpEXPECT_DATE;
         
         /// <summary>
-        /// tbxSUP_ID 控件。
+        /// ddlSUP_NAME 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxSUP_ID;
-        
-        /// <summary>
-        /// tbxSUP_NAME 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox tbxSUP_NAME;
-        
-        /// <summary>
-        /// ddlSUP_ID 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DropDownList ddlSUP_ID;
+        protected global::FineUI.DropDownList ddlSUP_NAME;
         
         /// <summary>
         /// ddlPAY_STATUS 控件。
@@ -355,13 +364,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Toolbar Toolbar21111;
         
         /// <summary>
-        /// Button4123 控件。
+        /// ButtonPur02Add 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Button Button4123;
+        protected global::FineUI.Button ButtonPur02Add;
         
         /// <summary>
         /// Button_Replace 控件。
@@ -400,6 +409,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.TextBox tbxSHOP_ID01;
         
         /// <summary>
+        /// TextBox2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox TextBox2;
+        
+        /// <summary>
         /// tbxPurchase_ID01 控件。
         /// </summary>
         /// <remarks>
@@ -425,6 +443,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox tbxPROD_ID;
+        
+        /// <summary>
+        /// TextBox1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox TextBox1;
         
         /// <summary>
         /// numQUANTITY 控件。
