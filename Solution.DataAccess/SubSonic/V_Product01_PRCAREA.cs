@@ -126,6 +126,24 @@ namespace Solution.DataAccess.DataModel
                
             PROD_NAME1 = readRecord.get_string("PROD_NAME1",null);
                
+            PROD_NAME1_SPELLING = readRecord.get_string("PROD_NAME1_SPELLING",null);
+               
+            PROD_KIND = readRecord.get_string("PROD_KIND",null);
+               
+            PROD_DEP = readRecord.get_string("PROD_DEP",null);
+               
+            PROD_CATE = readRecord.get_string("PROD_CATE",null);
+               
+            PROD_UNIT = readRecord.get_string("PROD_UNIT",null);
+               
+            PROD_UNIT1 = readRecord.get_string("PROD_UNIT1",null);
+               
+            PROD_CONVERT1 = readRecord.get_int("PROD_CONVERT1",null);
+               
+            PROD_UNIT2 = readRecord.get_string("PROD_UNIT2",null);
+               
+            PROD_CONVERT2 = readRecord.get_int("PROD_CONVERT2",null);
+               
             SUP_ID = readRecord.get_string("SUP_ID",null);
                
             SUP_NAME = readRecord.get_string("SUP_NAME",null);
@@ -482,6 +500,204 @@ namespace Solution.DataAccess.DataModel
                 if(_PROD_NAME1!=value || _isLoaded){
                     _PROD_NAME1=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_NAME1");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _PROD_NAME1_SPELLING;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string PROD_NAME1_SPELLING
+        {
+            get { return _PROD_NAME1_SPELLING; }
+            set
+            {
+                if(_PROD_NAME1_SPELLING!=value || _isLoaded){
+                    _PROD_NAME1_SPELLING=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_NAME1_SPELLING");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _PROD_KIND;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string PROD_KIND
+        {
+            get { return _PROD_KIND; }
+            set
+            {
+                if(_PROD_KIND!=value || _isLoaded){
+                    _PROD_KIND=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_KIND");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _PROD_DEP;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string PROD_DEP
+        {
+            get { return _PROD_DEP; }
+            set
+            {
+                if(_PROD_DEP!=value || _isLoaded){
+                    _PROD_DEP=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_DEP");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _PROD_CATE;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string PROD_CATE
+        {
+            get { return _PROD_CATE; }
+            set
+            {
+                if(_PROD_CATE!=value || _isLoaded){
+                    _PROD_CATE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_CATE");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _PROD_UNIT;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string PROD_UNIT
+        {
+            get { return _PROD_UNIT; }
+            set
+            {
+                if(_PROD_UNIT!=value || _isLoaded){
+                    _PROD_UNIT=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_UNIT");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _PROD_UNIT1;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string PROD_UNIT1
+        {
+            get { return _PROD_UNIT1; }
+            set
+            {
+                if(_PROD_UNIT1!=value || _isLoaded){
+                    _PROD_UNIT1=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_UNIT1");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _PROD_CONVERT1;
+		/// <summary>
+		/// 
+		/// </summary>
+        public int PROD_CONVERT1
+        {
+            get { return _PROD_CONVERT1; }
+            set
+            {
+                if(_PROD_CONVERT1!=value || _isLoaded){
+                    _PROD_CONVERT1=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_CONVERT1");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _PROD_UNIT2;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string PROD_UNIT2
+        {
+            get { return _PROD_UNIT2; }
+            set
+            {
+                if(_PROD_UNIT2!=value || _isLoaded){
+                    _PROD_UNIT2=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_UNIT2");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _PROD_CONVERT2;
+		/// <summary>
+		/// 
+		/// </summary>
+        public int PROD_CONVERT2
+        {
+            get { return _PROD_CONVERT2; }
+            set
+            {
+                if(_PROD_CONVERT2!=value || _isLoaded){
+                    _PROD_CONVERT2=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_CONVERT2");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

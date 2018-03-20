@@ -7610,6 +7610,7 @@
     <Content Include="WebManage\Systems\ProductionCenter\ProductionPlanList.aspx" />
     <Content Include="WebManage\Systems\ProductionCenter\ProductionWarehousingEdit.aspx" />
     <Content Include="WebManage\Systems\ProductionCenter\ProductionWarehousingList.aspx" />
+    <Content Include="WebManage\Systems\ProductionCenter\TAKEIN10List.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\ArchiveOrdersEdit.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\ArchiveOrdersList.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\grid_editor_cell_new_delete.aspx" />
@@ -7620,6 +7621,7 @@
     <Content Include="WebManage\Systems\SupplyCenter\OrdersList.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\OrdersList1.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\Order_ProductEdit.aspx" />
+    <Content Include="WebManage\Systems\SupplyCenter\OUT00List.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\Purchase00List.aspx" />
     <Content Include="WebManage\Systems\SysAuthority\BranchEdit.aspx" />
     <Content Include="WebManage\Systems\SysAuthority\BranchList.aspx" />
@@ -7937,6 +7939,13 @@
     <Compile Include="WebManage\Systems\ProductionCenter\ProductionWarehousingList.aspx.designer.cs">
       <DependentUpon>ProductionWarehousingList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebManage\Systems\ProductionCenter\TAKEIN10List.aspx.cs">
+      <DependentUpon>TAKEIN10List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\ProductionCenter\TAKEIN10List.aspx.designer.cs">
+      <DependentUpon>TAKEIN10List.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\ArchiveOrdersEdit.aspx.cs">
       <DependentUpon>ArchiveOrdersEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8009,6 +8018,13 @@
     </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\Order_ProductEdit.aspx.designer.cs">
       <DependentUpon>Order_ProductEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\OUT00List.aspx.cs">
+      <DependentUpon>OUT00List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\OUT00List.aspx.designer.cs">
+      <DependentUpon>OUT00List.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\Purchase00List.aspx.cs">
       <DependentUpon>Purchase00List.aspx</DependentUpon>

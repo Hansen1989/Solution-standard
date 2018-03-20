@@ -59,6 +59,96 @@ namespace Solution.DataAccess.Model
 			set { _PROD_NAME1 = value; }
 		}
 
+		string _PROD_NAME1_SPELLING = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string PROD_NAME1_SPELLING
+		{
+			get { return _PROD_NAME1_SPELLING; }
+			set { _PROD_NAME1_SPELLING = value; }
+		}
+
+		string _PROD_KIND = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string PROD_KIND
+		{
+			get { return _PROD_KIND; }
+			set { _PROD_KIND = value; }
+		}
+
+		string _PROD_DEP = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string PROD_DEP
+		{
+			get { return _PROD_DEP; }
+			set { _PROD_DEP = value; }
+		}
+
+		string _PROD_CATE = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string PROD_CATE
+		{
+			get { return _PROD_CATE; }
+			set { _PROD_CATE = value; }
+		}
+
+		string _PROD_UNIT = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string PROD_UNIT
+		{
+			get { return _PROD_UNIT; }
+			set { _PROD_UNIT = value; }
+		}
+
+		string _PROD_UNIT1 = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string PROD_UNIT1
+		{
+			get { return _PROD_UNIT1; }
+			set { _PROD_UNIT1 = value; }
+		}
+
+		int _PROD_CONVERT1 = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public int PROD_CONVERT1
+		{
+			get { return _PROD_CONVERT1; }
+			set { _PROD_CONVERT1 = value; }
+		}
+
+		string _PROD_UNIT2 = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string PROD_UNIT2
+		{
+			get { return _PROD_UNIT2; }
+			set { _PROD_UNIT2 = value; }
+		}
+
+		int _PROD_CONVERT2 = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public int PROD_CONVERT2
+		{
+			get { return _PROD_CONVERT2; }
+			set { _PROD_CONVERT2 = value; }
+		}
+
 		string _SUP_ID = "";
 		/// <summary>
 		/// 

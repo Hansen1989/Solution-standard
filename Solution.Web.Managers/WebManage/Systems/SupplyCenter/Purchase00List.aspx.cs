@@ -86,6 +86,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCheck.Text = "核准";
                     ButtonCancel.Text = "作废";
                     ButtonPur02Add.Enabled = true;
+                    Grid2.Enabled = true;
                     Grid2.AllowCellEditing = true; break;
                 case 2:
                     ButtonSave.Enabled = false;
@@ -95,7 +96,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = true;
                     ButtonPur02Add.Enabled = false;
-                    Grid2.AllowCellEditing = false; break;
+                    Grid2.Enabled = false; break;
                 case 3:
                     ButtonSave.Enabled = false;
                     ButtonUpdate.Enabled = false;
@@ -103,6 +104,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCheck.Enabled = false;
                     ButtonCancel.Text = "取消作废";
                     ButtonCheck.Enabled = true;
+                    Grid2.Enabled = false;
                     Grid2.AllowCellEditing = false; break;
                 case 4:
                     ButtonSave.Enabled = false;
@@ -112,6 +114,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
                     ButtonPur02Add.Enabled = false;
+                    Grid2.Enabled = false;
                     Grid2.AllowCellEditing = false; break;
                 default:
                     ButtonSave.Enabled = false;
@@ -337,13 +340,27 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 default: FineUI.Alert.ShowInParent("订单状态有误，无法核准", FineUI.MessageBoxIcon.Information); return;
             }
             ddlStatus.SelectedValue = model.STATUS.ToString();
-            //var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
-            //model.MOD_DATETIME = DateTime.Now;
-            //model.LAST_UPDATE = DateTime.Now;
-            //model.MOD_USER_ID = OlUser.Manager_LoginName;
-            //Purchase00Bll.GetInstence().Save(this,model);
+            var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
+            model.MOD_DATETIME = DateTime.Now;
+            model.LAST_UPDATE = DateTime.Now;
+            model.MOD_USER_ID = OlUser.Manager_LoginName;
+            string result = "";
+            try
+            {
+                Purchase00Bll.GetInstence().Save(this, model);
+            }
+            catch (Exception err)
+            {
+                result = err.Message;
+            }
             //BtnPur01_Edit(sender, e);
-            string result = Pur_Edit();
+            //string result = Pur01_Edit();
+            if (String.IsNullOrEmpty(result))
+            {
+                result = Pur_Edit();
+            }
+            LoadPur();
+            LoadDataPur01();
             FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
@@ -370,18 +387,32 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 default: FineUI.Alert.ShowInParent("订单状态有误，无法进行作废", FineUI.MessageBoxIcon.Information); return;
             }
             ddlStatus.SelectedValue = model.STATUS.ToString();
-            //var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
-            //model.MOD_DATETIME = DateTime.Now;
-            //model.LAST_UPDATE = DateTime.Now;
-            //model.MOD_USER_ID = OlUser.Manager_LoginName;
-            //Purchase00Bll.GetInstence().Save(this,model);
+            var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
+            model.MOD_DATETIME = DateTime.Now;
+            model.LAST_UPDATE = DateTime.Now;
+            model.MOD_USER_ID = OlUser.Manager_LoginName;
+            string result = "";
+            try
+            {
+                Purchase00Bll.GetInstence().Save(this, model);
+            }
+            catch (Exception err)
+            {
+                result = err.Message;
+            }
             //BtnPur01_Edit(sender, e);
-            string result = Pur_Edit();
+            //string result = Pur01_Edit();
+            if (String.IsNullOrEmpty(result))
+            {
+                result = Pur_Edit();
+            }
+            LoadPur();
+            LoadDataPur01();
             FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
         /// <summary>
-        /// 数据新增保存
+        /// 采购主表保存
         /// </summary>
         /// <returns></returns>
         public string Pur_Save()
@@ -393,12 +424,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 //FineUI.Alert.ShowInParent("分店编码不允许为空", FineUI.MessageBoxIcon.Error);
                 return "分店编码不允许为空";
             }
-            string _EXPECT_DATE = dpAPP_DATETIME.SelectedDate.ToString();
-            if (dpAPP_DATETIME.SelectedDate < DateTime.Now)
-            {
-                //FineUI.Alert.ShowInParent("期望日期不能小于当前时间", FineUI.MessageBoxIcon.Error);
-                return "期望日期不能小于当前时间";
-            }
+            //string _EXPECT_DATE = dpAPP_DATETIME.SelectedDate.ToString();
+            //if (dpAPP_DATETIME.SelectedDate < DateTime.Now)
+            //{
+            //    //FineUI.Alert.ShowInParent("期望日期不能小于当前时间", FineUI.MessageBoxIcon.Error);
+            //    return "期望日期不能小于当前时间";
+            //}
 
             string _SUP_ID = ddlSHOP_NAME.SelectedValue;
             if (String.IsNullOrEmpty(_SUP_ID))
@@ -459,8 +490,86 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 }
             }
         }
+
         /// <summary>
-        /// 数据更新
+        /// 采购主表更新
+        /// </summary>
+        /// <returns></returns>
+        public string Pur01_Edit()
+        {
+            #region 校验数据
+            string _SHOP_ID = ddlSHOP_NAME.SelectedValue;
+            if (String.IsNullOrEmpty(_SHOP_ID))
+            {
+                //FineUI.Alert.ShowInParent("分店编码不允许为空", FineUI.MessageBoxIcon.Error);
+                return "分店编码不允许为空";
+            }
+            //string _EXPECT_DATE = dpAPP_DATETIME.SelectedDate.ToString();
+            //if (dpAPP_DATETIME.SelectedDate < DateTime.Now)
+            //{
+            //    //FineUI.Alert.ShowInParent("期望日期不能小于当前时间", FineUI.MessageBoxIcon.Error);
+            //    return "期望日期不能小于当前时间";
+            //}
+
+            string _SUP_ID = ddlSHOP_NAME.SelectedValue;
+            if (String.IsNullOrEmpty(_SUP_ID))
+            {
+                //FineUI.Alert.ShowInParent("厂商不能为空", FineUI.MessageBoxIcon.Error);
+                return "厂商不能为空";
+            }
+
+            #endregion
+
+            string _Pur00_id = tbxPurchase_ID.Text;
+            var model = Purchase00.SingleOrDefault(x => x.Purchase_ID == _Pur00_id);
+            if (model == null)
+            {
+                //FineUI.Alert.ShowInParent("采购单号已存在不允许添加", FineUI.MessageBoxIcon.Error);
+                return "该订单不存在";
+            }
+            else
+            {
+                try
+                {
+                    var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
+                    //model = new Purchase00();
+
+                    model.SHOP_ID = _SHOP_ID;
+                    model.STATUS = 1;
+                    model.INPUT_DATE = DateTime.Now;
+                    model.EXPECT_DATE = ConvertHelper.StringToDatetime(dpEXPECT_DATE.SelectedDate.ToString());
+                    model.SUP_ID = ddlSUP_NAME.SelectedValue.ToString();
+                    model.PAY_STATUS = ConvertHelper.Cint(ddlPAY_STATUS.SelectedValue);
+                    model.USER_ID = OlUser.Manager_LoginName;
+                    model.APP_USER = "";
+                    model.APP_DATETIME = ConvertHelper.StringToDatetime("1900-01-01 00:00:00");
+                    model.TOT_AMOUNT = 0;
+                    model.TOT_TAX = ConvertHelper.StringToDecimal(numTOT_QTY.Text);
+                    model.TOT_QTY = 0;
+                    model.PRE_PAY = 0;
+                    model.PRE_PAY_ID = "";
+                    model.EXPORTED = 0;
+                    model.EXPORTED_ID = "";
+                    model.LOCKED = 0;
+                    model.CRT_DATETIME = ConvertHelper.StringToDatetime(DateTime.Now.ToLongDateString());
+                    model.CRT_USER_ID = OlUser.Manager_LoginName;
+                    model.MOD_DATETIME = ConvertHelper.StringToDatetime(DateTime.Now.ToLongDateString());
+                    model.MOD_USER_ID = OlUser.Manager_LoginName;
+                    model.LAST_UPDATE = ConvertHelper.StringToDatetime(DateTime.Now.ToLongDateString());
+                    model.SetIsNew(false);
+                    Purchase00Bll.GetInstence().Save(this, model);
+                    LoackPur01();
+                    //FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                    return "";
+                }
+                catch (Exception err)
+                {
+                    return err.Message;
+                }
+            }
+        }
+        /// <summary>
+        /// 采购明细更新数据更新
         /// </summary>
         /// <returns></returns>
         public string Pur_Edit()
@@ -523,7 +632,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 result = "保存成功";
                 //FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Information);
             }
-            LoadDataPur01();
+            //LoadDataPur01();
             return result;
         }
 

@@ -252,6 +252,42 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.PROD_NAME1 == (string)value);
                         expression = x => x.PROD_NAME1 == (string)value;
                         break;
+					case "PROD_NAME1_SPELLING" :
+						model = list.SingleOrDefault(x => x.PROD_NAME1_SPELLING == (string)value);
+                        expression = x => x.PROD_NAME1_SPELLING == (string)value;
+                        break;
+					case "PROD_KIND" :
+						model = list.SingleOrDefault(x => x.PROD_KIND == (string)value);
+                        expression = x => x.PROD_KIND == (string)value;
+                        break;
+					case "PROD_DEP" :
+						model = list.SingleOrDefault(x => x.PROD_DEP == (string)value);
+                        expression = x => x.PROD_DEP == (string)value;
+                        break;
+					case "PROD_CATE" :
+						model = list.SingleOrDefault(x => x.PROD_CATE == (string)value);
+                        expression = x => x.PROD_CATE == (string)value;
+                        break;
+					case "PROD_UNIT" :
+						model = list.SingleOrDefault(x => x.PROD_UNIT == (string)value);
+                        expression = x => x.PROD_UNIT == (string)value;
+                        break;
+					case "PROD_UNIT1" :
+						model = list.SingleOrDefault(x => x.PROD_UNIT1 == (string)value);
+                        expression = x => x.PROD_UNIT1 == (string)value;
+                        break;
+					case "PROD_CONVERT1" :
+						model = list.SingleOrDefault(x => x.PROD_CONVERT1 == (int)value);
+                        expression = x => x.PROD_CONVERT1 == (int)value;
+                        break;
+					case "PROD_UNIT2" :
+						model = list.SingleOrDefault(x => x.PROD_UNIT2 == (string)value);
+                        expression = x => x.PROD_UNIT2 == (string)value;
+                        break;
+					case "PROD_CONVERT2" :
+						model = list.SingleOrDefault(x => x.PROD_CONVERT2 == (int)value);
+                        expression = x => x.PROD_CONVERT2 == (int)value;
+                        break;
 					case "SUP_ID" :
 						model = list.SingleOrDefault(x => x.SUP_ID == (string)value);
                         expression = x => x.SUP_ID == (string)value;
@@ -581,6 +617,15 @@ namespace Solution.Logic.Managers {
                 PRCAREA_NAME = model.PRCAREA_NAME,
                 PROD_ID = model.PROD_ID,
                 PROD_NAME1 = model.PROD_NAME1,
+                PROD_NAME1_SPELLING = model.PROD_NAME1_SPELLING,
+                PROD_KIND = model.PROD_KIND,
+                PROD_DEP = model.PROD_DEP,
+                PROD_CATE = model.PROD_CATE,
+                PROD_UNIT = model.PROD_UNIT,
+                PROD_UNIT1 = model.PROD_UNIT1,
+                PROD_CONVERT1 = model.PROD_CONVERT1,
+                PROD_UNIT2 = model.PROD_UNIT2,
+                PROD_CONVERT2 = model.PROD_CONVERT2,
                 SUP_ID = model.SUP_ID,
                 SUP_NAME = model.SUP_NAME,
                 SEND_TYPE = model.SEND_TYPE,
@@ -654,6 +699,15 @@ namespace Solution.Logic.Managers {
                 PRCAREA_NAME = model.PRCAREA_NAME,
                 PROD_ID = model.PROD_ID,
                 PROD_NAME1 = model.PROD_NAME1,
+                PROD_NAME1_SPELLING = model.PROD_NAME1_SPELLING,
+                PROD_KIND = model.PROD_KIND,
+                PROD_DEP = model.PROD_DEP,
+                PROD_CATE = model.PROD_CATE,
+                PROD_UNIT = model.PROD_UNIT,
+                PROD_UNIT1 = model.PROD_UNIT1,
+                PROD_CONVERT1 = model.PROD_CONVERT1,
+                PROD_UNIT2 = model.PROD_UNIT2,
+                PROD_CONVERT2 = model.PROD_CONVERT2,
                 SUP_ID = model.SUP_ID,
                 SUP_NAME = model.SUP_NAME,
                 SEND_TYPE = model.SEND_TYPE,
@@ -755,6 +809,33 @@ namespace Solution.Logic.Managers {
                     break;
 				case "PROD_NAME1" :
 					model.PROD_NAME1 = (string)value;
+                    break;
+				case "PROD_NAME1_SPELLING" :
+					model.PROD_NAME1_SPELLING = (string)value;
+                    break;
+				case "PROD_KIND" :
+					model.PROD_KIND = (string)value;
+                    break;
+				case "PROD_DEP" :
+					model.PROD_DEP = (string)value;
+                    break;
+				case "PROD_CATE" :
+					model.PROD_CATE = (string)value;
+                    break;
+				case "PROD_UNIT" :
+					model.PROD_UNIT = (string)value;
+                    break;
+				case "PROD_UNIT1" :
+					model.PROD_UNIT1 = (string)value;
+                    break;
+				case "PROD_CONVERT1" :
+					model.PROD_CONVERT1 = (int)value;
+                    break;
+				case "PROD_UNIT2" :
+					model.PROD_UNIT2 = (string)value;
+                    break;
+				case "PROD_CONVERT2" :
+					model.PROD_CONVERT2 = (int)value;
                     break;
 				case "SUP_ID" :
 					model.SUP_ID = (string)value;
@@ -1439,6 +1520,24 @@ namespace Solution.Logic.Managers {
 					return model.PROD_ID;
 				case "PROD_NAME1" :
 					return model.PROD_NAME1;
+				case "PROD_NAME1_SPELLING" :
+					return model.PROD_NAME1_SPELLING;
+				case "PROD_KIND" :
+					return model.PROD_KIND;
+				case "PROD_DEP" :
+					return model.PROD_DEP;
+				case "PROD_CATE" :
+					return model.PROD_CATE;
+				case "PROD_UNIT" :
+					return model.PROD_UNIT;
+				case "PROD_UNIT1" :
+					return model.PROD_UNIT1;
+				case "PROD_CONVERT1" :
+					return model.PROD_CONVERT1;
+				case "PROD_UNIT2" :
+					return model.PROD_UNIT2;
+				case "PROD_CONVERT2" :
+					return model.PROD_CONVERT2;
 				case "SUP_ID" :
 					return model.SUP_ID;
 				case "SUP_NAME" :

@@ -72,6 +72,105 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "PROD_NAME1"
                 });
 
+                Columns.Add(new DatabaseColumn("PROD_NAME1_SPELLING", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 40,
+					PropertyName = "PROD_NAME1_SPELLING"
+                });
+
+                Columns.Add(new DatabaseColumn("PROD_KIND", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 6,
+					PropertyName = "PROD_KIND"
+                });
+
+                Columns.Add(new DatabaseColumn("PROD_DEP", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 6,
+					PropertyName = "PROD_DEP"
+                });
+
+                Columns.Add(new DatabaseColumn("PROD_CATE", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 6,
+					PropertyName = "PROD_CATE"
+                });
+
+                Columns.Add(new DatabaseColumn("PROD_UNIT", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 6,
+					PropertyName = "PROD_UNIT"
+                });
+
+                Columns.Add(new DatabaseColumn("PROD_UNIT1", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 6,
+					PropertyName = "PROD_UNIT1"
+                });
+
+                Columns.Add(new DatabaseColumn("PROD_CONVERT1", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Int32,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "PROD_CONVERT1"
+                });
+
+                Columns.Add(new DatabaseColumn("PROD_UNIT2", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 6,
+					PropertyName = "PROD_UNIT2"
+                });
+
+                Columns.Add(new DatabaseColumn("PROD_CONVERT2", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Int32,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "PROD_CONVERT2"
+                });
+
                 Columns.Add(new DatabaseColumn("SUP_ID", this)
                 {
 	                IsPrimaryKey = false,
@@ -547,6 +646,69 @@ namespace Solution.DataAccess.DataModel {
             public IColumn PROD_NAME1{
                 get{
                     return this.GetColumn("PROD_NAME1");
+                }
+            }
+				
+            
+            public IColumn PROD_NAME1_SPELLING{
+                get{
+                    return this.GetColumn("PROD_NAME1_SPELLING");
+                }
+            }
+				
+            
+            public IColumn PROD_KIND{
+                get{
+                    return this.GetColumn("PROD_KIND");
+                }
+            }
+				
+            
+            public IColumn PROD_DEP{
+                get{
+                    return this.GetColumn("PROD_DEP");
+                }
+            }
+				
+            
+            public IColumn PROD_CATE{
+                get{
+                    return this.GetColumn("PROD_CATE");
+                }
+            }
+				
+            
+            public IColumn PROD_UNIT{
+                get{
+                    return this.GetColumn("PROD_UNIT");
+                }
+            }
+				
+            
+            public IColumn PROD_UNIT1{
+                get{
+                    return this.GetColumn("PROD_UNIT1");
+                }
+            }
+				
+            
+            public IColumn PROD_CONVERT1{
+                get{
+                    return this.GetColumn("PROD_CONVERT1");
+                }
+            }
+				
+            
+            public IColumn PROD_UNIT2{
+                get{
+                    return this.GetColumn("PROD_UNIT2");
+                }
+            }
+				
+            
+            public IColumn PROD_CONVERT2{
+                get{
+                    return this.GetColumn("PROD_CONVERT2");
                 }
             }
 				

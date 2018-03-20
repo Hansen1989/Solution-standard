@@ -59,6 +59,78 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
+   			public static string PROD_NAME1_SPELLING{
+			      get{
+        			return "PROD_NAME1_SPELLING";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PROD_KIND{
+			      get{
+        			return "PROD_KIND";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PROD_DEP{
+			      get{
+        			return "PROD_DEP";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PROD_CATE{
+			      get{
+        			return "PROD_CATE";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PROD_UNIT{
+			      get{
+        			return "PROD_UNIT";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PROD_UNIT1{
+			      get{
+        			return "PROD_UNIT1";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PROD_CONVERT1{
+			      get{
+        			return "PROD_CONVERT1";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PROD_UNIT2{
+			      get{
+        			return "PROD_UNIT2";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PROD_CONVERT2{
+			      get{
+        			return "PROD_CONVERT2";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
    			public static string SUP_ID{
 			      get{
         			return "SUP_ID";
