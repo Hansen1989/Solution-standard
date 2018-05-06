@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Material00List.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.SupplyCenter.Material00List" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dispose00List.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.SupplyCenter.Dispose00List" %>
 
 <!DOCTYPE html>
 
@@ -13,7 +13,7 @@
         <f:Panel ID="Panel1" runat="server" ShowBorder="false" ShowHeader="false" Layout="Region">
             <Items>
                 <f:Panel runat="server" ID="panelCenterRegion" RegionPosition="Center"
-                    Title="领用作业" ShowBorder="true" ShowHeader="true" BodyPadding="5px">
+                    Title="报废作业" ShowBorder="true" ShowHeader="true" BodyPadding="5px">
                     <Toolbars>
                     <f:Toolbar ID="Toolbar1_1" runat="server">
                       <Items>
@@ -32,7 +32,7 @@
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
                                     <f:DropDownList runat="server" Label="分店名称" ID="ddlSHOP_NAME" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList> 
-                                    <f:TextBox runat="server" Label="领用单号" ID="tbxMA_ID" Required="true" ShowRedStar="true" Enabled="false"></f:TextBox>
+                                    <f:TextBox runat="server" Label="报废单号" ID="tbxDP_ID" Required="true" ShowRedStar="true" Enabled="false"></f:TextBox>
                                     <f:DatePicker ID="dpINPUT_DATE" Label="单据日期" Required="true" Readonly="false" DateFormatString="yyyy-MM-dd" runat="server" ShowRedStar="True" Enabled="false">
                                     </f:DatePicker>
                                     <f:DropDownList runat="server" ID="ddlStatus" Required="true" ShowRedStar="true" Label="单据状态" Enabled="false">
@@ -46,8 +46,7 @@
 
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
-                                    <f:DropDownList runat="server" Label="领用部门" ID="ddlDIV_ID" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList>
-                                    <f:DropDownList runat="server" ID="ddlMAT_TYPE" Required="true" ShowRedStar="true" Label="领用类型" Enabled="false">
+                                    <f:DropDownList runat="server" ID="ddlDP_TYPE" Required="true" ShowRedStar="true" Label="报废类型" Enabled="false">
                                         <f:ListItem Text="直接领料" Value="1" Selected="true" />
                                         <f:ListItem Text="生产领料" Value="2" />
                                         <f:ListItem Text="销售领料" Value="3" />
@@ -83,7 +82,7 @@
                     </Items>
 
                     <Items>
-                       <f:Panel ID="Panel12" runat="server" Title="领用作业子表">
+                       <f:Panel ID="Panel12" runat="server" Title="报废作业子表">
                            <Toolbars>
                              <f:Toolbar ID="Toolbar21111" runat="server">
                                <Items>
@@ -92,7 +91,7 @@
                              </f:Toolbar>
                            </Toolbars>
                            <Items>
-                              <f:Grid ID="Grid2" Title="领用作业子表" EnableFrame="false" EnableCollapse="true" ShowHeader="false" runat="server" Height="600px"
+                              <f:Grid ID="Grid2" Title="报废作业子表" EnableFrame="false" EnableCollapse="true" ShowHeader="false" runat="server" Height="600px"
                                    DataKeyNames="Id" EnableColumnLines="true" AllowPaging="true"
                                     EnableCheckBoxSelect="true" AllowCellEditing="true" ClicksToEdit="1"> 
                                       <Columns>
@@ -118,10 +117,10 @@
                                                     </f:TextBox>
                                                 </Editor>
                                         </f:RenderField>
-                                        <f:RenderField Width="130px" ColumnID="MA_ID01" DataField="MA_ID" FieldType="String" Enabled="false"
+                                        <f:RenderField Width="130px" ColumnID="DP_ID01" DataField="DP_ID" FieldType="String" Enabled="false"
                                                 HeaderText=" 领用单号">
                                                 <Editor>
-                                                    <f:TextBox ID="tbxIB_ID01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
+                                                    <f:TextBox ID="tbxDP_ID01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
                                                     </f:TextBox>
                                                 </Editor>
                                         </f:RenderField>
@@ -153,7 +152,7 @@
                                                 </Editor>
                                          </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="STD_UNIT01" DataField="STD_UNIT" FieldType="String" Enabled="false"
-                                                HeaderText="领用单位">
+                                                HeaderText="报废单位">
                                                 <Editor>
                                                     <f:TextBox ID="tbxSTD_UNIT01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
                                                     </f:TextBox>
@@ -166,21 +165,28 @@
                                                 </Editor>
                                          </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="STD_QUAN01" DataField="STD_QUAN" FieldType="Float" Enabled="false"
-                                                HeaderText="领用量">
+                                                HeaderText="报废量">
                                                 <Editor>
                                                     <f:NumberBox runat="server" ID="numSTD_QUAN" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="STD_PRICE01" DataField="STD_PRICE" FieldType="Float" Enabled="false"
-                                                HeaderText="领用单价">
+                                                HeaderText="报废单价">
                                                 <Editor>
                                                     <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="COST01" DataField="COST" FieldType="Float" Enabled="false"
-                                                HeaderText="入库成本">
+                                                HeaderText="报废成本">
                                                 <Editor>
                                                     <f:NumberBox runat="server" ID="numCOST" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
+                                                </Editor>
+                                         </f:RenderField>
+                                         <f:RenderField Width="130px" ColumnID="REASON_ID01" DataField="REASON_ID" FieldType="String" Enabled="True"
+                                                HeaderText="报废原因">
+                                                <Editor>
+                                                    <f:TextBox ID="TextBox3" runat="server" Required="true" ShowRedStar="true">
+                                                    </f:TextBox>
                                                 </Editor>
                                          </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="MEMO01" DataField="MEMO" FieldType="String" Enabled="True"
@@ -223,12 +229,12 @@
                         <f:Button ID="ButtonSearch" runat="server" Text="查询" Icon="Magnifier" OnClick="BtnSearchOrder_click"></f:Button>
                     </Items>
                     <Items>
-                       <f:Grid ID="Grid1" Title="领用作业列表" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="MA_ID"
+                       <f:Grid ID="Grid1" Title="领用作业列表" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="DP_ID"
                          EnableCheckBoxSelect="true" KeepCurrentSelection="false" EnableMultiSelect="false" PageSize="15"
                          EnableRowClickEvent="true" OnRowClick="Grid1_RowClick" >
                          <Columns>
                            <f:RowNumberField />
-                           <f:BoundField Width="125px" DataField="MA_ID" HeaderText="领用单号" />
+                           <f:BoundField Width="125px" DataField="DP_ID" HeaderText="领用单号" />
                            <f:BoundField Width="125px" DataField="SHOP_NAME1" HeaderText="分店名称" ExpandUnusedSpace="true"  />
                          </Columns>
                        </f:Grid>

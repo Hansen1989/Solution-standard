@@ -16,7 +16,7 @@
                     <Toolbars>
                     <f:Toolbar ID="Toolbar1" runat="server">
                       <Items>
-                          <f:Button ID="Button1" runat="server" Text="清空" Icon="ArrowRefresh" OnClick="ButtonClear_Click"  CssClass="inline"></f:Button>
+                          <f:Button ID="Button1" runat="server" Text="清空" Icon="ArrowRefresh" OnClick="ButtonAdd_Click"  CssClass="inline"></f:Button>
                           <f:Button ID="ButtonAdd" runat="server" Text="新增" Icon="Disk" OnClick="ButtonSave_Click" ></f:Button>
                           <f:Button ID="ButtonUpdate" runat="server" Text="修改" Icon="Disk" OnClick="ButtonUpdate_Click" ></f:Button>
                       </Items>

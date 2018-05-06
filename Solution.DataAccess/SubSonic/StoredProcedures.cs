@@ -98,6 +98,14 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("ORDDEP_ID",ORDDEP_ID,DbType.AnsiString);
             return sp;
         }
+        public static StoredProcedure Get_ORDER_SEED(string shop_id,string tablename){
+            StoredProcedure sp=new StoredProcedure("Get_ORDER_SEED");
+			
+
+            sp.Command.AddParameter("shop_id",shop_id,DbType.AnsiString);
+            sp.Command.AddParameter("tablename",tablename,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure Get_ORDER01_PRODUCT00_PRODUCT01(string ORDER_ID,string PRCAREA_ID){
             StoredProcedure sp=new StoredProcedure("Get_ORDER01_PRODUCT00_PRODUCT01");
 			

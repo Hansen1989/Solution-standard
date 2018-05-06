@@ -49,13 +49,40 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter {
         protected global::FineUI.Panel panelCenterRegion;
         
         /// <summary>
-        /// Toolbar1 控件。
+        /// Toolbar1_1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Toolbar Toolbar1;
+        protected global::FineUI.Toolbar Toolbar1_1;
+        
+        /// <summary>
+        /// ButtonAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonAdd;
+        
+        /// <summary>
+        /// ButtonSave 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonSave;
+        
+        /// <summary>
+        /// ButtonEdit 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonEdit;
         
         /// <summary>
         /// ButtonCheck 控件。
@@ -310,13 +337,13 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter {
         protected global::FineUI.Toolbar Toolbar21111;
         
         /// <summary>
-        /// ButtonPur02Add 控件。
+        /// ButtonDetailAdd 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Button ButtonPur02Add;
+        protected global::FineUI.Button ButtonDetailAdd;
         
         /// <summary>
         /// Button_Replace 控件。
@@ -508,13 +535,13 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter {
         protected global::FineUI.Panel panelLeftRegion;
         
         /// <summary>
-        /// FilterDateRadio 控件。
+        /// ddrDataType 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.RadioButtonList FilterDateRadio;
+        protected global::FineUI.RadioButtonList ddrDataType;
         
         /// <summary>
         /// DatePicker1 控件。
@@ -560,5 +587,14 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Grid Grid1;
+        
+        /// <summary>
+        /// Window3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Window Window3;
     }
 }

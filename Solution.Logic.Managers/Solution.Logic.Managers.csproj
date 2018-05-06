@@ -315,6 +315,7 @@
     <Compile Include="Systems\Col_Order00Bll.cs" />
     <Compile Include="Systems\COMPONENT00Bll.cs" />
     <Compile Include="Systems\COMPONENT01Bll.cs" />
+    <Compile Include="Systems\DIVISIONBll.cs" />
     <Compile Include="Systems\GROUPAREABll.cs" />
     <Compile Include="Systems\LoginLogBll.cs" />
     <Compile Include="Systems\MenuInfoBll.cs" />
@@ -332,8 +333,10 @@
     <Compile Include="Systems\Purchase00Bll.cs" />
     <Compile Include="Systems\SHOP00Bll.cs" />
     <Compile Include="Systems\SHOP_PRICE_AREABll.cs" />
+    <Compile Include="Systems\STOCKBll.cs" />
     <Compile Include="Systems\SUPPLIERSBll.cs" />
     <Compile Include="Systems\TABLE_SEEDBll.cs" />
+    <Compile Include="Systems\TAKEIN10Bll.cs" />
     <Compile Include="Systems\UseLogBll.cs" />
     <Compile Include="Systems\PositionBll.cs" />
   </ItemGroup>
