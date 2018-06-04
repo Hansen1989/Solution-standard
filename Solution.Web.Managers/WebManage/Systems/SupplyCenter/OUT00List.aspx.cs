@@ -19,6 +19,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             if (!IsPostBack)
             {
+                //123
                 DatePicker1.SelectedDate = DateTime.Now;
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
                 SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
