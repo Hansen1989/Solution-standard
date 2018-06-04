@@ -7611,11 +7611,16 @@
     <Content Include="WebManage\Systems\ProductionCenter\ProductionWarehousingEdit.aspx" />
     <Content Include="WebManage\Systems\ProductionCenter\ProductionWarehousingList.aspx" />
     <Content Include="WebManage\Systems\ProductionCenter\TAKEIN10List.aspx" />
+    <Content Include="WebManage\Systems\SupplyCenter\Adjust00List.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\ArchiveOrdersEdit.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\ArchiveOrdersList.aspx" />
+    <Content Include="WebManage\Systems\SupplyCenter\Dispose00List.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\grid_editor_cell_new_delete.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\grid_editor_cell_updatecellvalue.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\IN00List.aspx" />
+    <Content Include="WebManage\Systems\SupplyCenter\Inventory00List.aspx" />
+    <Content Include="WebManage\Systems\SupplyCenter\IN_BACK00List.aspx" />
+    <Content Include="WebManage\Systems\SupplyCenter\Material00List.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\OrderDep00.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\OrdersEdit.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\OrdersEditPro.aspx" />
@@ -7624,6 +7629,7 @@
     <Content Include="WebManage\Systems\SupplyCenter\Order_ProductEdit.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\OUT00List.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\OUT_BACK00List.aspx" />
+    <Content Include="WebManage\Systems\SupplyCenter\PREPARE00List.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\Purchase00List.aspx" />
     <Content Include="WebManage\Systems\SysAuthority\BranchEdit.aspx" />
     <Content Include="WebManage\Systems\SysAuthority\BranchList.aspx" />
@@ -7948,6 +7954,13 @@
     <Compile Include="WebManage\Systems\ProductionCenter\TAKEIN10List.aspx.designer.cs">
       <DependentUpon>TAKEIN10List.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\Adjust00List.aspx.cs">
+      <DependentUpon>Adjust00List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\Adjust00List.aspx.designer.cs">
+      <DependentUpon>Adjust00List.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\ArchiveOrdersEdit.aspx.cs">
       <DependentUpon>ArchiveOrdersEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7961,6 +7974,13 @@
     </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\ArchiveOrdersList.aspx.designer.cs">
       <DependentUpon>ArchiveOrdersList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\Dispose00List.aspx.cs">
+      <DependentUpon>Dispose00List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\Dispose00List.aspx.designer.cs">
+      <DependentUpon>Dispose00List.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\grid_editor_cell_new_delete.aspx.cs">
       <DependentUpon>grid_editor_cell_new_delete.aspx</DependentUpon>
@@ -7982,6 +8002,27 @@
     </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\IN00List.aspx.designer.cs">
       <DependentUpon>IN00List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\Inventory00List.aspx.cs">
+      <DependentUpon>Inventory00List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\Inventory00List.aspx.designer.cs">
+      <DependentUpon>Inventory00List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\IN_BACK00List.aspx.cs">
+      <DependentUpon>IN_BACK00List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\IN_BACK00List.aspx.designer.cs">
+      <DependentUpon>IN_BACK00List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\Material00List.aspx.cs">
+      <DependentUpon>Material00List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\Material00List.aspx.designer.cs">
+      <DependentUpon>Material00List.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\OrderDep00.aspx.cs">
       <DependentUpon>OrderDep00.aspx</DependentUpon>
@@ -8041,6 +8082,13 @@
     </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\OUT_BACK00List.aspx.designer.cs">
       <DependentUpon>OUT_BACK00List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\PREPARE00List.aspx.cs">
+      <DependentUpon>PREPARE00List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\PREPARE00List.aspx.designer.cs">
+      <DependentUpon>PREPARE00List.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\Purchase00List.aspx.cs">
       <DependentUpon>Purchase00List.aspx</DependentUpon>

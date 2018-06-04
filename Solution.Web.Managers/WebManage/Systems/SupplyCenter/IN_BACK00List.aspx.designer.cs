@@ -10,7 +10,7 @@
 namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
     
     
-    public partial class OUT00List {
+    public partial class IN_BACK00List {
         
         /// <summary>
         /// form1 控件。
@@ -121,13 +121,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.DropDownList ddlSHOP_NAME;
         
         /// <summary>
-        /// tbxOUT_ID 控件。
+        /// tbxIB_ID 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxOUT_ID;
+        protected global::FineUI.TextBox tbxIB_ID;
         
         /// <summary>
         /// dpINPUT_DATE 控件。
@@ -148,13 +148,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.DropDownList ddlStatus;
         
         /// <summary>
-        /// ddlIN_SHOP 控件。
+        /// ddlOUT_SHOP 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.DropDownList ddlIN_SHOP;
+        protected global::FineUI.DropDownList ddlOUT_SHOP;
         
         /// <summary>
         /// ddlSTOCK_ID 控件。
@@ -191,33 +191,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.DatePicker dpAPP_DATETIME;
-        
-        /// <summary>
-        /// dpEXPECT_DATE 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DatePicker dpEXPECT_DATE;
-        
-        /// <summary>
-        /// cbExported 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.CheckBox cbExported;
-        
-        /// <summary>
-        /// tbxExported_ID 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox tbxExported_ID;
         
         /// <summary>
         /// tbxRELATE_ID 控件。
@@ -364,13 +337,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.TextBox TextBox2;
         
         /// <summary>
-        /// tbxOUT_ID01 控件。
+        /// tbxIB_ID01 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxOUT_ID01;
+        protected global::FineUI.TextBox tbxIB_ID01;
         
         /// <summary>
         /// tbxSNo 控件。
@@ -470,6 +443,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.NumberBox numQUAN2;
+        
+        /// <summary>
+        /// TextBox3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox TextBox3;
         
         /// <summary>
         /// tbxMEMO01 控件。

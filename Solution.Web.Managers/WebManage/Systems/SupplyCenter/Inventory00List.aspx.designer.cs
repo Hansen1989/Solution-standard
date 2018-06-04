@@ -10,7 +10,7 @@
 namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
     
     
-    public partial class OUT00List {
+    public partial class Inventory00List {
         
         /// <summary>
         /// form1 控件。
@@ -121,13 +121,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.DropDownList ddlSHOP_NAME;
         
         /// <summary>
-        /// tbxOUT_ID 控件。
+        /// tbxINV_ID 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxOUT_ID;
+        protected global::FineUI.TextBox tbxINV_ID;
         
         /// <summary>
         /// dpINPUT_DATE 控件。
@@ -148,13 +148,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.DropDownList ddlStatus;
         
         /// <summary>
-        /// ddlIN_SHOP 控件。
+        /// ddlINV_TYPE 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.DropDownList ddlIN_SHOP;
+        protected global::FineUI.DropDownList ddlINV_TYPE;
         
         /// <summary>
         /// ddlSTOCK_ID 控件。
@@ -191,42 +191,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.DatePicker dpAPP_DATETIME;
-        
-        /// <summary>
-        /// dpEXPECT_DATE 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DatePicker dpEXPECT_DATE;
-        
-        /// <summary>
-        /// cbExported 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.CheckBox cbExported;
-        
-        /// <summary>
-        /// tbxExported_ID 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox tbxExported_ID;
-        
-        /// <summary>
-        /// tbxRELATE_ID 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox tbxRELATE_ID;
         
         /// <summary>
         /// tbxMemo 控件。
@@ -319,15 +283,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Button ButtonDetailAdd;
         
         /// <summary>
-        /// Button_Replace 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.Button Button_Replace;
-        
-        /// <summary>
         /// Grid2 控件。
         /// </summary>
         /// <remarks>
@@ -364,13 +319,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.TextBox TextBox2;
         
         /// <summary>
-        /// tbxOUT_ID01 控件。
+        /// tbxDP_ID01 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxOUT_ID01;
+        protected global::FineUI.TextBox tbxDP_ID01;
         
         /// <summary>
         /// tbxSNo 控件。
@@ -409,49 +364,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.NumberBox numQUANTITY;
         
         /// <summary>
-        /// tbxSTD_UNIT01 控件。
+        /// tbxQUAN01 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxSTD_UNIT01;
-        
-        /// <summary>
-        /// numSTD_CONVERT 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.NumberBox numSTD_CONVERT;
-        
-        /// <summary>
-        /// numSTD_QUAN 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.NumberBox numSTD_QUAN;
-        
-        /// <summary>
-        /// numSTD_PRICE 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.NumberBox numSTD_PRICE;
-        
-        /// <summary>
-        /// numCOST 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.NumberBox numCOST;
+        protected global::FineUI.TextBox tbxQUAN01;
         
         /// <summary>
         /// numQUAN1 控件。
@@ -472,6 +391,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.NumberBox numQUAN2;
         
         /// <summary>
+        /// numQUAN_B 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.NumberBox numQUAN_B;
+        
+        /// <summary>
         /// tbxMEMO01 控件。
         /// </summary>
         /// <remarks>
@@ -479,15 +407,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox tbxMEMO01;
-        
-        /// <summary>
-        /// tbxBAT_NO 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox tbxBAT_NO;
         
         /// <summary>
         /// panelLeftRegion 控件。

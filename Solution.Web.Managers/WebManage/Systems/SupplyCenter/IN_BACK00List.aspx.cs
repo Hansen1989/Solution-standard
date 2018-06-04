@@ -11,9 +11,9 @@ using Solution.Web.Managers.WebManage.Application;
 using SubSonic.Query;
 using Newtonsoft.Json.Linq;
 
-namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
+namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 {
-    public partial class TAKEIN10List : PageBase
+    public partial class IN_BACK00List : PageBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,7 +22,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
                 DatePicker1.SelectedDate = DateTime.Now;
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
                 SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
-                SUPPLIERSBll.GetInstence().BandDropDownListShowSup(this, ddlSUP_NAME);
+                SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlOUT_SHOP);
                 LoadList();
                 LoadData();
                 OrderStatus(-1);
@@ -40,8 +40,8 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         public void LoadList()
         {
             SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
-            STOCKBll.GetInstence().BandDropDownListStock(this,ddlSTOCK_ID);
-            SUPPLIERSBll.GetInstence().BandDropDownListShowSup(this, ddlSUP_NAME);
+            STOCKBll.GetInstence().BandDropDownListStock(this, ddlSTOCK_ID);
+            SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlOUT_SHOP);
             SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME1);
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         public void SearchOrder()
         {
             //int type = ConvertHelper.Cint(FilterDateRadio.SelectedValue);
-            TAKEIN10Bll.GetInstence().BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
+            IN_BACK00Bll.GetInstence().BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
             //TAKEIN10Bll.GetInstence().BindOrderGrid(st, et, type, Grid1);
         }
 
@@ -78,18 +78,18 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             string DateType = ddrDataType.SelectedValue;
             if (DateType.Equals("1"))
             {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, TAKEIN10Table.INPUT_DATE, Comparison.LessOrEquals, et, false, false));
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, TAKEIN10Table.INPUT_DATE, Comparison.GreaterOrEquals, st, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, IN_BACK00Table.INPUT_DATE, Comparison.LessOrEquals, et, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, IN_BACK00Table.INPUT_DATE, Comparison.GreaterOrEquals, st, false, false));
             }
             else
             {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, TAKEIN10Table.APP_DATETIME, Comparison.LessOrEquals, et, false, false));
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, TAKEIN10Table.APP_DATETIME, Comparison.GreaterOrEquals, st, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, IN_BACK00Table.APP_DATETIME, Comparison.LessOrEquals, et, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, IN_BACK00Table.APP_DATETIME, Comparison.GreaterOrEquals, st, false, false));
             }
 
             if (!sn.Equals("0") && !String.IsNullOrEmpty(sn))
             {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, TAKEIN10Table.SHOP_ID, Comparison.Equals, sn, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, IN_BACK00Table.SHOP_ID, Comparison.Equals, sn, false, false));
             }
 
             return conditionList;
@@ -101,16 +101,16 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         /// </summary>
         public override void Init()
         {
-            bll = Purchase00Bll.GetInstence();
+            bll = OUT00Bll.GetInstence();
             //throw new NotImplementedException();
         }
 
         public override void SingleClick(GridRowClickEventArgs e)
         {
-            string _TAKEIN_ID = GridViewHelper.GetSelectedKey(Grid1, true);
-            tbxTAKEIN_ID.Text = _TAKEIN_ID;
-            LoadTAKEN10();
-            LoadTAKEN11();
+            string _tbxIB_ID = GridViewHelper.GetSelectedKey(Grid1, true);
+            tbxIB_ID.Text = _tbxIB_ID;
+            LoadMAIN();
+            LoadDETAIL();
             //Alert.ShowInTop(String.Format("你点击了第 {0} 行（单击）", e.RowIndex + 1));
         }
 
@@ -118,29 +118,25 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         /// <summary>
         /// 加载主表明细数据
         /// </summary>
-        public void LoadTAKEN10()
+        public void LoadMAIN()
         {
-            string _takein_id = tbxTAKEIN_ID.Text;
-            if (!String.IsNullOrEmpty(_takein_id))
+            string _tbxIB_ID = tbxIB_ID.Text;
+            if (!String.IsNullOrEmpty(_tbxIB_ID))
             {
-                var model = new TAKEIN10(x=>x.TAKEIN_ID==_takein_id);
+                var model = new IN_BACK00(x => x.IB_ID == _tbxIB_ID);
                 ddlSHOP_NAME.SelectedValue = model.SHOP_ID;
                 dpINPUT_DATE.SelectedDate = model.INPUT_DATE;
                 ddlStatus.SelectedValue = model.STATUS.ToString();
+                ddlOUT_SHOP.SelectedValue = model.OUT_SHOP;
                 ddlSTOCK_ID.SelectedValue = model.STOCK_ID;
-                ddlSUP_NAME.SelectedValue = model.SUP_ID;
                 tbxUSER_ID.Text = model.USER_ID;
                 tbxAPP_USER.Text = model.APP_USER;
-                numTOT_AMOUNT.Text = model.TOT_AMOUNT.ToString();
-                numTOT_TAX.Text = model.TOT_TAX.ToString();
-                numTOT_QTY.Text = model.TOT_QTY.ToString();
-                numPRE_PAY.Text = model.PRE_PAY.ToString();
-                tbxPRE_PAY_ID.Text = model.PRE_PAY_ID.ToString();
-                tbxRELATE_ID.Text = model.RELATE_ID.ToString();
-                tbxINVOICE_ID.Text = model.INVOICE_ID.ToString();
-                ddlTAKEIN_TYPE.SelectedValue = model.TAKEIN_TYPE.ToString();
-                ckLOCKED.Checked = model.LOCKED=='0'?  false : true;
+                dpAPP_DATETIME.SelectedDate = model.APP_DATETIME;
+
+                tbxRELATE_ID.Text = model.RELATE_ID;
                 tbxMemo.Text = model.Memo;
+                ckLOCKED.Checked = model.LOCKED == '0' ? false : true;
+
                 tbxCRT_DATETIME.Text = model.CRT_DATETIME.ToString();
                 tbxCRT_USER_ID.Text = model.CRT_USER_ID;
                 tbxMOD_DATETIME.Text = model.MOD_DATETIME.ToString();
@@ -150,14 +146,14 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             }
         }
 
-        public void LoadTAKEN11()
+        public void LoadDETAIL()
         {
-            string _takein_id = tbxTAKEIN_ID.Text;
-            if (!String.IsNullOrEmpty(_takein_id))
+            string _tbxIB_ID = tbxIB_ID.Text;
+            if (!String.IsNullOrEmpty(_tbxIB_ID))
             {
                 List<ConditionFun.SqlqueryCondition> conditiondetail = new List<ConditionFun.SqlqueryCondition>();
-                conditiondetail.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, TAKEIN11Table.TAKEIN_ID, Comparison.Equals, _takein_id, false, false));
-                TAKEIN11Bll.GetInstence().BindGrid(Grid2, 0, 0, conditiondetail, sortList);
+                conditiondetail.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, IN_BACK01Table.IB_ID, Comparison.Equals, _tbxIB_ID, false, false));
+                IN_BACK01Bll.GetInstence().BindGrid(Grid2, 0, 0, conditiondetail, sortList);
             }
         }
         /// <summary>
@@ -230,35 +226,31 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         {
             OrderStatus(-1);
             ButtonSave.Enabled = true;
-            tbxTAKEIN_ID.Text = "";
+            tbxIB_ID.Text = "";
             ddlSHOP_NAME.Enabled = true;
             ddlSHOP_NAME.SelectedIndex = 0;
             ddlStatus.SelectedIndex = 0;
             dpINPUT_DATE.SelectedDate = DateTime.Now;
-            ddlSUP_NAME.Enabled = true;
-            ddlSUP_NAME.SelectedIndex = 0;
+
+            ddlOUT_SHOP.Enabled = true;
+            ddlOUT_SHOP.SelectedIndex = 0;
             ddlSTOCK_ID.Enabled = true;
             ddlSTOCK_ID.SelectedIndex = 0;
             tbxUSER_ID.Text = "";
             tbxAPP_USER.Text = "";
-            
-            numTOT_AMOUNT.Text = "0";
-            numTOT_TAX.Text = "0";
-            numTOT_QTY.Text = "0";
-            numPRE_PAY.Text = "0";
-            tbxPRE_PAY_ID.Text = "";
-            tbxPRE_PAY_ID.Enabled = true;
-            tbxPRE_PAY_ID.Text = "";
+            dpAPP_DATETIME.SelectedDate = DateTime.Parse("1900-01-01 00:00:00");
+
             tbxRELATE_ID.Text = "";
-            tbxINVOICE_ID.Text = "";
-            ckLOCKED.Checked = false;
             tbxMemo.Text = "";
+            ckLOCKED.Checked = false;
+
+
             tbxCRT_DATETIME.Text = "";
             tbxCRT_USER_ID.Text = "";
             tbxMOD_DATETIME.Text = "";
             tbxMOD_USER_ID.Text = "";
             tbxLAST_UPDATE.Text = "";
-            ddlTAKEIN_TYPE.Enabled = true;
+
             Grid2.DataSource = null;
             Grid2.DataBind();
         }
@@ -267,12 +259,16 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void BtnSave_Click(Object sender,EventArgs e)
+        public void BtnSave_Click(Object sender, EventArgs e)
         {
-            string result=TAKEN10Edit();
+            string result = MAINEdit();
             if (String.IsNullOrEmpty(result))
             {
-                FineUI.Alert.ShowInParent("result", FineUI.MessageBoxIcon.Error);
+                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+            }
+            else
+            {
+                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
             }
         }
 
@@ -281,10 +277,10 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         /// </summary>
         public void Btn_MainEdit(Object sender, EventArgs e)
         {
-            string result = TAKEN11Edit();
+            string result = DetailEdit();
             if (String.IsNullOrEmpty(result))
             {
-                result = TAKEN10Edit();
+                result = MAINEdit();
             }
             if (!String.IsNullOrEmpty(result))
             {
@@ -303,8 +299,8 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         /// <param name="e"></param>
         public void Btn_MainCheck(Object sender, EventArgs e)
         {
-            string _TAKEIN_ID = tbxTAKEIN_ID.Text.ToString();
-            var model = TAKEIN10.SingleOrDefault(x => x.TAKEIN_ID == _TAKEIN_ID);
+            string _IB_ID = tbxIB_ID.Text.ToString();
+            var model = IN_BACK00.SingleOrDefault(x => x.IB_ID == _IB_ID);
             if (model == null)
             {
                 FineUI.Alert.ShowInParent("订单单号不存在", FineUI.MessageBoxIcon.Information);
@@ -322,10 +318,10 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
 
             ddlStatus.SelectedValue = model.STATUS.ToString();
 
-            string result = TAKEN11Edit();
+            string result = DetailEdit();
             if (String.IsNullOrEmpty(result))
             {
-                result = TAKEN10Edit();
+                result = MAINEdit();
             }
             if (!String.IsNullOrEmpty(result))
             {
@@ -336,8 +332,8 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
                 FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
             }
 
-            LoadTAKEN10();
-            LoadTAKEN11();
+            LoadMAIN();
+            LoadDETAIL();
             //FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
@@ -349,8 +345,8 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         /// <param name="e"></param>
         public void Btn_MainCancel(Object sender, EventArgs e)
         {
-            string _TAKEIN_ID = tbxTAKEIN_ID.Text.ToString();
-            var model = TAKEIN10.SingleOrDefault(x => x.TAKEIN_ID == _TAKEIN_ID);
+            string _IB_ID = tbxIB_ID.Text.ToString();
+            var model = IN_BACK00.SingleOrDefault(x => x.IB_ID == _IB_ID);
             if (model == null)
             {
                 FineUI.Alert.ShowInParent("订单单号不存在", FineUI.MessageBoxIcon.Information);
@@ -366,10 +362,10 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             }
             ddlStatus.SelectedValue = model.STATUS.ToString();
 
-            string result = TAKEN11Edit();
+            string result = DetailEdit();
             if (String.IsNullOrEmpty(result))
             {
-                result = TAKEN10Edit();
+                result = MAINEdit();
             }
             if (!String.IsNullOrEmpty(result))
             {
@@ -380,8 +376,8 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
                 FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
             }
 
-            LoadTAKEN10();
-            LoadTAKEN11();
+            LoadMAIN();
+            LoadDETAIL();
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
 
@@ -389,50 +385,45 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         /// 主表保存
         /// </summary>
         /// <returns></returns>
-        public string TAKEN10Edit()
+        public string MAINEdit()
         {
-            string _takein_id = tbxTAKEIN_ID.Text;
+            string _IB_ID = tbxIB_ID.Text;
             try
             {
-                var model = new TAKEIN10(x => x.TAKEIN_ID == _takein_id);
+                var model = new IN_BACK00(x => x.IB_ID == _IB_ID);
                 var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
                 string _SHOP_ID = ddlSHOP_NAME.SelectedValue;
-                if (String.IsNullOrEmpty(_takein_id))
+                if (String.IsNullOrEmpty(_IB_ID))
                 {
                     model.SetIsNew(true);
                     model.CRT_DATETIME = DateTime.Now;
                     model.CRT_USER_ID = OlUser.Manager_LoginName;
                     DataTable dt = new DataTable();
-                    dt = (DataTable)SPs.Get_ORDER_SEED(_SHOP_ID,"TAKEN10").ExecuteDataTable();
-                    _takein_id = dt.Rows[0]["PLANE_ID"].ToString();
+                    dt = (DataTable)SPs.Get_ORDER_SEED(_SHOP_ID, "IN_BACK00").ExecuteDataTable();
+                    _IB_ID = dt.Rows[0]["PLANE_ID"].ToString();
                     //var model = Purchase00.SingleOrDefault(x => x.Purchase_ID == _Pur00_id);
 
                 }
                 model.SHOP_ID = _SHOP_ID;
-                model.TAKEIN_ID = _takein_id.ToString();
+                model.IB_ID = _IB_ID.ToString();
                 model.STATUS = ConvertHelper.Cint(ddlStatus.SelectedValue);
-                model.STOCK_ID = ddlSTOCK_ID.SelectedValue;
-                //model.INPUT_DATE = ConvertHelper.StringToDatetime(dpINPUT_DATE.SelectedDate.ToString());
                 model.INPUT_DATE = ConvertHelper.StringToDatetime(dpINPUT_DATE.SelectedDate.ToString());
-                model.SUP_ID = ddlSUP_NAME.SelectedValue;
+
+                model.OUT_SHOP = ddlOUT_SHOP.SelectedValue;
+                model.STOCK_ID = ddlSTOCK_ID.SelectedValue;
                 model.USER_ID = OlUser.Manager_LoginName;
                 model.APP_USER = OlUser.Manager_LoginName;
                 model.APP_DATETIME = DateTime.Now;
-                model.TOT_AMOUNT = ConvertHelper.StringToDecimal(numTOT_AMOUNT.Text);
-                model.TOT_TAX = ConvertHelper.StringToDecimal(numTOT_QTY.Text);
-                model.TOT_QTY = ConvertHelper.StringToDecimal(numPRE_PAY.Text);
-                model.PRE_PAY = ConvertHelper.StringToDecimal(numPRE_PAY.Text);
-                model.PRE_PAY_ID = tbxPRE_PAY_ID.Text;
+
                 model.RELATE_ID = tbxRELATE_ID.Text;
-                model.INVOICE_ID = tbxINVOICE_ID.Text;
-                model.TAKEIN_TYPE = ConvertHelper.Cint(ddlTAKEIN_TYPE.SelectedValue);
                 model.Memo = tbxMemo.Text;
                 model.LOCKED = ConvertHelper.StringToByte(ckLOCKED.Checked ? "1" : "0");
+
                 model.MOD_DATETIME = DateTime.Now;
                 model.MOD_USER_ID = OlUser.Manager_LoginName;
                 model.LAST_UPDATE = DateTime.Now;
                 model.Trans_STATUS = 0;
-                TAKEIN10Bll.GetInstence().Save(this, model);
+                IN_BACK00Bll.GetInstence().Save(this, model);
             }
             catch (Exception err)
             {
@@ -445,7 +436,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         /// 子表保存
         /// </summary>
         /// <returns></returns>
-        public string TAKEN11Edit()
+        public string DetailEdit()
         {
             JArray jarr = Grid2.GetMergedData();
             var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
@@ -455,13 +446,13 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             {
                 try
                 {
-                    var model2 = new TAKEIN11();
+                    var model2 = new IN_BACK01();
                     //string str = jarr[i]["status"].ToString();
                     if (jarr[i]["status"].ToString().Equals("modified"))
                     {
                         model2.SetIsNew(false);
                     }
-                    else if(jarr[i]["status"].ToString().Equals("unchanged"))
+                    else if (jarr[i]["status"].ToString().Equals("unchanged"))
                     {
                         continue;
                     }
@@ -470,9 +461,9 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
                         model2.SetIsNew(true);
                     }
                     model2.SHOP_ID = jarr[i]["values"]["SHOP_ID01"].ToString();
-                    if (!String.IsNullOrEmpty(jarr[i]["values"]["TAKEIN_ID01"].ToString()))
+                    if (!String.IsNullOrEmpty(jarr[i]["values"]["IB_ID01"].ToString()))
                     {
-                        model2.TAKEIN_ID = jarr[i]["values"]["TAKEIN_ID01"].ToString();
+                        model2.IB_ID = jarr[i]["values"]["IB_ID01"].ToString();
                     }
                     else
                     {
@@ -485,19 +476,19 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
                     model2.STD_CONVERT = ConvertHelper.Cint(jarr[i]["values"]["STD_CONVERT01"].ToString());
                     model2.STD_QUAN = ConvertHelper.StringToDecimal(jarr[i]["values"]["STD_QUAN01"].ToString());
                     model2.STD_PRICE = ConvertHelper.StringToDecimal(jarr[i]["values"]["STD_PRICE01"].ToString());
-                    model2.Tax = ConvertHelper.StringToDecimal(jarr[i]["values"]["Tax01"].ToString());
+                    model2.COST = ConvertHelper.StringToDecimal(jarr[i]["values"]["COST01"].ToString());
                     model2.QUAN1 = ConvertHelper.StringToDecimal(jarr[i]["values"]["QUAN101"].ToString());
                     model2.QUAN2 = ConvertHelper.StringToDecimal(jarr[i]["values"]["QUAN201"].ToString());
-                    model2.Item_DISC_Amt = ConvertHelper.StringToDecimal(jarr[i]["values"]["Item_DISC_Amt01"].ToString());
+                    model2.REASON_ID = jarr[i]["values"]["REASON_ID01"].ToString();
                     model2.MEMO = jarr[i]["values"]["MEMO01"].ToString();
                     model2.BAT_NO = jarr[i]["values"]["BAT_NO"].ToString();
                     model2.Exp_DateTime = DateTime.Now;
-                    TAKEIN11Bll.GetInstence().Save(this, model2);
+                    IN_BACK01Bll.GetInstence().Save(this, model2);
                 }
                 catch (Exception err)
                 {
                     n++;
-                    result = "明细保存失败"+n+"条";
+                    result = "明细保存失败" + n + "条";
                 }
             }
             return result;
@@ -633,13 +624,13 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             FineUI.Grid Grid4 = Window3.FindControl("PanelGrid4").FindControl("Grid4") as FineUI.Grid;
 
             int[] selections = Grid4.SelectedRowIndexArray;
-            string _TAKEIN_ID = tbxTAKEIN_ID.Text;
+            string _IB_ID = tbxIB_ID.Text;
             string _Shop_ID = ddlSHOP_NAME.SelectedValue;
             string _Shop_Name = ddlSHOP_NAME.SelectedText;
             string result = "";
             var m_Shop = new SHOP00(x => x.SHOP_ID == _Shop_ID);
             string _priceArea_id = m_Shop.SHOP_Price_Area;
-            if (!String.IsNullOrEmpty(_TAKEIN_ID))
+            if (!String.IsNullOrEmpty(_IB_ID))
             {
                 foreach (int i in selections)
                 {
@@ -651,7 +642,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
                     deObject.Add("Id01", "0");
                     deObject.Add("SHOP_ID01", _Shop_ID);
                     deObject.Add("SHOP_NAME01", _Shop_Name);
-                    deObject.Add("TAKEIN_ID01", _TAKEIN_ID);
+                    deObject.Add("IB_ID01", _IB_ID);
                     deObject.Add("SNo01", rowCount + 1);
                     deObject.Add("PROD_ID01", _Prod_ID);
                     deObject.Add("PROD_NAME01", model.PROD_NAME1);
@@ -660,18 +651,12 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
                     deObject.Add("STD_CONVERT01", model.PROD_CONVERT1);
                     deObject.Add("STD_QUAN01", model.Purchase_QUAN);
                     deObject.Add("STD_PRICE01", model.COST);
-                    deObject.Add("Tax01", 0);
+                    deObject.Add("COST01", 0);
                     deObject.Add("QUAN101", 0);
                     deObject.Add("QUAN201", 0);
-                    deObject.Add("Item_DISC_Amt01", 0);
-                    deObject.Add("MEMO", "");
+                    deObject.Add("REASON_ID01", "");
+                    deObject.Add("MEMO01", "");
                     deObject.Add("BAT_NO", "");
-                    //var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
-                    //string lgname = OlUser.Manager_LoginName;
-                    //deObject.Add("CRT_USER_ID1", lgname);
-                    //deObject.Add("CRT_DATETIME1", DateTime.Now.ToString());
-                    //deObject.Add("MOD_USER_ID1", OlUser.Manager_LoginName);
-                    //deObject.Add("MOD_DATETIME1", DateTime.Now.ToString());
                     Grid2.AddNewRecord(deObject, true);
                 }
             }
