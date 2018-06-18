@@ -187,9 +187,22 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 tbxMOD_USER_ID.Text = model.MOD_USER_ID;
                 tbxLAST_UPDATE.Text = model.LAST_UPDATE.ToString("yyyy-MM-dd");
                 Purchase00Status(model.STATUS);
+                LockStatus(model.LOCKED);
             }
         }
 
+        public void LockStatus(int flag)
+        {
+            if (flag == 1)
+            {
+                ButtonSave.Enabled = false;
+                ButtonUpdate.Enabled = false;
+                ButtonCheck.Enabled = false;
+                ButtonCheck.Enabled = false;
+                Grid2.Enabled = false;
+                Grid2.AllowCellEditing = false;
+            }
+        }
 
         public void LoackPur01()
         {
@@ -330,6 +343,18 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 FineUI.Alert.ShowInParent("订单单号不存在", FineUI.MessageBoxIcon.Information);
                 return;
             }
+            if (model.STATUS == 1)
+            {
+               
+                DataTable dsCom = (DataTable)SPs.Get_MAX_Inventory_DATE().ExecuteDataTable();
+                DateTime dtInput = DateTime.Parse(dsCom.Rows[0]["INPUT_DATE"].ToString());
+                if (model.STATUS.CompareTo(dtInput) <=0 )
+                {
+                    FineUI.Alert.ShowInParent("单据小于盘点日期，不允许盘点。盘点日期为:" + dsCom.Rows[0]["INPUT_DATE"].ToString() + "", FineUI.MessageBoxIcon.Information);
+                    return;
+                }
+            }
+
             //1 = 存档 2 = 核准 3 = 作废 4 = 已引入(供应商进货)
             switch (model.STATUS)
             {

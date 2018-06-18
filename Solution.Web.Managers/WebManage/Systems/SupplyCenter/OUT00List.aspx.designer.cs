@@ -76,6 +76,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Button ButtonSave;
         
         /// <summary>
+        /// ButtonYR 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonYR;
+        
+        /// <summary>
         /// ButtonEdit 控件。
         /// </summary>
         /// <remarks>
@@ -560,5 +569,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Window Window3;
+        
+        /// <summary>
+        /// Window4 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Window Window4;
     }
 }

@@ -83,6 +83,12 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("PROD_ID",PROD_ID,DbType.AnsiString);
             return sp;
         }
+        public static StoredProcedure Get_MAX_Inventory_DATE(){
+            StoredProcedure sp=new StoredProcedure("Get_MAX_Inventory_DATE");
+			
+
+            return sp;
+        }
         public static StoredProcedure GET_ORDER_DEP00_ORDER_DEP01_LIST(string SHOP_ID){
             StoredProcedure sp=new StoredProcedure("GET_ORDER_DEP00_ORDER_DEP01_LIST");
 			
@@ -168,6 +174,17 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("PROD_ID",PROD_ID,DbType.AnsiString);
             sp.Command.AddParameter("P_PRICE",P_PRICE,DbType.Decimal);
             sp.Command.AddParameter("UNIT_TYPE",UNIT_TYPE,DbType.Int32);
+            return sp;
+        }
+        public static StoredProcedure UPDATE_Purchase00(string Purchase_ID,int STATUS,string SUP_ID,DateTime APP_DATETIME,string MOD_USER_ID){
+            StoredProcedure sp=new StoredProcedure("UPDATE_Purchase00");
+			
+
+            sp.Command.AddParameter("Purchase_ID",Purchase_ID,DbType.AnsiString);
+            sp.Command.AddParameter("STATUS",STATUS,DbType.Int32);
+            sp.Command.AddParameter("SUP_ID",SUP_ID,DbType.AnsiString);
+            sp.Command.AddParameter("APP_DATETIME",APP_DATETIME,DbType.DateTime);
+            sp.Command.AddParameter("MOD_USER_ID",MOD_USER_ID,DbType.AnsiString);
             return sp;
         }
         public static StoredProcedure Update_Purchase00_TOT(string SHOP_ID,string PURCHASE_ID){
