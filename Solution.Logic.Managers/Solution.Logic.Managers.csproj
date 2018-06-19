@@ -85,9 +85,9 @@
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\CreateBll.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>CreateBll.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="SubSonic\Dispose00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>

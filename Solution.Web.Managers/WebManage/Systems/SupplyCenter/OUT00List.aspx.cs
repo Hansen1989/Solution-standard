@@ -135,7 +135,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 dpAPP_DATETIME.SelectedDate = model.APP_DATETIME;
                 dpEXPECT_DATE.SelectedDate = model.EXPECT_DATE;
 
-                cbExported.Checked = model.Exported == 1 ? true:false;
+                cbExported.Checked = model.Exported == 1 ? true : false;
                 tbxExported_ID.Text = model.Exported_ID;
                 tbxRELATE_ID.Text = model.RELATE_ID;
                 tbxMemo.Text = model.Memo;
@@ -260,6 +260,28 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             Grid2.DataSource = null;
             Grid2.DataBind();
+        }
+
+        /// <summary>
+        /// 引入按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void BtnYR_Click(Object sender, EventArgs e)
+        {
+            //string Pur_status = ddlStatus.SelectedValue;
+            //FineUI.Panel P_search = Window3.FindControl("PanelGrid4").FindControl("Panel_Search") as FineUI.Panel;
+            //P_search.Hidden = false;
+            //FineUI.Button B_BtnSearchCon = Window3.FindControl("PanelGrid4").FindControl("tool_btn").FindControl("BtnSearchCon") as FineUI.Button;
+            //FineUI.Button B_BtnAddCon = Window3.FindControl("PanelGrid4").FindControl("tool_btn").FindControl("BtnAddCon") as FineUI.Button;
+            //B_BtnSearchCon.Hidden = false;
+            //B_BtnAddCon.Hidden = false;
+            FineUI.DatePicker wst = Window4.FindControl("PanelGrid5").FindControl("Panel_Search").FindControl("dpSt") as FineUI.DatePicker;
+            FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search").FindControl("dpEt") as FineUI.DatePicker;
+            wst.SelectedDate = DateTime.Now.Date.AddDays(-1);
+            wet.SelectedDate = DateTime.Now.Date;
+            Window4.Hidden = false;
+            Window3.Hidden = true;
         }
         /// <summary>
         /// 保存按钮
@@ -421,7 +443,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
                 model.Exported = ConvertHelper.StringToByte(cbExported.Checked ? "1" : "0");
                 model.Exported_ID = tbxExported_ID.Text;
-                model.RELATE_ID = tbxRELATE_ID.Text;
+                string _RELATE_ID= tbxRELATE_ID.Text;
+                model.RELATE_ID = _RELATE_ID;
+                if (!String.IsNullOrEmpty(_RELATE_ID))
+                {
+                    var modelOrder = new ORDER00(x => x.ORDER_ID == _RELATE_ID);
+                    modelOrder.EXPORTED =1;
+                    modelOrder.Save();
+                }
                 model.Memo = tbxMemo.Text;
                 model.LOCKED = ConvertHelper.StringToByte(ckLOCKED.Checked ? "1" : "0");
 
@@ -482,7 +511,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     model2.STD_CONVERT = ConvertHelper.Cint(jarr[i]["values"]["STD_CONVERT01"].ToString());
                     model2.STD_QUAN = ConvertHelper.StringToDecimal(jarr[i]["values"]["STD_QUAN01"].ToString());
                     model2.STD_PRICE = ConvertHelper.StringToDecimal(jarr[i]["values"]["STD_PRICE01"].ToString());
-                    model2.COST= ConvertHelper.StringToDecimal(jarr[i]["values"]["COST01"].ToString());
+                    model2.COST = ConvertHelper.StringToDecimal(jarr[i]["values"]["COST01"].ToString());
                     model2.QUAN1 = ConvertHelper.StringToDecimal(jarr[i]["values"]["QUAN101"].ToString());
                     model2.QUAN2 = ConvertHelper.StringToDecimal(jarr[i]["values"]["QUAN201"].ToString());
                     model2.MEMO = jarr[i]["values"]["MEMO01"].ToString();
@@ -661,6 +690,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     deObject.Add("QUAN201", 0);
                     deObject.Add("MEMO01", "");
                     deObject.Add("BAT_NO", "");
+                    
                     Grid2.AddNewRecord(deObject, true);
                 }
             }
@@ -674,5 +704,94 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
         }
         #endregion
+
+        #region WINDOW4 引入出货订单
+        protected void ButtonOrderSearch_Click(Object sender, EventArgs e)
+        {
+            FineUI.Grid grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
+            ORDER00Bll.GetInstence().BindGrid(grid4, 0, 0, OrderCondition(), null);
+        }
+        /// <summary>
+        /// 检索条件
+        /// </summary>
+        /// <returns></returns>
+        public List<ConditionFun.SqlqueryCondition> OrderCondition()
+        {
+            List<ConditionFun.SqlqueryCondition> orderCon = new List<ConditionFun.SqlqueryCondition>();
+            FineUI.RadioButtonList datetype = Window4.FindControl("PanelGrid5").FindControl("Panel_Search").FindControl("ddrDataType") as FineUI.RadioButtonList;
+            string rValue = datetype.SelectedValue;
+            FineUI.DatePicker wst = Window4.FindControl("PanelGrid5").FindControl("Panel_Search").FindControl("dpSt") as FineUI.DatePicker;
+            FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search").FindControl("dpEt") as FineUI.DatePicker;
+            if (rValue == "1")
+            {
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.INPUT_DATE, Comparison.LessOrEquals, wet, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.INPUT_DATE, Comparison.GreaterOrEquals, wet, false, false));
+            }
+            else
+            {
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.EXPECT_DATE, Comparison.LessOrEquals, wet, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.EXPECT_DATE, Comparison.GreaterOrEquals, wet, false, false));
+            }
+            FineUI.DropDownList _ddlShopName = Window4.FindControl("PanelGrid5").FindControl("Panel_Search").FindControl("w4_ddlSHOP_NAME") as FineUI.DropDownList;
+            string _shopid = _ddlShopName.SelectedValue;
+            if (!String.IsNullOrEmpty(_shopid))
+            {
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.SHOP_ID, Comparison.Equals, _shopid, false, false));
+            }
+            return conditionList;
+        }
+
+
+        protected void ButtonOrderAdd_Click(Object sender, EventArgs e)
+        {
+            FineUI.Grid Grid4 = Window3.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
+            int[] selections = Grid4.SelectedRowIndexArray;
+            tbxRELATE_ID.Text = Grid4.DataKeys[0][0].ToString();
+            foreach (int i in selections)
+            {
+                List<ConditionFun.SqlqueryCondition> order00con = new List<ConditionFun.SqlqueryCondition>();
+                order00con.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER01Table.ORDER_ID, Comparison.Equals, Grid4.DataKeys[i][0].ToString(), false, false));
+                List<string> colList = new List<string>();
+                colList.Add("SHOP_ID");
+                colList.Add("PROD_ID");
+                colList.Add("QUANTITY");
+                colList.Add("STD_UNIT");
+                colList.Add("STD_CONVERT");
+                colList.Add("STD_QUAN");
+                colList.Add("STD_PRICE");
+                colList.Add("COST_PRICE");
+                DataTable da = ORDER00Bll.GetInstence().GetDataTable(false, 0, colList, 0, 0, order00con, null);
+
+                foreach (DataRow dr in da.Rows)
+                {
+                    var model = new SHOP00(x => x.SHOP_ID == dr["SHOP_ID"].ToString());
+                    var model2 = new PRODUCT00(x => x.PROD_ID == dr["PROD_ID"].ToString());
+                    int rowCount = Grid2.Rows.Count;
+                    JObject deObject = new JObject();
+                    deObject.Add("Id01", "0");
+                    deObject.Add("SHOP_ID01", dr["SHOP_ID"].ToString());
+                    deObject.Add("SHOP_NAME01", model.SHOP_NAME1);
+                    deObject.Add("OUT_ID01", Grid4.DataKeys[i][0].ToString());
+                    deObject.Add("SNo01", rowCount + 1);
+                    deObject.Add("PROD_ID01", dr["PROD_ID"].ToString());
+                    deObject.Add("PROD_NAME01", model2.PROD_NAME1);
+                    deObject.Add("QUANTITY01", dr["QUANTITY"].ToString());
+                    deObject.Add("STD_UNIT01", dr["STD_UNIT"].ToString());
+                    deObject.Add("STD_CONVERT01", dr["STD_CONVERT"].ToString());
+                    deObject.Add("STD_QUAN01", dr["STD_QUAN"].ToString());
+                    deObject.Add("STD_PRICE01", dr["STD_PRICE"].ToString());
+                    deObject.Add("COST01", dr["COST_PRICE"].ToString());
+                    deObject.Add("QUAN101", dr["STD_QUAN"].ToString());
+                    deObject.Add("QUAN201", dr["STD_QUAN"].ToString());
+                    deObject.Add("MEMO01", "");
+                    deObject.Add("BAT_NO", "");
+                    Grid2.AddNewRecord(deObject, true);
+                }
+                
+
+            }
+        }
+        #endregion
+
     }
 }
