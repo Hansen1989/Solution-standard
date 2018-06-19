@@ -443,7 +443,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
                 model.Exported = ConvertHelper.StringToByte(cbExported.Checked ? "1" : "0");
                 model.Exported_ID = tbxExported_ID.Text;
-                model.RELATE_ID = tbxRELATE_ID.Text;
+                string _RELATE_ID= tbxRELATE_ID.Text;
+                model.RELATE_ID = _RELATE_ID;
+                if (!String.IsNullOrEmpty(_RELATE_ID))
+                {
+                    var modelOrder = new ORDER00(x => x.ORDER_ID == _RELATE_ID);
+                    modelOrder.EXPORTED =1;
+                    modelOrder.Save();
+                }
                 model.Memo = tbxMemo.Text;
                 model.LOCKED = ConvertHelper.StringToByte(ckLOCKED.Checked ? "1" : "0");
 
@@ -683,6 +690,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     deObject.Add("QUAN201", 0);
                     deObject.Add("MEMO01", "");
                     deObject.Add("BAT_NO", "");
+                    
                     Grid2.AddNewRecord(deObject, true);
                 }
             }
@@ -738,11 +746,49 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             FineUI.Grid Grid4 = Window3.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
             int[] selections = Grid4.SelectedRowIndexArray;
+            tbxRELATE_ID.Text = Grid4.DataKeys[0][0].ToString();
             foreach (int i in selections)
             {
                 List<ConditionFun.SqlqueryCondition> order00con = new List<ConditionFun.SqlqueryCondition>();
                 order00con.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER01Table.ORDER_ID, Comparison.Equals, Grid4.DataKeys[i][0].ToString(), false, false));
-                DataTable da = ORDER00Bll.GetInstence().GetDataTable(false, 0, null, 0, 0, order00con, null);
+                List<string> colList = new List<string>();
+                colList.Add("SHOP_ID");
+                colList.Add("PROD_ID");
+                colList.Add("QUANTITY");
+                colList.Add("STD_UNIT");
+                colList.Add("STD_CONVERT");
+                colList.Add("STD_QUAN");
+                colList.Add("STD_PRICE");
+                colList.Add("COST_PRICE");
+                DataTable da = ORDER00Bll.GetInstence().GetDataTable(false, 0, colList, 0, 0, order00con, null);
+
+                foreach (DataRow dr in da.Rows)
+                {
+                    var model = new SHOP00(x => x.SHOP_ID == dr["SHOP_ID"].ToString());
+                    var model2 = new PRODUCT00(x => x.PROD_ID == dr["PROD_ID"].ToString());
+                    int rowCount = Grid2.Rows.Count;
+                    JObject deObject = new JObject();
+                    deObject.Add("Id01", "0");
+                    deObject.Add("SHOP_ID01", dr["SHOP_ID"].ToString());
+                    deObject.Add("SHOP_NAME01", model.SHOP_NAME1);
+                    deObject.Add("OUT_ID01", Grid4.DataKeys[i][0].ToString());
+                    deObject.Add("SNo01", rowCount + 1);
+                    deObject.Add("PROD_ID01", dr["PROD_ID"].ToString());
+                    deObject.Add("PROD_NAME01", model2.PROD_NAME1);
+                    deObject.Add("QUANTITY01", dr["QUANTITY"].ToString());
+                    deObject.Add("STD_UNIT01", dr["STD_UNIT"].ToString());
+                    deObject.Add("STD_CONVERT01", dr["STD_CONVERT"].ToString());
+                    deObject.Add("STD_QUAN01", dr["STD_QUAN"].ToString());
+                    deObject.Add("STD_PRICE01", dr["STD_PRICE"].ToString());
+                    deObject.Add("COST01", dr["COST_PRICE"].ToString());
+                    deObject.Add("QUAN101", dr["STD_QUAN"].ToString());
+                    deObject.Add("QUAN201", dr["STD_QUAN"].ToString());
+                    deObject.Add("MEMO01", "");
+                    deObject.Add("BAT_NO", "");
+                    Grid2.AddNewRecord(deObject, true);
+                }
+                
+
             }
         }
         #endregion
