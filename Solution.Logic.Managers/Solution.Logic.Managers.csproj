@@ -161,9 +161,6 @@
     <Compile Include="SubSonic\MenuInfoBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
-    <Compile Include="SubSonic\NewTableBll.cs">
-      <DependentUpon>CreateBll.tt</DependentUpon>
-    </Compile>
     <Compile Include="SubSonic\OnlineUsersBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>

@@ -148,9 +148,14 @@ namespace Solution.DataAccess.DataModel
         public Query<DataAccess.Model.Dispose00> Dispose00 { get; set; }
         public Query<DataAccess.Model.Dispose01> Dispose01 { get; set; }
         public Query<DataAccess.Model.DIVISION> DIVISION { get; set; }
+        public Query<DataAccess.Model.DUE00> DUE00 { get; set; }
+        public Query<DataAccess.Model.DUE01> DUE01 { get; set; }
         public Query<DataAccess.Model.EmailSendHistory> EmailSendHistory { get; set; }
         public Query<DataAccess.Model.EMPLOYEE> EMPLOYEE { get; set; }
         public Query<DataAccess.Model.GROUPAREA> GROUPAREA { get; set; }
+        public Query<DataAccess.Model.HEAD_SHOP_ACCOUNT> HEAD_SHOP_ACCOUNT { get; set; }
+        public Query<DataAccess.Model.HEAD_SHOP_BILL> HEAD_SHOP_BILL { get; set; }
+        public Query<DataAccess.Model.HED_SHOP_PAY_HISTORY> HED_SHOP_PAY_HISTORY { get; set; }
         public Query<DataAccess.Model.IN_BACK00> IN_BACK00 { get; set; }
         public Query<DataAccess.Model.IN_BACK01> IN_BACK01 { get; set; }
         public Query<DataAccess.Model.IN00> IN00 { get; set; }
@@ -190,6 +195,11 @@ namespace Solution.DataAccess.DataModel
         public Query<DataAccess.Model.PRODUCT01> PRODUCT01 { get; set; }
         public Query<DataAccess.Model.Purchase00> Purchase00 { get; set; }
         public Query<DataAccess.Model.Purchase01> Purchase01 { get; set; }
+        public Query<DataAccess.Model.RECEIVABLES00> RECEIVABLES00 { get; set; }
+        public Query<DataAccess.Model.RECEIVABLES01> RECEIVABLES01 { get; set; }
+        public Query<DataAccess.Model.SHOP_ACCOUNT> SHOP_ACCOUNT { get; set; }
+        public Query<DataAccess.Model.SHOP_BILL> SHOP_BILL { get; set; }
+        public Query<DataAccess.Model.SHOP_PAY_HISOTRY> SHOP_PAY_HISOTRY { get; set; }
         public Query<DataAccess.Model.SHOP_PRICE_AREA> SHOP_PRICE_AREA { get; set; }
         public Query<DataAccess.Model.SHOP00> SHOP00 { get; set; }
         public Query<DataAccess.Model.STOCK> STOCK { get; set; }
@@ -335,9 +345,14 @@ namespace Solution.DataAccess.DataModel
             Dispose00 = new Query<DataAccess.Model.Dispose00>(provider);
             Dispose01 = new Query<DataAccess.Model.Dispose01>(provider);
             DIVISION = new Query<DataAccess.Model.DIVISION>(provider);
+            DUE00 = new Query<DataAccess.Model.DUE00>(provider);
+            DUE01 = new Query<DataAccess.Model.DUE01>(provider);
             EmailSendHistory = new Query<DataAccess.Model.EmailSendHistory>(provider);
             EMPLOYEE = new Query<DataAccess.Model.EMPLOYEE>(provider);
             GROUPAREA = new Query<DataAccess.Model.GROUPAREA>(provider);
+            HEAD_SHOP_ACCOUNT = new Query<DataAccess.Model.HEAD_SHOP_ACCOUNT>(provider);
+            HEAD_SHOP_BILL = new Query<DataAccess.Model.HEAD_SHOP_BILL>(provider);
+            HED_SHOP_PAY_HISTORY = new Query<DataAccess.Model.HED_SHOP_PAY_HISTORY>(provider);
             IN_BACK00 = new Query<DataAccess.Model.IN_BACK00>(provider);
             IN_BACK01 = new Query<DataAccess.Model.IN_BACK01>(provider);
             IN00 = new Query<DataAccess.Model.IN00>(provider);
@@ -377,6 +392,11 @@ namespace Solution.DataAccess.DataModel
             PRODUCT01 = new Query<DataAccess.Model.PRODUCT01>(provider);
             Purchase00 = new Query<DataAccess.Model.Purchase00>(provider);
             Purchase01 = new Query<DataAccess.Model.Purchase01>(provider);
+            RECEIVABLES00 = new Query<DataAccess.Model.RECEIVABLES00>(provider);
+            RECEIVABLES01 = new Query<DataAccess.Model.RECEIVABLES01>(provider);
+            SHOP_ACCOUNT = new Query<DataAccess.Model.SHOP_ACCOUNT>(provider);
+            SHOP_BILL = new Query<DataAccess.Model.SHOP_BILL>(provider);
+            SHOP_PAY_HISOTRY = new Query<DataAccess.Model.SHOP_PAY_HISOTRY>(provider);
             SHOP_PRICE_AREA = new Query<DataAccess.Model.SHOP_PRICE_AREA>(provider);
             SHOP00 = new Query<DataAccess.Model.SHOP00>(provider);
             STOCK = new Query<DataAccess.Model.STOCK>(provider);
@@ -425,9 +445,14 @@ namespace Solution.DataAccess.DataModel
             	DataProvider.Schema.Tables.Add(new Dispose00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new Dispose01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new DIVISIONStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new DUE00Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new DUE01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new EmailSendHistoryStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new EMPLOYEEStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new GROUPAREAStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new HEAD_SHOP_ACCOUNTStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new HEAD_SHOP_BILLStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new HED_SHOP_PAY_HISTORYStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new IN_BACK00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new IN_BACK01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new IN00Structs(DataProvider));
@@ -467,6 +492,11 @@ namespace Solution.DataAccess.DataModel
             	DataProvider.Schema.Tables.Add(new PRODUCT01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new Purchase00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new Purchase01Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new RECEIVABLES00Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new RECEIVABLES01Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new SHOP_ACCOUNTStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new SHOP_BILLStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new SHOP_PAY_HISOTRYStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new SHOP_PRICE_AREAStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new SHOP00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new STOCKStructs(DataProvider));

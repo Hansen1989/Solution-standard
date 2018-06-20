@@ -167,6 +167,13 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("CRT_USER_ID",CRT_USER_ID,DbType.AnsiString);
             return sp;
         }
+        public static StoredProcedure SplitOrders(string col_id){
+            StoredProcedure sp=new StoredProcedure("SplitOrders");
+			
+
+            sp.Command.AddParameter("col_id",col_id,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure Tran_PRICE_UNIT(string PROD_ID,decimal P_PRICE,int UNIT_TYPE){
             StoredProcedure sp=new StoredProcedure("Tran_PRICE_UNIT");
 			
