@@ -89,7 +89,7 @@
                              <f:Toolbar ID="Toolbar21111" runat="server">
                                <Items>
                                   <f:Button ID="ButtonDetailAdd" runat="server" Text="添加" Icon="Add" OnClick="btn_DetailAdd"></f:Button>
-                                  <f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add"></f:Button>
+                                  <%--<f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add"></f:Button>--%>
                                </Items>
                              </f:Toolbar>
                            </Toolbars>
@@ -307,21 +307,14 @@
         <f:Window ID="Window4" Width="1000px" Height="800px" Icon="TagBlue" Hidden="true" BodyPadding="10px"
             EnableMaximize="true" EnableCollapse="true" runat="server" EnableResize="true"
             IsModal="false" CloseAction="HidePostBack" OnClose="Window3_Close" Layout="Fit">
-            <%--<Toolbars>
-                <f:Toolbar ID="tools" runat="server">
-                    <Items>
-                        <f:Button ID="ButtonSearchPROD1" runat="server" Text="查询" Icon="Magnifier" </f:Button> OnClick="ButtonPRODSearch2_Click" >
-                    </Items>
-                </f:Toolbar>
-            </Toolbars>--%>
             <Content>
                 <f:Panel runat="server" ID="PanelGrid5" RegionPosition="Right" RegionSplit="true" EnableCollapse="true" Expanded="true"
                     Width="900px" Title="要货单" ShowBorder="true" ShowHeader="true"
                     BodyPadding="5px">
                     <Items>
-                        <f:Panel runat="server" ID="Panel_Search" Hidden="true">
+                        <f:Panel runat="server" ID="Panel_Search2" Hidden="false" >
                             <Items>
-                                <f:DropDownList runat="server" Label="分店名称" ID="w4_ddlSHOP_NAME" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList> 
+                                
                                 <f:RadioButtonList ID="ddrDataType" Label="日期" runat="server">
                                     <f:RadioItem Text="单据日期" Value="1" Selected="true" />
                                     <f:RadioItem Text="期望日期" Value="2"  />
@@ -337,20 +330,21 @@
                         </f:Panel>
                     </Items>
                     <Items>
-                        <f:Toolbar runat="server" ID="tool_btn">
+                        <f:Toolbar runat="server" ID="tool_btn2">
                             <Items>
-                                <f:Button ID="BtnSearchCon" runat="server" Text="查询" Icon="Add" Hidden="true" OnClick="ButtonOrderSearch_Click"></f:Button>
-                                <f:Button ID="BtnAddCon" runat="server" Text="确定" Icon="accept" Hidden="true" OnClick="ButtonOrderAdd_Click"></f:Button>
+                                <f:Button ID="BtnSearchCon" runat="server" Text="查询" Icon="Add" Hidden="false" OnClick="ButtonOrderSearch_Click"></f:Button>
+                                <f:Button ID="BtnAddCon" runat="server" Text="确定" Icon="accept" Hidden="false" OnClick="ButtonOrderAdd_Click"></f:Button>
                             </Items>
                         </f:Toolbar>
                     </Items>
                     <Items>
                        <f:Grid ID="Grid4" Title="要货订单" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="ORDER_ID"
                          EnableCheckBoxSelect="true" KeepCurrentSelection="true" PageSize="1000"
-                         ><%--EnableRowClickEvent="true" OnRowClick="Grid1_RowClick" --%>
+                         >
                          <Columns>
                            <f:RowNumberField />
                            <f:BoundField Width="125px" DataField="ORDER_ID" HeaderText="要货单号码" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="SHOP_ID" HeaderText="分店编码" ExpandUnusedSpace="true"  />
                            <f:BoundField Width="125px" DataField="SHOP_NAME" HeaderText="分店名称" ExpandUnusedSpace="true"  />
                            <f:BoundField Width="125px" DataField="INPUT_DATE" HeaderText="单据日期" ExpandUnusedSpace="true"  />
                            <f:BoundField Width="125px" DataField="EXPECT_DATE" HeaderText="期望日期" ExpandUnusedSpace="true"  />

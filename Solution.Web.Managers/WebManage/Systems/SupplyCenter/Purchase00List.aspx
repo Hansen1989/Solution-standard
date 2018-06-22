@@ -112,7 +112,7 @@
                              <f:Toolbar ID="Toolbar21111" runat="server">
                                <Items>
                                   <f:Button ID="ButtonPur02Add" runat="server" Text="添加" Icon="Add" OnClick="btn_Pur02Add"></f:Button>
-                                  <f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add" OnClick="btn_Replace"></f:Button>
+<%--                                  <f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add" OnClick="btn_Replace"></f:Button>--%>
                                </Items>
                              </f:Toolbar>
                            </Toolbars>

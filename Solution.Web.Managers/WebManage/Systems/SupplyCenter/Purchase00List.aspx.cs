@@ -348,7 +348,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                
                 DataTable dsCom = (DataTable)SPs.Get_MAX_Inventory_DATE().ExecuteDataTable();
                 DateTime dtInput = DateTime.Parse(dsCom.Rows[0]["INPUT_DATE"].ToString());
-                if (model.STATUS.CompareTo(dtInput) <=0 )
+                if (model.INPUT_DATE.CompareTo(dtInput) <=0 )
                 {
                     FineUI.Alert.ShowInParent("单据小于盘点日期，不允许盘点。盘点日期为:" + dsCom.Rows[0]["INPUT_DATE"].ToString() + "", FineUI.MessageBoxIcon.Information);
                     return;

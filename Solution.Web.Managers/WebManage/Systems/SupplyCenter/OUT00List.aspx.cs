@@ -140,6 +140,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 tbxRELATE_ID.Text = model.RELATE_ID;
                 tbxMemo.Text = model.Memo;
                 ckLOCKED.Checked = model.LOCKED == '0' ? false : true;
+                if (!String.IsNullOrEmpty(model.RELATE_ID))
+                {
+                    ButtonYR.Enabled = false;
+                }
+
 
                 tbxCRT_DATETIME.Text = model.CRT_DATETIME.ToString();
                 tbxCRT_USER_ID.Text = model.CRT_USER_ID;
@@ -176,6 +181,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonEdit.Enabled = true;
                     ButtonCancel.Enabled = true;
                     ButtonCheck.Enabled = true;
+                    ButtonYR.Enabled = true;
                     ButtonCheck.Text = "核准";
                     ButtonCancel.Text = "作废";
                     ButtonDetailAdd.Enabled = true;
@@ -185,6 +191,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "反核准";
+                    ButtonYR.Enabled = false;
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = true;
@@ -194,6 +201,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "核准";
+                    ButtonYR.Enabled = false;
                     ButtonCheck.Enabled = false;
                     ButtonCancel.Text = "取消作废";
                     ButtonCancel.Enabled = true;
@@ -205,6 +213,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "反核准";
+                    ButtonYR.Enabled = false;
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
@@ -215,6 +224,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "核准";
+                    ButtonYR.Enabled = false;
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
@@ -276,8 +286,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             //FineUI.Button B_BtnAddCon = Window3.FindControl("PanelGrid4").FindControl("tool_btn").FindControl("BtnAddCon") as FineUI.Button;
             //B_BtnSearchCon.Hidden = false;
             //B_BtnAddCon.Hidden = false;
-            FineUI.DatePicker wst = Window4.FindControl("PanelGrid5").FindControl("Panel_Search").FindControl("dpSt") as FineUI.DatePicker;
-            FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search").FindControl("dpEt") as FineUI.DatePicker;
+            FineUI.DatePicker wst = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpSt") as FineUI.DatePicker;
+            FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpEt") as FineUI.DatePicker;
             wst.SelectedDate = DateTime.Now.Date.AddDays(-1);
             wet.SelectedDate = DateTime.Now.Date;
             Window4.Hidden = false;
@@ -329,6 +339,25 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             if (model == null)
             {
                 FineUI.Alert.ShowInParent("订单单号不存在", FineUI.MessageBoxIcon.Information);
+                return;
+            }
+
+            if (model.STATUS == 1)
+            {
+
+                DataTable dsCom = (DataTable)SPs.Get_MAX_Inventory_DATE().ExecuteDataTable();
+                DateTime dtInput = DateTime.Parse(dsCom.Rows[0]["INPUT_DATE"].ToString());
+                if (model.INPUT_DATE.CompareTo(dtInput) <= 0)
+                {
+                    FineUI.Alert.ShowInParent("单据小于盘点日期，不允许盘点。盘点日期为:" + dsCom.Rows[0]["INPUT_DATE"].ToString() + "", FineUI.MessageBoxIcon.Information);
+                    return;
+                }
+            }
+
+            DataTable stockDatatable = (DataTable)SPs.GET_OUT00_STOCK_INFO(_OUT_ID).ExecuteDataTable();
+            if (stockDatatable.Rows.Count > 0)
+            {
+                FineUI.Alert.ShowInParent("库存不足,不允许核准", FineUI.MessageBoxIcon.Information);
                 return;
             }
             //1 = 存档 2 = 核准 3 = 作废 4 = 已引入(供应商进货)
@@ -718,33 +747,35 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         public List<ConditionFun.SqlqueryCondition> OrderCondition()
         {
             List<ConditionFun.SqlqueryCondition> orderCon = new List<ConditionFun.SqlqueryCondition>();
-            FineUI.RadioButtonList datetype = Window4.FindControl("PanelGrid5").FindControl("Panel_Search").FindControl("ddrDataType") as FineUI.RadioButtonList;
+            FineUI.RadioButtonList datetype = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("ddrDataType") as FineUI.RadioButtonList;
             string rValue = datetype.SelectedValue;
-            FineUI.DatePicker wst = Window4.FindControl("PanelGrid5").FindControl("Panel_Search").FindControl("dpSt") as FineUI.DatePicker;
-            FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search").FindControl("dpEt") as FineUI.DatePicker;
+            FineUI.DatePicker wst = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpSt") as FineUI.DatePicker;
+            FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpEt") as FineUI.DatePicker;
+            string starttime = wst.Text;
+            string endtime = wet.Text;
             if (rValue == "1")
             {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.INPUT_DATE, Comparison.LessOrEquals, wet, false, false));
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.INPUT_DATE, Comparison.GreaterOrEquals, wet, false, false));
+                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.INPUT_DATE, Comparison.LessOrEquals, endtime, false, false));
+                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.INPUT_DATE, Comparison.GreaterOrEquals, starttime, false, false));
             }
             else
             {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.EXPECT_DATE, Comparison.LessOrEquals, wet, false, false));
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.EXPECT_DATE, Comparison.GreaterOrEquals, wet, false, false));
+                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.EXPECT_DATE, Comparison.LessOrEquals, endtime, false, false));
+                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.EXPECT_DATE, Comparison.GreaterOrEquals, starttime, false, false));
             }
-            FineUI.DropDownList _ddlShopName = Window4.FindControl("PanelGrid5").FindControl("Panel_Search").FindControl("w4_ddlSHOP_NAME") as FineUI.DropDownList;
-            string _shopid = _ddlShopName.SelectedValue;
-            if (!String.IsNullOrEmpty(_shopid))
-            {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.SHOP_ID, Comparison.Equals, _shopid, false, false));
-            }
-            return conditionList;
+            //FineUI.DropDownList _ddlShopName = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("w4_ddlSHOP_NAME") as FineUI.DropDownList;
+            //string _shopid = _ddlShopName.SelectedValue;
+            //if (!String.IsNullOrEmpty(_shopid))
+            //{
+            //    orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.SHOP_ID, Comparison.Equals, _shopid, false, false));
+            //}
+            return orderCon;
         }
 
 
         protected void ButtonOrderAdd_Click(Object sender, EventArgs e)
         {
-            FineUI.Grid Grid4 = Window3.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
+            FineUI.Grid Grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
             int[] selections = Grid4.SelectedRowIndexArray;
             tbxRELATE_ID.Text = Grid4.DataKeys[0][0].ToString();
             foreach (int i in selections)
@@ -760,18 +791,20 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 colList.Add("STD_QUAN");
                 colList.Add("STD_PRICE");
                 colList.Add("COST_PRICE");
-                DataTable da = ORDER00Bll.GetInstence().GetDataTable(false, 0, colList, 0, 0, order00con, null);
+                DataTable da = ORDER01Bll.GetInstence().GetDataTable(false, 0, colList, 0, 0, order00con, null);
 
                 foreach (DataRow dr in da.Rows)
                 {
-                    var model = new SHOP00(x => x.SHOP_ID == dr["SHOP_ID"].ToString());
-                    var model2 = new PRODUCT00(x => x.PROD_ID == dr["PROD_ID"].ToString());
+                    string _shopid = dr["SHOP_ID"].ToString();
+                    string _PROD_ID = dr["PROD_ID"].ToString();
+                    var model = new SHOP00(x => x.SHOP_ID == _shopid);
+                    var model2 = new PRODUCT00(x => x.PROD_ID == _PROD_ID);
                     int rowCount = Grid2.Rows.Count;
                     JObject deObject = new JObject();
                     deObject.Add("Id01", "0");
                     deObject.Add("SHOP_ID01", dr["SHOP_ID"].ToString());
                     deObject.Add("SHOP_NAME01", model.SHOP_NAME1);
-                    deObject.Add("OUT_ID01", Grid4.DataKeys[i][0].ToString());
+                    deObject.Add("OUT_ID01", tbxOUT_ID.Text);
                     deObject.Add("SNo01", rowCount + 1);
                     deObject.Add("PROD_ID01", dr["PROD_ID"].ToString());
                     deObject.Add("PROD_NAME01", model2.PROD_NAME1);
