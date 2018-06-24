@@ -21,7 +21,7 @@ namespace Solution.DataAccess.Model
 
 		string _SHOP_ID = "";
 		/// <summary>
-		/// 
+		/// 总店编号
 		/// </summary>
 		public string SHOP_ID
 		{
@@ -31,7 +31,7 @@ namespace Solution.DataAccess.Model
 
 		string _OUT_ID = "";
 		/// <summary>
-		/// 
+		/// 出货单编号
 		/// </summary>
 		public string OUT_ID
 		{
@@ -41,7 +41,7 @@ namespace Solution.DataAccess.Model
 
 		byte _STATUS = 0;
 		/// <summary>
-		/// 
+		/// 账单状态
 		/// </summary>
 		public byte STATUS
 		{
@@ -51,7 +51,7 @@ namespace Solution.DataAccess.Model
 
 		DateTime _INPUT_DATE = new DateTime(1900,1,1);
 		/// <summary>
-		/// 
+		/// 出货单日期
 		/// </summary>
 		public DateTime INPUT_DATE
 		{
@@ -61,7 +61,7 @@ namespace Solution.DataAccess.Model
 
 		string _IN_SHOP = "";
 		/// <summary>
-		/// 
+		/// 分店编号
 		/// </summary>
 		public string IN_SHOP
 		{
@@ -71,7 +71,7 @@ namespace Solution.DataAccess.Model
 
 		string _USER_ID = "";
 		/// <summary>
-		/// 
+		/// 出货单制单人
 		/// </summary>
 		public string USER_ID
 		{
@@ -81,7 +81,7 @@ namespace Solution.DataAccess.Model
 
 		string _APP_USER = "";
 		/// <summary>
-		/// 
+		/// 出货单审核人
 		/// </summary>
 		public string APP_USER
 		{
@@ -91,7 +91,7 @@ namespace Solution.DataAccess.Model
 
 		DateTime _APP_DATETIME = new DateTime(1900,1,1);
 		/// <summary>
-		/// 
+		/// 出货单审核时间
 		/// </summary>
 		public DateTime APP_DATETIME
 		{
@@ -101,7 +101,7 @@ namespace Solution.DataAccess.Model
 
 		string _MEMO = "";
 		/// <summary>
-		/// 
+		/// 备注
 		/// </summary>
 		public string MEMO
 		{
@@ -111,7 +111,7 @@ namespace Solution.DataAccess.Model
 
 		DateTime _CRT_DATETIME = new DateTime(1900,1,1);
 		/// <summary>
-		/// 
+		/// 建档时间
 		/// </summary>
 		public DateTime CRT_DATETIME
 		{
@@ -121,7 +121,7 @@ namespace Solution.DataAccess.Model
 
 		string _CRT_USER_ID = "";
 		/// <summary>
-		/// 
+		/// 建档人
 		/// </summary>
 		public string CRT_USER_ID
 		{
@@ -131,7 +131,7 @@ namespace Solution.DataAccess.Model
 
 		DateTime _MOD_DATETIME = new DateTime(1900,1,1);
 		/// <summary>
-		/// 
+		/// 修改时间
 		/// </summary>
 		public DateTime MOD_DATETIME
 		{
@@ -141,7 +141,7 @@ namespace Solution.DataAccess.Model
 
 		string _MOD_USER_ID = "";
 		/// <summary>
-		/// 
+		/// 修改人
 		/// </summary>
 		public string MOD_USER_ID
 		{
@@ -151,7 +151,7 @@ namespace Solution.DataAccess.Model
 
 		DateTime _LAST_UPDATE = new DateTime(1900,1,1);
 		/// <summary>
-		/// 
+		/// 更新时间
 		/// </summary>
 		public DateTime LAST_UPDATE
 		{
@@ -167,6 +167,16 @@ namespace Solution.DataAccess.Model
 		{
 			get { return _BILL_AMOUNT; }
 			set { _BILL_AMOUNT = value; }
+		}
+
+		decimal _BILL_COST = 0;
+		/// <summary>
+		/// 出货成本
+		/// </summary>
+		public decimal BILL_COST
+		{
+			get { return _BILL_COST; }
+			set { _BILL_COST = value; }
 		}
     } 
 

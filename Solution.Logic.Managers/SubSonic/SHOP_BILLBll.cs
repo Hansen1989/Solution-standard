@@ -233,8 +233,8 @@ namespace Solution.Logic.Managers {
                 switch (conditionColName)
                 {
 					case "Id" :
-						model = list.SingleOrDefault(x => x.Id == (long)value);
-                        expression = x => x.Id == (long)value;
+						model = list.SingleOrDefault(x => x.Id == (int)value);
+                        expression = x => x.Id == (int)value;
                         break;
 					case "HEAD_SHOP_ID" :
 						model = list.SingleOrDefault(x => x.HEAD_SHOP_ID == (string)value);
@@ -248,9 +248,9 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.BILL_AMOUNT == (decimal)value);
                         expression = x => x.BILL_AMOUNT == (decimal)value;
                         break;
-					case "Pay_METHOD" :
-						model = list.SingleOrDefault(x => x.Pay_METHOD == (byte)value);
-                        expression = x => x.Pay_METHOD == (byte)value;
+					case "PAY_METHOD" :
+						model = list.SingleOrDefault(x => x.PAY_METHOD == (byte)value);
+                        expression = x => x.PAY_METHOD == (byte)value;
                         break;
 					case "BILL_DATE" :
 						model = list.SingleOrDefault(x => x.BILL_DATE == (DateTime)value);
@@ -440,7 +440,7 @@ namespace Solution.Logic.Managers {
                 HEAD_SHOP_ID = model.HEAD_SHOP_ID,
                 SHOP_ID = model.SHOP_ID,
                 BILL_AMOUNT = model.BILL_AMOUNT,
-                Pay_METHOD = model.Pay_METHOD,
+                PAY_METHOD = model.PAY_METHOD,
                 BILL_DATE = model.BILL_DATE,
                 PAY_DATE = model.PAY_DATE,
                 Memo = model.Memo,
@@ -478,7 +478,7 @@ namespace Solution.Logic.Managers {
                 HEAD_SHOP_ID = model.HEAD_SHOP_ID,
                 SHOP_ID = model.SHOP_ID,
                 BILL_AMOUNT = model.BILL_AMOUNT,
-                Pay_METHOD = model.Pay_METHOD,
+                PAY_METHOD = model.PAY_METHOD,
                 BILL_DATE = model.BILL_DATE,
                 PAY_DATE = model.PAY_DATE,
                 Memo = model.Memo,
@@ -532,7 +532,7 @@ namespace Solution.Logic.Managers {
             switch (colName)
             {
 				case "Id" :
-					model.Id = (long)value;
+					model.Id = (int)value;
                     break;
 				case "HEAD_SHOP_ID" :
 					model.HEAD_SHOP_ID = (string)value;
@@ -543,8 +543,8 @@ namespace Solution.Logic.Managers {
 				case "BILL_AMOUNT" :
 					model.BILL_AMOUNT = (decimal)value;
                     break;
-				case "Pay_METHOD" :
-					model.Pay_METHOD = ConvertHelper.Ctinyint(value);
+				case "PAY_METHOD" :
+					model.PAY_METHOD = ConvertHelper.Ctinyint(value);
                     break;
 				case "BILL_DATE" :
 					model.BILL_DATE = (DateTime)value;
@@ -1122,8 +1122,8 @@ namespace Solution.Logic.Managers {
 					return model.SHOP_ID;
 				case "BILL_AMOUNT" :
 					return model.BILL_AMOUNT;
-				case "Pay_METHOD" :
-					return model.Pay_METHOD;
+				case "PAY_METHOD" :
+					return model.PAY_METHOD;
 				case "BILL_DATE" :
 					return model.BILL_DATE;
 				case "PAY_DATE" :
@@ -1186,7 +1186,7 @@ namespace Solution.Logic.Managers {
 	    /// <param name="content">更新说明</param>
         /// <param name="isCache">是否同步更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-	    public void UpdateValue(Page page, long id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
+	    public void UpdateValue(Page page, int id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
 			content = content != "" ? content : "{0}修改了SHOP_BILL表主键Id值为" + id + "的记录。";
 			
@@ -1221,7 +1221,7 @@ namespace Solution.Logic.Managers {
         /// <param name="content">更新说明</param>
         /// <param name="isCache">是否同步更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void UpdateValue(Page page, long id, string columnName, object columnValue, string content = "", bool isCache = true, bool isAddUseLog = true)
+        public void UpdateValue(Page page, int id, string columnName, object columnValue, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
             content = content != "" ? content : "{0}修改了SHOP_BILL表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
             //设置更新字段
@@ -1242,7 +1242,7 @@ namespace Solution.Logic.Managers {
         /// <param name="content">更新说明</param>
         /// <param name="isCache">是否同步更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void UpdateValue(Page page, long id, string columnName1, object columnValue1, string columnName2, object columnValue2, string content = "", bool isCache = true, bool isAddUseLog = true)
+        public void UpdateValue(Page page, int id, string columnName1, object columnValue1, string columnName2, object columnValue2, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
             content = content != "" ? content : "{0}修改了SHOP_BILL表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
             //设置更新字段
@@ -1255,22 +1255,22 @@ namespace Solution.Logic.Managers {
         }
         #endregion
 		
-		#region 更新Pay_METHOD字段值
+		#region 更新PAY_METHOD字段值
 		/// <summary>
-		/// 更新Pay_METHOD字段值
+		/// 更新PAY_METHOD字段值
 		/// </summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="pkValue">主键Id，当等于0时，则更新所有记录</param>
 		/// <param name="updateValue">更新值</param>
         /// <param name="isCache">是否同步更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-		public void UpdatePay_METHOD(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
+		public void UpdatePAY_METHOD(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
 			//设置更新值
 			var setValue = new Dictionary<string, object>();
-			setValue[SHOP_BILLTable.Pay_METHOD] = updateValue;
+			setValue[SHOP_BILLTable.PAY_METHOD] = updateValue;
 
 			//更新
-			UpdateValue(page, pkValue, setValue, "{0}更新了SHOP_BILL表id为【" + pkValue + "】的记录，更新内容为将Pay_METHOD字段值修改为" + updateValue, isCache, isAddUseLog);
+			UpdateValue(page, pkValue, setValue, "{0}更新了SHOP_BILL表id为【" + pkValue + "】的记录，更新内容为将PAY_METHOD字段值修改为" + updateValue, isCache, isAddUseLog);
 		}
 		#endregion
 		

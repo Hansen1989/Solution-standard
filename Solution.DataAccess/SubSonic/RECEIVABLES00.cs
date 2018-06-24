@@ -147,6 +147,8 @@ namespace Solution.DataAccess.DataModel
             LAST_UPDATE = readRecord.get_datetime("LAST_UPDATE",null);
                
             BILL_AMOUNT = readRecord.get_decimal("BILL_AMOUNT",null);
+               
+            BILL_COST = readRecord.get_decimal("BILL_COST",null);
                 }   
 
         partial void OnCreated();
@@ -344,7 +346,7 @@ namespace Solution.DataAccess.DataModel
 
         string _SHOP_ID;
 		/// <summary>
-		/// 
+		/// 总店编号
 		/// </summary>
         public string SHOP_ID
         {
@@ -366,7 +368,7 @@ namespace Solution.DataAccess.DataModel
 
         string _OUT_ID;
 		/// <summary>
-		/// 
+		/// 出货单编号
 		/// </summary>
         public string OUT_ID
         {
@@ -388,7 +390,7 @@ namespace Solution.DataAccess.DataModel
 
         byte _STATUS;
 		/// <summary>
-		/// 
+		/// 账单状态
 		/// </summary>
         public byte STATUS
         {
@@ -410,7 +412,7 @@ namespace Solution.DataAccess.DataModel
 
         DateTime _INPUT_DATE;
 		/// <summary>
-		/// 
+		/// 出货单日期
 		/// </summary>
         public DateTime INPUT_DATE
         {
@@ -432,7 +434,7 @@ namespace Solution.DataAccess.DataModel
 
         string _IN_SHOP;
 		/// <summary>
-		/// 
+		/// 分店编号
 		/// </summary>
         public string IN_SHOP
         {
@@ -454,7 +456,7 @@ namespace Solution.DataAccess.DataModel
 
         string _USER_ID;
 		/// <summary>
-		/// 
+		/// 出货单制单人
 		/// </summary>
         public string USER_ID
         {
@@ -476,7 +478,7 @@ namespace Solution.DataAccess.DataModel
 
         string _APP_USER;
 		/// <summary>
-		/// 
+		/// 出货单审核人
 		/// </summary>
         public string APP_USER
         {
@@ -498,7 +500,7 @@ namespace Solution.DataAccess.DataModel
 
         DateTime _APP_DATETIME;
 		/// <summary>
-		/// 
+		/// 出货单审核时间
 		/// </summary>
         public DateTime APP_DATETIME
         {
@@ -520,7 +522,7 @@ namespace Solution.DataAccess.DataModel
 
         string _MEMO;
 		/// <summary>
-		/// 
+		/// 备注
 		/// </summary>
         public string MEMO
         {
@@ -542,7 +544,7 @@ namespace Solution.DataAccess.DataModel
 
         DateTime _CRT_DATETIME;
 		/// <summary>
-		/// 
+		/// 建档时间
 		/// </summary>
         public DateTime CRT_DATETIME
         {
@@ -564,7 +566,7 @@ namespace Solution.DataAccess.DataModel
 
         string _CRT_USER_ID;
 		/// <summary>
-		/// 
+		/// 建档人
 		/// </summary>
         public string CRT_USER_ID
         {
@@ -586,7 +588,7 @@ namespace Solution.DataAccess.DataModel
 
         DateTime _MOD_DATETIME;
 		/// <summary>
-		/// 
+		/// 修改时间
 		/// </summary>
         public DateTime MOD_DATETIME
         {
@@ -608,7 +610,7 @@ namespace Solution.DataAccess.DataModel
 
         string _MOD_USER_ID;
 		/// <summary>
-		/// 
+		/// 修改人
 		/// </summary>
         public string MOD_USER_ID
         {
@@ -630,7 +632,7 @@ namespace Solution.DataAccess.DataModel
 
         DateTime _LAST_UPDATE;
 		/// <summary>
-		/// 
+		/// 更新时间
 		/// </summary>
         public DateTime LAST_UPDATE
         {
@@ -662,6 +664,28 @@ namespace Solution.DataAccess.DataModel
                 if(_BILL_AMOUNT!=value || _isLoaded){
                     _BILL_AMOUNT=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="BILL_AMOUNT");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        decimal _BILL_COST;
+		/// <summary>
+		/// 出货成本
+		/// </summary>
+        public decimal BILL_COST
+        {
+            get { return _BILL_COST; }
+            set
+            {
+                if(_BILL_COST!=value || _isLoaded){
+                    _BILL_COST=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="BILL_COST");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

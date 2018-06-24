@@ -20,9 +20,9 @@ namespace Solution.DataAccess.DataModel {
                 Columns.Add(new DatabaseColumn("Id", this)
                 {
 	                IsPrimaryKey = true,
-	                DataType = DbType.Int64,
+	                DataType = DbType.Int32,
 	                IsNullable = false,
-	                AutoIncrement = false,
+	                AutoIncrement = true,
 	                IsForeignKey = false,
 	                MaxLength = 0,
 					PropertyName = "Id"
@@ -59,6 +59,17 @@ namespace Solution.DataAccess.DataModel {
 	                IsForeignKey = false,
 	                MaxLength = 0,
 					PropertyName = "BILL_AMOUNT"
+                });
+
+                Columns.Add(new DatabaseColumn("PAY_AMOUNT", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "PAY_AMOUNT"
                 });
 
                 Columns.Add(new DatabaseColumn("PAY_METHOD", this)
@@ -155,6 +166,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn BILL_AMOUNT{
                 get{
                     return this.GetColumn("BILL_AMOUNT");
+                }
+            }
+				
+            
+            public IColumn PAY_AMOUNT{
+                get{
+                    return this.GetColumn("PAY_AMOUNT");
                 }
             }
 				

@@ -51,6 +51,14 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
+   			public static string PAY_AMOUNT{
+			      get{
+        			return "PAY_AMOUNT";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
    			public static string PAY_METHOD{
 			      get{
         			return "PAY_METHOD";

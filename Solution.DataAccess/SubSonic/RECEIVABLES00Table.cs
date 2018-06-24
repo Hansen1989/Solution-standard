@@ -25,7 +25,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 总店编号
 			/// </summary>
    			public static string SHOP_ID{
 			      get{
@@ -33,7 +33,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 出货单编号
 			/// </summary>
    			public static string OUT_ID{
 			      get{
@@ -41,7 +41,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 账单状态
 			/// </summary>
    			public static string STATUS{
 			      get{
@@ -49,7 +49,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 出货单日期
 			/// </summary>
    			public static string INPUT_DATE{
 			      get{
@@ -57,7 +57,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 分店编号
 			/// </summary>
    			public static string IN_SHOP{
 			      get{
@@ -65,7 +65,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 出货单制单人
 			/// </summary>
    			public static string USER_ID{
 			      get{
@@ -73,7 +73,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 出货单审核人
 			/// </summary>
    			public static string APP_USER{
 			      get{
@@ -81,7 +81,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 出货单审核时间
 			/// </summary>
    			public static string APP_DATETIME{
 			      get{
@@ -89,7 +89,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 备注
 			/// </summary>
    			public static string MEMO{
 			      get{
@@ -97,7 +97,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 建档时间
 			/// </summary>
    			public static string CRT_DATETIME{
 			      get{
@@ -105,7 +105,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 建档人
 			/// </summary>
    			public static string CRT_USER_ID{
 			      get{
@@ -113,7 +113,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 修改时间
 			/// </summary>
    			public static string MOD_DATETIME{
 			      get{
@@ -121,7 +121,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 修改人
 			/// </summary>
    			public static string MOD_USER_ID{
 			      get{
@@ -129,7 +129,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 更新时间
 			/// </summary>
    			public static string LAST_UPDATE{
 			      get{
@@ -142,6 +142,14 @@ namespace Solution.DataAccess.DataModel {
    			public static string BILL_AMOUNT{
 			      get{
         			return "BILL_AMOUNT";
+      			}
+		    }
+			/// <summary>
+			/// 出货成本
+			/// </summary>
+   			public static string BILL_COST{
+			      get{
+        			return "BILL_COST";
       			}
 		    }
                     

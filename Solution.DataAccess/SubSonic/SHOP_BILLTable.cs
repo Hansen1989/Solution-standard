@@ -51,9 +51,9 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string Pay_METHOD{
+   			public static string PAY_METHOD{
 			      get{
-        			return "Pay_METHOD";
+        			return "PAY_METHOD";
       			}
 		    }
 			/// <summary>

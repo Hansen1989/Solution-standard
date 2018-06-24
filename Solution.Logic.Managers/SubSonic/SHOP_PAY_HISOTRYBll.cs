@@ -233,8 +233,8 @@ namespace Solution.Logic.Managers {
                 switch (conditionColName)
                 {
 					case "Id" :
-						model = list.SingleOrDefault(x => x.Id == (long)value);
-                        expression = x => x.Id == (long)value;
+						model = list.SingleOrDefault(x => x.Id == (int)value);
+                        expression = x => x.Id == (int)value;
                         break;
 					case "SHOP_ID" :
 						model = list.SingleOrDefault(x => x.SHOP_ID == (string)value);
@@ -532,7 +532,7 @@ namespace Solution.Logic.Managers {
             switch (colName)
             {
 				case "Id" :
-					model.Id = (long)value;
+					model.Id = (int)value;
                     break;
 				case "SHOP_ID" :
 					model.SHOP_ID = (string)value;
@@ -1186,7 +1186,7 @@ namespace Solution.Logic.Managers {
 	    /// <param name="content">更新说明</param>
         /// <param name="isCache">是否同步更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-	    public void UpdateValue(Page page, long id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
+	    public void UpdateValue(Page page, int id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
 			content = content != "" ? content : "{0}修改了SHOP_PAY_HISOTRY表主键Id值为" + id + "的记录。";
 			
@@ -1221,7 +1221,7 @@ namespace Solution.Logic.Managers {
         /// <param name="content">更新说明</param>
         /// <param name="isCache">是否同步更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void UpdateValue(Page page, long id, string columnName, object columnValue, string content = "", bool isCache = true, bool isAddUseLog = true)
+        public void UpdateValue(Page page, int id, string columnName, object columnValue, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
             content = content != "" ? content : "{0}修改了SHOP_PAY_HISOTRY表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
             //设置更新字段
@@ -1242,7 +1242,7 @@ namespace Solution.Logic.Managers {
         /// <param name="content">更新说明</param>
         /// <param name="isCache">是否同步更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void UpdateValue(Page page, long id, string columnName1, object columnValue1, string columnName2, object columnValue2, string content = "", bool isCache = true, bool isAddUseLog = true)
+        public void UpdateValue(Page page, int id, string columnName1, object columnValue1, string columnName2, object columnValue2, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
             content = content != "" ? content : "{0}修改了SHOP_PAY_HISOTRY表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
             //设置更新字段
