@@ -6,21 +6,21 @@ using System.Data;
 
 namespace Solution.DataAccess.DataModel {
         /// <summary>
-        /// Table: HED_SHOP_PAY_HISTORY
+        /// Table: HEAD_SHOP_PAY_HISTORY
         /// Primary Key: Id
         /// </summary>
 
-        public class HED_SHOP_PAY_HISTORYStructs: DatabaseTable {
+        public class HEAD_SHOP_PAY_HISTORYStructs: DatabaseTable {
             
-            public HED_SHOP_PAY_HISTORYStructs(IDataProvider provider):base("HED_SHOP_PAY_HISTORY",provider){
-                ClassName = "HED_SHOP_PAY_HISTORY";
+            public HEAD_SHOP_PAY_HISTORYStructs(IDataProvider provider):base("HEAD_SHOP_PAY_HISTORY",provider){
+                ClassName = "HEAD_SHOP_PAY_HISTORY";
                 SchemaName = "dbo";
                 
 
                 Columns.Add(new DatabaseColumn("Id", this)
                 {
 	                IsPrimaryKey = true,
-	                DataType = DbType.Int64,
+	                DataType = DbType.Int32,
 	                IsNullable = false,
 	                AutoIncrement = true,
 	                IsForeignKey = false,

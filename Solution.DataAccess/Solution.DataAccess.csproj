@@ -303,6 +303,42 @@
     <Compile Include="SubSonic\GROUPAREATable.cs">
       <DependentUpon>EntityTable.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubSonic\HEAD_SHOP_ACCOUNT.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HEAD_SHOP_ACCOUNTModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HEAD_SHOP_ACCOUNTStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HEAD_SHOP_ACCOUNTTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HEAD_SHOP_BILL.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HEAD_SHOP_BILLModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HEAD_SHOP_BILLStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HEAD_SHOP_BILLTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HEAD_SHOP_PAY_HISTORY.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HEAD_SHOP_PAY_HISTORYModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HEAD_SHOP_PAY_HISTORYStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\HEAD_SHOP_PAY_HISTORYTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\IN00.cs">
       <DependentUpon>ActiveRecord.tt</DependentUpon>
       <SubType>Code</SubType>

@@ -296,6 +296,10 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.BILL_AMOUNT == (decimal)value);
                         expression = x => x.BILL_AMOUNT == (decimal)value;
                         break;
+					case "BILL_COST" :
+						model = list.SingleOrDefault(x => x.BILL_COST == (decimal)value);
+                        expression = x => x.BILL_COST == (decimal)value;
+                        break;
 
                     default :
                         return null;
@@ -476,6 +480,7 @@ namespace Solution.Logic.Managers {
                 MOD_USER_ID = model.MOD_USER_ID,
                 LAST_UPDATE = model.LAST_UPDATE,
                 BILL_AMOUNT = model.BILL_AMOUNT,
+                BILL_COST = model.BILL_COST,
             };
         }
 
@@ -520,6 +525,7 @@ namespace Solution.Logic.Managers {
                 MOD_USER_ID = model.MOD_USER_ID,
                 LAST_UPDATE = model.LAST_UPDATE,
                 BILL_AMOUNT = model.BILL_AMOUNT,
+                BILL_COST = model.BILL_COST,
             };
         }
 
@@ -614,6 +620,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "BILL_AMOUNT" :
 					model.BILL_AMOUNT = (decimal)value;
+                    break;
+				case "BILL_COST" :
+					model.BILL_COST = (decimal)value;
                     break;
             }
 		}
@@ -1200,6 +1209,8 @@ namespace Solution.Logic.Managers {
 					return model.LAST_UPDATE;
 				case "BILL_AMOUNT" :
 					return model.BILL_AMOUNT;
+				case "BILL_COST" :
+					return model.BILL_COST;
 			}
 
 			return null;

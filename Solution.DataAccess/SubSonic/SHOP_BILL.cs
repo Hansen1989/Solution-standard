@@ -116,7 +116,7 @@ namespace Solution.DataAccess.DataModel
             IReadRecord readRecord = SqlReadRecord.GetIReadRecord();
             readRecord.DataRecord = dataRecord;   
                
-            Id = readRecord.get_long("Id",null);
+            Id = readRecord.get_int("Id",null);
                
             HEAD_SHOP_ID = readRecord.get_string("HEAD_SHOP_ID",null);
                
@@ -124,7 +124,7 @@ namespace Solution.DataAccess.DataModel
                
             BILL_AMOUNT = readRecord.get_decimal("BILL_AMOUNT",null);
                
-            Pay_METHOD = readRecord.get_byte("Pay_METHOD",null);
+            PAY_METHOD = readRecord.get_byte("PAY_METHOD",null);
                
             BILL_DATE = readRecord.get_datetime("BILL_DATE",null);
                
@@ -268,7 +268,7 @@ namespace Solution.DataAccess.DataModel
         
         public void SetKeyValue(object value) {
             if (value != null && value!=DBNull.Value) {
-                var settable = value.ChangeTypeTo<long>();
+                var settable = value.ChangeTypeTo<int>();
                 this.GetType().GetProperty(this.KeyName()).SetValue(this, settable, null);
             }
         }
@@ -286,6 +286,11 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
+        
+        public override int GetHashCode() {
+            return this.Id;
+        }
+        
         public string DescriptorValue()
         {
                             return this.HEAD_SHOP_ID.ToString();
@@ -307,12 +312,12 @@ namespace Solution.DataAccess.DataModel
         #endregion
         
 
-        long _Id;
+        int _Id;
 		/// <summary>
 		/// 
 		/// </summary>
 		[SubSonicPrimaryKey]
-        public long Id
+        public int Id
         {
             get { return _Id; }
             set
@@ -396,18 +401,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        byte _Pay_METHOD;
+        byte _PAY_METHOD;
 		/// <summary>
 		/// 
 		/// </summary>
-        public byte Pay_METHOD
+        public byte PAY_METHOD
         {
-            get { return _Pay_METHOD; }
+            get { return _PAY_METHOD; }
             set
             {
-                if(_Pay_METHOD!=value || _isLoaded){
-                    _Pay_METHOD=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Pay_METHOD");
+                if(_PAY_METHOD!=value || _isLoaded){
+                    _PAY_METHOD=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PAY_METHOD");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

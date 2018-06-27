@@ -116,7 +116,7 @@ namespace Solution.DataAccess.DataModel
             IReadRecord readRecord = SqlReadRecord.GetIReadRecord();
             readRecord.DataRecord = dataRecord;   
                
-            Id = readRecord.get_long("Id",null);
+            Id = readRecord.get_int("Id",null);
                
             SHOP_ID = readRecord.get_string("SHOP_ID",null);
                
@@ -264,7 +264,7 @@ namespace Solution.DataAccess.DataModel
         
         public void SetKeyValue(object value) {
             if (value != null && value!=DBNull.Value) {
-                var settable = value.ChangeTypeTo<long>();
+                var settable = value.ChangeTypeTo<int>();
                 this.GetType().GetProperty(this.KeyName()).SetValue(this, settable, null);
             }
         }
@@ -282,6 +282,11 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
+        
+        public override int GetHashCode() {
+            return this.Id;
+        }
+        
         public string DescriptorValue()
         {
                             return this.SHOP_ID.ToString();
@@ -303,12 +308,12 @@ namespace Solution.DataAccess.DataModel
         #endregion
         
 
-        long _Id;
+        int _Id;
 		/// <summary>
 		/// 
 		/// </summary>
 		[SubSonicPrimaryKey]
-        public long Id
+        public int Id
         {
             get { return _Id; }
             set

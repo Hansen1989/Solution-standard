@@ -4,16 +4,16 @@ using System;
 namespace Solution.DataAccess.Model
 {
     /// <summary>
-    /// HED_SHOP_PAY_HISTORY表实体类
+    /// HEAD_SHOP_PAY_HISTORY表实体类
     /// </summary>
-    public partial class HED_SHOP_PAY_HISTORY
+    public partial class HEAD_SHOP_PAY_HISTORY
     {
 
-		long _Id = 0;
+		int _Id = 0;
 		/// <summary>
 		/// 
 		/// </summary>
-		public long Id
+		public int Id
 		{
 			get { return _Id; }
 			set { _Id = value; }

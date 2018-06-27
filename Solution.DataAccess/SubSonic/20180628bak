@@ -14,38 +14,38 @@ using SubSonic.SqlGeneration.Schema;
 namespace Solution.DataAccess.DataModel
 {    
     /// <summary>
-    /// A class which represents the HED_SHOP_PAY_HISTORY table in the SolutionDataBase_standard Database.
+    /// A class which represents the HEAD_SHOP_PAY_HISTORY table in the SolutionDataBase_standard Database.
     /// </summary>
-    public partial class HED_SHOP_PAY_HISTORY: IActiveRecord
+    public partial class HEAD_SHOP_PAY_HISTORY: IActiveRecord
     {
     
         #region Built-in testing
-        static TestRepository<HED_SHOP_PAY_HISTORY> _testRepo;
+        static TestRepository<HEAD_SHOP_PAY_HISTORY> _testRepo;
         
 
         
         static void SetTestRepo(){
-            _testRepo = _testRepo ?? new TestRepository<HED_SHOP_PAY_HISTORY>(new Solution.DataAccess.DataModel.SolutionDataBase_standardDB());
+            _testRepo = _testRepo ?? new TestRepository<HEAD_SHOP_PAY_HISTORY>(new Solution.DataAccess.DataModel.SolutionDataBase_standardDB());
         }
         public static void ResetTestRepo(){
             _testRepo = null;
             SetTestRepo();
         }
-        public static void Setup(List<HED_SHOP_PAY_HISTORY> testlist){
+        public static void Setup(List<HEAD_SHOP_PAY_HISTORY> testlist){
             SetTestRepo();
             foreach (var item in testlist)
             {
                 _testRepo._items.Add(item);
             }
         }
-        public static void Setup(HED_SHOP_PAY_HISTORY item) {
+        public static void Setup(HEAD_SHOP_PAY_HISTORY item) {
             SetTestRepo();
             _testRepo._items.Add(item);
         }
         public static void Setup(int testItems) {
             SetTestRepo();
             for(int i=0;i<testItems;i++){
-                HED_SHOP_PAY_HISTORY item=new HED_SHOP_PAY_HISTORY();
+                HEAD_SHOP_PAY_HISTORY item=new HEAD_SHOP_PAY_HISTORY();
                 _testRepo._items.Add(item);
             }
         }
@@ -55,7 +55,7 @@ namespace Solution.DataAccess.DataModel
 
         #endregion
 
-        IRepository<HED_SHOP_PAY_HISTORY> _repo;
+        IRepository<HEAD_SHOP_PAY_HISTORY> _repo;
         ITable tbl;
         bool _isNew;
         public bool IsNew(){
@@ -86,7 +86,7 @@ namespace Solution.DataAccess.DataModel
         }
 
         Solution.DataAccess.DataModel.SolutionDataBase_standardDB _db;
-        public HED_SHOP_PAY_HISTORY(string connectionString, string providerName) {
+        public HEAD_SHOP_PAY_HISTORY(string connectionString, string providerName) {
 
             _db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB(connectionString, providerName);
             Init();            
@@ -95,10 +95,10 @@ namespace Solution.DataAccess.DataModel
             TestMode=this._db.DataProvider.ConnectionString.Equals("test", StringComparison.InvariantCultureIgnoreCase);
             _dirtyColumns=new List<IColumn>();
             if(TestMode){
-                HED_SHOP_PAY_HISTORY.SetTestRepo();
+                HEAD_SHOP_PAY_HISTORY.SetTestRepo();
                 _repo=_testRepo;
             }else{
-                _repo = new SubSonicRepository<HED_SHOP_PAY_HISTORY>(_db);
+                _repo = new SubSonicRepository<HEAD_SHOP_PAY_HISTORY>(_db);
             }
             tbl=_repo.GetTable();
             SetIsNew(true);
@@ -106,7 +106,7 @@ namespace Solution.DataAccess.DataModel
 
         }
         
-        public HED_SHOP_PAY_HISTORY(){
+        public HEAD_SHOP_PAY_HISTORY(){
 			_db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB();
             Init();            
         }
@@ -116,7 +116,7 @@ namespace Solution.DataAccess.DataModel
             IReadRecord readRecord = SqlReadRecord.GetIReadRecord();
             readRecord.DataRecord = dataRecord;   
                
-            Id = readRecord.get_long("Id",null);
+            Id = readRecord.get_int("Id",null);
                
             SHOP_ID = readRecord.get_string("SHOP_ID",null);
                
@@ -155,40 +155,40 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        public HED_SHOP_PAY_HISTORY(Expression<Func<HED_SHOP_PAY_HISTORY, bool>> expression):this() {
+        public HEAD_SHOP_PAY_HISTORY(Expression<Func<HEAD_SHOP_PAY_HISTORY, bool>> expression):this() {
 
             SetIsLoaded(_repo.Load(this,expression));
         }
         
        
         
-        internal static IRepository<HED_SHOP_PAY_HISTORY> GetRepo(string connectionString, string providerName){
+        internal static IRepository<HEAD_SHOP_PAY_HISTORY> GetRepo(string connectionString, string providerName){
             Solution.DataAccess.DataModel.SolutionDataBase_standardDB db;
             if(String.IsNullOrEmpty(connectionString)){
                 db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB();
             }else{
                 db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB(connectionString, providerName);
             }
-            IRepository<HED_SHOP_PAY_HISTORY> _repo;
+            IRepository<HEAD_SHOP_PAY_HISTORY> _repo;
             
             if(db.TestMode){
-                HED_SHOP_PAY_HISTORY.SetTestRepo();
+                HEAD_SHOP_PAY_HISTORY.SetTestRepo();
                 _repo=_testRepo;
             }else{
-                _repo = new SubSonicRepository<HED_SHOP_PAY_HISTORY>(db);
+                _repo = new SubSonicRepository<HEAD_SHOP_PAY_HISTORY>(db);
             }
             return _repo;        
         }       
         
-        internal static IRepository<HED_SHOP_PAY_HISTORY> GetRepo(){
+        internal static IRepository<HEAD_SHOP_PAY_HISTORY> GetRepo(){
             return GetRepo("","");
         }
         
-        public static HED_SHOP_PAY_HISTORY SingleOrDefault(Expression<Func<HED_SHOP_PAY_HISTORY, bool>> expression) {
+        public static HEAD_SHOP_PAY_HISTORY SingleOrDefault(Expression<Func<HEAD_SHOP_PAY_HISTORY, bool>> expression) {
 
             var repo = GetRepo();
             var results=repo.Find(expression);
-            HED_SHOP_PAY_HISTORY single=null;
+            HEAD_SHOP_PAY_HISTORY single=null;
             if(results.Count() > 0){
                 single=results.ToList()[0];
                 single.OnLoaded();
@@ -199,10 +199,10 @@ namespace Solution.DataAccess.DataModel
             return single;
         }      
         
-        public static HED_SHOP_PAY_HISTORY SingleOrDefault(Expression<Func<HED_SHOP_PAY_HISTORY, bool>> expression,string connectionString, string providerName) {
+        public static HEAD_SHOP_PAY_HISTORY SingleOrDefault(Expression<Func<HEAD_SHOP_PAY_HISTORY, bool>> expression,string connectionString, string providerName) {
             var repo = GetRepo(connectionString,providerName);
             var results=repo.Find(expression);
-            HED_SHOP_PAY_HISTORY single=null;
+            HEAD_SHOP_PAY_HISTORY single=null;
             if(results.Count() > 0){
                 single=results.ToList()[0];
             }
@@ -213,49 +213,49 @@ namespace Solution.DataAccess.DataModel
         }
         
         
-        public static bool Exists(Expression<Func<HED_SHOP_PAY_HISTORY, bool>> expression,string connectionString, string providerName) {
+        public static bool Exists(Expression<Func<HEAD_SHOP_PAY_HISTORY, bool>> expression,string connectionString, string providerName) {
            
             return All(connectionString,providerName).Any(expression);
         }        
-        public static bool Exists(Expression<Func<HED_SHOP_PAY_HISTORY, bool>> expression) {
+        public static bool Exists(Expression<Func<HEAD_SHOP_PAY_HISTORY, bool>> expression) {
            
             return All().Any(expression);
         }        
 
-        public static IList<HED_SHOP_PAY_HISTORY> Find(Expression<Func<HED_SHOP_PAY_HISTORY, bool>> expression) {
+        public static IList<HEAD_SHOP_PAY_HISTORY> Find(Expression<Func<HEAD_SHOP_PAY_HISTORY, bool>> expression) {
             
             var repo = GetRepo();
             return repo.Find(expression).ToList();
         }
         
-        public static IList<HED_SHOP_PAY_HISTORY> Find(Expression<Func<HED_SHOP_PAY_HISTORY, bool>> expression,string connectionString, string providerName) {
+        public static IList<HEAD_SHOP_PAY_HISTORY> Find(Expression<Func<HEAD_SHOP_PAY_HISTORY, bool>> expression,string connectionString, string providerName) {
 
             var repo = GetRepo(connectionString,providerName);
             return repo.Find(expression).ToList();
 
         }
-        public static IQueryable<HED_SHOP_PAY_HISTORY> All(string connectionString, string providerName) {
+        public static IQueryable<HEAD_SHOP_PAY_HISTORY> All(string connectionString, string providerName) {
             return GetRepo(connectionString,providerName).GetAll();
         }
-        public static IQueryable<HED_SHOP_PAY_HISTORY> All() {
+        public static IQueryable<HEAD_SHOP_PAY_HISTORY> All() {
             return GetRepo().GetAll();
         }
         
-        public static PagedList<HED_SHOP_PAY_HISTORY> GetPaged(string sortBy, int pageIndex, int pageSize,string connectionString, string providerName) {
+        public static PagedList<HEAD_SHOP_PAY_HISTORY> GetPaged(string sortBy, int pageIndex, int pageSize,string connectionString, string providerName) {
             return GetRepo(connectionString,providerName).GetPaged(sortBy, pageIndex, pageSize);
         }
       
-        public static PagedList<HED_SHOP_PAY_HISTORY> GetPaged(string sortBy, int pageIndex, int pageSize) {
+        public static PagedList<HEAD_SHOP_PAY_HISTORY> GetPaged(string sortBy, int pageIndex, int pageSize) {
             return GetRepo().GetPaged(sortBy, pageIndex, pageSize);
         }
 
-        public static PagedList<HED_SHOP_PAY_HISTORY> GetPaged(int pageIndex, int pageSize,string connectionString, string providerName) {
+        public static PagedList<HEAD_SHOP_PAY_HISTORY> GetPaged(int pageIndex, int pageSize,string connectionString, string providerName) {
             return GetRepo(connectionString,providerName).GetPaged(pageIndex, pageSize);
             
         }
 
 
-        public static PagedList<HED_SHOP_PAY_HISTORY> GetPaged(int pageIndex, int pageSize) {
+        public static PagedList<HEAD_SHOP_PAY_HISTORY> GetPaged(int pageIndex, int pageSize) {
             return GetRepo().GetPaged(pageIndex, pageSize);
             
         }
@@ -272,7 +272,7 @@ namespace Solution.DataAccess.DataModel
         
         public void SetKeyValue(object value) {
             if (value != null && value!=DBNull.Value) {
-                var settable = value.ChangeTypeTo<long>();
+                var settable = value.ChangeTypeTo<int>();
                 this.GetType().GetProperty(this.KeyName()).SetValue(this, settable, null);
             }
         }
@@ -282,14 +282,19 @@ namespace Solution.DataAccess.DataModel
                     }
 
         public override bool Equals(object obj){
-            if(obj.GetType()==typeof(HED_SHOP_PAY_HISTORY)){
-                HED_SHOP_PAY_HISTORY compare=(HED_SHOP_PAY_HISTORY)obj;
+            if(obj.GetType()==typeof(HEAD_SHOP_PAY_HISTORY)){
+                HEAD_SHOP_PAY_HISTORY compare=(HEAD_SHOP_PAY_HISTORY)obj;
                 return compare.KeyValue()==this.KeyValue();
             }else{
                 return base.Equals(obj);
             }
         }
 
+        
+        public override int GetHashCode() {
+            return this.Id;
+        }
+        
         public string DescriptorValue()
         {
                             return this.SHOP_ID.ToString();
@@ -311,12 +316,12 @@ namespace Solution.DataAccess.DataModel
         #endregion
         
 
-        long _Id;
+        int _Id;
 		/// <summary>
 		/// 
 		/// </summary>
 		[SubSonicPrimaryKey]
-        public long Id
+        public int Id
         {
             get { return _Id; }
             set
@@ -667,7 +672,7 @@ namespace Solution.DataAccess.DataModel
         }
 
 
-        public static void Delete(Expression<Func<HED_SHOP_PAY_HISTORY, bool>> expression) {
+        public static void Delete(Expression<Func<HEAD_SHOP_PAY_HISTORY, bool>> expression) {
             var repo = GetRepo();
             
        

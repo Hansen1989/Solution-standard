@@ -155,7 +155,7 @@ namespace Solution.DataAccess.DataModel
         public Query<DataAccess.Model.GROUPAREA> GROUPAREA { get; set; }
         public Query<DataAccess.Model.HEAD_SHOP_ACCOUNT> HEAD_SHOP_ACCOUNT { get; set; }
         public Query<DataAccess.Model.HEAD_SHOP_BILL> HEAD_SHOP_BILL { get; set; }
-        public Query<DataAccess.Model.HED_SHOP_PAY_HISTORY> HED_SHOP_PAY_HISTORY { get; set; }
+        public Query<DataAccess.Model.HEAD_SHOP_PAY_HISTORY> HEAD_SHOP_PAY_HISTORY { get; set; }
         public Query<DataAccess.Model.IN_BACK00> IN_BACK00 { get; set; }
         public Query<DataAccess.Model.IN_BACK01> IN_BACK01 { get; set; }
         public Query<DataAccess.Model.IN00> IN00 { get; set; }
@@ -352,7 +352,7 @@ namespace Solution.DataAccess.DataModel
             GROUPAREA = new Query<DataAccess.Model.GROUPAREA>(provider);
             HEAD_SHOP_ACCOUNT = new Query<DataAccess.Model.HEAD_SHOP_ACCOUNT>(provider);
             HEAD_SHOP_BILL = new Query<DataAccess.Model.HEAD_SHOP_BILL>(provider);
-            HED_SHOP_PAY_HISTORY = new Query<DataAccess.Model.HED_SHOP_PAY_HISTORY>(provider);
+            HEAD_SHOP_PAY_HISTORY = new Query<DataAccess.Model.HEAD_SHOP_PAY_HISTORY>(provider);
             IN_BACK00 = new Query<DataAccess.Model.IN_BACK00>(provider);
             IN_BACK01 = new Query<DataAccess.Model.IN_BACK01>(provider);
             IN00 = new Query<DataAccess.Model.IN00>(provider);
@@ -452,7 +452,7 @@ namespace Solution.DataAccess.DataModel
             	DataProvider.Schema.Tables.Add(new GROUPAREAStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new HEAD_SHOP_ACCOUNTStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new HEAD_SHOP_BILLStructs(DataProvider));
-            	DataProvider.Schema.Tables.Add(new HED_SHOP_PAY_HISTORYStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new HEAD_SHOP_PAY_HISTORYStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new IN_BACK00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new IN_BACK01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new IN00Structs(DataProvider));

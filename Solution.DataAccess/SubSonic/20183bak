@@ -3,16 +3,16 @@ using System;
 
 namespace Solution.DataAccess.DataModel {
         /// <summary>
-        /// Table: HED_SHOP_PAY_HISTORY
+        /// Table: HEAD_SHOP_PAY_HISTORY
         /// </summary>
 
-        public class HED_SHOP_PAY_HISTORYTable {
+        public class HEAD_SHOP_PAY_HISTORYTable {
 			/// <summary>
 			/// 表名
 			/// </summary>
 			public static string TableName {
 				get{
-        			return "HED_SHOP_PAY_HISTORY";
+        			return "HEAD_SHOP_PAY_HISTORY";
       			}
 			}
 

@@ -9,11 +9,11 @@ namespace Solution.DataAccess.Model
     public partial class SHOP_BILL
     {
 
-		long _Id = 0;
+		int _Id = 0;
 		/// <summary>
 		/// 
 		/// </summary>
-		public long Id
+		public int Id
 		{
 			get { return _Id; }
 			set { _Id = value; }
@@ -49,14 +49,14 @@ namespace Solution.DataAccess.Model
 			set { _BILL_AMOUNT = value; }
 		}
 
-		byte _Pay_METHOD = 0;
+		byte _PAY_METHOD = 0;
 		/// <summary>
 		/// 
 		/// </summary>
-		public byte Pay_METHOD
+		public byte PAY_METHOD
 		{
-			get { return _Pay_METHOD; }
-			set { _Pay_METHOD = value; }
+			get { return _PAY_METHOD; }
+			set { _PAY_METHOD = value; }
 		}
 
 		DateTime _BILL_DATE = new DateTime(1900,1,1);

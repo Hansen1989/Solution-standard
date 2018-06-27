@@ -192,6 +192,17 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 0,
 					PropertyName = "BILL_AMOUNT"
                 });
+
+                Columns.Add(new DatabaseColumn("BILL_COST", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "BILL_COST"
+                });
                     
                 
                 
@@ -305,6 +316,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn BILL_AMOUNT{
                 get{
                     return this.GetColumn("BILL_AMOUNT");
+                }
+            }
+				
+            
+            public IColumn BILL_COST{
+                get{
+                    return this.GetColumn("BILL_COST");
                 }
             }
 				

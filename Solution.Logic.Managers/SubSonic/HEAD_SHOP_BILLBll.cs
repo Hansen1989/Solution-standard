@@ -233,8 +233,8 @@ namespace Solution.Logic.Managers {
                 switch (conditionColName)
                 {
 					case "Id" :
-						model = list.SingleOrDefault(x => x.Id == (long)value);
-                        expression = x => x.Id == (long)value;
+						model = list.SingleOrDefault(x => x.Id == (int)value);
+                        expression = x => x.Id == (int)value;
                         break;
 					case "SHOP_ID" :
 						model = list.SingleOrDefault(x => x.SHOP_ID == (string)value);
@@ -247,6 +247,10 @@ namespace Solution.Logic.Managers {
 					case "BILL_AMOUNT" :
 						model = list.SingleOrDefault(x => x.BILL_AMOUNT == (decimal)value);
                         expression = x => x.BILL_AMOUNT == (decimal)value;
+                        break;
+					case "PAY_AMOUNT" :
+						model = list.SingleOrDefault(x => x.PAY_AMOUNT == (decimal)value);
+                        expression = x => x.PAY_AMOUNT == (decimal)value;
                         break;
 					case "PAY_METHOD" :
 						model = list.SingleOrDefault(x => x.PAY_METHOD == (byte)value);
@@ -440,6 +444,7 @@ namespace Solution.Logic.Managers {
                 SHOP_ID = model.SHOP_ID,
                 SU_ID = model.SU_ID,
                 BILL_AMOUNT = model.BILL_AMOUNT,
+                PAY_AMOUNT = model.PAY_AMOUNT,
                 PAY_METHOD = model.PAY_METHOD,
                 BILL_DATE = model.BILL_DATE,
                 PAY_DATE = model.PAY_DATE,
@@ -478,6 +483,7 @@ namespace Solution.Logic.Managers {
                 SHOP_ID = model.SHOP_ID,
                 SU_ID = model.SU_ID,
                 BILL_AMOUNT = model.BILL_AMOUNT,
+                PAY_AMOUNT = model.PAY_AMOUNT,
                 PAY_METHOD = model.PAY_METHOD,
                 BILL_DATE = model.BILL_DATE,
                 PAY_DATE = model.PAY_DATE,
@@ -532,7 +538,7 @@ namespace Solution.Logic.Managers {
             switch (colName)
             {
 				case "Id" :
-					model.Id = (long)value;
+					model.Id = (int)value;
                     break;
 				case "SHOP_ID" :
 					model.SHOP_ID = (string)value;
@@ -542,6 +548,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "BILL_AMOUNT" :
 					model.BILL_AMOUNT = (decimal)value;
+                    break;
+				case "PAY_AMOUNT" :
+					model.PAY_AMOUNT = (decimal)value;
                     break;
 				case "PAY_METHOD" :
 					model.PAY_METHOD = ConvertHelper.Ctinyint(value);
@@ -1122,6 +1131,8 @@ namespace Solution.Logic.Managers {
 					return model.SU_ID;
 				case "BILL_AMOUNT" :
 					return model.BILL_AMOUNT;
+				case "PAY_AMOUNT" :
+					return model.PAY_AMOUNT;
 				case "PAY_METHOD" :
 					return model.PAY_METHOD;
 				case "BILL_DATE" :
@@ -1186,7 +1197,7 @@ namespace Solution.Logic.Managers {
 	    /// <param name="content">更新说明</param>
         /// <param name="isCache">是否同步更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-	    public void UpdateValue(Page page, long id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
+	    public void UpdateValue(Page page, int id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
 			content = content != "" ? content : "{0}修改了HEAD_SHOP_BILL表主键Id值为" + id + "的记录。";
 			
@@ -1221,7 +1232,7 @@ namespace Solution.Logic.Managers {
         /// <param name="content">更新说明</param>
         /// <param name="isCache">是否同步更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void UpdateValue(Page page, long id, string columnName, object columnValue, string content = "", bool isCache = true, bool isAddUseLog = true)
+        public void UpdateValue(Page page, int id, string columnName, object columnValue, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
             content = content != "" ? content : "{0}修改了HEAD_SHOP_BILL表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
             //设置更新字段
@@ -1242,7 +1253,7 @@ namespace Solution.Logic.Managers {
         /// <param name="content">更新说明</param>
         /// <param name="isCache">是否同步更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void UpdateValue(Page page, long id, string columnName1, object columnValue1, string columnName2, object columnValue2, string content = "", bool isCache = true, bool isAddUseLog = true)
+        public void UpdateValue(Page page, int id, string columnName1, object columnValue1, string columnName2, object columnValue2, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
             content = content != "" ? content : "{0}修改了HEAD_SHOP_BILL表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
             //设置更新字段

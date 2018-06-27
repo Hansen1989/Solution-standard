@@ -9,11 +9,11 @@ namespace Solution.DataAccess.Model
     public partial class DUE00
     {
 
-		long _Id = 0;
+		int _Id = 0;
 		/// <summary>
 		/// 
 		/// </summary>
-		public long Id
+		public int Id
 		{
 			get { return _Id; }
 			set { _Id = value; }
