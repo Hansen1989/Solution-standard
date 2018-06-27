@@ -13,12 +13,18 @@
         <f:Panel ID="Panel1" runat="server" ShowBorder="false" ShowHeader="false" Layout="Region">
             <Items>
                 <f:Panel runat="server" ID="panelCenterRegion" RegionPosition="Center"
-                    Title="总部出货作业信息" ShowBorder="true" ShowHeader="true" BodyPadding="5px">
+                    Title="退货出货主表" ShowBorder="true" ShowHeader="true" BodyPadding="5px">
                     <Toolbars>
-                    <f:Toolbar ID="Toolbar1" runat="server">
+                    <f:Toolbar ID="Toolbar1_1" runat="server">
                       <Items>
-                          <f:Button ID="ButtonCheck" runat="server" Text="核准" Icon="Disk"></f:Button>
-                          <f:Button ID="ButtonCancel" runat="server" Text="作废" Icon="Disk"></f:Button>
+                          <f:Button ID="ButtonAdd" runat="server" Text="新增" Icon="Disk" OnClick="BtnAdd_Click"></f:Button>
+                          <f:Button ID="ButtonSave" runat="server" Text="保存" Icon="Disk" OnClick="BtnSave_Click"></f:Button>
+<%--                          <f:Button ID="ButtonYR" runat="server" Text="引入" Icon="Disk" OnClick="BtnYR_Click"></f:Button>--%>
+                          <f:Button ID="ButtonEdit" runat="server" Text="修改" Icon="Disk" OnClick="Btn_MainEdit"></f:Button>
+                          <f:Button ID="ButtonCheck" runat="server" Text="核准" Icon="Disk" OnClick="Btn_MainCheck"></f:Button>
+                          <f:Button ID="ButtonCancel" runat="server" Text="作废" Icon="Disk" OnClick="Btn_MainCancel"></f:Button>
+
+
                       </Items>
                       </f:Toolbar>
                     </Toolbars>
@@ -37,14 +43,15 @@
                                         <f:ListItem Text="核准" Value="2" />
                                         <f:ListItem Text="作废" Value="3" />
                                         <f:ListItem Text="已引入" Value="4" />
+                                        <f:ListItem Text="关单" Value="5" />
                                     </f:DropDownList>                            
                                 </Items>
                             </f:FormRow>
 
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
-                                    <f:DropDownList runat="server" Label="总部分店" ID="ddlIN_SHOP" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList> 
-                                    <f:DropDownList runat="server" Label="仓库名称" ID="ddlSTOCK_ID" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList>
+                                    <f:DropDownList runat="server" Label="总部分店" ID="ddlIN_SHOP" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList>
+                                    <f:DropDownList runat="server" Label="仓库编码" ID="ddlSTOCK_ID" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList> 
                                     <f:TextBox runat="server" Label="制单人" ID="tbxUSER_ID" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
                                     <f:TextBox runat="server" Label="审核人" ID="tbxAPP_USER" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
                                     <f:DatePicker ID="dpAPP_DATETIME" Label="审核时间" Required="true" Readonly="false" DateFormatString="yyyy-MM-dd" runat="server" ShowRedStar="True" Enabled="false">
@@ -55,14 +62,10 @@
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
                                     <f:CheckBox ID="cbExported" Label="引入标记" runat="server" Enabled="false"></f:CheckBox>
-                                    <f:TextBox ID="tbxExported_ID" Label="调入单号" runat="server"  Enabled="false" ></f:TextBox>
+                                    <f:TextBox ID="tbxExported_ID" Label="引入单号" runat="server"  Enabled="false" ></f:TextBox>
                                     <f:TextBox ID="tbxRELATE_ID" Label="关联单号" runat="server"  Enabled="false" ></f:TextBox>
-                                    <f:CheckBox ID="cbLOCKED" Text="月结锁定" runat="server" Enabled="false"></f:CheckBox>  
-                                </Items>
-                            </f:FormRow>
-                            <f:FormRow ColumnWidths="300px">
-                                <Items>
                                     <f:TextBox runat="server" ID="tbxMemo" Label="备注" Enabled="true"></f:TextBox>
+                                    <f:CheckBox ID="ckLOCKED" Text="月结锁定" runat="server" Enabled="false"></f:CheckBox>  
                                 </Items>
                             </f:FormRow>
                             <f:FormRow ColumnWidths="300px">
@@ -79,17 +82,17 @@
                     </Items>
 
                     <Items>
-                       <f:Panel ID="Panel12" runat="server" Title="退货出货作业子表">
+                       <f:Panel ID="Panel12" runat="server" Title="退货出货子表">
                            <Toolbars>
                              <f:Toolbar ID="Toolbar21111" runat="server">
                                <Items>
-                                  <f:Button ID="ButtonPur02Add" runat="server" Text="添加" Icon="Add"></f:Button>
-                                  <f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add"></f:Button>
+                                  <f:Button ID="ButtonDetailAdd" runat="server" Text="添加" Icon="Add" OnClick="btn_DetailAdd"></f:Button>
+                                  <%--<f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add"></f:Button>--%>
                                </Items>
                              </f:Toolbar>
                            </Toolbars>
                            <Items>
-                              <f:Grid ID="Grid2" Title="退货出货作业子表" EnableFrame="false" EnableCollapse="true" ShowHeader="false" runat="server" Height="600px"
+                              <f:Grid ID="Grid2" Title="退货出货子表" EnableFrame="false" EnableCollapse="true" ShowHeader="false" runat="server" Height="600px"
                                    DataKeyNames="Id" EnableColumnLines="true" AllowPaging="true"
                                     EnableCheckBoxSelect="true" AllowCellEditing="true" ClicksToEdit="1"> 
                                       <Columns>
@@ -118,7 +121,7 @@
                                         <f:RenderField Width="130px" ColumnID="BK_ID01" DataField="BK_ID" FieldType="String" Enabled="false"
                                                 HeaderText=" 退货出货单号">
                                                 <Editor>
-                                                    <f:TextBox ID="tbxBK_ID01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
+                                                    <f:TextBox ID="tbxOUT_ID01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
                                                     </f:TextBox>
                                                 </Editor>
                                         </f:RenderField>
@@ -149,6 +152,13 @@
                                                     <f:NumberBox runat="server" ID="numQUANTITY" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
+                                          <f:RenderField Width="130px" ColumnID="STD_TYPE01" DataField="STD_TYPE" FieldType="String" Enabled="false"
+                                                HeaderText="退货单位类型">
+                                                <Editor>
+                                                    <f:TextBox ID="TextBox4" runat="server" Required="true" ShowRedStar="true" Enabled="false">
+                                                    </f:TextBox>
+                                                </Editor>
+                                         </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="STD_UNIT01" DataField="STD_UNIT" FieldType="String" Enabled="false"
                                                 HeaderText="退货单位">
                                                 <Editor>
@@ -174,10 +184,10 @@
                                                     <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
-                                         <f:RenderField Width="130px" ColumnID="COST01" DataField="COST" FieldType="Int" Enabled="false"
+                                         <f:RenderField Width="130px" ColumnID="COST01" DataField="COST" FieldType="Float" Enabled="false"
                                                 HeaderText="退货成本">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numTax" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numCOST" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="QUAN101" DataField="QUAN1" FieldType="Int" Enabled="false"
@@ -195,7 +205,7 @@
                                           <f:RenderField Width="130px" ColumnID="REASON_ID01" DataField="REASON_ID" FieldType="String" Enabled="True"
                                                 HeaderText="退货理由">
                                                 <Editor>
-                                                    <f:TextBox ID="tbxREASON_ID" runat="server" Required="true" ShowRedStar="true">
+                                                    <f:TextBox ID="TextBox3" runat="server" Required="true" ShowRedStar="true">
                                                     </f:TextBox>
                                                 </Editor>
                                          </f:RenderField>
@@ -209,15 +219,8 @@
                                           <f:RenderField Width="130px" ColumnID="BAT_NO" DataField="BAT_NO" FieldType="String" Enabled="True"
                                                 HeaderText="批号">
                                                 <Editor>
-                                                    <f:TextBox ID="TextBox3" runat="server" Required="true" ShowRedStar="true">
+                                                    <f:TextBox ID="tbxBAT_NO" runat="server" Required="true" ShowRedStar="true">
                                                     </f:TextBox>
-                                                </Editor>
-                                         </f:RenderField>
-                                          <f:RenderField Width="130px" ColumnID="Exp_DateTime01" DataField="Exp_DateTime" FieldType="String" Enabled="True"
-                                                HeaderText="有效日期">
-                                                <Editor>
-                                                    <f:DatePicker ID="dpExp_DateTime01" Required="true" Readonly="false" DateFormatString="yyyy-MM-dd" runat="server" ShowRedStar="True" Enabled="false">
-                                                    </f:DatePicker>
                                                 </Editor>
                                          </f:RenderField>
                                       </Columns>
@@ -228,9 +231,9 @@
                 </f:Panel>
 
                 <f:Panel runat="server" ID="panelLeftRegion" EnableFrame="false" RegionPosition="Right" RegionSplit="true" EnableCollapse="true" Expanded="false"
-                    Width="400px" Title="验收作业查询" ShowBorder="true" ShowHeader="true" BodyPadding="5px">
+                    Width="400px" Title="总部出货作业查询" ShowBorder="true" ShowHeader="true" BodyPadding="5px" >
                     <Items>
-                        <f:RadioButtonList ID="FilterDateRadio" Label="日期" runat="server">
+                        <f:RadioButtonList ID="ddrDataType" Label="日期" runat="server">
                             <f:RadioItem Text="单据日期" Value="1" Selected="true" />
                             <f:RadioItem Text="审核时间" Value="2"  />
                         </f:RadioButtonList>
@@ -243,16 +246,15 @@
                         </f:DatePicker>
                         <f:DropDownList runat="server" ID="ddlSHOP_NAME1" Required="true" ShowRedStar="true" Label="分店名称" Enabled="false">
                         </f:DropDownList>
-                        <f:Button ID="ButtonSearch" runat="server" Text="查询" Icon="Magnifier"></f:Button>
+                        <f:Button ID="ButtonSearch" runat="server" Text="查询" Icon="Magnifier" OnClick="BtnSearchOrder_click"></f:Button>
                     </Items>
                     <Items>
-                       <f:Grid ID="Grid1" Title="验收作业列表" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="Id"
+                       <f:Grid ID="Grid1" Title="总部出货作业列表" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="BK_ID"
                          EnableCheckBoxSelect="true" KeepCurrentSelection="false" EnableMultiSelect="false" PageSize="15"
-                         EnableRowClickEvent="true"  ><%--OnRowClick="Grid1_RowClick" --%>
+                         EnableRowClickEvent="true" OnRowClick="Grid1_RowClick" >
                          <Columns>
                            <f:RowNumberField />
-                           <f:BoundField Width="125px" DataField="Purchase_ID" HeaderText="进货单号" />
-                           <f:BoundField Width="125px" DataField="SHOP_ID" HeaderText="分店编码" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="BK_ID" HeaderText="进货单号" />
                            <f:BoundField Width="125px" DataField="SHOP_NAME1" HeaderText="分店名称" ExpandUnusedSpace="true"  />
                          </Columns>
                        </f:Grid>
@@ -260,6 +262,60 @@
                 </f:Panel>
             </Items>
         </f:Panel>
-    </form>
+        <f:Window ID="Window3" Width="1000px" Height="800px" Icon="TagBlue" Hidden="true" BodyPadding="10px"
+            EnableMaximize="true" EnableCollapse="true" runat="server" EnableResize="true"
+            IsModal="false" CloseAction="HidePostBack" OnClose="Window3_Close" Layout="Fit">
+            <%--<Toolbars>
+                <f:Toolbar ID="tools" runat="server">
+                    <Items>
+                        <f:Button ID="ButtonSearchPROD1" runat="server" Text="查询" Icon="Magnifier" </f:Button> OnClick="ButtonPRODSearch2_Click" >
+                    </Items>
+                </f:Toolbar>
+            </Toolbars>--%>
+            <Content>
+                <f:Panel runat="server" ID="PanelGrid4" RegionPosition="Right" RegionSplit="true" EnableCollapse="true" Expanded="true"
+                    Width="900px" Title="商品资料" ShowBorder="true" ShowHeader="true"
+                    BodyPadding="5px">
+                    <Items>
+                        <f:Panel runat="server" ID="Panel_Search" Hidden="true">
+                            <Items>
+                                <f:TextBox runat="server" Label="商品编码" ID="ccPROD_ID" Width="240px"  ></f:TextBox>
+                                <f:TextBox runat="server" Label="商品名称1" ID="ccPROD_NAME" Width="240px"></f:TextBox>
+                                <f:TextBox runat="server" Label="商品首拼" ID="ccPROD_NAME_SPELLING" Width="240px"></f:TextBox>
+                                <f:DropDownList Label="商品性质" runat="server" ID="ccPROD_KIND" Width="240px"></f:DropDownList>
+                                <f:DropDownList Label="商品类别" runat="server" ID="ccPROD_DEP" Width="240px" ></f:DropDownList>
+                                <f:DropDownList Label="商品小类" runat="server" ID="ccPROD_CATE" Width="240px" ></f:DropDownList>
+                            </Items>
+                        </f:Panel>
+                    </Items>
+                    <Items>
+                        <f:Toolbar runat="server" ID="tool_btn">
+                            <Items>
+                                <f:Button ID="BtnSearchCon" runat="server" Text="查询" Icon="Add" Hidden="true" OnClick="ButtonPRODSearch_Click"></f:Button>
+                                <f:Button ID="BtnAddCon" runat="server" Text="添加" Icon="Add" Hidden="true" OnClick="ButtonPRODAdd_Click"></f:Button>
+                                <f:Button ID="BtnEditCon" runat="server" Text="确定" Icon="accept" Hidden="true" ></f:Button>
+                            </Items>
+                        </f:Toolbar>
+                    </Items>
+                    <Items>
+                       <f:Grid ID="Grid4" Title="商品资料" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="PROD_ID"
+                         EnableCheckBoxSelect="true" KeepCurrentSelection="true" PageSize="1000"
+                         ><%--EnableRowClickEvent="true" OnRowClick="Grid1_RowClick" --%>
+                         <Columns>
+                           <f:RowNumberField />
+                           <f:BoundField Width="125px" DataField="PROD_ID" HeaderText="厂商编码" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="PROD_NAME1" HeaderText="厂商名称" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="PROD_ID" HeaderText="商品编号" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="PROD_NAME1" HeaderText="商品名称" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="COST" HeaderText="价格1" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="COST1" HeaderText="价格2" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="COST2" HeaderText="价格3" ExpandUnusedSpace="true"  />
+                         </Columns>
+                       </f:Grid>
+                    </Items>
+                 </f:Panel>
+            </Content>
+        </f:Window>   
+  </form>
 </body>
 </html>

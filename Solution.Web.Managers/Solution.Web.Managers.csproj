@@ -7634,6 +7634,7 @@
     <Content Include="WebManage\Systems\SupplyCenter\OUT_BACK00List.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\PREPARE00List.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\Purchase00List.aspx" />
+    <Content Include="WebManage\Systems\SupplyCenter\TAKEN10List.aspx" />
     <Content Include="WebManage\Systems\SysAuthority\BranchEdit.aspx" />
     <Content Include="WebManage\Systems\SysAuthority\BranchList.aspx" />
     <Content Include="WebManage\Systems\SysAuthority\ManagerEdit.aspx" />
@@ -8120,6 +8121,13 @@
     </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\Purchase00List.aspx.designer.cs">
       <DependentUpon>Purchase00List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\TAKEN10List.aspx.cs">
+      <DependentUpon>TAKEN10List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\TAKEN10List.aspx.designer.cs">
+      <DependentUpon>TAKEN10List.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\test.ashx.cs">
       <DependentUpon>test.ashx</DependentUpon>

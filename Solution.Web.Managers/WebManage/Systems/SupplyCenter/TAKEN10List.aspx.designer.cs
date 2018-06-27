@@ -10,7 +10,7 @@
 namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
     
     
-    public partial class IN00List {
+    public partial class TAKEN10List {
         
         /// <summary>
         /// form1 控件。
@@ -130,13 +130,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.DropDownList ddlSHOP_NAME;
         
         /// <summary>
-        /// tbxIN_ID 控件。
+        /// tbxTAKEIN_ID 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxIN_ID;
+        protected global::FineUI.TextBox tbxTAKEIN_ID;
         
         /// <summary>
         /// dpINPUT_DATE 控件。
@@ -200,6 +200,24 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.DatePicker dpAPP_DATETIME;
+        
+        /// <summary>
+        /// tbxTOT_AMOUNT 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox tbxTOT_AMOUNT;
+        
+        /// <summary>
+        /// tbxTOT_TAX 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox tbxTOT_TAX;
         
         /// <summary>
         /// tbxRELATE_ID 控件。

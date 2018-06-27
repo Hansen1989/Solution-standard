@@ -19,6 +19,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             if (!IsPostBack)
             {
+                //123
                 DatePicker1.SelectedDate = DateTime.Now;
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
                 SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
@@ -101,7 +102,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// </summary>
         public override void Init()
         {
-            bll = OUT00Bll.GetInstence();
+            bll = IN00Bll.GetInstence();
             //throw new NotImplementedException();
         }
 
@@ -136,6 +137,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 tbxRELATE_ID.Text = model.RELATE_ID;
                 tbxMemo.Text = model.Memo;
                 ckLOCKED.Checked = model.LOCKED == '0' ? false : true;
+                if (!String.IsNullOrEmpty(model.RELATE_ID))
+                {
+                    ButtonYR.Enabled = false;
+                }
+
 
                 tbxCRT_DATETIME.Text = model.CRT_DATETIME.ToString();
                 tbxCRT_USER_ID.Text = model.CRT_USER_ID;
@@ -172,6 +178,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonEdit.Enabled = true;
                     ButtonCancel.Enabled = true;
                     ButtonCheck.Enabled = true;
+                    ButtonYR.Enabled = true;
                     ButtonCheck.Text = "核准";
                     ButtonCancel.Text = "作废";
                     ButtonDetailAdd.Enabled = true;
@@ -181,6 +188,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "反核准";
+                    ButtonYR.Enabled = false;
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = true;
@@ -190,6 +198,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "核准";
+                    ButtonYR.Enabled = false;
                     ButtonCheck.Enabled = false;
                     ButtonCancel.Text = "取消作废";
                     ButtonCancel.Enabled = true;
@@ -201,6 +210,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "反核准";
+                    ButtonYR.Enabled = false;
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
@@ -211,6 +221,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "核准";
+                    ButtonYR.Enabled = false;
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
@@ -240,6 +251,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             tbxAPP_USER.Text = "";
             dpAPP_DATETIME.SelectedDate = DateTime.Parse("1900-01-01 00:00:00");
 
+
             tbxRELATE_ID.Text = "";
             tbxMemo.Text = "";
             ckLOCKED.Checked = false;
@@ -254,6 +266,28 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             Grid2.DataSource = null;
             Grid2.DataBind();
         }
+
+        /// <summary>
+        /// 引入按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void BtnYR_Click(Object sender, EventArgs e)
+        {
+            //string Pur_status = ddlStatus.SelectedValue;
+            //FineUI.Panel P_search = Window3.FindControl("PanelGrid4").FindControl("Panel_Search") as FineUI.Panel;
+            //P_search.Hidden = false;
+            //FineUI.Button B_BtnSearchCon = Window3.FindControl("PanelGrid4").FindControl("tool_btn").FindControl("BtnSearchCon") as FineUI.Button;
+            //FineUI.Button B_BtnAddCon = Window3.FindControl("PanelGrid4").FindControl("tool_btn").FindControl("BtnAddCon") as FineUI.Button;
+            //B_BtnSearchCon.Hidden = false;
+            //B_BtnAddCon.Hidden = false;
+            FineUI.DatePicker wst = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpSt") as FineUI.DatePicker;
+            FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpEt") as FineUI.DatePicker;
+            wst.SelectedDate = DateTime.Now.Date.AddDays(-1);
+            wet.SelectedDate = DateTime.Now.Date;
+            Window4.Hidden = false;
+            Window3.Hidden = true;
+        }
         /// <summary>
         /// 保存按钮
         /// </summary>
@@ -265,10 +299,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             if (String.IsNullOrEmpty(result))
             {
                 FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
-            }
-            else
-            {
-                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
             }
         }
 
@@ -306,6 +336,19 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 FineUI.Alert.ShowInParent("订单单号不存在", FineUI.MessageBoxIcon.Information);
                 return;
             }
+
+            if (model.STATUS == 1)
+            {
+
+                DataTable dsCom = (DataTable)SPs.Get_MAX_Inventory_DATE().ExecuteDataTable();
+                DateTime dtInput = DateTime.Parse(dsCom.Rows[0]["INPUT_DATE"].ToString());
+                if (model.INPUT_DATE.CompareTo(dtInput) <= 0)
+                {
+                    FineUI.Alert.ShowInParent("单据小于盘点日期，不允许盘点。盘点日期为:" + dsCom.Rows[0]["INPUT_DATE"].ToString() + "", FineUI.MessageBoxIcon.Information);
+                    return;
+                }
+            }
+
             //1 = 存档 2 = 核准 3 = 作废 4 = 已引入(供应商进货)
             switch (model.STATUS)
             {
@@ -415,7 +458,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 model.APP_USER = OlUser.Manager_LoginName;
                 model.APP_DATETIME = DateTime.Now;
 
-                model.RELATE_ID = tbxRELATE_ID.Text;
+
+                string _RELATE_ID = tbxRELATE_ID.Text;
+                model.RELATE_ID = _RELATE_ID;
+                if (!String.IsNullOrEmpty(_RELATE_ID))
+                {
+                    var modelOrder = new OUT00(x => x.OUT_ID == _RELATE_ID);
+                    modelOrder.Exported = 1;
+                    modelOrder.Exported_ID = _RELATE_ID;
+                    modelOrder.Save();
+                }
                 model.Memo = tbxMemo.Text;
                 model.LOCKED = ConvertHelper.StringToByte(ckLOCKED.Checked ? "1" : "0");
 
@@ -472,6 +524,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     model2.SNo = ConvertHelper.Cint(jarr[i]["values"]["SNo01"].ToString());
                     model2.PROD_ID = jarr[i]["values"]["PROD_ID01"].ToString();
                     model2.QUANTITY = ConvertHelper.StringToDecimal(jarr[i]["values"]["QUANTITY01"].ToString());
+                    model2.STD_TYPE= ConvertHelper.Cint(jarr[i]["values"]["STD_TYPE01"].ToString());
                     model2.STD_UNIT = jarr[i]["values"]["STD_UNIT01"].ToString();
                     model2.STD_CONVERT = ConvertHelper.Cint(jarr[i]["values"]["STD_CONVERT01"].ToString());
                     model2.STD_QUAN = ConvertHelper.StringToDecimal(jarr[i]["values"]["STD_QUAN01"].ToString());
@@ -641,11 +694,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     deObject.Add("Id01", "0");
                     deObject.Add("SHOP_ID01", _Shop_ID);
                     deObject.Add("SHOP_NAME01", _Shop_Name);
-                    deObject.Add("IN_ID01", _IN_ID);
+                    deObject.Add("OUT_ID01", _IN_ID);
                     deObject.Add("SNo01", rowCount + 1);
                     deObject.Add("PROD_ID01", _Prod_ID);
                     deObject.Add("PROD_NAME01", model.PROD_NAME1);
                     deObject.Add("QUANTITY01", model.ORDER_QUAN);
+                    deObject.Add("STD_TYPE01", model.Purchase_UNIT);
                     deObject.Add("STD_UNIT01", model.Purchase_UNIT);
                     deObject.Add("STD_CONVERT01", model.PROD_CONVERT1);
                     deObject.Add("STD_QUAN01", model.Purchase_QUAN);
@@ -655,6 +709,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     deObject.Add("QUAN201", 0);
                     deObject.Add("MEMO01", "");
                     deObject.Add("BAT_NO", "");
+
                     Grid2.AddNewRecord(deObject, true);
                 }
             }
@@ -665,6 +720,98 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             if (!String.IsNullOrEmpty(result.Trim()))
             {
                 FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
+            }
+        }
+        #endregion
+
+        #region WINDOW4 引入出货订单
+        protected void ButtonOrderSearch_Click(Object sender, EventArgs e)
+        {
+            FineUI.Grid grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
+            OUT00Bll.GetInstence().BindGrid(grid4, 0, 0, OrderCondition(), null);
+        }
+        /// <summary>
+        /// 检索条件
+        /// </summary>
+        /// <returns></returns>
+        public List<ConditionFun.SqlqueryCondition> OrderCondition()
+        {
+            List<ConditionFun.SqlqueryCondition> orderCon = new List<ConditionFun.SqlqueryCondition>();
+            FineUI.RadioButtonList datetype = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("ddrDataType") as FineUI.RadioButtonList;
+            string rValue = datetype.SelectedValue;
+            FineUI.DatePicker wst = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpSt") as FineUI.DatePicker;
+            FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpEt") as FineUI.DatePicker;
+            string starttime = wst.Text;
+            string endtime = wet.Text;
+            if (rValue == "1")
+            {
+                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT00Table.INPUT_DATE, Comparison.LessOrEquals, endtime, false, false));
+                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT00Table.INPUT_DATE, Comparison.GreaterOrEquals, starttime, false, false));
+            }
+            else
+            {
+                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT00Table.EXPECT_DATE, Comparison.LessOrEquals, endtime, false, false));
+                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT00Table.EXPECT_DATE, Comparison.GreaterOrEquals, starttime, false, false));
+            }
+            //FineUI.DropDownList _ddlShopName = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("w4_ddlSHOP_NAME") as FineUI.DropDownList;
+            //string _shopid = _ddlShopName.SelectedValue;
+            //if (!String.IsNullOrEmpty(_shopid))
+            //{
+            //    orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.SHOP_ID, Comparison.Equals, _shopid, false, false));
+            //}
+            return orderCon;
+        }
+
+
+        protected void ButtonOrderAdd_Click(Object sender, EventArgs e)
+        {
+            FineUI.Grid Grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
+            int[] selections = Grid4.SelectedRowIndexArray;
+            tbxRELATE_ID.Text = Grid4.DataKeys[0][0].ToString();
+            foreach (int i in selections)
+            {
+                List<ConditionFun.SqlqueryCondition> order00con = new List<ConditionFun.SqlqueryCondition>();
+                order00con.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT01Table.OUT_ID, Comparison.Equals, Grid4.DataKeys[i][0].ToString(), false, false));
+                List<string> colList = new List<string>();
+                colList.Add("SHOP_ID");
+                colList.Add("PROD_ID");
+                colList.Add("QUANTITY");
+                colList.Add("STD_UNIT");
+                colList.Add("STD_CONVERT");
+                colList.Add("STD_QUAN");
+                colList.Add("STD_PRICE");
+                //colList.Add("COST_PRICE");
+                //colList.Add("");预留采购单位类别
+                DataTable da = OUT01Bll.GetInstence().GetDataTable(false, 0, colList, 0, 0, order00con, null);
+
+                foreach (DataRow dr in da.Rows)
+                {
+                    string _shopid = dr["SHOP_ID"].ToString();
+                    string _PROD_ID = dr["PROD_ID"].ToString();
+                    var model = new SHOP00(x => x.SHOP_ID == _shopid);
+                    var model2 = new PRODUCT00(x => x.PROD_ID == _PROD_ID);
+                    int rowCount = Grid2.Rows.Count;
+                    JObject deObject = new JObject();
+                    deObject.Add("Id01", "0");
+                    deObject.Add("SHOP_ID01", dr["SHOP_ID"].ToString());
+                    deObject.Add("SHOP_NAME01", model.SHOP_NAME1);
+                    deObject.Add("IN_ID01", tbxIN_ID.Text);
+                    deObject.Add("SNo01", rowCount + 1);
+                    deObject.Add("PROD_ID01", dr["PROD_ID"].ToString());
+                    deObject.Add("PROD_NAME01", model2.PROD_NAME1);
+                    deObject.Add("QUANTITY01", dr["QUANTITY"].ToString());
+                    deObject.Add("STD_TYPE01", dr["STD_UNIT"].ToString());
+                    deObject.Add("STD_UNIT01", dr["STD_UNIT"].ToString());
+                    deObject.Add("STD_CONVERT01", dr["STD_CONVERT"].ToString());
+                    deObject.Add("STD_QUAN01", dr["STD_QUAN"].ToString());
+                    deObject.Add("STD_PRICE01", dr["STD_PRICE"].ToString());
+                    deObject.Add("COST01", dr["STD_PRICE"].ToString());
+                    deObject.Add("QUAN101", dr["STD_QUAN"].ToString());
+                    deObject.Add("QUAN201", dr["STD_QUAN"].ToString());
+                    deObject.Add("MEMO01", "");
+                    deObject.Add("BAT_NO", "");
+                    Grid2.AddNewRecord(deObject, true);
+                }
             }
         }
         #endregion

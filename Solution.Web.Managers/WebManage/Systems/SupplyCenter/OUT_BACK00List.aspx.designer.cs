@@ -49,13 +49,40 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Panel panelCenterRegion;
         
         /// <summary>
-        /// Toolbar1 控件。
+        /// Toolbar1_1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Toolbar Toolbar1;
+        protected global::FineUI.Toolbar Toolbar1_1;
+        
+        /// <summary>
+        /// ButtonAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonAdd;
+        
+        /// <summary>
+        /// ButtonSave 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonSave;
+        
+        /// <summary>
+        /// ButtonEdit 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonEdit;
         
         /// <summary>
         /// ButtonCheck 控件。
@@ -193,15 +220,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.TextBox tbxRELATE_ID;
         
         /// <summary>
-        /// cbLOCKED 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.CheckBox cbLOCKED;
-        
-        /// <summary>
         /// tbxMemo 控件。
         /// </summary>
         /// <remarks>
@@ -209,6 +227,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox tbxMemo;
+        
+        /// <summary>
+        /// ckLOCKED 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.CheckBox ckLOCKED;
         
         /// <summary>
         /// tbxCRT_DATETIME 控件。
@@ -274,22 +301,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Toolbar Toolbar21111;
         
         /// <summary>
-        /// ButtonPur02Add 控件。
+        /// ButtonDetailAdd 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Button ButtonPur02Add;
-        
-        /// <summary>
-        /// Button_Replace 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.Button Button_Replace;
+        protected global::FineUI.Button ButtonDetailAdd;
         
         /// <summary>
         /// Grid2 控件。
@@ -328,13 +346,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.TextBox TextBox2;
         
         /// <summary>
-        /// tbxBK_ID01 控件。
+        /// tbxOUT_ID01 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxBK_ID01;
+        protected global::FineUI.TextBox tbxOUT_ID01;
         
         /// <summary>
         /// tbxSNo 控件。
@@ -373,6 +391,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.NumberBox numQUANTITY;
         
         /// <summary>
+        /// TextBox4 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox TextBox4;
+        
+        /// <summary>
         /// tbxSTD_UNIT01 控件。
         /// </summary>
         /// <remarks>
@@ -409,13 +436,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.NumberBox numSTD_PRICE;
         
         /// <summary>
-        /// numTax 控件。
+        /// numCOST 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.NumberBox numTax;
+        protected global::FineUI.NumberBox numCOST;
         
         /// <summary>
         /// numQUAN1 控件。
@@ -436,13 +463,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.NumberBox numQUAN2;
         
         /// <summary>
-        /// tbxREASON_ID 控件。
+        /// TextBox3 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxREASON_ID;
+        protected global::FineUI.TextBox TextBox3;
         
         /// <summary>
         /// tbxMEMO01 控件。
@@ -454,22 +481,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.TextBox tbxMEMO01;
         
         /// <summary>
-        /// TextBox3 控件。
+        /// tbxBAT_NO 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox TextBox3;
-        
-        /// <summary>
-        /// dpExp_DateTime01 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DatePicker dpExp_DateTime01;
+        protected global::FineUI.TextBox tbxBAT_NO;
         
         /// <summary>
         /// panelLeftRegion 控件。
@@ -481,13 +499,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Panel panelLeftRegion;
         
         /// <summary>
-        /// FilterDateRadio 控件。
+        /// ddrDataType 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.RadioButtonList FilterDateRadio;
+        protected global::FineUI.RadioButtonList ddrDataType;
         
         /// <summary>
         /// DatePicker1 控件。
@@ -533,5 +551,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Grid Grid1;
+        
+        /// <summary>
+        /// Window3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Window Window3;
     }
 }

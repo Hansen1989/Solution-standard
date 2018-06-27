@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="IN_BACK00List.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.SupplyCenter.IN_BACK00List" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TAKEN10List.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.SupplyCenter.TAKEN10List" %>
 
 <!DOCTYPE html>
 
@@ -13,7 +13,7 @@
         <f:Panel ID="Panel1" runat="server" ShowBorder="false" ShowHeader="false" Layout="Region">
             <Items>
                 <f:Panel runat="server" ID="panelCenterRegion" RegionPosition="Center"
-                    Title="总部进货" ShowBorder="true" ShowHeader="true" BodyPadding="5px">
+                    Title="厂商进货验收作业主表" ShowBorder="true" ShowHeader="true" BodyPadding="5px">
                     <Toolbars>
                     <f:Toolbar ID="Toolbar1_1" runat="server">
                       <Items>
@@ -23,6 +23,8 @@
                           <f:Button ID="ButtonEdit" runat="server" Text="修改" Icon="Disk" OnClick="Btn_MainEdit"></f:Button>
                           <f:Button ID="ButtonCheck" runat="server" Text="核准" Icon="Disk" OnClick="Btn_MainCheck"></f:Button>
                           <f:Button ID="ButtonCancel" runat="server" Text="作废" Icon="Disk" OnClick="Btn_MainCancel"></f:Button>
+
+
                       </Items>
                       </f:Toolbar>
                     </Toolbars>
@@ -33,7 +35,7 @@
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
                                     <f:DropDownList runat="server" Label="分店名称" ID="ddlSHOP_NAME" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList> 
-                                    <f:TextBox runat="server" Label="计划单号" ID="tbxIB_ID" Required="true" ShowRedStar="true" Enabled="false"></f:TextBox>
+                                    <f:TextBox runat="server" Label="进货单号" ID="tbxTAKEIN_ID" Required="true" ShowRedStar="true" Enabled="false"></f:TextBox>
                                     <f:DatePicker ID="dpINPUT_DATE" Label="单据日期" Required="true" Readonly="false" DateFormatString="yyyy-MM-dd" runat="server" ShowRedStar="True" Enabled="false">
                                     </f:DatePicker>
                                     <f:DropDownList runat="server" ID="ddlStatus" Required="true" ShowRedStar="true" Label="单据状态" Enabled="false">
@@ -48,12 +50,20 @@
 
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
-                                    <f:DropDownList runat="server" Label="退货分店" ID="ddlOUT_SHOP" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList>
+                                    <f:DropDownList runat="server" Label="厂商编码" ID="ddlOUT_SHOP" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList>
                                     <f:DropDownList runat="server" Label="仓库名称" ID="ddlSTOCK_ID" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList> 
                                     <f:TextBox runat="server" Label="制单人" ID="tbxUSER_ID" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
                                     <f:TextBox runat="server" Label="审核人" ID="tbxAPP_USER" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
                                     <f:DatePicker ID="dpAPP_DATETIME" Label="审核时间" Required="true" Readonly="false" DateFormatString="yyyy-MM-dd" runat="server" ShowRedStar="True" Enabled="false">
                                     </f:DatePicker>
+                                </Items>
+                            </f:FormRow>
+
+                            <f:FormRow ColumnWidths="300px">
+                                <Items>
+                                    <f:TextBox ID="tbxTOT_AMOUNT" Label="采购总金额" runat="server"  Enabled="false" ></f:TextBox>
+                                    <f:TextBox runat="server" ID="tbxTOT_TAX" Label="采购总税额" Enabled="false"></f:TextBox>
+                                    <f:TextBox runat="server" ID="tbxTOT_QTY" Label="采购总数量" Enabled="false></f:TextBox>
                                 </Items>
                             </f:FormRow>
 
@@ -114,10 +124,10 @@
                                                     </f:TextBox>
                                                 </Editor>
                                         </f:RenderField>
-                                        <f:RenderField Width="130px" ColumnID="IB_ID01" DataField="IB_ID" FieldType="String" Enabled="false"
+                                        <f:RenderField Width="130px" ColumnID="IN_ID01" DataField="IN_ID" FieldType="String" Enabled="false"
                                                 HeaderText=" 进货单号">
                                                 <Editor>
-                                                    <f:TextBox ID="tbxIB_ID01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
+                                                    <f:TextBox ID="tbxOUT_ID01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
                                                     </f:TextBox>
                                                 </Editor>
                                         </f:RenderField>
@@ -198,13 +208,6 @@
                                                     <f:NumberBox runat="server" ID="numQUAN2" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
-                                         <f:RenderField Width="130px" ColumnID="REASON_ID01" DataField="REASON_ID" FieldType="String" Enabled="True"
-                                                HeaderText="退货理由">
-                                                <Editor>
-                                                    <f:TextBox ID="TextBox3" runat="server" Required="true" ShowRedStar="true">
-                                                    </f:TextBox>
-                                                </Editor>
-                                         </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="MEMO01" DataField="MEMO" FieldType="String" Enabled="True"
                                                 HeaderText="备注">
                                                 <Editor>
@@ -227,7 +230,7 @@
                 </f:Panel>
 
                 <f:Panel runat="server" ID="panelLeftRegion" EnableFrame="false" RegionPosition="Right" RegionSplit="true" EnableCollapse="true" Expanded="false"
-                    Width="400px" Title="总部退货作业查询" ShowBorder="true" ShowHeader="true" BodyPadding="5px" >
+                    Width="400px" Title="总部进货作业查询" ShowBorder="true" ShowHeader="true" BodyPadding="5px" >
                     <Items>
                         <f:RadioButtonList ID="ddrDataType" Label="日期" runat="server">
                             <f:RadioItem Text="单据日期" Value="1" Selected="true" />
@@ -245,12 +248,12 @@
                         <f:Button ID="ButtonSearch" runat="server" Text="查询" Icon="Magnifier" OnClick="BtnSearchOrder_click"></f:Button>
                     </Items>
                     <Items>
-                       <f:Grid ID="Grid1" Title="总部退货作业列表" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="IB_ID"
+                       <f:Grid ID="Grid1" Title="总部出货作业列表" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="IN_ID"
                          EnableCheckBoxSelect="true" KeepCurrentSelection="false" EnableMultiSelect="false" PageSize="15"
                          EnableRowClickEvent="true" OnRowClick="Grid1_RowClick" >
                          <Columns>
                            <f:RowNumberField />
-                           <f:BoundField Width="125px" DataField="IB_ID" HeaderText="进货单号" />
+                           <f:BoundField Width="125px" DataField="IN_ID" HeaderText="进货单号" />
                            <f:BoundField Width="125px" DataField="SHOP_NAME1" HeaderText="分店名称" ExpandUnusedSpace="true"  />
                          </Columns>
                        </f:Grid>
@@ -317,7 +320,7 @@
             IsModal="false" CloseAction="HidePostBack" OnClose="Window3_Close" Layout="Fit">
             <Content>
                 <f:Panel runat="server" ID="PanelGrid5" RegionPosition="Right" RegionSplit="true" EnableCollapse="true" Expanded="true"
-                    Width="900px" Title="门店退货单" ShowBorder="true" ShowHeader="true"
+                    Width="900px" Title="采购单" ShowBorder="true" ShowHeader="true"
                     BodyPadding="5px">
                     <Items>
                         <f:Panel runat="server" ID="Panel_Search2" Hidden="false" >
@@ -325,6 +328,7 @@
                                 
                                 <f:RadioButtonList ID="ddrDataType" Label="日期" runat="server">
                                     <f:RadioItem Text="单据日期" Value="1" Selected="true" />
+                                    <f:RadioItem Text="期望日期" Value="2"  />
                                 </f:RadioButtonList>
                                 <f:DatePicker runat="server" Required="true" Label="开始日期" DateFormatString="yyyy-MM-dd" EmptyText="请选择开始日期"
                                     ID="dpSt" ShowRedStar="True">
@@ -345,13 +349,13 @@
                         </f:Toolbar>
                     </Items>
                     <Items>
-                       <f:Grid ID="Grid4" Title="门店退货单" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="BK_ID"
+                       <f:Grid ID="Grid4" Title="要货订单" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="Purchase_ID"
                          EnableCheckBoxSelect="true" KeepCurrentSelection="true" PageSize="1000"
                          >
                          <Columns>
                            <f:RowNumberField />
-                           <f:BoundField Width="125px" DataField="Purchase_ID" HeaderText="退货单号码" ExpandUnusedSpace="true"  />
-                           <f:BoundField Width="125px" DataField="BK_ID" HeaderText="分店编码" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="Purchase_ID" HeaderText="采购单号码" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="SHOP_ID" HeaderText="分店编码" ExpandUnusedSpace="true"  />
                            <f:BoundField Width="125px" DataField="SHOP_NAME" HeaderText="分店名称" ExpandUnusedSpace="true"  />
                            <f:BoundField Width="125px" DataField="INPUT_DATE" HeaderText="单据日期" ExpandUnusedSpace="true"  />
                            <f:BoundField Width="125px" DataField="EXPECT_DATE" HeaderText="期望日期" ExpandUnusedSpace="true"  />
