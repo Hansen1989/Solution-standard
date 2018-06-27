@@ -116,15 +116,13 @@ namespace Solution.DataAccess.DataModel
             IReadRecord readRecord = SqlReadRecord.GetIReadRecord();
             readRecord.DataRecord = dataRecord;   
                
-            Id = readRecord.get_int("Id",null);
+            Id = readRecord.get_long("Id",null);
                
             SHOP_ID = readRecord.get_string("SHOP_ID",null);
                
             SU_ID = readRecord.get_string("SU_ID",null);
                
             BILL_AMOUNT = readRecord.get_decimal("BILL_AMOUNT",null);
-               
-            PAY_AMOUNT = readRecord.get_decimal("PAY_AMOUNT",null);
                
             PAY_METHOD = readRecord.get_byte("PAY_METHOD",null);
                
@@ -270,7 +268,7 @@ namespace Solution.DataAccess.DataModel
         
         public void SetKeyValue(object value) {
             if (value != null && value!=DBNull.Value) {
-                var settable = value.ChangeTypeTo<int>();
+                var settable = value.ChangeTypeTo<long>();
                 this.GetType().GetProperty(this.KeyName()).SetValue(this, settable, null);
             }
         }
@@ -288,11 +286,6 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        
-        public override int GetHashCode() {
-            return this.Id;
-        }
-        
         public string DescriptorValue()
         {
                             return this.SHOP_ID.ToString();
@@ -314,12 +307,12 @@ namespace Solution.DataAccess.DataModel
         #endregion
         
 
-        int _Id;
+        long _Id;
 		/// <summary>
 		/// 
 		/// </summary>
 		[SubSonicPrimaryKey]
-        public int Id
+        public long Id
         {
             get { return _Id; }
             set
@@ -393,28 +386,6 @@ namespace Solution.DataAccess.DataModel
                 if(_BILL_AMOUNT!=value || _isLoaded){
                     _BILL_AMOUNT=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="BILL_AMOUNT");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        decimal _PAY_AMOUNT;
-		/// <summary>
-		/// 
-		/// </summary>
-        public decimal PAY_AMOUNT
-        {
-            get { return _PAY_AMOUNT; }
-            set
-            {
-                if(_PAY_AMOUNT!=value || _isLoaded){
-                    _PAY_AMOUNT=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PAY_AMOUNT");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

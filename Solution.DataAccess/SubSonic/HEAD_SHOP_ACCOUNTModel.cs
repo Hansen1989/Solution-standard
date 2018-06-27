@@ -9,11 +9,11 @@ namespace Solution.DataAccess.Model
     public partial class HEAD_SHOP_ACCOUNT
     {
 
-		int _Id = 0;
+		long _Id = 0;
 		/// <summary>
 		/// 
 		/// </summary>
-		public int Id
+		public long Id
 		{
 			get { return _Id; }
 			set { _Id = value; }

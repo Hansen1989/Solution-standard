@@ -20,7 +20,7 @@ namespace Solution.DataAccess.DataModel {
                 Columns.Add(new DatabaseColumn("Id", this)
                 {
 	                IsPrimaryKey = true,
-	                DataType = DbType.Int32,
+	                DataType = DbType.Int64,
 	                IsNullable = false,
 	                AutoIncrement = true,
 	                IsForeignKey = false,

@@ -3,16 +3,16 @@ using System;
 
 namespace Solution.DataAccess.DataModel {
         /// <summary>
-        /// Table: HEAD_SHOP_BILL
+        /// Table: HED_SHOP_PAY_HISTORY
         /// </summary>
 
-        public class HEAD_SHOP_BILLTable {
+        public class HED_SHOP_PAY_HISTORYTable {
 			/// <summary>
 			/// 表名
 			/// </summary>
 			public static string TableName {
 				get{
-        			return "HEAD_SHOP_BILL";
+        			return "HED_SHOP_PAY_HISTORY";
       			}
 			}
 
@@ -35,17 +35,33 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string SU_ID{
+   			public static string BILL_AMOUNT{
 			      get{
-        			return "SU_ID";
+        			return "BILL_AMOUNT";
       			}
 		    }
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string BILL_AMOUNT{
+   			public static string SUP_ID{
 			      get{
-        			return "BILL_AMOUNT";
+        			return "SUP_ID";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string BILL_ID{
+			      get{
+        			return "BILL_ID";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PAY_AMOUNT{
+			      get{
+        			return "PAY_AMOUNT";
       			}
 		    }
 			/// <summary>

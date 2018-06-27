@@ -14,31 +14,31 @@ using SubSonic.Query;
 
 namespace Solution.Logic.Managers {
 	/// <summary>
-	/// HEAD_SHOP_BILL表逻辑类
+	/// HED_SHOP_PAY_HISTORY表逻辑类
 	/// </summary>
-	public partial class HEAD_SHOP_BILLBll : LogicBase {
+	public partial class HED_SHOP_PAY_HISTORYBll : LogicBase {
  
  		/***********************************************************************
 		 * 模版生成函数                                                        *
 		 ***********************************************************************/
 		#region 模版生成函数
 				
-		private const string const_CacheKey = "Cache_HEAD_SHOP_BILL";
-        private const string const_CacheKey_Date = "Cache_HEAD_SHOP_BILL_Date";
+		private const string const_CacheKey = "Cache_HED_SHOP_PAY_HISTORY";
+        private const string const_CacheKey_Date = "Cache_HED_SHOP_PAY_HISTORY_Date";
 
 		#region 单例模式
 		//定义单例实体
-		private static HEAD_SHOP_BILLBll _HEAD_SHOP_BILLBll = null;
+		private static HED_SHOP_PAY_HISTORYBll _HED_SHOP_PAY_HISTORYBll = null;
 
 		/// <summary>
 		/// 获取本逻辑类单例
 		/// </summary>
 		/// <returns></returns>
-		public static HEAD_SHOP_BILLBll GetInstence() {
-			if (_HEAD_SHOP_BILLBll == null) {
-				_HEAD_SHOP_BILLBll = new HEAD_SHOP_BILLBll();
+		public static HED_SHOP_PAY_HISTORYBll GetInstence() {
+			if (_HED_SHOP_PAY_HISTORYBll == null) {
+				_HED_SHOP_PAY_HISTORYBll = new HED_SHOP_PAY_HISTORYBll();
 			}
-			return _HEAD_SHOP_BILLBll;
+			return _HED_SHOP_PAY_HISTORYBll;
 		}
 		#endregion
 		
@@ -59,12 +59,12 @@ namespace Solution.Logic.Managers {
 
 		#region IIS缓存函数
 		
-		#region 从IIS缓存中获取HEAD_SHOP_BILL表记录
+		#region 从IIS缓存中获取HED_SHOP_PAY_HISTORY表记录
 		/// <summary>
-        /// 从IIS缓存中获取HEAD_SHOP_BILL表记录
+        /// 从IIS缓存中获取HED_SHOP_PAY_HISTORY表记录
         /// </summary>
 	    /// <param name="isCache">是否从缓存中读取</param>
-        public IList<DataAccess.Model.HEAD_SHOP_BILL> GetList(bool isCache = true)
+        public IList<DataAccess.Model.HED_SHOP_PAY_HISTORY> GetList(bool isCache = true)
         {
 			try
 			{
@@ -93,27 +93,27 @@ namespace Solution.Logic.Managers {
 					//缓存中存在数据，则直接返回
 					else
 					{
-						return (IList<DataAccess.Model.HEAD_SHOP_BILL>)obj;
+						return (IList<DataAccess.Model.HED_SHOP_PAY_HISTORY>)obj;
 					}
 				}
 				else
 				{
 					//定义临时实体集
-					IList<DataAccess.Model.HEAD_SHOP_BILL> list = null;
+					IList<DataAccess.Model.HED_SHOP_PAY_HISTORY> list = null;
 
 					//获取全表缓存加载条件表达式
-					var exp = GetExpression<HEAD_SHOP_BILL>();
+					var exp = GetExpression<HED_SHOP_PAY_HISTORY>();
                     //如果条件为空，则查询全表所有记录
 					if (exp == null)
 					{
 						//从数据库中获取所有记录
-						var all = HEAD_SHOP_BILL.All();
+						var all = HED_SHOP_PAY_HISTORY.All();
                         list = all == null ? null : Transform(all.ToList());
 					}
 					else
 					{
                         //从数据库中查询出指定条件的记录，并转换为指定实体集
-						var all = HEAD_SHOP_BILL.Find(exp);
+						var all = HED_SHOP_PAY_HISTORY.Find(exp);
                         list = all == null ? null : Transform(all);
 					}
 
@@ -123,7 +123,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取HEAD_SHOP_BILL表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取HED_SHOP_PAY_HISTORY表记录时出现异常", e);
 			}
             
             return null;
@@ -136,8 +136,8 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="id">主键Id</param>
         /// <param name="isCache">是否从缓存中读取</param>
-		/// <returns>DataAccess.Model.HEAD_SHOP_BILL</returns>
-        public DataAccess.Model.HEAD_SHOP_BILL GetModel(long id, bool isCache = true)
+		/// <returns>DataAccess.Model.HED_SHOP_PAY_HISTORY</returns>
+        public DataAccess.Model.HED_SHOP_PAY_HISTORY GetModel(long id, bool isCache = true)
         {
             //判断是否使用缓存
 		    if (CommonBll.IsUseCache() && isCache)
@@ -157,7 +157,7 @@ namespace Solution.Logic.Managers {
 		    else
 		    {
                 //从数据库中直接读取
-                var model = HEAD_SHOP_BILL.SingleOrDefault(x => x.Id == id);
+                var model = HED_SHOP_PAY_HISTORY.SingleOrDefault(x => x.Id == id);
                 if (model == null)
                 {
                     return null;
@@ -176,8 +176,8 @@ namespace Solution.Logic.Managers {
         /// 从IIS缓存中获取指定Id记录
         /// </summary>
         /// <param name="id">主键Id</param>
-		/// <returns>DataAccess.Model.HEAD_SHOP_BILL</returns>
-        public DataAccess.Model.HEAD_SHOP_BILL GetModelForCache(long id)
+		/// <returns>DataAccess.Model.HED_SHOP_PAY_HISTORY</returns>
+        public DataAccess.Model.HED_SHOP_PAY_HISTORY GetModelForCache(long id)
         {
 			try
 			{
@@ -186,7 +186,7 @@ namespace Solution.Logic.Managers {
 
 				if (model == null){
 					//从数据库中读取
-					var tem = HEAD_SHOP_BILL.SingleOrDefault(x => x.Id == id);
+					var tem = HED_SHOP_PAY_HISTORY.SingleOrDefault(x => x.Id == id);
 					if (tem == null)
 					{
 						return null;
@@ -206,7 +206,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取HEAD_SHOP_BILL表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取HED_SHOP_PAY_HISTORY表记录时出现异常", e);
 
                 return null;
             }
@@ -219,15 +219,15 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="conditionColName">条件列名</param>
         /// <param name="value">条件值</param>
-        /// <returns>DataAccess.Model.HEAD_SHOP_BILL</returns>
-        public DataAccess.Model.HEAD_SHOP_BILL GetModelForCache(string conditionColName, object value)
+        /// <returns>DataAccess.Model.HED_SHOP_PAY_HISTORY</returns>
+        public DataAccess.Model.HED_SHOP_PAY_HISTORY GetModelForCache(string conditionColName, object value)
         {
 		try
             {
                 //从缓存中获取List
                 var list = GetList();
-                DataAccess.Model.HEAD_SHOP_BILL model = null;
-                Expression<Func<HEAD_SHOP_BILL, bool>> expression = null;
+                DataAccess.Model.HED_SHOP_PAY_HISTORY model = null;
+                Expression<Func<HED_SHOP_PAY_HISTORY, bool>> expression = null;
 
                 //返回指定条件的实体
                 switch (conditionColName)
@@ -240,13 +240,21 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.SHOP_ID == (string)value);
                         expression = x => x.SHOP_ID == (string)value;
                         break;
-					case "SU_ID" :
-						model = list.SingleOrDefault(x => x.SU_ID == (string)value);
-                        expression = x => x.SU_ID == (string)value;
-                        break;
 					case "BILL_AMOUNT" :
 						model = list.SingleOrDefault(x => x.BILL_AMOUNT == (decimal)value);
                         expression = x => x.BILL_AMOUNT == (decimal)value;
+                        break;
+					case "SUP_ID" :
+						model = list.SingleOrDefault(x => x.SUP_ID == (string)value);
+                        expression = x => x.SUP_ID == (string)value;
+                        break;
+					case "BILL_ID" :
+						model = list.SingleOrDefault(x => x.BILL_ID == (string)value);
+                        expression = x => x.BILL_ID == (string)value;
+                        break;
+					case "PAY_AMOUNT" :
+						model = list.SingleOrDefault(x => x.PAY_AMOUNT == (decimal)value);
+                        expression = x => x.PAY_AMOUNT == (decimal)value;
                         break;
 					case "PAY_METHOD" :
 						model = list.SingleOrDefault(x => x.PAY_METHOD == (byte)value);
@@ -280,7 +288,7 @@ namespace Solution.Logic.Managers {
                 if (model == null)
                 {
                     //从数据库中读取
-                    var tem = HEAD_SHOP_BILL.SingleOrDefault(expression);
+                    var tem = HED_SHOP_PAY_HISTORY.SingleOrDefault(expression);
                     if (tem == null)
                     {
                         return null;
@@ -301,7 +309,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取HEAD_SHOP_BILL表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取HED_SHOP_PAY_HISTORY表记录时出现异常", e);
 
                 return null;
             }
@@ -313,8 +321,8 @@ namespace Solution.Logic.Managers {
         /// 从IIS缓存中获取指定条件的记录
         /// </summary>
         /// <param name="expression">条件</param>
-        /// <returns>DataAccess.Model.HEAD_SHOP_BILL</returns>
-        public DataAccess.Model.HEAD_SHOP_BILL GetModelForCache(Expression<Func<DataAccess.Model.HEAD_SHOP_BILL, bool>> expression)
+        /// <returns>DataAccess.Model.HED_SHOP_PAY_HISTORY</returns>
+        public DataAccess.Model.HED_SHOP_PAY_HISTORY GetModelForCache(Expression<Func<DataAccess.Model.HED_SHOP_PAY_HISTORY, bool>> expression)
         {
 			//从缓存中读取记录列表
 			var list = GetList();
@@ -337,7 +345,7 @@ namespace Solution.Logic.Managers {
         /// 更新IIS缓存中指定Id记录
         /// </summary>
         /// <param name="model">记录实体</param>
-        public void SetModelForCache(DataAccess.Model.HEAD_SHOP_BILL model)
+        public void SetModelForCache(DataAccess.Model.HED_SHOP_PAY_HISTORY model)
         {
             //从缓存中读取记录列表
             var list = GetList();
@@ -351,7 +359,7 @@ namespace Solution.Logic.Managers {
         /// 更新IIS缓存中指定Id记录
         /// </summary>
         /// <param name="model">记录实体</param>
-        public void SetModelForCache(HEAD_SHOP_BILL model)
+        public void SetModelForCache(HED_SHOP_PAY_HISTORY model)
         {
             SetModelForCache(Transform(model));
         }
@@ -393,10 +401,10 @@ namespace Solution.Logic.Managers {
         }
 
 		/// <summary>
-        /// 按条件删除IIS缓存中HEAD_SHOP_BILL表的指定记录
+        /// 按条件删除IIS缓存中HED_SHOP_PAY_HISTORY表的指定记录
         /// </summary>
         /// <param name="expression">条件，值为null时删除全有记录</param>
-		public void DelCache(Expression<Func<DataAccess.Model.HEAD_SHOP_BILL, bool>> expression)
+		public void DelCache(Expression<Func<DataAccess.Model.HED_SHOP_PAY_HISTORY, bool>> expression)
         {
             //从缓存中获取List
 		    var list = GetList();
@@ -425,21 +433,23 @@ namespace Solution.Logic.Managers {
 
 		#region 实体转换
 		/// <summary>
-		/// 将HEAD_SHOP_BILL记录实体（SubSonic实体）转换为普通的实体（DataAccess.Model.HEAD_SHOP_BILL）
+		/// 将HED_SHOP_PAY_HISTORY记录实体（SubSonic实体）转换为普通的实体（DataAccess.Model.HED_SHOP_PAY_HISTORY）
 		/// </summary>
         /// <param name="model">SubSonic插件生成的实体</param>
-		/// <returns>DataAccess.Model.HEAD_SHOP_BILL</returns>
-		public DataAccess.Model.HEAD_SHOP_BILL Transform(HEAD_SHOP_BILL model)
+		/// <returns>DataAccess.Model.HED_SHOP_PAY_HISTORY</returns>
+		public DataAccess.Model.HED_SHOP_PAY_HISTORY Transform(HED_SHOP_PAY_HISTORY model)
         {			
 			if (model == null) 
 				return null;
 
-            return new DataAccess.Model.HEAD_SHOP_BILL
+            return new DataAccess.Model.HED_SHOP_PAY_HISTORY
             {
                 Id = model.Id,
                 SHOP_ID = model.SHOP_ID,
-                SU_ID = model.SU_ID,
                 BILL_AMOUNT = model.BILL_AMOUNT,
+                SUP_ID = model.SUP_ID,
+                BILL_ID = model.BILL_ID,
+                PAY_AMOUNT = model.PAY_AMOUNT,
                 PAY_METHOD = model.PAY_METHOD,
                 BILL_DATE = model.BILL_DATE,
                 PAY_DATE = model.PAY_DATE,
@@ -450,34 +460,36 @@ namespace Solution.Logic.Managers {
         }
 
 		/// <summary>
-		/// 将HEAD_SHOP_BILL记录实体集（SubSonic实体）转换为普通的实体集（DataAccess.Model.HEAD_SHOP_BILL）
+		/// 将HED_SHOP_PAY_HISTORY记录实体集（SubSonic实体）转换为普通的实体集（DataAccess.Model.HED_SHOP_PAY_HISTORY）
 		/// </summary>
         /// <param name="sourceList">SubSonic插件生成的实体集</param>
-        public IList<DataAccess.Model.HEAD_SHOP_BILL> Transform(IList<HEAD_SHOP_BILL> sourceList)
+        public IList<DataAccess.Model.HED_SHOP_PAY_HISTORY> Transform(IList<HED_SHOP_PAY_HISTORY> sourceList)
         {
 			//创建List容器
-            var list = new List<DataAccess.Model.HEAD_SHOP_BILL>();
+            var list = new List<DataAccess.Model.HED_SHOP_PAY_HISTORY>();
 			//将SubSonic插件生成的实体集转换后存储到刚创建的List容器中
             sourceList.ToList().ForEach(r => list.Add(Transform(r)));
             return list;
         }
 
 		/// <summary>
-		/// 将HEAD_SHOP_BILL记录实体由普通的实体（DataAccess.Model.HEAD_SHOP_BILL）转换为SubSonic插件生成的实体
+		/// 将HED_SHOP_PAY_HISTORY记录实体由普通的实体（DataAccess.Model.HED_SHOP_PAY_HISTORY）转换为SubSonic插件生成的实体
 		/// </summary>
-        /// <param name="model">普通的实体（DataAccess.Model.HEAD_SHOP_BILL）</param>
-		/// <returns>HEAD_SHOP_BILL</returns>
-		public HEAD_SHOP_BILL Transform(DataAccess.Model.HEAD_SHOP_BILL model)
+        /// <param name="model">普通的实体（DataAccess.Model.HED_SHOP_PAY_HISTORY）</param>
+		/// <returns>HED_SHOP_PAY_HISTORY</returns>
+		public HED_SHOP_PAY_HISTORY Transform(DataAccess.Model.HED_SHOP_PAY_HISTORY model)
         {
 			if (model == null) 
 				return null;
 
-            return new HEAD_SHOP_BILL
+            return new HED_SHOP_PAY_HISTORY
             {
                 Id = model.Id,
                 SHOP_ID = model.SHOP_ID,
-                SU_ID = model.SU_ID,
                 BILL_AMOUNT = model.BILL_AMOUNT,
+                SUP_ID = model.SUP_ID,
+                BILL_ID = model.BILL_ID,
+                PAY_AMOUNT = model.PAY_AMOUNT,
                 PAY_METHOD = model.PAY_METHOD,
                 BILL_DATE = model.BILL_DATE,
                 PAY_DATE = model.PAY_DATE,
@@ -488,13 +500,13 @@ namespace Solution.Logic.Managers {
         }
 
 		/// <summary>
-		/// 将HEAD_SHOP_BILL记录实体由普通实体集（DataAccess.Model.HEAD_SHOP_BILL）转换为SubSonic插件生成的实体集
+		/// 将HED_SHOP_PAY_HISTORY记录实体由普通实体集（DataAccess.Model.HED_SHOP_PAY_HISTORY）转换为SubSonic插件生成的实体集
 		/// </summary>
-        /// <param name="sourceList">普通实体集（DataAccess.Model.HEAD_SHOP_BILL）</param>
-        public IList<HEAD_SHOP_BILL> Transform(IList<DataAccess.Model.HEAD_SHOP_BILL> sourceList)
+        /// <param name="sourceList">普通实体集（DataAccess.Model.HED_SHOP_PAY_HISTORY）</param>
+        public IList<HED_SHOP_PAY_HISTORY> Transform(IList<DataAccess.Model.HED_SHOP_PAY_HISTORY> sourceList)
         {
 			//创建List容器
-            var list = new List<HEAD_SHOP_BILL>();
+            var list = new List<HED_SHOP_PAY_HISTORY>();
 			//将普通实体集转换后存储到刚创建的List容器中
             sourceList.ToList().ForEach(r => list.Add(Transform(r)));
             return list;
@@ -507,7 +519,7 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="model">实体</param>
         /// <param name="dic">列名与值</param>
-		public void SetModelValue(DataAccess.Model.HEAD_SHOP_BILL model, Dictionary<string, object> dic)
+		public void SetModelValue(DataAccess.Model.HED_SHOP_PAY_HISTORY model, Dictionary<string, object> dic)
 		{
 			if (model == null || dic == null) return;
 
@@ -524,7 +536,7 @@ namespace Solution.Logic.Managers {
         /// <param name="model">实体</param>
         /// <param name="colName">列名</param>
         /// <param name="value">值</param>
-		public void SetModelValue(DataAccess.Model.HEAD_SHOP_BILL model, string colName, object value)
+		public void SetModelValue(DataAccess.Model.HED_SHOP_PAY_HISTORY model, string colName, object value)
 		{
 			if (model == null || string.IsNullOrEmpty(colName)) return;
 
@@ -537,11 +549,17 @@ namespace Solution.Logic.Managers {
 				case "SHOP_ID" :
 					model.SHOP_ID = (string)value;
                     break;
-				case "SU_ID" :
-					model.SU_ID = (string)value;
-                    break;
 				case "BILL_AMOUNT" :
 					model.BILL_AMOUNT = (decimal)value;
+                    break;
+				case "SUP_ID" :
+					model.SUP_ID = (string)value;
+                    break;
+				case "BILL_ID" :
+					model.BILL_ID = (string)value;
+                    break;
+				case "PAY_AMOUNT" :
+					model.PAY_AMOUNT = (decimal)value;
                     break;
 				case "PAY_METHOD" :
 					model.PAY_METHOD = ConvertHelper.Ctinyint(value);
@@ -568,9 +586,9 @@ namespace Solution.Logic.Managers {
 
 		#endregion
 
-		#region 获取HEAD_SHOP_BILL表记录总数
+		#region 获取HED_SHOP_PAY_HISTORY表记录总数
         /// <summary>
-        /// 获取HEAD_SHOP_BILL表记录总数
+        /// 获取HED_SHOP_PAY_HISTORY表记录总数
         /// </summary>
         /// <returns>记录总数</returns>
         public int GetRecordCount()
@@ -591,23 +609,23 @@ namespace Solution.Logic.Managers {
         }
 
 		/// <summary>
-		/// 获取HEAD_SHOP_BILL表记录总数——从数据库中查询
+		/// 获取HED_SHOP_PAY_HISTORY表记录总数——从数据库中查询
 		/// </summary>
         /// <param name="wheres">条件</param>
 		/// <returns>int</returns>
 		public int GetRecordCount(List<ConditionFun.SqlqueryCondition> wheres) {
 			var select = new SelectHelper();
-			return select.GetRecordCount<HEAD_SHOP_BILL>(wheres);
+			return select.GetRecordCount<HED_SHOP_PAY_HISTORY>(wheres);
 
 		}
 
 		/// <summary>
-		/// 获取HEAD_SHOP_BILL表指定条件的记录总数——从数据库中查询
+		/// 获取HED_SHOP_PAY_HISTORY表指定条件的记录总数——从数据库中查询
 		/// </summary>
         /// <param name="expression">条件</param>
 		/// <returns>int</returns>
-		public int GetRecordCount(Expression<Func<HEAD_SHOP_BILL, bool>> expression) {
-            return new Select().From<HEAD_SHOP_BILL>().Where(expression).GetRecordCount();
+		public int GetRecordCount(Expression<Func<HED_SHOP_PAY_HISTORY, bool>> expression) {
+            return new Select().From<HED_SHOP_PAY_HISTORY>().Where(expression).GetRecordCount();
 		}
 
         #endregion
@@ -617,7 +635,7 @@ namespace Solution.Logic.Managers {
         /// 查找指定条件的记录集合——从IIS缓存中查找
         /// </summary>
         /// <param name="expression">条件语句</param>
-        public IList<DataAccess.Model.HEAD_SHOP_BILL> Find(Expression<Func<DataAccess.Model.HEAD_SHOP_BILL, bool>> expression)
+        public IList<DataAccess.Model.HED_SHOP_PAY_HISTORY> Find(Expression<Func<DataAccess.Model.HED_SHOP_PAY_HISTORY, bool>> expression)
         {
 			//从缓存中获取记录集
 			var list = GetList();
@@ -657,7 +675,7 @@ namespace Solution.Logic.Managers {
             }
             
             //从数据库中查找
-            return HEAD_SHOP_BILL.Exists(x => x.Id == id);
+            return HED_SHOP_PAY_HISTORY.Exists(x => x.Id == id);
         }
 
         /// <summary>
@@ -665,7 +683,7 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="expression">条件语句</param>
         /// <returns></returns>
-        public bool Exist(Expression<Func<DataAccess.Model.HEAD_SHOP_BILL, bool>> expression)
+        public bool Exist(Expression<Func<DataAccess.Model.HED_SHOP_PAY_HISTORY, bool>> expression)
         {
             var list = GetList();
             if (list == null) 
@@ -677,9 +695,9 @@ namespace Solution.Logic.Managers {
         }
         #endregion
 
-		#region 获取HEAD_SHOP_BILL表记录
+		#region 获取HED_SHOP_PAY_HISTORY表记录
 		/// <summary>
-		/// 获取HEAD_SHOP_BILL表记录
+		/// 获取HED_SHOP_PAY_HISTORY表记录
 		/// </summary>
 		/// <param name="norepeat">是否使用去重复</param>
 		/// <param name="top">获取指定数量记录</param>
@@ -694,12 +712,12 @@ namespace Solution.Logic.Managers {
             {
                 //分页查询
                 var select = new SelectHelper();
-                return select.SelectDataTable<HEAD_SHOP_BILL>(norepeat, top, columns, pageIndex, pageSize, wheres, sorts);
+                return select.SelectDataTable<HED_SHOP_PAY_HISTORY>(norepeat, top, columns, pageIndex, pageSize, wheres, sorts);
             }
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("获取HEAD_SHOP_BILL表记录时出现异常", e);
+                CommonBll.WriteLog("获取HED_SHOP_PAY_HISTORY表记录时出现异常", e);
 
                 return null;
             }
@@ -796,16 +814,16 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 
-		#region 添加与编辑HEAD_SHOP_BILL表记录
+		#region 添加与编辑HED_SHOP_PAY_HISTORY表记录
 		/// <summary>
-		/// 添加与编辑HEAD_SHOP_BILL记录
+		/// 添加与编辑HED_SHOP_PAY_HISTORY记录
 		/// </summary>
 	    /// <param name="page">当前页面指针</param>
-		/// <param name="model">HEAD_SHOP_BILL表实体</param>
+		/// <param name="model">HED_SHOP_PAY_HISTORY表实体</param>
         /// <param name="content">更新说明</param>
         /// <param name="isCache">是否更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void Save(Page page, HEAD_SHOP_BILL model, string content = null, bool isCache = true, bool isAddUseLog = true)
+        public void Save(Page page, HED_SHOP_PAY_HISTORY model, string content = null, bool isCache = true, bool isAddUseLog = true)
         {
 			try {
 				//保存
@@ -821,7 +839,7 @@ namespace Solution.Logic.Managers {
 				{
 					if (string.IsNullOrEmpty(content))
 					{
-						content = "{0}" + (model.Id == 0 ? "添加" : "编辑") + "HEAD_SHOP_BILL记录成功，ID为【" + model.Id + "】";
+						content = "{0}" + (model.Id == 0 ? "添加" : "编辑") + "HED_SHOP_PAY_HISTORY记录成功，ID为【" + model.Id + "】";
 					}
 
 					//添加用户访问记录
@@ -829,7 +847,7 @@ namespace Solution.Logic.Managers {
 				}
 			}
 			catch (Exception e) {
-				var result = "执行HEAD_SHOP_BILLBll.Save()函数出错！";
+				var result = "执行HED_SHOP_PAY_HISTORYBll.Save()函数出错！";
 
 				//出现异常，保存出错日志信息
 				CommonBll.WriteLog(result, e);
@@ -837,9 +855,9 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 
-		#region 删除HEAD_SHOP_BILL表记录
+		#region 删除HED_SHOP_PAY_HISTORY表记录
 		/// <summary>
-		/// 删除HEAD_SHOP_BILL表记录
+		/// 删除HED_SHOP_PAY_HISTORY表记录
 		/// </summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="id">记录的主键值</param>
@@ -847,7 +865,7 @@ namespace Solution.Logic.Managers {
 		public override void Delete(Page page, int id, bool isAddUseLog = true) 
 		{
 			//设置Sql语句
-			var sql = string.Format("delete from {0} where {1} = {2}", HEAD_SHOP_BILLTable.TableName,  HEAD_SHOP_BILLTable.Id, id);
+			var sql = string.Format("delete from {0} where {1} = {2}", HED_SHOP_PAY_HISTORYTable.TableName,  HED_SHOP_PAY_HISTORYTable.Id, id);
 
 			//删除
 			var delete = new DeleteHelper();
@@ -863,12 +881,12 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了HEAD_SHOP_BILL表id为【" + id + "】的记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了HED_SHOP_PAY_HISTORY表id为【" + id + "】的记录！");
 			}
 		}
 
 		/// <summary>
-		/// 删除HEAD_SHOP_BILL表记录
+		/// 删除HED_SHOP_PAY_HISTORY表记录
 		/// </summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="id">记录的主键值</param>
@@ -880,7 +898,7 @@ namespace Solution.Logic.Managers {
 			var str = string.Join(",", id);
 
 			//设置Sql语句
-			var sql = string.Format("delete from {0} where {1} in ({2})", HEAD_SHOP_BILLTable.TableName,  HEAD_SHOP_BILLTable.Id, str);
+			var sql = string.Format("delete from {0} where {1} in ({2})", HED_SHOP_PAY_HISTORYTable.TableName,  HED_SHOP_PAY_HISTORYTable.Id, str);
 
 			//删除
 			var delete = new DeleteHelper();
@@ -896,7 +914,7 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了HEAD_SHOP_BILL表id为【" + str + "】的记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了HED_SHOP_PAY_HISTORY表id为【" + str + "】的记录！");
 			}
 		}
 
@@ -906,10 +924,10 @@ namespace Solution.Logic.Managers {
         /// <param name="page">当前页面指针</param>
         /// <param name="expression">条件语句</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void Delete(Page page, Expression<Func<HEAD_SHOP_BILL, bool>> expression, bool isAddUseLog = true)
+        public void Delete(Page page, Expression<Func<HED_SHOP_PAY_HISTORY, bool>> expression, bool isAddUseLog = true)
         {
 			//执行删除
-			HEAD_SHOP_BILL.Delete(expression);
+			HED_SHOP_PAY_HISTORY.Delete(expression);
 
             //判断是否启用缓存
             if (CommonBll.IsUseCache())
@@ -923,7 +941,7 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了HEAD_SHOP_BILL表记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了HED_SHOP_PAY_HISTORY表记录！");
 			}
         }
 		#endregion
@@ -940,7 +958,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateSort(Page page, FineUI.Grid grid1, string tbxSort, string sortName = "Sort")
 	    {
 		     //更新排序
-			if (CommonBll.UpdateSort(page, grid1, tbxSort, "HEAD_SHOP_BILL", sortName, "Id"))
+			if (CommonBll.UpdateSort(page, grid1, tbxSort, "HED_SHOP_PAY_HISTORY", sortName, "Id"))
 		    {
 				//判断是否启用缓存
                 if (CommonBll.IsUseCache())
@@ -952,7 +970,7 @@ namespace Solution.Logic.Managers {
                 }
 				
 			    //添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}更新了HEAD_SHOP_BILL表排序！");
+				UseLogBll.GetInstence().Save(page, "{0}更新了HED_SHOP_PAY_HISTORY表排序！");
 
 			    return true;
 		    }
@@ -973,7 +991,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateAutoSort(Page page, string strWhere = "", bool isExistsMoreLv = false, int pid = 0, string fieldName = "Sort", string fieldParentId = "ParentId")
 	    {
 		    //更新排序
-			if (CommonBll.AutoSort("Id", "HEAD_SHOP_BILL", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
+			if (CommonBll.AutoSort("Id", "HED_SHOP_PAY_HISTORY", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
 		    {
 				//判断是否启用缓存
                 if (CommonBll.IsUseCache())
@@ -985,7 +1003,7 @@ namespace Solution.Logic.Managers {
                 }
 
 			    //添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}对HEAD_SHOP_BILL表进行了自动排序操作！");
+				UseLogBll.GetInstence().Save(page, "{0}对HED_SHOP_PAY_HISTORY表进行了自动排序操作！");
 
 			    return true;
 		    }
@@ -1019,7 +1037,7 @@ namespace Solution.Logic.Managers {
 	    {
             //如果条件列为空，则默认为主键列
             if (string.IsNullOrEmpty(conditionColName))
-                conditionColName = HEAD_SHOP_BILLTable.Id;
+                conditionColName = HED_SHOP_PAY_HISTORYTable.Id;
 
             //在内存中查询
 	        if (isCache)
@@ -1064,7 +1082,7 @@ namespace Solution.Logic.Managers {
         /// <param name="colName">获取的列名</param>
         /// <param name="expression">条件</param>
         /// <returns></returns>
-        public object GetFieldValue(string colName, Expression<Func<DataAccess.Model.HEAD_SHOP_BILL, bool>> expression)
+        public object GetFieldValue(string colName, Expression<Func<DataAccess.Model.HED_SHOP_PAY_HISTORY, bool>> expression)
 	    {
 	        return GetFieldValue(GetModelForCache(expression), colName);
 	    }
@@ -1099,7 +1117,7 @@ namespace Solution.Logic.Managers {
         public object GetFieldValue(string colName, List<ConditionFun.SqlqueryCondition> wheres)
         {
             var select = new SelectHelper();
-            return select.GetColumnsValue<HEAD_SHOP_BILL>(colName, wheres);
+            return select.GetColumnsValue<HED_SHOP_PAY_HISTORY>(colName, wheres);
         }
 
 		/// <summary>
@@ -1108,7 +1126,7 @@ namespace Solution.Logic.Managers {
         /// <param name="model">实体</param>
         /// <param name="colName">获取的字段名</param>
         /// <returns></returns>
-		private object GetFieldValue(DataAccess.Model.HEAD_SHOP_BILL model, string colName)
+		private object GetFieldValue(DataAccess.Model.HED_SHOP_PAY_HISTORY model, string colName)
 		{
 			if (model == null || string.IsNullOrEmpty(colName)) return null;
 			//返回指定的列值
@@ -1118,10 +1136,14 @@ namespace Solution.Logic.Managers {
 					return model.Id;
 				case "SHOP_ID" :
 					return model.SHOP_ID;
-				case "SU_ID" :
-					return model.SU_ID;
 				case "BILL_AMOUNT" :
 					return model.BILL_AMOUNT;
+				case "SUP_ID" :
+					return model.SUP_ID;
+				case "BILL_ID" :
+					return model.BILL_ID;
+				case "PAY_AMOUNT" :
+					return model.PAY_AMOUNT;
 				case "PAY_METHOD" :
 					return model.PAY_METHOD;
 				case "BILL_DATE" :
@@ -1141,8 +1163,8 @@ namespace Solution.Logic.Managers {
 
 		#endregion
 		
-		#region 更新HEAD_SHOP_BILL表指定字段值
-		/// <summary>更新HEAD_SHOP_BILL表记录指定字段值，如果使用了缓存，保存成功后会清空本表的所有缓存记录，然后重新加载进缓存</summary>
+		#region 更新HED_SHOP_PAY_HISTORY表指定字段值
+		/// <summary>更新HED_SHOP_PAY_HISTORY表记录指定字段值，如果使用了缓存，保存成功后会清空本表的所有缓存记录，然后重新加载进缓存</summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="dic">需要更新的字段与值</param>
 		/// <param name="wheres">条件</param>
@@ -1152,7 +1174,7 @@ namespace Solution.Logic.Managers {
 		public void UpdateValue(Page page, Dictionary<string, object> dic, List<ConditionFun.SqlqueryCondition> wheres = null, string content = "", bool isCache = true, bool isAddUseLog = true) {
 			//更新
 			var update = new UpdateHelper();
-			update.Update<HEAD_SHOP_BILL>(dic, wheres);
+			update.Update<HED_SHOP_PAY_HISTORY>(dic, wheres);
 
 			//判断是否启用缓存
 			if (isCache && CommonBll.IsUseCache())
@@ -1167,7 +1189,7 @@ namespace Solution.Logic.Managers {
 				if (string.IsNullOrEmpty(content))
 				{
 					//添加用户操作记录
-					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}修改了HEAD_SHOP_BILL表记录。");				
+					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}修改了HED_SHOP_PAY_HISTORY表记录。");				
 				}
 				else
 				{
@@ -1178,8 +1200,8 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 				
-		#region 更新HEAD_SHOP_BILL表指定主键Id的字段值
-		/// <summary>更新HEAD_SHOP_BILL表记录指定字段值</summary>
+		#region 更新HED_SHOP_PAY_HISTORY表指定主键Id的字段值
+		/// <summary>更新HED_SHOP_PAY_HISTORY表记录指定字段值</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
 	    /// <param name="dic">需要更新的字段与值</param>
@@ -1188,14 +1210,14 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
 	    public void UpdateValue(Page page, long id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-			content = content != "" ? content : "{0}修改了HEAD_SHOP_BILL表主键Id值为" + id + "的记录。";
+			content = content != "" ? content : "{0}修改了HED_SHOP_PAY_HISTORY表主键Id值为" + id + "的记录。";
 			
             //条件
 		    List<ConditionFun.SqlqueryCondition> wheres = null;
             if (id > 0)
             {
                 wheres = new List<ConditionFun.SqlqueryCondition>();
-                wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, HEAD_SHOP_BILLTable.Id, Comparison.Equals, id));
+                wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, HED_SHOP_PAY_HISTORYTable.Id, Comparison.Equals, id));
             };
 
 			//判断是否启用缓存——为了防止并发问题，所以先更新缓存再更新数据库
@@ -1213,7 +1235,7 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, dic, wheres, content, false, isAddUseLog);
         }
 
-        /// <summary>更新HEAD_SHOP_BILL表记录指定字段值（更新一个字段值）</summary>
+        /// <summary>更新HED_SHOP_PAY_HISTORY表记录指定字段值（更新一个字段值）</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
         /// <param name="columnName">要更新的列名</param>
@@ -1223,7 +1245,7 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
         public void UpdateValue(Page page, long id, string columnName, object columnValue, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-            content = content != "" ? content : "{0}修改了HEAD_SHOP_BILL表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
+            content = content != "" ? content : "{0}修改了HED_SHOP_PAY_HISTORY表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
             //设置更新字段
             var dic = new Dictionary<string, object>();
             dic.Add(columnName, columnValue);
@@ -1232,7 +1254,7 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, id, dic, content, isCache, isAddUseLog);
         }
 
-		 /// <summary>更新HEAD_SHOP_BILL表记录指定字段值（更新两个字段值）</summary>
+		 /// <summary>更新HED_SHOP_PAY_HISTORY表记录指定字段值（更新两个字段值）</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
         /// <param name="columnName1">要更新的列名</param>
@@ -1244,7 +1266,7 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
         public void UpdateValue(Page page, long id, string columnName1, object columnValue1, string columnName2, object columnValue2, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-            content = content != "" ? content : "{0}修改了HEAD_SHOP_BILL表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
+            content = content != "" ? content : "{0}修改了HED_SHOP_PAY_HISTORY表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
             //设置更新字段
             var dic = new Dictionary<string, object>();
             dic.Add(columnName1, columnValue1);
@@ -1267,10 +1289,10 @@ namespace Solution.Logic.Managers {
 		public void UpdatePAY_METHOD(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
 			//设置更新值
 			var setValue = new Dictionary<string, object>();
-			setValue[HEAD_SHOP_BILLTable.PAY_METHOD] = updateValue;
+			setValue[HED_SHOP_PAY_HISTORYTable.PAY_METHOD] = updateValue;
 
 			//更新
-			UpdateValue(page, pkValue, setValue, "{0}更新了HEAD_SHOP_BILL表id为【" + pkValue + "】的记录，更新内容为将PAY_METHOD字段值修改为" + updateValue, isCache, isAddUseLog);
+			UpdateValue(page, pkValue, setValue, "{0}更新了HED_SHOP_PAY_HISTORY表id为【" + pkValue + "】的记录，更新内容为将PAY_METHOD字段值修改为" + updateValue, isCache, isAddUseLog);
 		}
 		#endregion
 		

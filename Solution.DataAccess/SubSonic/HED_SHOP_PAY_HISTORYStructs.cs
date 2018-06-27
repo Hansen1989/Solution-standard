@@ -6,14 +6,14 @@ using System.Data;
 
 namespace Solution.DataAccess.DataModel {
         /// <summary>
-        /// Table: HEAD_SHOP_BILL
+        /// Table: HED_SHOP_PAY_HISTORY
         /// Primary Key: Id
         /// </summary>
 
-        public class HEAD_SHOP_BILLStructs: DatabaseTable {
+        public class HED_SHOP_PAY_HISTORYStructs: DatabaseTable {
             
-            public HEAD_SHOP_BILLStructs(IDataProvider provider):base("HEAD_SHOP_BILL",provider){
-                ClassName = "HEAD_SHOP_BILL";
+            public HED_SHOP_PAY_HISTORYStructs(IDataProvider provider):base("HED_SHOP_PAY_HISTORY",provider){
+                ClassName = "HED_SHOP_PAY_HISTORY";
                 SchemaName = "dbo";
                 
 
@@ -22,7 +22,7 @@ namespace Solution.DataAccess.DataModel {
 	                IsPrimaryKey = true,
 	                DataType = DbType.Int64,
 	                IsNullable = false,
-	                AutoIncrement = false,
+	                AutoIncrement = true,
 	                IsForeignKey = false,
 	                MaxLength = 0,
 					PropertyName = "Id"
@@ -39,17 +39,6 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "SHOP_ID"
                 });
 
-                Columns.Add(new DatabaseColumn("SU_ID", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 10,
-					PropertyName = "SU_ID"
-                });
-
                 Columns.Add(new DatabaseColumn("BILL_AMOUNT", this)
                 {
 	                IsPrimaryKey = false,
@@ -59,6 +48,39 @@ namespace Solution.DataAccess.DataModel {
 	                IsForeignKey = false,
 	                MaxLength = 0,
 					PropertyName = "BILL_AMOUNT"
+                });
+
+                Columns.Add(new DatabaseColumn("SUP_ID", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10,
+					PropertyName = "SUP_ID"
+                });
+
+                Columns.Add(new DatabaseColumn("BILL_ID", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 50,
+					PropertyName = "BILL_ID"
+                });
+
+                Columns.Add(new DatabaseColumn("PAY_AMOUNT", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "PAY_AMOUNT"
                 });
 
                 Columns.Add(new DatabaseColumn("PAY_METHOD", this)
@@ -145,16 +167,30 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn SU_ID{
+            public IColumn BILL_AMOUNT{
                 get{
-                    return this.GetColumn("SU_ID");
+                    return this.GetColumn("BILL_AMOUNT");
                 }
             }
 				
             
-            public IColumn BILL_AMOUNT{
+            public IColumn SUP_ID{
                 get{
-                    return this.GetColumn("BILL_AMOUNT");
+                    return this.GetColumn("SUP_ID");
+                }
+            }
+				
+            
+            public IColumn BILL_ID{
+                get{
+                    return this.GetColumn("BILL_ID");
+                }
+            }
+				
+            
+            public IColumn PAY_AMOUNT{
+                get{
+                    return this.GetColumn("PAY_AMOUNT");
                 }
             }
 				

@@ -120,13 +120,6 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("PRCAREA_ID",PRCAREA_ID,DbType.AnsiString);
             return sp;
         }
-        public static StoredProcedure GET_OUT00_STOCK_INFO(string OUT_ID){
-            StoredProcedure sp=new StoredProcedure("GET_OUT00_STOCK_INFO");
-			
-
-            sp.Command.AddParameter("OUT_ID",OUT_ID,DbType.AnsiString);
-            return sp;
-        }
         public static StoredProcedure Get_PROD_KIND_DEP_CATE(string type){
             StoredProcedure sp=new StoredProcedure("Get_PROD_KIND_DEP_CATE");
 			
@@ -174,12 +167,11 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("CRT_USER_ID",CRT_USER_ID,DbType.AnsiString);
             return sp;
         }
-        public static StoredProcedure SplitOrders(string col_id,int prod_type){
+        public static StoredProcedure SplitOrders(string col_id){
             StoredProcedure sp=new StoredProcedure("SplitOrders");
 			
 
             sp.Command.AddParameter("col_id",col_id,DbType.AnsiString);
-            sp.Command.AddParameter("prod_type",prod_type,DbType.Int32);
             return sp;
         }
         public static StoredProcedure Tran_PRICE_UNIT(string PROD_ID,decimal P_PRICE,int UNIT_TYPE){

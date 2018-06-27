@@ -7611,6 +7611,9 @@
     <Content Include="WebManage\Systems\ProductionCenter\ProductionWarehousingEdit.aspx" />
     <Content Include="WebManage\Systems\ProductionCenter\ProductionWarehousingList.aspx" />
     <Content Include="WebManage\Systems\ProductionCenter\TAKEIN10List.aspx" />
+    <Content Include="WebManage\Systems\SettlementCenter\FinancialControl.aspx" />
+    <Content Include="WebManage\Systems\SettlementCenter\Receivable.aspx" />
+    <Content Include="WebManage\Systems\SettlementCenter\SettlementCenterPay.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\Adjust00List.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\ArchiveOrdersEdit.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\ArchiveOrdersList.aspx" />
@@ -7953,6 +7956,27 @@
     </Compile>
     <Compile Include="WebManage\Systems\ProductionCenter\TAKEIN10List.aspx.designer.cs">
       <DependentUpon>TAKEIN10List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\SettlementCenter\FinancialControl.aspx.cs">
+      <DependentUpon>FinancialControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\SettlementCenter\FinancialControl.aspx.designer.cs">
+      <DependentUpon>FinancialControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\SettlementCenter\Receivable.aspx.cs">
+      <DependentUpon>Receivable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\SettlementCenter\Receivable.aspx.designer.cs">
+      <DependentUpon>Receivable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\SettlementCenter\SettlementCenterPay.aspx.cs">
+      <DependentUpon>SettlementCenterPay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\SettlementCenter\SettlementCenterPay.aspx.designer.cs">
+      <DependentUpon>SettlementCenterPay.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\Adjust00List.aspx.cs">
       <DependentUpon>Adjust00List.aspx</DependentUpon>

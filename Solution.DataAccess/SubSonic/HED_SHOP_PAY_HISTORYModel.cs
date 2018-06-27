@@ -4,9 +4,9 @@ using System;
 namespace Solution.DataAccess.Model
 {
     /// <summary>
-    /// SHOP_BILL表实体类
+    /// HED_SHOP_PAY_HISTORY表实体类
     /// </summary>
-    public partial class SHOP_BILL
+    public partial class HED_SHOP_PAY_HISTORY
     {
 
 		long _Id = 0;
@@ -17,16 +17,6 @@ namespace Solution.DataAccess.Model
 		{
 			get { return _Id; }
 			set { _Id = value; }
-		}
-
-		string _HEAD_SHOP_ID = "";
-		/// <summary>
-		/// 
-		/// </summary>
-		public string HEAD_SHOP_ID
-		{
-			get { return _HEAD_SHOP_ID; }
-			set { _HEAD_SHOP_ID = value; }
 		}
 
 		string _SHOP_ID = "";
@@ -49,14 +39,44 @@ namespace Solution.DataAccess.Model
 			set { _BILL_AMOUNT = value; }
 		}
 
-		byte _Pay_METHOD = 0;
+		string _SUP_ID = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public byte Pay_METHOD
+		public string SUP_ID
 		{
-			get { return _Pay_METHOD; }
-			set { _Pay_METHOD = value; }
+			get { return _SUP_ID; }
+			set { _SUP_ID = value; }
+		}
+
+		string _BILL_ID = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string BILL_ID
+		{
+			get { return _BILL_ID; }
+			set { _BILL_ID = value; }
+		}
+
+		decimal _PAY_AMOUNT = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal PAY_AMOUNT
+		{
+			get { return _PAY_AMOUNT; }
+			set { _PAY_AMOUNT = value; }
+		}
+
+		byte _PAY_METHOD = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public byte PAY_METHOD
+		{
+			get { return _PAY_METHOD; }
+			set { _PAY_METHOD = value; }
 		}
 
 		DateTime _BILL_DATE = new DateTime(1900,1,1);

@@ -119,7 +119,7 @@
     <Compile Include="SubSonic\HEAD_SHOP_BILLBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
-    <Compile Include="SubSonic\HEAD_SHOP_PAY_HISTORYBll.cs">
+    <Compile Include="SubSonic\HED_SHOP_PAY_HISTORYBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\IN00Bll.cs">

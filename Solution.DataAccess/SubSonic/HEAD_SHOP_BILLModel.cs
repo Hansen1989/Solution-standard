@@ -9,11 +9,11 @@ namespace Solution.DataAccess.Model
     public partial class HEAD_SHOP_BILL
     {
 
-		int _Id = 0;
+		long _Id = 0;
 		/// <summary>
 		/// 
 		/// </summary>
-		public int Id
+		public long Id
 		{
 			get { return _Id; }
 			set { _Id = value; }
@@ -47,16 +47,6 @@ namespace Solution.DataAccess.Model
 		{
 			get { return _BILL_AMOUNT; }
 			set { _BILL_AMOUNT = value; }
-		}
-
-		decimal _PAY_AMOUNT = 0;
-		/// <summary>
-		/// 
-		/// </summary>
-		public decimal PAY_AMOUNT
-		{
-			get { return _PAY_AMOUNT; }
-			set { _PAY_AMOUNT = value; }
 		}
 
 		byte _PAY_METHOD = 0;
