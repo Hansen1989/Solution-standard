@@ -264,9 +264,9 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.STD_PRICE == (decimal)value);
                         expression = x => x.STD_PRICE == (decimal)value;
                         break;
-					case "Tax" :
-						model = list.SingleOrDefault(x => x.Tax == (decimal)value);
-                        expression = x => x.Tax == (decimal)value;
+					case "TAX" :
+						model = list.SingleOrDefault(x => x.TAX == (decimal)value);
+                        expression = x => x.TAX == (decimal)value;
                         break;
 					case "QUAN1" :
 						model = list.SingleOrDefault(x => x.QUAN1 == (decimal)value);
@@ -287,6 +287,10 @@ namespace Solution.Logic.Managers {
 					case "BAT_NO" :
 						model = list.SingleOrDefault(x => x.BAT_NO == (string)value);
                         expression = x => x.BAT_NO == (string)value;
+                        break;
+					case "COST" :
+						model = list.SingleOrDefault(x => x.COST == (decimal)value);
+                        expression = x => x.COST == (decimal)value;
                         break;
 
                     default :
@@ -460,12 +464,13 @@ namespace Solution.Logic.Managers {
                 STD_UNIT = model.STD_UNIT,
                 STD_QUAN = model.STD_QUAN,
                 STD_PRICE = model.STD_PRICE,
-                Tax = model.Tax,
+                TAX = model.TAX,
                 QUAN1 = model.QUAN1,
                 QUAN2 = model.QUAN2,
                 ITEM_DISC_AMT = model.ITEM_DISC_AMT,
                 MEMO = model.MEMO,
                 BAT_NO = model.BAT_NO,
+                COST = model.COST,
             };
         }
 
@@ -502,12 +507,13 @@ namespace Solution.Logic.Managers {
                 STD_UNIT = model.STD_UNIT,
                 STD_QUAN = model.STD_QUAN,
                 STD_PRICE = model.STD_PRICE,
-                Tax = model.Tax,
+                TAX = model.TAX,
                 QUAN1 = model.QUAN1,
                 QUAN2 = model.QUAN2,
                 ITEM_DISC_AMT = model.ITEM_DISC_AMT,
                 MEMO = model.MEMO,
                 BAT_NO = model.BAT_NO,
+                COST = model.COST,
             };
         }
 
@@ -579,8 +585,8 @@ namespace Solution.Logic.Managers {
 				case "STD_PRICE" :
 					model.STD_PRICE = (decimal)value;
                     break;
-				case "Tax" :
-					model.Tax = (decimal)value;
+				case "TAX" :
+					model.TAX = (decimal)value;
                     break;
 				case "QUAN1" :
 					model.QUAN1 = (decimal)value;
@@ -596,6 +602,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "BAT_NO" :
 					model.BAT_NO = (string)value;
+                    break;
+				case "COST" :
+					model.COST = (decimal)value;
                     break;
             }
 		}
@@ -1166,8 +1175,8 @@ namespace Solution.Logic.Managers {
 					return model.STD_QUAN;
 				case "STD_PRICE" :
 					return model.STD_PRICE;
-				case "Tax" :
-					return model.Tax;
+				case "TAX" :
+					return model.TAX;
 				case "QUAN1" :
 					return model.QUAN1;
 				case "QUAN2" :
@@ -1178,6 +1187,8 @@ namespace Solution.Logic.Managers {
 					return model.MEMO;
 				case "BAT_NO" :
 					return model.BAT_NO;
+				case "COST" :
+					return model.COST;
 			}
 
 			return null;

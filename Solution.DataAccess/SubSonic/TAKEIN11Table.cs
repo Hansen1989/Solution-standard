@@ -25,7 +25,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 分店编号
 			/// </summary>
    			public static string SHOP_ID{
 			      get{
@@ -33,7 +33,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 进货单
 			/// </summary>
    			public static string TAKEIN_ID{
 			      get{
@@ -41,7 +41,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 序号
 			/// </summary>
    			public static string SNo{
 			      get{
@@ -49,7 +49,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 商品编号
 			/// </summary>
    			public static string PROD_ID{
 			      get{
@@ -57,7 +57,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 数量
 			/// </summary>
    			public static string QUANTITY{
 			      get{
@@ -65,7 +65,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 验收单位
 			/// </summary>
    			public static string STD_UNIT{
 			      get{
@@ -73,7 +73,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 标准转换量
 			/// </summary>
    			public static string STD_CONVERT{
 			      get{
@@ -81,7 +81,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 验收量
 			/// </summary>
    			public static string STD_QUAN{
 			      get{
@@ -89,7 +89,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 标准单价
 			/// </summary>
    			public static string STD_PRICE{
 			      get{
@@ -97,7 +97,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 税额
 			/// </summary>
    			public static string Tax{
 			      get{
@@ -105,7 +105,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 采购量
 			/// </summary>
    			public static string QUAN1{
 			      get{
@@ -113,7 +113,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 取消量
 			/// </summary>
    			public static string QUAN2{
 			      get{
@@ -121,7 +121,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 折价金额
 			/// </summary>
    			public static string Item_DISC_Amt{
 			      get{
@@ -129,7 +129,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 备注
 			/// </summary>
    			public static string MEMO{
 			      get{
@@ -137,7 +137,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 批号
 			/// </summary>
    			public static string BAT_NO{
 			      get{
@@ -145,7 +145,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 有效日期
 			/// </summary>
    			public static string Exp_DateTime{
 			      get{

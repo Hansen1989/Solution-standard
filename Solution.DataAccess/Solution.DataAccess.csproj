@@ -929,6 +929,18 @@
     <Compile Include="SubSonic\SHOP_PRICE_AREATable.cs">
       <DependentUpon>EntityTable.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubSonic\SHOP_SUPPLIER_RELATION.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\SHOP_SUPPLIER_RELATIONModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\SHOP_SUPPLIER_RELATIONStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\SHOP_SUPPLIER_RELATIONTable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\STOCK.cs">
       <DependentUpon>ActiveRecord.tt</DependentUpon>
       <SubType>Code</SubType>

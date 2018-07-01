@@ -141,6 +141,8 @@ namespace Solution.DataAccess.DataModel
             MOD_USER_ID = readRecord.get_string("MOD_USER_ID",null);
                
             LAST_UPDATE = readRecord.get_datetime("LAST_UPDATE",null);
+               
+            SHOP_ID = readRecord.get_string("SHOP_ID",null);
                 }   
 
         partial void OnCreated();
@@ -595,6 +597,28 @@ namespace Solution.DataAccess.DataModel
                 if(_LAST_UPDATE!=value || _isLoaded){
                     _LAST_UPDATE=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="LAST_UPDATE");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _SHOP_ID;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string SHOP_ID
+        {
+            get { return _SHOP_ID; }
+            set
+            {
+                if(_SHOP_ID!=value || _isLoaded){
+                    _SHOP_ID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="SHOP_ID");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

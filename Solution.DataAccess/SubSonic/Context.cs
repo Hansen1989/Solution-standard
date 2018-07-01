@@ -201,6 +201,7 @@ namespace Solution.DataAccess.DataModel
         public Query<DataAccess.Model.SHOP_BILL> SHOP_BILL { get; set; }
         public Query<DataAccess.Model.SHOP_PAY_HISOTRY> SHOP_PAY_HISOTRY { get; set; }
         public Query<DataAccess.Model.SHOP_PRICE_AREA> SHOP_PRICE_AREA { get; set; }
+        public Query<DataAccess.Model.SHOP_SUPPLIER_RELATION> SHOP_SUPPLIER_RELATION { get; set; }
         public Query<DataAccess.Model.SHOP00> SHOP00 { get; set; }
         public Query<DataAccess.Model.STOCK> STOCK { get; set; }
         public Query<DataAccess.Model.STOCK_SHOP00> STOCK_SHOP00 { get; set; }
@@ -398,6 +399,7 @@ namespace Solution.DataAccess.DataModel
             SHOP_BILL = new Query<DataAccess.Model.SHOP_BILL>(provider);
             SHOP_PAY_HISOTRY = new Query<DataAccess.Model.SHOP_PAY_HISOTRY>(provider);
             SHOP_PRICE_AREA = new Query<DataAccess.Model.SHOP_PRICE_AREA>(provider);
+            SHOP_SUPPLIER_RELATION = new Query<DataAccess.Model.SHOP_SUPPLIER_RELATION>(provider);
             SHOP00 = new Query<DataAccess.Model.SHOP00>(provider);
             STOCK = new Query<DataAccess.Model.STOCK>(provider);
             STOCK_SHOP00 = new Query<DataAccess.Model.STOCK_SHOP00>(provider);
@@ -498,6 +500,7 @@ namespace Solution.DataAccess.DataModel
             	DataProvider.Schema.Tables.Add(new SHOP_BILLStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new SHOP_PAY_HISOTRYStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new SHOP_PRICE_AREAStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new SHOP_SUPPLIER_RELATIONStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new SHOP00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new STOCKStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new STOCK_SHOP00Structs(DataProvider));

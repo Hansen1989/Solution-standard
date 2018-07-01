@@ -76,15 +76,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Button ButtonSave;
         
         /// <summary>
-        /// ButtonEdit 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.Button ButtonEdit;
-        
-        /// <summary>
         /// ButtonCheck 控件。
         /// </summary>
         /// <remarks>
@@ -265,24 +256,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Panel Panel12;
         
         /// <summary>
-        /// Toolbar21111 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.Toolbar Toolbar21111;
-        
-        /// <summary>
-        /// ButtonDetailAdd 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.Button ButtonDetailAdd;
-        
-        /// <summary>
         /// Grid2 控件。
         /// </summary>
         /// <remarks>
@@ -445,13 +418,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.DatePicker DatePicker2;
         
         /// <summary>
-        /// ddlSHOP_NAME1 控件。
+        /// ddlSTOCK_NAME1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.DropDownList ddlSHOP_NAME1;
+        protected global::FineUI.DropDownList ddlSTOCK_NAME1;
         
         /// <summary>
         /// ButtonSearch 控件。

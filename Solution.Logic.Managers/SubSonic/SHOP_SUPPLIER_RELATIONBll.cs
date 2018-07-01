@@ -14,31 +14,31 @@ using SubSonic.Query;
 
 namespace Solution.Logic.Managers {
 	/// <summary>
-	/// DUE00表逻辑类
+	/// SHOP_SUPPLIER_RELATION表逻辑类
 	/// </summary>
-	public partial class DUE00Bll : LogicBase {
+	public partial class SHOP_SUPPLIER_RELATIONBll : LogicBase {
  
  		/***********************************************************************
 		 * 模版生成函数                                                        *
 		 ***********************************************************************/
 		#region 模版生成函数
 				
-		private const string const_CacheKey = "Cache_DUE00";
-        private const string const_CacheKey_Date = "Cache_DUE00_Date";
+		private const string const_CacheKey = "Cache_SHOP_SUPPLIER_RELATION";
+        private const string const_CacheKey_Date = "Cache_SHOP_SUPPLIER_RELATION_Date";
 
 		#region 单例模式
 		//定义单例实体
-		private static DUE00Bll _DUE00Bll = null;
+		private static SHOP_SUPPLIER_RELATIONBll _SHOP_SUPPLIER_RELATIONBll = null;
 
 		/// <summary>
 		/// 获取本逻辑类单例
 		/// </summary>
 		/// <returns></returns>
-		public static DUE00Bll GetInstence() {
-			if (_DUE00Bll == null) {
-				_DUE00Bll = new DUE00Bll();
+		public static SHOP_SUPPLIER_RELATIONBll GetInstence() {
+			if (_SHOP_SUPPLIER_RELATIONBll == null) {
+				_SHOP_SUPPLIER_RELATIONBll = new SHOP_SUPPLIER_RELATIONBll();
 			}
-			return _DUE00Bll;
+			return _SHOP_SUPPLIER_RELATIONBll;
 		}
 		#endregion
 		
@@ -59,12 +59,12 @@ namespace Solution.Logic.Managers {
 
 		#region IIS缓存函数
 		
-		#region 从IIS缓存中获取DUE00表记录
+		#region 从IIS缓存中获取SHOP_SUPPLIER_RELATION表记录
 		/// <summary>
-        /// 从IIS缓存中获取DUE00表记录
+        /// 从IIS缓存中获取SHOP_SUPPLIER_RELATION表记录
         /// </summary>
 	    /// <param name="isCache">是否从缓存中读取</param>
-        public IList<DataAccess.Model.DUE00> GetList(bool isCache = true)
+        public IList<DataAccess.Model.SHOP_SUPPLIER_RELATION> GetList(bool isCache = true)
         {
 			try
 			{
@@ -93,27 +93,27 @@ namespace Solution.Logic.Managers {
 					//缓存中存在数据，则直接返回
 					else
 					{
-						return (IList<DataAccess.Model.DUE00>)obj;
+						return (IList<DataAccess.Model.SHOP_SUPPLIER_RELATION>)obj;
 					}
 				}
 				else
 				{
 					//定义临时实体集
-					IList<DataAccess.Model.DUE00> list = null;
+					IList<DataAccess.Model.SHOP_SUPPLIER_RELATION> list = null;
 
 					//获取全表缓存加载条件表达式
-					var exp = GetExpression<DUE00>();
+					var exp = GetExpression<SHOP_SUPPLIER_RELATION>();
                     //如果条件为空，则查询全表所有记录
 					if (exp == null)
 					{
 						//从数据库中获取所有记录
-						var all = DUE00.All();
+						var all = SHOP_SUPPLIER_RELATION.All();
                         list = all == null ? null : Transform(all.ToList());
 					}
 					else
 					{
                         //从数据库中查询出指定条件的记录，并转换为指定实体集
-						var all = DUE00.Find(exp);
+						var all = SHOP_SUPPLIER_RELATION.Find(exp);
                         list = all == null ? null : Transform(all);
 					}
 
@@ -123,7 +123,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取DUE00表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取SHOP_SUPPLIER_RELATION表记录时出现异常", e);
 			}
             
             return null;
@@ -136,8 +136,8 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="id">主键Id</param>
         /// <param name="isCache">是否从缓存中读取</param>
-		/// <returns>DataAccess.Model.DUE00</returns>
-        public DataAccess.Model.DUE00 GetModel(long id, bool isCache = true)
+		/// <returns>DataAccess.Model.SHOP_SUPPLIER_RELATION</returns>
+        public DataAccess.Model.SHOP_SUPPLIER_RELATION GetModel(long id, bool isCache = true)
         {
             //判断是否使用缓存
 		    if (CommonBll.IsUseCache() && isCache)
@@ -157,7 +157,7 @@ namespace Solution.Logic.Managers {
 		    else
 		    {
                 //从数据库中直接读取
-                var model = DUE00.SingleOrDefault(x => x.Id == id);
+                var model = SHOP_SUPPLIER_RELATION.SingleOrDefault(x => x.Id == id);
                 if (model == null)
                 {
                     return null;
@@ -176,8 +176,8 @@ namespace Solution.Logic.Managers {
         /// 从IIS缓存中获取指定Id记录
         /// </summary>
         /// <param name="id">主键Id</param>
-		/// <returns>DataAccess.Model.DUE00</returns>
-        public DataAccess.Model.DUE00 GetModelForCache(long id)
+		/// <returns>DataAccess.Model.SHOP_SUPPLIER_RELATION</returns>
+        public DataAccess.Model.SHOP_SUPPLIER_RELATION GetModelForCache(long id)
         {
 			try
 			{
@@ -186,7 +186,7 @@ namespace Solution.Logic.Managers {
 
 				if (model == null){
 					//从数据库中读取
-					var tem = DUE00.SingleOrDefault(x => x.Id == id);
+					var tem = SHOP_SUPPLIER_RELATION.SingleOrDefault(x => x.Id == id);
 					if (tem == null)
 					{
 						return null;
@@ -206,7 +206,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取DUE00表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取SHOP_SUPPLIER_RELATION表记录时出现异常", e);
 
                 return null;
             }
@@ -219,15 +219,15 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="conditionColName">条件列名</param>
         /// <param name="value">条件值</param>
-        /// <returns>DataAccess.Model.DUE00</returns>
-        public DataAccess.Model.DUE00 GetModelForCache(string conditionColName, object value)
+        /// <returns>DataAccess.Model.SHOP_SUPPLIER_RELATION</returns>
+        public DataAccess.Model.SHOP_SUPPLIER_RELATION GetModelForCache(string conditionColName, object value)
         {
 		try
             {
                 //从缓存中获取List
                 var list = GetList();
-                DataAccess.Model.DUE00 model = null;
-                Expression<Func<DUE00, bool>> expression = null;
+                DataAccess.Model.SHOP_SUPPLIER_RELATION model = null;
+                Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression = null;
 
                 //返回指定条件的实体
                 switch (conditionColName)
@@ -240,89 +240,21 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.SHOP_ID == (string)value);
                         expression = x => x.SHOP_ID == (string)value;
                         break;
-					case "TAKEIN_ID" :
-						model = list.SingleOrDefault(x => x.TAKEIN_ID == (string)value);
-                        expression = x => x.TAKEIN_ID == (string)value;
-                        break;
-					case "STATUS" :
-						model = list.SingleOrDefault(x => x.STATUS == (byte)value);
-                        expression = x => x.STATUS == (byte)value;
-                        break;
-					case "INPUT_DATE" :
-						model = list.SingleOrDefault(x => x.INPUT_DATE == (DateTime)value);
-                        expression = x => x.INPUT_DATE == (DateTime)value;
-                        break;
 					case "SUP_ID" :
 						model = list.SingleOrDefault(x => x.SUP_ID == (string)value);
                         expression = x => x.SUP_ID == (string)value;
                         break;
-					case "USER_ID" :
-						model = list.SingleOrDefault(x => x.USER_ID == (string)value);
-                        expression = x => x.USER_ID == (string)value;
+					case "SUP_NAME" :
+						model = list.SingleOrDefault(x => x.SUP_NAME == (string)value);
+                        expression = x => x.SUP_NAME == (string)value;
                         break;
-					case "APP_USER" :
-						model = list.SingleOrDefault(x => x.APP_USER == (string)value);
-                        expression = x => x.APP_USER == (string)value;
-                        break;
-					case "APP_DATETIME" :
-						model = list.SingleOrDefault(x => x.APP_DATETIME == (DateTime)value);
-                        expression = x => x.APP_DATETIME == (DateTime)value;
-                        break;
-					case "TOT_AMOUNT" :
-						model = list.SingleOrDefault(x => x.TOT_AMOUNT == (decimal)value);
-                        expression = x => x.TOT_AMOUNT == (decimal)value;
-                        break;
-					case "TOT_TAX" :
-						model = list.SingleOrDefault(x => x.TOT_TAX == (decimal)value);
-                        expression = x => x.TOT_TAX == (decimal)value;
-                        break;
-					case "TOT_QTY" :
-						model = list.SingleOrDefault(x => x.TOT_QTY == (decimal)value);
-                        expression = x => x.TOT_QTY == (decimal)value;
-                        break;
-					case "PRE_PAY" :
-						model = list.SingleOrDefault(x => x.PRE_PAY == (decimal)value);
-                        expression = x => x.PRE_PAY == (decimal)value;
-                        break;
-					case "PRE_PAY_ID" :
-						model = list.SingleOrDefault(x => x.PRE_PAY_ID == (string)value);
-                        expression = x => x.PRE_PAY_ID == (string)value;
-                        break;
-					case "RELATE_ID" :
-						model = list.SingleOrDefault(x => x.RELATE_ID == (string)value);
-                        expression = x => x.RELATE_ID == (string)value;
-                        break;
-					case "INVOICE_ID" :
-						model = list.SingleOrDefault(x => x.INVOICE_ID == (string)value);
-                        expression = x => x.INVOICE_ID == (string)value;
-                        break;
-					case "TAKEIN_TYPE" :
-						model = list.SingleOrDefault(x => x.TAKEIN_TYPE == (int)value);
-                        expression = x => x.TAKEIN_TYPE == (int)value;
-                        break;
-					case "Memo" :
-						model = list.SingleOrDefault(x => x.Memo == (string)value);
-                        expression = x => x.Memo == (string)value;
+					case "MEMO" :
+						model = list.SingleOrDefault(x => x.MEMO == (string)value);
+                        expression = x => x.MEMO == (string)value;
                         break;
 					case "CRT_DATETIME" :
 						model = list.SingleOrDefault(x => x.CRT_DATETIME == (DateTime)value);
                         expression = x => x.CRT_DATETIME == (DateTime)value;
-                        break;
-					case "CRT_USER_ID" :
-						model = list.SingleOrDefault(x => x.CRT_USER_ID == (string)value);
-                        expression = x => x.CRT_USER_ID == (string)value;
-                        break;
-					case "MOD_DATETIME" :
-						model = list.SingleOrDefault(x => x.MOD_DATETIME == (DateTime)value);
-                        expression = x => x.MOD_DATETIME == (DateTime)value;
-                        break;
-					case "MOD_USER_ID" :
-						model = list.SingleOrDefault(x => x.MOD_USER_ID == (string)value);
-                        expression = x => x.MOD_USER_ID == (string)value;
-                        break;
-					case "LAST_UPDATE" :
-						model = list.SingleOrDefault(x => x.LAST_UPDATE == (DateTime)value);
-                        expression = x => x.LAST_UPDATE == (DateTime)value;
                         break;
 
                     default :
@@ -332,7 +264,7 @@ namespace Solution.Logic.Managers {
                 if (model == null)
                 {
                     //从数据库中读取
-                    var tem = DUE00.SingleOrDefault(expression);
+                    var tem = SHOP_SUPPLIER_RELATION.SingleOrDefault(expression);
                     if (tem == null)
                     {
                         return null;
@@ -353,7 +285,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取DUE00表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取SHOP_SUPPLIER_RELATION表记录时出现异常", e);
 
                 return null;
             }
@@ -365,8 +297,8 @@ namespace Solution.Logic.Managers {
         /// 从IIS缓存中获取指定条件的记录
         /// </summary>
         /// <param name="expression">条件</param>
-        /// <returns>DataAccess.Model.DUE00</returns>
-        public DataAccess.Model.DUE00 GetModelForCache(Expression<Func<DataAccess.Model.DUE00, bool>> expression)
+        /// <returns>DataAccess.Model.SHOP_SUPPLIER_RELATION</returns>
+        public DataAccess.Model.SHOP_SUPPLIER_RELATION GetModelForCache(Expression<Func<DataAccess.Model.SHOP_SUPPLIER_RELATION, bool>> expression)
         {
 			//从缓存中读取记录列表
 			var list = GetList();
@@ -389,7 +321,7 @@ namespace Solution.Logic.Managers {
         /// 更新IIS缓存中指定Id记录
         /// </summary>
         /// <param name="model">记录实体</param>
-        public void SetModelForCache(DataAccess.Model.DUE00 model)
+        public void SetModelForCache(DataAccess.Model.SHOP_SUPPLIER_RELATION model)
         {
             //从缓存中读取记录列表
             var list = GetList();
@@ -403,7 +335,7 @@ namespace Solution.Logic.Managers {
         /// 更新IIS缓存中指定Id记录
         /// </summary>
         /// <param name="model">记录实体</param>
-        public void SetModelForCache(DUE00 model)
+        public void SetModelForCache(SHOP_SUPPLIER_RELATION model)
         {
             SetModelForCache(Transform(model));
         }
@@ -445,10 +377,10 @@ namespace Solution.Logic.Managers {
         }
 
 		/// <summary>
-        /// 按条件删除IIS缓存中DUE00表的指定记录
+        /// 按条件删除IIS缓存中SHOP_SUPPLIER_RELATION表的指定记录
         /// </summary>
         /// <param name="expression">条件，值为null时删除全有记录</param>
-		public void DelCache(Expression<Func<DataAccess.Model.DUE00, bool>> expression)
+		public void DelCache(Expression<Func<DataAccess.Model.SHOP_SUPPLIER_RELATION, bool>> expression)
         {
             //从缓存中获取List
 		    var list = GetList();
@@ -477,102 +409,68 @@ namespace Solution.Logic.Managers {
 
 		#region 实体转换
 		/// <summary>
-		/// 将DUE00记录实体（SubSonic实体）转换为普通的实体（DataAccess.Model.DUE00）
+		/// 将SHOP_SUPPLIER_RELATION记录实体（SubSonic实体）转换为普通的实体（DataAccess.Model.SHOP_SUPPLIER_RELATION）
 		/// </summary>
         /// <param name="model">SubSonic插件生成的实体</param>
-		/// <returns>DataAccess.Model.DUE00</returns>
-		public DataAccess.Model.DUE00 Transform(DUE00 model)
+		/// <returns>DataAccess.Model.SHOP_SUPPLIER_RELATION</returns>
+		public DataAccess.Model.SHOP_SUPPLIER_RELATION Transform(SHOP_SUPPLIER_RELATION model)
         {			
 			if (model == null) 
 				return null;
 
-            return new DataAccess.Model.DUE00
+            return new DataAccess.Model.SHOP_SUPPLIER_RELATION
             {
                 Id = model.Id,
                 SHOP_ID = model.SHOP_ID,
-                TAKEIN_ID = model.TAKEIN_ID,
-                STATUS = model.STATUS,
-                INPUT_DATE = model.INPUT_DATE,
                 SUP_ID = model.SUP_ID,
-                USER_ID = model.USER_ID,
-                APP_USER = model.APP_USER,
-                APP_DATETIME = model.APP_DATETIME,
-                TOT_AMOUNT = model.TOT_AMOUNT,
-                TOT_TAX = model.TOT_TAX,
-                TOT_QTY = model.TOT_QTY,
-                PRE_PAY = model.PRE_PAY,
-                PRE_PAY_ID = model.PRE_PAY_ID,
-                RELATE_ID = model.RELATE_ID,
-                INVOICE_ID = model.INVOICE_ID,
-                TAKEIN_TYPE = model.TAKEIN_TYPE,
-                Memo = model.Memo,
+                SUP_NAME = model.SUP_NAME,
+                MEMO = model.MEMO,
                 CRT_DATETIME = model.CRT_DATETIME,
-                CRT_USER_ID = model.CRT_USER_ID,
-                MOD_DATETIME = model.MOD_DATETIME,
-                MOD_USER_ID = model.MOD_USER_ID,
-                LAST_UPDATE = model.LAST_UPDATE,
             };
         }
 
 		/// <summary>
-		/// 将DUE00记录实体集（SubSonic实体）转换为普通的实体集（DataAccess.Model.DUE00）
+		/// 将SHOP_SUPPLIER_RELATION记录实体集（SubSonic实体）转换为普通的实体集（DataAccess.Model.SHOP_SUPPLIER_RELATION）
 		/// </summary>
         /// <param name="sourceList">SubSonic插件生成的实体集</param>
-        public IList<DataAccess.Model.DUE00> Transform(IList<DUE00> sourceList)
+        public IList<DataAccess.Model.SHOP_SUPPLIER_RELATION> Transform(IList<SHOP_SUPPLIER_RELATION> sourceList)
         {
 			//创建List容器
-            var list = new List<DataAccess.Model.DUE00>();
+            var list = new List<DataAccess.Model.SHOP_SUPPLIER_RELATION>();
 			//将SubSonic插件生成的实体集转换后存储到刚创建的List容器中
             sourceList.ToList().ForEach(r => list.Add(Transform(r)));
             return list;
         }
 
 		/// <summary>
-		/// 将DUE00记录实体由普通的实体（DataAccess.Model.DUE00）转换为SubSonic插件生成的实体
+		/// 将SHOP_SUPPLIER_RELATION记录实体由普通的实体（DataAccess.Model.SHOP_SUPPLIER_RELATION）转换为SubSonic插件生成的实体
 		/// </summary>
-        /// <param name="model">普通的实体（DataAccess.Model.DUE00）</param>
-		/// <returns>DUE00</returns>
-		public DUE00 Transform(DataAccess.Model.DUE00 model)
+        /// <param name="model">普通的实体（DataAccess.Model.SHOP_SUPPLIER_RELATION）</param>
+		/// <returns>SHOP_SUPPLIER_RELATION</returns>
+		public SHOP_SUPPLIER_RELATION Transform(DataAccess.Model.SHOP_SUPPLIER_RELATION model)
         {
 			if (model == null) 
 				return null;
 
-            return new DUE00
+            return new SHOP_SUPPLIER_RELATION
             {
                 Id = model.Id,
                 SHOP_ID = model.SHOP_ID,
-                TAKEIN_ID = model.TAKEIN_ID,
-                STATUS = model.STATUS,
-                INPUT_DATE = model.INPUT_DATE,
                 SUP_ID = model.SUP_ID,
-                USER_ID = model.USER_ID,
-                APP_USER = model.APP_USER,
-                APP_DATETIME = model.APP_DATETIME,
-                TOT_AMOUNT = model.TOT_AMOUNT,
-                TOT_TAX = model.TOT_TAX,
-                TOT_QTY = model.TOT_QTY,
-                PRE_PAY = model.PRE_PAY,
-                PRE_PAY_ID = model.PRE_PAY_ID,
-                RELATE_ID = model.RELATE_ID,
-                INVOICE_ID = model.INVOICE_ID,
-                TAKEIN_TYPE = model.TAKEIN_TYPE,
-                Memo = model.Memo,
+                SUP_NAME = model.SUP_NAME,
+                MEMO = model.MEMO,
                 CRT_DATETIME = model.CRT_DATETIME,
-                CRT_USER_ID = model.CRT_USER_ID,
-                MOD_DATETIME = model.MOD_DATETIME,
-                MOD_USER_ID = model.MOD_USER_ID,
-                LAST_UPDATE = model.LAST_UPDATE,
             };
         }
 
 		/// <summary>
-		/// 将DUE00记录实体由普通实体集（DataAccess.Model.DUE00）转换为SubSonic插件生成的实体集
+		/// 将SHOP_SUPPLIER_RELATION记录实体由普通实体集（DataAccess.Model.SHOP_SUPPLIER_RELATION）转换为SubSonic插件生成的实体集
 		/// </summary>
-        /// <param name="sourceList">普通实体集（DataAccess.Model.DUE00）</param>
-        public IList<DUE00> Transform(IList<DataAccess.Model.DUE00> sourceList)
+        /// <param name="sourceList">普通实体集（DataAccess.Model.SHOP_SUPPLIER_RELATION）</param>
+        public IList<SHOP_SUPPLIER_RELATION> Transform(IList<DataAccess.Model.SHOP_SUPPLIER_RELATION> sourceList)
         {
 			//创建List容器
-            var list = new List<DUE00>();
+            var list = new List<SHOP_SUPPLIER_RELATION>();
 			//将普通实体集转换后存储到刚创建的List容器中
             sourceList.ToList().ForEach(r => list.Add(Transform(r)));
             return list;
@@ -585,7 +483,7 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="model">实体</param>
         /// <param name="dic">列名与值</param>
-		public void SetModelValue(DataAccess.Model.DUE00 model, Dictionary<string, object> dic)
+		public void SetModelValue(DataAccess.Model.SHOP_SUPPLIER_RELATION model, Dictionary<string, object> dic)
 		{
 			if (model == null || dic == null) return;
 
@@ -602,7 +500,7 @@ namespace Solution.Logic.Managers {
         /// <param name="model">实体</param>
         /// <param name="colName">列名</param>
         /// <param name="value">值</param>
-		public void SetModelValue(DataAccess.Model.DUE00 model, string colName, object value)
+		public void SetModelValue(DataAccess.Model.SHOP_SUPPLIER_RELATION model, string colName, object value)
 		{
 			if (model == null || string.IsNullOrEmpty(colName)) return;
 
@@ -615,68 +513,17 @@ namespace Solution.Logic.Managers {
 				case "SHOP_ID" :
 					model.SHOP_ID = (string)value;
                     break;
-				case "TAKEIN_ID" :
-					model.TAKEIN_ID = (string)value;
-                    break;
-				case "STATUS" :
-					model.STATUS = ConvertHelper.Ctinyint(value);
-                    break;
-				case "INPUT_DATE" :
-					model.INPUT_DATE = (DateTime)value;
-                    break;
 				case "SUP_ID" :
 					model.SUP_ID = (string)value;
                     break;
-				case "USER_ID" :
-					model.USER_ID = (string)value;
+				case "SUP_NAME" :
+					model.SUP_NAME = (string)value;
                     break;
-				case "APP_USER" :
-					model.APP_USER = (string)value;
-                    break;
-				case "APP_DATETIME" :
-					model.APP_DATETIME = (DateTime)value;
-                    break;
-				case "TOT_AMOUNT" :
-					model.TOT_AMOUNT = (decimal)value;
-                    break;
-				case "TOT_TAX" :
-					model.TOT_TAX = (decimal)value;
-                    break;
-				case "TOT_QTY" :
-					model.TOT_QTY = (decimal)value;
-                    break;
-				case "PRE_PAY" :
-					model.PRE_PAY = (decimal)value;
-                    break;
-				case "PRE_PAY_ID" :
-					model.PRE_PAY_ID = (string)value;
-                    break;
-				case "RELATE_ID" :
-					model.RELATE_ID = (string)value;
-                    break;
-				case "INVOICE_ID" :
-					model.INVOICE_ID = (string)value;
-                    break;
-				case "TAKEIN_TYPE" :
-					model.TAKEIN_TYPE = (int)value;
-                    break;
-				case "Memo" :
-					model.Memo = (string)value;
+				case "MEMO" :
+					model.MEMO = (string)value;
                     break;
 				case "CRT_DATETIME" :
 					model.CRT_DATETIME = (DateTime)value;
-                    break;
-				case "CRT_USER_ID" :
-					model.CRT_USER_ID = (string)value;
-                    break;
-				case "MOD_DATETIME" :
-					model.MOD_DATETIME = (DateTime)value;
-                    break;
-				case "MOD_USER_ID" :
-					model.MOD_USER_ID = (string)value;
-                    break;
-				case "LAST_UPDATE" :
-					model.LAST_UPDATE = (DateTime)value;
                     break;
             }
 		}
@@ -685,9 +532,9 @@ namespace Solution.Logic.Managers {
 
 		#endregion
 
-		#region 获取DUE00表记录总数
+		#region 获取SHOP_SUPPLIER_RELATION表记录总数
         /// <summary>
-        /// 获取DUE00表记录总数
+        /// 获取SHOP_SUPPLIER_RELATION表记录总数
         /// </summary>
         /// <returns>记录总数</returns>
         public int GetRecordCount()
@@ -708,23 +555,23 @@ namespace Solution.Logic.Managers {
         }
 
 		/// <summary>
-		/// 获取DUE00表记录总数——从数据库中查询
+		/// 获取SHOP_SUPPLIER_RELATION表记录总数——从数据库中查询
 		/// </summary>
         /// <param name="wheres">条件</param>
 		/// <returns>int</returns>
 		public int GetRecordCount(List<ConditionFun.SqlqueryCondition> wheres) {
 			var select = new SelectHelper();
-			return select.GetRecordCount<DUE00>(wheres);
+			return select.GetRecordCount<SHOP_SUPPLIER_RELATION>(wheres);
 
 		}
 
 		/// <summary>
-		/// 获取DUE00表指定条件的记录总数——从数据库中查询
+		/// 获取SHOP_SUPPLIER_RELATION表指定条件的记录总数——从数据库中查询
 		/// </summary>
         /// <param name="expression">条件</param>
 		/// <returns>int</returns>
-		public int GetRecordCount(Expression<Func<DUE00, bool>> expression) {
-            return new Select().From<DUE00>().Where(expression).GetRecordCount();
+		public int GetRecordCount(Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression) {
+            return new Select().From<SHOP_SUPPLIER_RELATION>().Where(expression).GetRecordCount();
 		}
 
         #endregion
@@ -734,7 +581,7 @@ namespace Solution.Logic.Managers {
         /// 查找指定条件的记录集合——从IIS缓存中查找
         /// </summary>
         /// <param name="expression">条件语句</param>
-        public IList<DataAccess.Model.DUE00> Find(Expression<Func<DataAccess.Model.DUE00, bool>> expression)
+        public IList<DataAccess.Model.SHOP_SUPPLIER_RELATION> Find(Expression<Func<DataAccess.Model.SHOP_SUPPLIER_RELATION, bool>> expression)
         {
 			//从缓存中获取记录集
 			var list = GetList();
@@ -774,7 +621,7 @@ namespace Solution.Logic.Managers {
             }
             
             //从数据库中查找
-            return DUE00.Exists(x => x.Id == id);
+            return SHOP_SUPPLIER_RELATION.Exists(x => x.Id == id);
         }
 
         /// <summary>
@@ -782,7 +629,7 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="expression">条件语句</param>
         /// <returns></returns>
-        public bool Exist(Expression<Func<DataAccess.Model.DUE00, bool>> expression)
+        public bool Exist(Expression<Func<DataAccess.Model.SHOP_SUPPLIER_RELATION, bool>> expression)
         {
             var list = GetList();
             if (list == null) 
@@ -794,9 +641,9 @@ namespace Solution.Logic.Managers {
         }
         #endregion
 
-		#region 获取DUE00表记录
+		#region 获取SHOP_SUPPLIER_RELATION表记录
 		/// <summary>
-		/// 获取DUE00表记录
+		/// 获取SHOP_SUPPLIER_RELATION表记录
 		/// </summary>
 		/// <param name="norepeat">是否使用去重复</param>
 		/// <param name="top">获取指定数量记录</param>
@@ -811,12 +658,12 @@ namespace Solution.Logic.Managers {
             {
                 //分页查询
                 var select = new SelectHelper();
-                return select.SelectDataTable<DUE00>(norepeat, top, columns, pageIndex, pageSize, wheres, sorts);
+                return select.SelectDataTable<SHOP_SUPPLIER_RELATION>(norepeat, top, columns, pageIndex, pageSize, wheres, sorts);
             }
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("获取DUE00表记录时出现异常", e);
+                CommonBll.WriteLog("获取SHOP_SUPPLIER_RELATION表记录时出现异常", e);
 
                 return null;
             }
@@ -913,16 +760,16 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 
-		#region 添加与编辑DUE00表记录
+		#region 添加与编辑SHOP_SUPPLIER_RELATION表记录
 		/// <summary>
-		/// 添加与编辑DUE00记录
+		/// 添加与编辑SHOP_SUPPLIER_RELATION记录
 		/// </summary>
 	    /// <param name="page">当前页面指针</param>
-		/// <param name="model">DUE00表实体</param>
+		/// <param name="model">SHOP_SUPPLIER_RELATION表实体</param>
         /// <param name="content">更新说明</param>
         /// <param name="isCache">是否更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void Save(Page page, DUE00 model, string content = null, bool isCache = true, bool isAddUseLog = true)
+        public void Save(Page page, SHOP_SUPPLIER_RELATION model, string content = null, bool isCache = true, bool isAddUseLog = true)
         {
 			try {
 				//保存
@@ -938,7 +785,7 @@ namespace Solution.Logic.Managers {
 				{
 					if (string.IsNullOrEmpty(content))
 					{
-						content = "{0}" + (model.Id == 0 ? "添加" : "编辑") + "DUE00记录成功，ID为【" + model.Id + "】";
+						content = "{0}" + (model.Id == 0 ? "添加" : "编辑") + "SHOP_SUPPLIER_RELATION记录成功，ID为【" + model.Id + "】";
 					}
 
 					//添加用户访问记录
@@ -946,7 +793,7 @@ namespace Solution.Logic.Managers {
 				}
 			}
 			catch (Exception e) {
-				var result = "执行DUE00Bll.Save()函数出错！";
+				var result = "执行SHOP_SUPPLIER_RELATIONBll.Save()函数出错！";
 
 				//出现异常，保存出错日志信息
 				CommonBll.WriteLog(result, e);
@@ -954,9 +801,9 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 
-		#region 删除DUE00表记录
+		#region 删除SHOP_SUPPLIER_RELATION表记录
 		/// <summary>
-		/// 删除DUE00表记录
+		/// 删除SHOP_SUPPLIER_RELATION表记录
 		/// </summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="id">记录的主键值</param>
@@ -964,7 +811,7 @@ namespace Solution.Logic.Managers {
 		public override void Delete(Page page, int id, bool isAddUseLog = true) 
 		{
 			//设置Sql语句
-			var sql = string.Format("delete from {0} where {1} = {2}", DUE00Table.TableName,  DUE00Table.Id, id);
+			var sql = string.Format("delete from {0} where {1} = {2}", SHOP_SUPPLIER_RELATIONTable.TableName,  SHOP_SUPPLIER_RELATIONTable.Id, id);
 
 			//删除
 			var delete = new DeleteHelper();
@@ -980,12 +827,12 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了DUE00表id为【" + id + "】的记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了SHOP_SUPPLIER_RELATION表id为【" + id + "】的记录！");
 			}
 		}
 
 		/// <summary>
-		/// 删除DUE00表记录
+		/// 删除SHOP_SUPPLIER_RELATION表记录
 		/// </summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="id">记录的主键值</param>
@@ -997,7 +844,7 @@ namespace Solution.Logic.Managers {
 			var str = string.Join(",", id);
 
 			//设置Sql语句
-			var sql = string.Format("delete from {0} where {1} in ({2})", DUE00Table.TableName,  DUE00Table.Id, str);
+			var sql = string.Format("delete from {0} where {1} in ({2})", SHOP_SUPPLIER_RELATIONTable.TableName,  SHOP_SUPPLIER_RELATIONTable.Id, str);
 
 			//删除
 			var delete = new DeleteHelper();
@@ -1013,7 +860,7 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了DUE00表id为【" + str + "】的记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了SHOP_SUPPLIER_RELATION表id为【" + str + "】的记录！");
 			}
 		}
 
@@ -1023,10 +870,10 @@ namespace Solution.Logic.Managers {
         /// <param name="page">当前页面指针</param>
         /// <param name="expression">条件语句</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void Delete(Page page, Expression<Func<DUE00, bool>> expression, bool isAddUseLog = true)
+        public void Delete(Page page, Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression, bool isAddUseLog = true)
         {
 			//执行删除
-			DUE00.Delete(expression);
+			SHOP_SUPPLIER_RELATION.Delete(expression);
 
             //判断是否启用缓存
             if (CommonBll.IsUseCache())
@@ -1040,7 +887,7 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了DUE00表记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了SHOP_SUPPLIER_RELATION表记录！");
 			}
         }
 		#endregion
@@ -1057,7 +904,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateSort(Page page, FineUI.Grid grid1, string tbxSort, string sortName = "Sort")
 	    {
 		     //更新排序
-			if (CommonBll.UpdateSort(page, grid1, tbxSort, "DUE00", sortName, "Id"))
+			if (CommonBll.UpdateSort(page, grid1, tbxSort, "SHOP_SUPPLIER_RELATION", sortName, "Id"))
 		    {
 				//判断是否启用缓存
                 if (CommonBll.IsUseCache())
@@ -1069,7 +916,7 @@ namespace Solution.Logic.Managers {
                 }
 				
 			    //添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}更新了DUE00表排序！");
+				UseLogBll.GetInstence().Save(page, "{0}更新了SHOP_SUPPLIER_RELATION表排序！");
 
 			    return true;
 		    }
@@ -1090,7 +937,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateAutoSort(Page page, string strWhere = "", bool isExistsMoreLv = false, int pid = 0, string fieldName = "Sort", string fieldParentId = "ParentId")
 	    {
 		    //更新排序
-			if (CommonBll.AutoSort("Id", "DUE00", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
+			if (CommonBll.AutoSort("Id", "SHOP_SUPPLIER_RELATION", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
 		    {
 				//判断是否启用缓存
                 if (CommonBll.IsUseCache())
@@ -1102,7 +949,7 @@ namespace Solution.Logic.Managers {
                 }
 
 			    //添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}对DUE00表进行了自动排序操作！");
+				UseLogBll.GetInstence().Save(page, "{0}对SHOP_SUPPLIER_RELATION表进行了自动排序操作！");
 
 			    return true;
 		    }
@@ -1136,7 +983,7 @@ namespace Solution.Logic.Managers {
 	    {
             //如果条件列为空，则默认为主键列
             if (string.IsNullOrEmpty(conditionColName))
-                conditionColName = DUE00Table.Id;
+                conditionColName = SHOP_SUPPLIER_RELATIONTable.Id;
 
             //在内存中查询
 	        if (isCache)
@@ -1181,7 +1028,7 @@ namespace Solution.Logic.Managers {
         /// <param name="colName">获取的列名</param>
         /// <param name="expression">条件</param>
         /// <returns></returns>
-        public object GetFieldValue(string colName, Expression<Func<DataAccess.Model.DUE00, bool>> expression)
+        public object GetFieldValue(string colName, Expression<Func<DataAccess.Model.SHOP_SUPPLIER_RELATION, bool>> expression)
 	    {
 	        return GetFieldValue(GetModelForCache(expression), colName);
 	    }
@@ -1216,7 +1063,7 @@ namespace Solution.Logic.Managers {
         public object GetFieldValue(string colName, List<ConditionFun.SqlqueryCondition> wheres)
         {
             var select = new SelectHelper();
-            return select.GetColumnsValue<DUE00>(colName, wheres);
+            return select.GetColumnsValue<SHOP_SUPPLIER_RELATION>(colName, wheres);
         }
 
 		/// <summary>
@@ -1225,7 +1072,7 @@ namespace Solution.Logic.Managers {
         /// <param name="model">实体</param>
         /// <param name="colName">获取的字段名</param>
         /// <returns></returns>
-		private object GetFieldValue(DataAccess.Model.DUE00 model, string colName)
+		private object GetFieldValue(DataAccess.Model.SHOP_SUPPLIER_RELATION model, string colName)
 		{
 			if (model == null || string.IsNullOrEmpty(colName)) return null;
 			//返回指定的列值
@@ -1235,48 +1082,14 @@ namespace Solution.Logic.Managers {
 					return model.Id;
 				case "SHOP_ID" :
 					return model.SHOP_ID;
-				case "TAKEIN_ID" :
-					return model.TAKEIN_ID;
-				case "STATUS" :
-					return model.STATUS;
-				case "INPUT_DATE" :
-					return model.INPUT_DATE;
 				case "SUP_ID" :
 					return model.SUP_ID;
-				case "USER_ID" :
-					return model.USER_ID;
-				case "APP_USER" :
-					return model.APP_USER;
-				case "APP_DATETIME" :
-					return model.APP_DATETIME;
-				case "TOT_AMOUNT" :
-					return model.TOT_AMOUNT;
-				case "TOT_TAX" :
-					return model.TOT_TAX;
-				case "TOT_QTY" :
-					return model.TOT_QTY;
-				case "PRE_PAY" :
-					return model.PRE_PAY;
-				case "PRE_PAY_ID" :
-					return model.PRE_PAY_ID;
-				case "RELATE_ID" :
-					return model.RELATE_ID;
-				case "INVOICE_ID" :
-					return model.INVOICE_ID;
-				case "TAKEIN_TYPE" :
-					return model.TAKEIN_TYPE;
-				case "Memo" :
-					return model.Memo;
+				case "SUP_NAME" :
+					return model.SUP_NAME;
+				case "MEMO" :
+					return model.MEMO;
 				case "CRT_DATETIME" :
 					return model.CRT_DATETIME;
-				case "CRT_USER_ID" :
-					return model.CRT_USER_ID;
-				case "MOD_DATETIME" :
-					return model.MOD_DATETIME;
-				case "MOD_USER_ID" :
-					return model.MOD_USER_ID;
-				case "LAST_UPDATE" :
-					return model.LAST_UPDATE;
 			}
 
 			return null;
@@ -1284,8 +1097,8 @@ namespace Solution.Logic.Managers {
 
 		#endregion
 		
-		#region 更新DUE00表指定字段值
-		/// <summary>更新DUE00表记录指定字段值，如果使用了缓存，保存成功后会清空本表的所有缓存记录，然后重新加载进缓存</summary>
+		#region 更新SHOP_SUPPLIER_RELATION表指定字段值
+		/// <summary>更新SHOP_SUPPLIER_RELATION表记录指定字段值，如果使用了缓存，保存成功后会清空本表的所有缓存记录，然后重新加载进缓存</summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="dic">需要更新的字段与值</param>
 		/// <param name="wheres">条件</param>
@@ -1295,7 +1108,7 @@ namespace Solution.Logic.Managers {
 		public void UpdateValue(Page page, Dictionary<string, object> dic, List<ConditionFun.SqlqueryCondition> wheres = null, string content = "", bool isCache = true, bool isAddUseLog = true) {
 			//更新
 			var update = new UpdateHelper();
-			update.Update<DUE00>(dic, wheres);
+			update.Update<SHOP_SUPPLIER_RELATION>(dic, wheres);
 
 			//判断是否启用缓存
 			if (isCache && CommonBll.IsUseCache())
@@ -1310,7 +1123,7 @@ namespace Solution.Logic.Managers {
 				if (string.IsNullOrEmpty(content))
 				{
 					//添加用户操作记录
-					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}修改了DUE00表记录。");				
+					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}修改了SHOP_SUPPLIER_RELATION表记录。");				
 				}
 				else
 				{
@@ -1321,8 +1134,8 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 				
-		#region 更新DUE00表指定主键Id的字段值
-		/// <summary>更新DUE00表记录指定字段值</summary>
+		#region 更新SHOP_SUPPLIER_RELATION表指定主键Id的字段值
+		/// <summary>更新SHOP_SUPPLIER_RELATION表记录指定字段值</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
 	    /// <param name="dic">需要更新的字段与值</param>
@@ -1331,14 +1144,14 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
 	    public void UpdateValue(Page page, int id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-			content = content != "" ? content : "{0}修改了DUE00表主键Id值为" + id + "的记录。";
+			content = content != "" ? content : "{0}修改了SHOP_SUPPLIER_RELATION表主键Id值为" + id + "的记录。";
 			
             //条件
 		    List<ConditionFun.SqlqueryCondition> wheres = null;
             if (id > 0)
             {
                 wheres = new List<ConditionFun.SqlqueryCondition>();
-                wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, DUE00Table.Id, Comparison.Equals, id));
+                wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, SHOP_SUPPLIER_RELATIONTable.Id, Comparison.Equals, id));
             };
 
 			//判断是否启用缓存——为了防止并发问题，所以先更新缓存再更新数据库
@@ -1356,7 +1169,7 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, dic, wheres, content, false, isAddUseLog);
         }
 
-        /// <summary>更新DUE00表记录指定字段值（更新一个字段值）</summary>
+        /// <summary>更新SHOP_SUPPLIER_RELATION表记录指定字段值（更新一个字段值）</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
         /// <param name="columnName">要更新的列名</param>
@@ -1366,7 +1179,7 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
         public void UpdateValue(Page page, int id, string columnName, object columnValue, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-            content = content != "" ? content : "{0}修改了DUE00表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
+            content = content != "" ? content : "{0}修改了SHOP_SUPPLIER_RELATION表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
             //设置更新字段
             var dic = new Dictionary<string, object>();
             dic.Add(columnName, columnValue);
@@ -1375,7 +1188,7 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, id, dic, content, isCache, isAddUseLog);
         }
 
-		 /// <summary>更新DUE00表记录指定字段值（更新两个字段值）</summary>
+		 /// <summary>更新SHOP_SUPPLIER_RELATION表记录指定字段值（更新两个字段值）</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
         /// <param name="columnName1">要更新的列名</param>
@@ -1387,7 +1200,7 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
         public void UpdateValue(Page page, int id, string columnName1, object columnValue1, string columnName2, object columnValue2, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-            content = content != "" ? content : "{0}修改了DUE00表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
+            content = content != "" ? content : "{0}修改了SHOP_SUPPLIER_RELATION表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
             //设置更新字段
             var dic = new Dictionary<string, object>();
             dic.Add(columnName1, columnValue1);
@@ -1397,25 +1210,6 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, id, dic, content, isCache, isAddUseLog);
         }
         #endregion
-		
-		#region 更新STATUS字段值
-		/// <summary>
-		/// 更新STATUS字段值
-		/// </summary>
-		/// <param name="page">当前页面指针</param>
-		/// <param name="pkValue">主键Id，当等于0时，则更新所有记录</param>
-		/// <param name="updateValue">更新值</param>
-        /// <param name="isCache">是否同步更新缓存</param>
-		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-		public void UpdateSTATUS(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
-			//设置更新值
-			var setValue = new Dictionary<string, object>();
-			setValue[DUE00Table.STATUS] = updateValue;
-
-			//更新
-			UpdateValue(page, pkValue, setValue, "{0}更新了DUE00表id为【" + pkValue + "】的记录，更新内容为将STATUS字段值修改为" + updateValue, isCache, isAddUseLog);
-		}
-		#endregion
 		
     
 		#endregion 模版生成函数

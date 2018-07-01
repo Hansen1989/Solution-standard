@@ -25,7 +25,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 店铺编号
 			/// </summary>
    			public static string SHOP_ID{
 			      get{
@@ -33,7 +33,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 进货单
 			/// </summary>
    			public static string TAKEIN_ID{
 			      get{
@@ -41,7 +41,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 应付账单状态
 			/// </summary>
    			public static string STATUS{
 			      get{
@@ -49,7 +49,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 进货单日期
 			/// </summary>
    			public static string INPUT_DATE{
 			      get{
@@ -57,7 +57,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 供应商编号
 			/// </summary>
    			public static string SUP_ID{
 			      get{
@@ -65,7 +65,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 进货单制单人
 			/// </summary>
    			public static string USER_ID{
 			      get{
@@ -73,7 +73,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 进货单审核人
 			/// </summary>
    			public static string APP_USER{
 			      get{
@@ -81,7 +81,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 审核时间
 			/// </summary>
    			public static string APP_DATETIME{
 			      get{
@@ -89,7 +89,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 进货单金额
 			/// </summary>
    			public static string TOT_AMOUNT{
 			      get{
@@ -97,7 +97,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 采购总税额
 			/// </summary>
    			public static string TOT_TAX{
 			      get{
@@ -105,7 +105,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 采购总数量
 			/// </summary>
    			public static string TOT_QTY{
 			      get{
@@ -113,7 +113,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 采购预付款
 			/// </summary>
    			public static string PRE_PAY{
 			      get{
@@ -129,7 +129,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 关联单号
 			/// </summary>
    			public static string RELATE_ID{
 			      get{
@@ -137,7 +137,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 发票号码
 			/// </summary>
    			public static string INVOICE_ID{
 			      get{
@@ -145,7 +145,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 进货类型
 			/// </summary>
    			public static string TAKEIN_TYPE{
 			      get{
@@ -153,7 +153,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 备注
 			/// </summary>
    			public static string Memo{
 			      get{
@@ -161,7 +161,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 建档日期
 			/// </summary>
    			public static string CRT_DATETIME{
 			      get{
@@ -169,7 +169,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 建档人员
 			/// </summary>
    			public static string CRT_USER_ID{
 			      get{
@@ -177,7 +177,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 修改日期
 			/// </summary>
    			public static string MOD_DATETIME{
 			      get{
@@ -185,7 +185,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 修改人员
 			/// </summary>
    			public static string MOD_USER_ID{
 			      get{
@@ -193,7 +193,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 最后异动时间
 			/// </summary>
    			public static string LAST_UPDATE{
 			      get{

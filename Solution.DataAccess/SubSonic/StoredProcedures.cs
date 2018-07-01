@@ -158,6 +158,16 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("shop_id",shop_id,DbType.AnsiString);
             return sp;
         }
+        public static StoredProcedure GET_STOCK01_PROD(string STOCK_ID,string INV_ID,string SHOP_ID,string INV_TYPE){
+            StoredProcedure sp=new StoredProcedure("GET_STOCK01_PROD");
+			
+
+            sp.Command.AddParameter("STOCK_ID",STOCK_ID,DbType.AnsiString);
+            sp.Command.AddParameter("INV_ID",INV_ID,DbType.AnsiString);
+            sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
+            sp.Command.AddParameter("INV_TYPE",INV_TYPE,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure GET_TABLE_SEED(string TABLE_NAME,string SEED_DATETIME){
             StoredProcedure sp=new StoredProcedure("GET_TABLE_SEED");
 			
@@ -172,6 +182,13 @@ namespace Solution.DataAccess.DataModel{
 
             sp.Command.AddParameter("PROD_ID",PROD_ID,DbType.AnsiString);
             sp.Command.AddParameter("CRT_USER_ID",CRT_USER_ID,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure INTO_Stock_IN_BACK(string IB_ID){
+            StoredProcedure sp=new StoredProcedure("INTO_Stock_IN_BACK");
+			
+
+            sp.Command.AddParameter("IB_ID",IB_ID,DbType.AnsiString);
             return sp;
         }
         public static StoredProcedure SplitOrders(string col_id,int prod_type){

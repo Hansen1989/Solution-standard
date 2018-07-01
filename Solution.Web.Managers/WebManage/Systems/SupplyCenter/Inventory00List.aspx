@@ -19,7 +19,6 @@
                       <Items>
                           <f:Button ID="ButtonAdd" runat="server" Text="新增" Icon="Disk" OnClick="BtnAdd_Click"></f:Button>
                           <f:Button ID="ButtonSave" runat="server" Text="保存" Icon="Disk" OnClick="BtnSave_Click"></f:Button>
-                          <f:Button ID="ButtonEdit" runat="server" Text="修改" Icon="Disk" OnClick="Btn_MainEdit"></f:Button>
                           <f:Button ID="ButtonCheck" runat="server" Text="核准" Icon="Disk" OnClick="Btn_MainCheck"></f:Button>
                           <f:Button ID="ButtonCancel" runat="server" Text="作废" Icon="Disk" OnClick="Btn_MainCancel"></f:Button>
                       </Items>
@@ -81,13 +80,6 @@
 
                     <Items>
                        <f:Panel ID="Panel12" runat="server" Title="盘点作业子表">
-                           <Toolbars>
-                             <f:Toolbar ID="Toolbar21111" runat="server">
-                               <Items>
-                                  <f:Button ID="ButtonDetailAdd" runat="server" Text="添加" Icon="Add" OnClick="btn_DetailAdd"></f:Button>
-                               </Items>
-                             </f:Toolbar>
-                           </Toolbars>
                            <Items>
                               <f:Grid ID="Grid2" Title="盘点作业子表" EnableFrame="false" EnableCollapse="true" ShowHeader="false" runat="server" Height="600px"
                                    DataKeyNames="Id" EnableColumnLines="true" AllowPaging="true"
@@ -189,7 +181,7 @@
                 </f:Panel>
 
                 <f:Panel runat="server" ID="panelLeftRegion" EnableFrame="false" RegionPosition="Right" RegionSplit="true" EnableCollapse="true" Expanded="false"
-                    Width="400px" Title="领用作业" ShowBorder="true" ShowHeader="true" BodyPadding="5px" >
+                    Width="400px" Title="盘点单" ShowBorder="true" ShowHeader="true" BodyPadding="5px" >
                     <Items>
                         <f:RadioButtonList ID="ddrDataType" Label="日期" runat="server">
                             <f:RadioItem Text="单据日期" Value="1" Selected="true" />
@@ -202,74 +194,52 @@
                             CompareOperator="GreaterThan" CompareMessage="结束日期应该大于开始日期" Label="结束日期"
                             runat="server" ShowRedStar="True">
                         </f:DatePicker>
-                        <f:DropDownList runat="server" ID="ddlSHOP_NAME1" Required="true" ShowRedStar="true" Label="分店名称" Enabled="false">
+                        <f:DropDownList runat="server" ID="ddlSTOCK_NAME1" Required="true" ShowRedStar="true" Label="仓库名称" Enabled="false">
                         </f:DropDownList>
                         <f:Button ID="ButtonSearch" runat="server" Text="查询" Icon="Magnifier" OnClick="BtnSearchOrder_click"></f:Button>
                     </Items>
                     <Items>
-                       <f:Grid ID="Grid1" Title="领用作业列表" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="INV_ID"
+                       <f:Grid ID="Grid1" Title="盘点作业列表" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="INV_ID"
                          EnableCheckBoxSelect="true" KeepCurrentSelection="false" EnableMultiSelect="false" PageSize="15"
                          EnableRowClickEvent="true" OnRowClick="Grid1_RowClick" >
                          <Columns>
                            <f:RowNumberField />
-                           <f:BoundField Width="125px" DataField="INV_ID" HeaderText="领用单号" />
-                           <f:BoundField Width="125px" DataField="SHOP_NAME1" HeaderText="分店名称" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="INPUT_DATE" HeaderText="单据日期" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="INV_ID" HeaderText="盘点单号" />
+                           <f:BoundField Width="125px" DataField="STOCK_NAKE" HeaderText="仓库名称" ExpandUnusedSpace="true"  />
                          </Columns>
                        </f:Grid>
                     </Items>
                 </f:Panel>
             </Items>
         </f:Panel>
-        <f:Window ID="Window3" Width="1000px" Height="800px" Icon="TagBlue" Hidden="true" BodyPadding="10px"
-            EnableMaximize="true" EnableCollapse="true" runat="server" EnableResize="true"
+        <f:Window ID="Window3" Width="400px" Height="200px" Icon="TagBlue" Hidden="true" BodyPadding="10px"
+            EnableMaximize="true" EnableCollapse="true" runat="server" EnableResize="true" Title="选择"
             IsModal="false" CloseAction="HidePostBack" OnClose="Window3_Close" Layout="Fit">
-            <%--<Toolbars>
-                <f:Toolbar ID="tools" runat="server">
-                    <Items>
-                        <f:Button ID="ButtonSearchPROD1" runat="server" Text="查询" Icon="Magnifier" </f:Button> OnClick="ButtonPRODSearch2_Click" >
-                    </Items>
-                </f:Toolbar>
-            </Toolbars>--%>
             <Content>
-                <f:Panel runat="server" ID="PanelGrid4" RegionPosition="Right" RegionSplit="true" EnableCollapse="true" Expanded="true"
-                    Width="900px" Title="商品资料" ShowBorder="true" ShowHeader="true"
+                <f:Panel runat="server" ID="PanelGrid4" RegionPosition="center" RegionSplit="true" EnableCollapse="false" Expanded="true"
+                    Width="300px" Title="选择" ShowBorder="false" ShowHeader="false"
                     BodyPadding="5px">
                     <Items>
                         <f:Panel runat="server" ID="Panel_Search" Hidden="true">
                             <Items>
-                                <f:TextBox runat="server" Label="商品编码" ID="ccPROD_ID" Width="240px"  ></f:TextBox>
-                                <f:TextBox runat="server" Label="商品名称1" ID="ccPROD_NAME" Width="240px"></f:TextBox>
-                                <f:TextBox runat="server" Label="商品首拼" ID="ccPROD_NAME_SPELLING" Width="240px"></f:TextBox>
-                                <f:DropDownList Label="商品性质" runat="server" ID="ccPROD_KIND" Width="240px"></f:DropDownList>
-                                <f:DropDownList Label="商品类别" runat="server" ID="ccPROD_DEP" Width="240px" ></f:DropDownList>
-                                <f:DropDownList Label="商品小类" runat="server" ID="ccPROD_CATE" Width="240px" ></f:DropDownList>
+                               <f:DropDownList runat="server" ID="window_ddl_INV_TYPE" Required="true" ShowRedStar="true" Label="盘点类型" Enabled="true">
+                                                <f:ListItem Text="日盘" Value="1" Selected="true" />
+                                                <f:ListItem Text="周盘" Value="2" />
+                                                <f:ListItem Text="月盘" Value="3" />
+                                                <f:ListItem Text="全盘" Value="4" />
+                               </f:DropDownList> 
+                                <f:DropDownList runat="server" ID="window_ddl_Stock" Required="true" ShowRedStar="true" Label="盘点仓库" Enabled="true">
+                               </f:DropDownList> 
                             </Items>
                         </f:Panel>
                     </Items>
                     <Items>
                         <f:Toolbar runat="server" ID="tool_btn">
                             <Items>
-                                <f:Button ID="BtnSearchCon" runat="server" Text="查询" Icon="Add" Hidden="true" OnClick="ButtonPRODSearch_Click"></f:Button>
-                                <f:Button ID="BtnAddCon" runat="server" Text="添加" Icon="Add" Hidden="true" OnClick="ButtonPRODAdd_Click"></f:Button>
-                                <f:Button ID="BtnEditCon" runat="server" Text="确定" Icon="accept" Hidden="true" ></f:Button>
+                                <f:Button ID="B_BtnAddCon" runat="server" Text="确定" Icon="Add" Hidden="false" OnClick="ButtonPRODAdd_Click"></f:Button>
                             </Items>
                         </f:Toolbar>
-                    </Items>
-                    <Items>
-                       <f:Grid ID="Grid4" Title="商品资料" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="PROD_ID"
-                         EnableCheckBoxSelect="true" KeepCurrentSelection="true" PageSize="1000"
-                         ><%--EnableRowClickEvent="true" OnRowClick="Grid1_RowClick" --%>
-                         <Columns>
-                           <f:RowNumberField />
-                           <f:BoundField Width="125px" DataField="PROD_ID" HeaderText="厂商编码" ExpandUnusedSpace="true"  />
-                           <f:BoundField Width="125px" DataField="PROD_NAME1" HeaderText="厂商名称" ExpandUnusedSpace="true"  />
-                           <f:BoundField Width="125px" DataField="PROD_ID" HeaderText="商品编号" ExpandUnusedSpace="true"  />
-                           <f:BoundField Width="125px" DataField="PROD_NAME1" HeaderText="商品名称" ExpandUnusedSpace="true"  />
-                           <f:BoundField Width="125px" DataField="COST" HeaderText="价格1" ExpandUnusedSpace="true"  />
-                           <f:BoundField Width="125px" DataField="COST1" HeaderText="价格2" ExpandUnusedSpace="true"  />
-                           <f:BoundField Width="125px" DataField="COST2" HeaderText="价格3" ExpandUnusedSpace="true"  />
-                         </Columns>
-                       </f:Grid>
                     </Items>
                  </f:Panel>
             </Content>

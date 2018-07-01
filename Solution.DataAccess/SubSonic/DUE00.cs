@@ -148,7 +148,7 @@ namespace Solution.DataAccess.DataModel
                
             INVOICE_ID = readRecord.get_string("INVOICE_ID",null);
                
-            TAKEIN_TYPE = readRecord.get_byte("TAKEIN_TYPE",null);
+            TAKEIN_TYPE = readRecord.get_int("TAKEIN_TYPE",null);
                
             Memo = readRecord.get_string("Memo",null);
                
@@ -363,7 +363,7 @@ namespace Solution.DataAccess.DataModel
 
         string _SHOP_ID;
 		/// <summary>
-		/// 
+		/// 店铺编号
 		/// </summary>
         public string SHOP_ID
         {
@@ -385,7 +385,7 @@ namespace Solution.DataAccess.DataModel
 
         string _TAKEIN_ID;
 		/// <summary>
-		/// 
+		/// 进货单
 		/// </summary>
         public string TAKEIN_ID
         {
@@ -407,7 +407,7 @@ namespace Solution.DataAccess.DataModel
 
         byte _STATUS;
 		/// <summary>
-		/// 
+		/// 应付账单状态
 		/// </summary>
         public byte STATUS
         {
@@ -429,7 +429,7 @@ namespace Solution.DataAccess.DataModel
 
         DateTime _INPUT_DATE;
 		/// <summary>
-		/// 
+		/// 进货单日期
 		/// </summary>
         public DateTime INPUT_DATE
         {
@@ -451,7 +451,7 @@ namespace Solution.DataAccess.DataModel
 
         string _SUP_ID;
 		/// <summary>
-		/// 
+		/// 供应商编号
 		/// </summary>
         public string SUP_ID
         {
@@ -473,7 +473,7 @@ namespace Solution.DataAccess.DataModel
 
         string _USER_ID;
 		/// <summary>
-		/// 
+		/// 进货单制单人
 		/// </summary>
         public string USER_ID
         {
@@ -495,7 +495,7 @@ namespace Solution.DataAccess.DataModel
 
         string _APP_USER;
 		/// <summary>
-		/// 
+		/// 进货单审核人
 		/// </summary>
         public string APP_USER
         {
@@ -517,7 +517,7 @@ namespace Solution.DataAccess.DataModel
 
         DateTime _APP_DATETIME;
 		/// <summary>
-		/// 
+		/// 审核时间
 		/// </summary>
         public DateTime APP_DATETIME
         {
@@ -539,7 +539,7 @@ namespace Solution.DataAccess.DataModel
 
         decimal _TOT_AMOUNT;
 		/// <summary>
-		/// 
+		/// 进货单金额
 		/// </summary>
         public decimal TOT_AMOUNT
         {
@@ -561,7 +561,7 @@ namespace Solution.DataAccess.DataModel
 
         decimal _TOT_TAX;
 		/// <summary>
-		/// 
+		/// 采购总税额
 		/// </summary>
         public decimal TOT_TAX
         {
@@ -583,7 +583,7 @@ namespace Solution.DataAccess.DataModel
 
         decimal _TOT_QTY;
 		/// <summary>
-		/// 
+		/// 采购总数量
 		/// </summary>
         public decimal TOT_QTY
         {
@@ -605,7 +605,7 @@ namespace Solution.DataAccess.DataModel
 
         decimal _PRE_PAY;
 		/// <summary>
-		/// 
+		/// 采购预付款
 		/// </summary>
         public decimal PRE_PAY
         {
@@ -649,7 +649,7 @@ namespace Solution.DataAccess.DataModel
 
         string _RELATE_ID;
 		/// <summary>
-		/// 
+		/// 关联单号
 		/// </summary>
         public string RELATE_ID
         {
@@ -671,7 +671,7 @@ namespace Solution.DataAccess.DataModel
 
         string _INVOICE_ID;
 		/// <summary>
-		/// 
+		/// 发票号码
 		/// </summary>
         public string INVOICE_ID
         {
@@ -691,11 +691,11 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        byte _TAKEIN_TYPE;
+        int _TAKEIN_TYPE;
 		/// <summary>
-		/// 
+		/// 进货类型
 		/// </summary>
-        public byte TAKEIN_TYPE
+        public int TAKEIN_TYPE
         {
             get { return _TAKEIN_TYPE; }
             set
@@ -715,7 +715,7 @@ namespace Solution.DataAccess.DataModel
 
         string _Memo;
 		/// <summary>
-		/// 
+		/// 备注
 		/// </summary>
         public string Memo
         {
@@ -737,7 +737,7 @@ namespace Solution.DataAccess.DataModel
 
         DateTime _CRT_DATETIME;
 		/// <summary>
-		/// 
+		/// 建档日期
 		/// </summary>
         public DateTime CRT_DATETIME
         {
@@ -759,7 +759,7 @@ namespace Solution.DataAccess.DataModel
 
         string _CRT_USER_ID;
 		/// <summary>
-		/// 
+		/// 建档人员
 		/// </summary>
         public string CRT_USER_ID
         {
@@ -781,7 +781,7 @@ namespace Solution.DataAccess.DataModel
 
         DateTime _MOD_DATETIME;
 		/// <summary>
-		/// 
+		/// 修改日期
 		/// </summary>
         public DateTime MOD_DATETIME
         {
@@ -803,7 +803,7 @@ namespace Solution.DataAccess.DataModel
 
         string _MOD_USER_ID;
 		/// <summary>
-		/// 
+		/// 修改人员
 		/// </summary>
         public string MOD_USER_ID
         {
@@ -825,7 +825,7 @@ namespace Solution.DataAccess.DataModel
 
         DateTime _LAST_UPDATE;
 		/// <summary>
-		/// 
+		/// 最后异动时间
 		/// </summary>
         public DateTime LAST_UPDATE
         {

@@ -138,6 +138,16 @@ namespace Solution.DataAccess.Model
 			get { return _LAST_UPDATE; }
 			set { _LAST_UPDATE = value; }
 		}
+
+		string _SHOP_ID = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string SHOP_ID
+		{
+			get { return _SHOP_ID; }
+			set { _SHOP_ID = value; }
+		}
     } 
 
 }

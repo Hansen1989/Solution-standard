@@ -89,14 +89,14 @@ namespace Solution.DataAccess.Model
 			set { _STD_PRICE = value; }
 		}
 
-		decimal _Tax = 0;
+		decimal _TAX = 0;
 		/// <summary>
 		/// 
 		/// </summary>
-		public decimal Tax
+		public decimal TAX
 		{
-			get { return _Tax; }
-			set { _Tax = value; }
+			get { return _TAX; }
+			set { _TAX = value; }
 		}
 
 		decimal _QUAN1 = 0;
@@ -147,6 +147,16 @@ namespace Solution.DataAccess.Model
 		{
 			get { return _BAT_NO; }
 			set { _BAT_NO = value; }
+		}
+
+		decimal _COST = 0;
+		/// <summary>
+		/// 成本
+		/// </summary>
+		public decimal COST
+		{
+			get { return _COST; }
+			set { _COST = value; }
 		}
     } 
 

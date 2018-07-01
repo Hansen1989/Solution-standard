@@ -351,7 +351,7 @@ namespace Solution.DataAccess.DataModel
 
         string _SHOP_ID;
 		/// <summary>
-		/// 
+		/// 分店编号
 		/// </summary>
         public string SHOP_ID
         {
@@ -373,7 +373,7 @@ namespace Solution.DataAccess.DataModel
 
         string _TAKEIN_ID;
 		/// <summary>
-		/// 
+		/// 进货单
 		/// </summary>
         public string TAKEIN_ID
         {
@@ -395,7 +395,7 @@ namespace Solution.DataAccess.DataModel
 
         int _SNo;
 		/// <summary>
-		/// 
+		/// 序号
 		/// </summary>
         public int SNo
         {
@@ -417,7 +417,7 @@ namespace Solution.DataAccess.DataModel
 
         string _PROD_ID;
 		/// <summary>
-		/// 
+		/// 商品编号
 		/// </summary>
         public string PROD_ID
         {
@@ -439,7 +439,7 @@ namespace Solution.DataAccess.DataModel
 
         decimal _QUANTITY;
 		/// <summary>
-		/// 
+		/// 数量
 		/// </summary>
         public decimal QUANTITY
         {
@@ -461,7 +461,7 @@ namespace Solution.DataAccess.DataModel
 
         string _STD_UNIT;
 		/// <summary>
-		/// 
+		/// 验收单位
 		/// </summary>
         public string STD_UNIT
         {
@@ -483,7 +483,7 @@ namespace Solution.DataAccess.DataModel
 
         int _STD_CONVERT;
 		/// <summary>
-		/// 
+		/// 标准转换量
 		/// </summary>
         public int STD_CONVERT
         {
@@ -505,7 +505,7 @@ namespace Solution.DataAccess.DataModel
 
         decimal _STD_QUAN;
 		/// <summary>
-		/// 
+		/// 验收量
 		/// </summary>
         public decimal STD_QUAN
         {
@@ -527,7 +527,7 @@ namespace Solution.DataAccess.DataModel
 
         decimal _STD_PRICE;
 		/// <summary>
-		/// 
+		/// 标准单价
 		/// </summary>
         public decimal STD_PRICE
         {
@@ -549,7 +549,7 @@ namespace Solution.DataAccess.DataModel
 
         decimal _Tax;
 		/// <summary>
-		/// 
+		/// 税额
 		/// </summary>
         public decimal Tax
         {
@@ -571,7 +571,7 @@ namespace Solution.DataAccess.DataModel
 
         decimal _QUAN1;
 		/// <summary>
-		/// 
+		/// 采购量
 		/// </summary>
         public decimal QUAN1
         {
@@ -593,7 +593,7 @@ namespace Solution.DataAccess.DataModel
 
         decimal _QUAN2;
 		/// <summary>
-		/// 
+		/// 取消量
 		/// </summary>
         public decimal QUAN2
         {
@@ -615,7 +615,7 @@ namespace Solution.DataAccess.DataModel
 
         decimal _Item_DISC_Amt;
 		/// <summary>
-		/// 
+		/// 折价金额
 		/// </summary>
         public decimal Item_DISC_Amt
         {
@@ -637,7 +637,7 @@ namespace Solution.DataAccess.DataModel
 
         string _MEMO;
 		/// <summary>
-		/// 
+		/// 备注
 		/// </summary>
         public string MEMO
         {
@@ -659,7 +659,7 @@ namespace Solution.DataAccess.DataModel
 
         string _BAT_NO;
 		/// <summary>
-		/// 
+		/// 批号
 		/// </summary>
         public string BAT_NO
         {
@@ -681,7 +681,7 @@ namespace Solution.DataAccess.DataModel
 
         DateTime _Exp_DateTime;
 		/// <summary>
-		/// 
+		/// 有效日期
 		/// </summary>
         public DateTime Exp_DateTime
         {

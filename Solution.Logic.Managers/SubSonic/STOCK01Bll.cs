@@ -284,6 +284,10 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.LAST_UPDATE == (DateTime)value);
                         expression = x => x.LAST_UPDATE == (DateTime)value;
                         break;
+					case "SHOP_ID" :
+						model = list.SingleOrDefault(x => x.SHOP_ID == (string)value);
+                        expression = x => x.SHOP_ID == (string)value;
+                        break;
 
                     default :
                         return null;
@@ -461,6 +465,7 @@ namespace Solution.Logic.Managers {
                 MOD_DATETIME = model.MOD_DATETIME,
                 MOD_USER_ID = model.MOD_USER_ID,
                 LAST_UPDATE = model.LAST_UPDATE,
+                SHOP_ID = model.SHOP_ID,
             };
         }
 
@@ -502,6 +507,7 @@ namespace Solution.Logic.Managers {
                 MOD_DATETIME = model.MOD_DATETIME,
                 MOD_USER_ID = model.MOD_USER_ID,
                 LAST_UPDATE = model.LAST_UPDATE,
+                SHOP_ID = model.SHOP_ID,
             };
         }
 
@@ -587,6 +593,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "LAST_UPDATE" :
 					model.LAST_UPDATE = (DateTime)value;
+                    break;
+				case "SHOP_ID" :
+					model.SHOP_ID = (string)value;
                     break;
             }
 		}
@@ -1167,6 +1176,8 @@ namespace Solution.Logic.Managers {
 					return model.MOD_USER_ID;
 				case "LAST_UPDATE" :
 					return model.LAST_UPDATE;
+				case "SHOP_ID" :
+					return model.SHOP_ID;
 			}
 
 			return null;

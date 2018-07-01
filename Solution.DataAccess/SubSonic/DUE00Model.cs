@@ -21,7 +21,7 @@ namespace Solution.DataAccess.Model
 
 		string _SHOP_ID = "";
 		/// <summary>
-		/// 
+		/// 店铺编号
 		/// </summary>
 		public string SHOP_ID
 		{
@@ -31,7 +31,7 @@ namespace Solution.DataAccess.Model
 
 		string _TAKEIN_ID = "";
 		/// <summary>
-		/// 
+		/// 进货单
 		/// </summary>
 		public string TAKEIN_ID
 		{
@@ -41,7 +41,7 @@ namespace Solution.DataAccess.Model
 
 		byte _STATUS = 0;
 		/// <summary>
-		/// 
+		/// 应付账单状态
 		/// </summary>
 		public byte STATUS
 		{
@@ -51,7 +51,7 @@ namespace Solution.DataAccess.Model
 
 		DateTime _INPUT_DATE = new DateTime(1900,1,1);
 		/// <summary>
-		/// 
+		/// 进货单日期
 		/// </summary>
 		public DateTime INPUT_DATE
 		{
@@ -61,7 +61,7 @@ namespace Solution.DataAccess.Model
 
 		string _SUP_ID = "";
 		/// <summary>
-		/// 
+		/// 供应商编号
 		/// </summary>
 		public string SUP_ID
 		{
@@ -71,7 +71,7 @@ namespace Solution.DataAccess.Model
 
 		string _USER_ID = "";
 		/// <summary>
-		/// 
+		/// 进货单制单人
 		/// </summary>
 		public string USER_ID
 		{
@@ -81,7 +81,7 @@ namespace Solution.DataAccess.Model
 
 		string _APP_USER = "";
 		/// <summary>
-		/// 
+		/// 进货单审核人
 		/// </summary>
 		public string APP_USER
 		{
@@ -91,7 +91,7 @@ namespace Solution.DataAccess.Model
 
 		DateTime _APP_DATETIME = new DateTime(1900,1,1);
 		/// <summary>
-		/// 
+		/// 审核时间
 		/// </summary>
 		public DateTime APP_DATETIME
 		{
@@ -101,7 +101,7 @@ namespace Solution.DataAccess.Model
 
 		decimal _TOT_AMOUNT = 0;
 		/// <summary>
-		/// 
+		/// 进货单金额
 		/// </summary>
 		public decimal TOT_AMOUNT
 		{
@@ -111,7 +111,7 @@ namespace Solution.DataAccess.Model
 
 		decimal _TOT_TAX = 0;
 		/// <summary>
-		/// 
+		/// 采购总税额
 		/// </summary>
 		public decimal TOT_TAX
 		{
@@ -121,7 +121,7 @@ namespace Solution.DataAccess.Model
 
 		decimal _TOT_QTY = 0;
 		/// <summary>
-		/// 
+		/// 采购总数量
 		/// </summary>
 		public decimal TOT_QTY
 		{
@@ -131,7 +131,7 @@ namespace Solution.DataAccess.Model
 
 		decimal _PRE_PAY = 0;
 		/// <summary>
-		/// 
+		/// 采购预付款
 		/// </summary>
 		public decimal PRE_PAY
 		{
@@ -151,7 +151,7 @@ namespace Solution.DataAccess.Model
 
 		string _RELATE_ID = "";
 		/// <summary>
-		/// 
+		/// 关联单号
 		/// </summary>
 		public string RELATE_ID
 		{
@@ -161,7 +161,7 @@ namespace Solution.DataAccess.Model
 
 		string _INVOICE_ID = "";
 		/// <summary>
-		/// 
+		/// 发票号码
 		/// </summary>
 		public string INVOICE_ID
 		{
@@ -169,11 +169,11 @@ namespace Solution.DataAccess.Model
 			set { _INVOICE_ID = value; }
 		}
 
-		byte _TAKEIN_TYPE = 0;
+		int _TAKEIN_TYPE = 0;
 		/// <summary>
-		/// 
+		/// 进货类型
 		/// </summary>
-		public byte TAKEIN_TYPE
+		public int TAKEIN_TYPE
 		{
 			get { return _TAKEIN_TYPE; }
 			set { _TAKEIN_TYPE = value; }
@@ -181,7 +181,7 @@ namespace Solution.DataAccess.Model
 
 		string _Memo = "";
 		/// <summary>
-		/// 
+		/// 备注
 		/// </summary>
 		public string Memo
 		{
@@ -191,7 +191,7 @@ namespace Solution.DataAccess.Model
 
 		DateTime _CRT_DATETIME = new DateTime(1900,1,1);
 		/// <summary>
-		/// 
+		/// 建档日期
 		/// </summary>
 		public DateTime CRT_DATETIME
 		{
@@ -201,7 +201,7 @@ namespace Solution.DataAccess.Model
 
 		string _CRT_USER_ID = "";
 		/// <summary>
-		/// 
+		/// 建档人员
 		/// </summary>
 		public string CRT_USER_ID
 		{
@@ -211,7 +211,7 @@ namespace Solution.DataAccess.Model
 
 		DateTime _MOD_DATETIME = new DateTime(1900,1,1);
 		/// <summary>
-		/// 
+		/// 修改日期
 		/// </summary>
 		public DateTime MOD_DATETIME
 		{
@@ -221,7 +221,7 @@ namespace Solution.DataAccess.Model
 
 		string _MOD_USER_ID = "";
 		/// <summary>
-		/// 
+		/// 修改人员
 		/// </summary>
 		public string MOD_USER_ID
 		{
@@ -231,7 +231,7 @@ namespace Solution.DataAccess.Model
 
 		DateTime _LAST_UPDATE = new DateTime(1900,1,1);
 		/// <summary>
-		/// 
+		/// 最后异动时间
 		/// </summary>
 		public DateTime LAST_UPDATE
 		{

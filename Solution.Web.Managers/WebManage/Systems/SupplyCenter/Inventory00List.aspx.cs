@@ -41,7 +41,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
             STOCKBll.GetInstence().BandDropDownListStock(this, ddlSTOCK_ID);
-            SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME1);
+            STOCKBll.GetInstence().BandDropDownListStock(this, ddlSTOCK_NAME1);
         }
         /// <summary>
         /// 按时间范围检索
@@ -73,7 +73,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             string st = DatePicker1.Text;
             string et = DatePicker2.Text;
-            string sn = ddlSHOP_NAME1.SelectedValue;
+            string sn = ddlSTOCK_NAME1.SelectedValue;
             string DateType = ddrDataType.SelectedValue;
             if (DateType.Equals("1"))
             {
@@ -88,7 +88,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             if (!sn.Equals("0") && !String.IsNullOrEmpty(sn))
             {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, Inventory00Table.SHOP_ID, Comparison.Equals, sn, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, Inventory00Table.STOCK_ID, Comparison.Equals, sn, false, false));
             }
 
             return conditionList;
@@ -100,7 +100,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// </summary>
         public override void Init()
         {
-            bll = Dispose00Bll.GetInstence();
+            //bll = Dispose00Bll.GetInstence();
             //throw new NotImplementedException();
         }
 
@@ -166,53 +166,43 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             switch (status)
             {
                 case 1:
-                    ButtonSave.Enabled = false;
-                    ButtonEdit.Enabled = true;
+                    ButtonSave.Enabled = true;
                     ButtonCancel.Enabled = true;
                     ButtonCheck.Enabled = true;
                     ButtonCheck.Text = "核准";
                     ButtonCancel.Text = "作废";
-                    ButtonDetailAdd.Enabled = true;
                     Grid2.Enabled = true;
                     Grid2.AllowCellEditing = true; break;
                 case 2:
                     ButtonSave.Enabled = false;
-                    ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "反核准";
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = true;
-                    ButtonDetailAdd.Enabled = false;
                     Grid2.Enabled = false; break;
                 case 3:
                     ButtonSave.Enabled = false;
-                    ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "核准";
                     ButtonCheck.Enabled = false;
                     ButtonCancel.Text = "取消作废";
                     ButtonCancel.Enabled = true;
-                    ButtonDetailAdd.Enabled = false;
                     Grid2.Enabled = false;
                     //Grid2.AllowCellEditing = false;
                     break;
                 case 4:
                     ButtonSave.Enabled = false;
-                    ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "反核准";
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    ButtonDetailAdd.Enabled = false;
                     Grid2.Enabled = false;
                     Grid2.AllowCellEditing = false; break;
                 default:
                     ButtonSave.Enabled = false;
-                    ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "核准";
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    ButtonDetailAdd.Enabled = false;
                     Grid2.AllowCellEditing = true; break;
             }
         }
@@ -251,6 +241,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             Grid2.DataSource = null;
             Grid2.DataBind();
+            btn_DetailAdd();
         }
         /// <summary>
         /// 保存按钮
@@ -267,26 +258,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             else
             {
                 FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// 修改按钮
-        /// </summary>
-        public void Btn_MainEdit(Object sender, EventArgs e)
-        {
-            string result = DetailEdit();
-            if (String.IsNullOrEmpty(result))
-            {
-                result = MAINEdit();
-            }
-            if (!String.IsNullOrEmpty(result))
-            {
-                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
-            }
-            else
-            {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
             }
         }
 
@@ -491,119 +462,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void btn_DetailAdd(Object sender, EventArgs e)
+        public void btn_DetailAdd()
         {
-            string Pur_status = ddlStatus.SelectedValue;
+            //string Pur_status = ddlStatus.SelectedValue;
             FineUI.Panel P_search = Window3.FindControl("PanelGrid4").FindControl("Panel_Search") as FineUI.Panel;
             P_search.Hidden = false;
-            FineUI.Button B_BtnSearchCon = Window3.FindControl("PanelGrid4").FindControl("tool_btn").FindControl("BtnSearchCon") as FineUI.Button;
-            FineUI.Button B_BtnAddCon = Window3.FindControl("PanelGrid4").FindControl("tool_btn").FindControl("BtnAddCon") as FineUI.Button;
-            B_BtnSearchCon.Hidden = false;
-            B_BtnAddCon.Hidden = false;
+            FineUI.DropDownList ddlstock = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("window_ddl_Stock") as FineUI.DropDownList;
+            STOCKBll.GetInstence().BandDropDownListStock(this, ddlstock);
             Window3.Hidden = false;
         }
 
-        /// <summary>
-        /// 商品查询
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void ButtonPRODSearch_Click(object sender, EventArgs e)
-        {
-
-            conditionList = null;
-            //conditionList = new List<ConditionFun.SqlqueryCondition>();
-            //绑定Grid表格
-            FineUI.Grid Grid4 = Window3.FindControl("PanelGrid4").FindControl("Grid4") as FineUI.Grid;
-            V_Product01_PRCAREABll.GetInstence().BindGrid(Grid4, 0, 0, InquiryConditionProduct(), sortList);
-        }
-
-        /// <summary>
-        /// GRID3(商品)检索的判断条件
-        /// </summary>
-        /// <returns></returns>
-        private List<ConditionFun.SqlqueryCondition> InquiryConditionProduct()
-        {
-            string _shop_id = ddlSHOP_NAME.SelectedValue;
-            var model = new SHOP00(x => x.SHOP_ID == _shop_id);
-            List<ConditionFun.SqlqueryCondition> conditionProdduct00List = new List<ConditionFun.SqlqueryCondition>();
-            bool sFlag = true;
-            if (!String.IsNullOrEmpty(model.SHOP_Price_Area))
-            {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PRCAREA_ID, Comparison.Like, model.SHOP_Price_Area, false, false));
-                sFlag = false;
-            }
-            //conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "1", Comparison.Equals, "1", false, false));
-
-            FineUI.TextBox cPROD_ID = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_ID") as FineUI.TextBox;
-            var _PROD_ID = cPROD_ID.Text;
-            if (!String.IsNullOrEmpty(cPROD_ID.Text))
-            {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_ID, Comparison.Like, "%" + _PROD_ID + "%", false, false));
-                sFlag = false;
-            }
-
-            FineUI.TextBox cPROD_NAME = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_NAME") as FineUI.TextBox;
-            var _PROD_NAME = cPROD_NAME.Text;
-            if (!String.IsNullOrEmpty(_PROD_NAME))
-            {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_NAME1, Comparison.Like, "%" + _PROD_NAME + "%", false, false));
-                sFlag = false;
-            }
-            FineUI.TextBox cPROD_NAME_SPELLING = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_NAME_SPELLING") as FineUI.TextBox;
-            var _PROD_NAME_SPELLING = cPROD_NAME_SPELLING.Text;
-            if (!String.IsNullOrEmpty(_PROD_NAME_SPELLING))
-            {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_NAME1_SPELLING, Comparison.Like, "%" + _PROD_NAME_SPELLING + "%", false, false));
-                sFlag = false;
-            }
-            FineUI.DropDownList cPROD_KIND = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_KIND") as FineUI.DropDownList;
-            var _cPROD_KIND = cPROD_KIND.SelectedValue;
-            if (!String.IsNullOrEmpty(_cPROD_KIND) && _cPROD_KIND != "0")
-            {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_KIND, Comparison.Equals, _cPROD_KIND, false, false));
-                sFlag = false;
-            }
-
-            FineUI.DropDownList cPROD_DEP = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_DEP") as FineUI.DropDownList;
-            var _PROD_DEP = cPROD_DEP.SelectedValue;
-            if (!String.IsNullOrEmpty(_PROD_NAME) && _PROD_DEP != "0")
-            {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_DEP, Comparison.Equals, _PROD_DEP, false, false));
-                sFlag = false;
-            }
-            FineUI.DropDownList cPROD_CATE = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_CATE") as FineUI.DropDownList;
-            var _PROD_CATE = cPROD_CATE.SelectedValue;
-            if (!String.IsNullOrEmpty(_PROD_CATE) && _PROD_CATE != "0")
-            {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_CATE, Comparison.Equals, _PROD_CATE, false, false));
-                sFlag = false;
-            }
-
-            if (sFlag)
-            {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), "1", Comparison.Equals, "1", false, false));
-            }
-
-            return conditionProdduct00List;
-        }
-
-        /// <summary>
-        /// 判断条件第一个是否添加where还是and
-        /// </summary>
-        /// <param name="sFlag"></param>
-        /// <returns></returns>
-        public ConstraintType WhereOrAnd(bool sFlag)
-        {
-            if (sFlag)
-            {
-                return ConstraintType.Where;
-            }
-            else
-            {
-                return ConstraintType.And;
-            }
-        }
 
         /// <summary>
         /// 添加商品，采购单位未完成，价格取值未完成，税额未完成
@@ -612,48 +480,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="e"></param>
         protected void ButtonPRODAdd_Click(object sender, EventArgs e)
         {
-            FineUI.Grid Grid4 = Window3.FindControl("PanelGrid4").FindControl("Grid4") as FineUI.Grid;
-
-            int[] selections = Grid4.SelectedRowIndexArray;
-            string _tbxINV_ID = tbxINV_ID.Text;
-            string _Shop_ID = ddlSHOP_NAME.SelectedValue;
-            string _Shop_Name = ddlSHOP_NAME.SelectedText;
-            string result = "";
-            var m_Shop = new SHOP00(x => x.SHOP_ID == _Shop_ID);
-            string _priceArea_id = m_Shop.SHOP_Price_Area;
-            if (!String.IsNullOrEmpty(_tbxINV_ID))
-            {
-                foreach (int i in selections)
-                {
-                    string _Prod_ID = Grid4.DataKeys[i][0].ToString();
-                    string _shop_id = ddlSHOP_NAME.SelectedValue;
-                    var model = new V_Product01_PRCAREA(x => x.PROD_ID == _Prod_ID && x.PRCAREA_ID == _priceArea_id);
-                    int rowCount = Grid2.Rows.Count;
-                    JObject deObject = new JObject();
-                    deObject.Add("Id01", "0");
-                    deObject.Add("SHOP_ID01", _Shop_ID);
-                    deObject.Add("SHOP_NAME01", _Shop_Name);
-                    deObject.Add("INV_ID01", _tbxINV_ID);
-                    deObject.Add("SNo01", rowCount + 1);
-                    deObject.Add("PROD_ID01", _Prod_ID);
-                    deObject.Add("PROD_NAME01", model.PROD_NAME1);
-                    deObject.Add("QUANTITY01", model.ORDER_QUAN);
-                    deObject.Add("QUAN01", 0);
-                    deObject.Add("QUAN101", 0);
-                    deObject.Add("QUAN201", 0);
-                    deObject.Add("QUAN_B01", 0);
-                    deObject.Add("MEMO01", "");
-                    Grid2.AddNewRecord(deObject, true);
-                }
-            }
-            else
-            {
-                FineUI.Alert.ShowInParent("未选中订单无法添加", FineUI.MessageBoxIcon.Information);
-            }
-            if (!String.IsNullOrEmpty(result.Trim()))
-            {
-                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
-            }
+            FineUI.DropDownList ddlstock = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("window_ddl_Stock") as FineUI.DropDownList;
+            FineUI.DropDownList ddl_INV_TYPE = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("window_ddl_INV_TYPE") as FineUI.DropDownList;
+            string _ddlstock = ddlstock.SelectedValue;
+            string _ddl_INV_TYPE = ddl_INV_TYPE.SelectedValue;
+            string _SHOP_ID = ddlSHOP_NAME.SelectedValue;
+            string _Inv_ID = tbxINV_ID.Text;
         }
         #endregion
     }

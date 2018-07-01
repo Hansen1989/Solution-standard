@@ -203,6 +203,17 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 0,
 					PropertyName = "Trans_STATUS"
                 });
+
+                Columns.Add(new DatabaseColumn("TAKEIN_TYPE", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Byte,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "TAKEIN_TYPE"
+                });
                     
                 
                 
@@ -323,6 +334,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn Trans_STATUS{
                 get{
                     return this.GetColumn("Trans_STATUS");
+                }
+            }
+				
+            
+            public IColumn TAKEIN_TYPE{
+                get{
+                    return this.GetColumn("TAKEIN_TYPE");
                 }
             }
 				
