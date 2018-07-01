@@ -149,6 +149,8 @@ namespace Solution.DataAccess.DataModel
             LAST_UPDATE = readRecord.get_datetime("LAST_UPDATE",null);
                
             Trans_STATUS = readRecord.get_byte("Trans_STATUS",null);
+               
+            TAKEIN_TYPE = readRecord.get_byte("TAKEIN_TYPE",null);
                 }   
 
         partial void OnCreated();
@@ -691,6 +693,28 @@ namespace Solution.DataAccess.DataModel
                 if(_Trans_STATUS!=value || _isLoaded){
                     _Trans_STATUS=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Trans_STATUS");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        byte _TAKEIN_TYPE;
+		/// <summary>
+		/// 进货类型 1-一般进货 2-试用进货 3-直进直出 4-厂商退货
+		/// </summary>
+        public byte TAKEIN_TYPE
+        {
+            get { return _TAKEIN_TYPE; }
+            set
+            {
+                if(_TAKEIN_TYPE!=value || _isLoaded){
+                    _TAKEIN_TYPE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="TAKEIN_TYPE");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

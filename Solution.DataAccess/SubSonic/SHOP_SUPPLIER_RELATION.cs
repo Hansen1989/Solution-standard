@@ -14,38 +14,38 @@ using SubSonic.SqlGeneration.Schema;
 namespace Solution.DataAccess.DataModel
 {    
     /// <summary>
-    /// A class which represents the DUE01 table in the SolutionDataBase_standard Database.
+    /// A class which represents the SHOP_SUPPLIER_RELATION table in the SolutionDataBase_standard Database.
     /// </summary>
-    public partial class DUE01: IActiveRecord
+    public partial class SHOP_SUPPLIER_RELATION: IActiveRecord
     {
     
         #region Built-in testing
-        static TestRepository<DUE01> _testRepo;
+        static TestRepository<SHOP_SUPPLIER_RELATION> _testRepo;
         
 
         
         static void SetTestRepo(){
-            _testRepo = _testRepo ?? new TestRepository<DUE01>(new Solution.DataAccess.DataModel.SolutionDataBase_standardDB());
+            _testRepo = _testRepo ?? new TestRepository<SHOP_SUPPLIER_RELATION>(new Solution.DataAccess.DataModel.SolutionDataBase_standardDB());
         }
         public static void ResetTestRepo(){
             _testRepo = null;
             SetTestRepo();
         }
-        public static void Setup(List<DUE01> testlist){
+        public static void Setup(List<SHOP_SUPPLIER_RELATION> testlist){
             SetTestRepo();
             foreach (var item in testlist)
             {
                 _testRepo._items.Add(item);
             }
         }
-        public static void Setup(DUE01 item) {
+        public static void Setup(SHOP_SUPPLIER_RELATION item) {
             SetTestRepo();
             _testRepo._items.Add(item);
         }
         public static void Setup(int testItems) {
             SetTestRepo();
             for(int i=0;i<testItems;i++){
-                DUE01 item=new DUE01();
+                SHOP_SUPPLIER_RELATION item=new SHOP_SUPPLIER_RELATION();
                 _testRepo._items.Add(item);
             }
         }
@@ -55,7 +55,7 @@ namespace Solution.DataAccess.DataModel
 
         #endregion
 
-        IRepository<DUE01> _repo;
+        IRepository<SHOP_SUPPLIER_RELATION> _repo;
         ITable tbl;
         bool _isNew;
         public bool IsNew(){
@@ -86,7 +86,7 @@ namespace Solution.DataAccess.DataModel
         }
 
         Solution.DataAccess.DataModel.SolutionDataBase_standardDB _db;
-        public DUE01(string connectionString, string providerName) {
+        public SHOP_SUPPLIER_RELATION(string connectionString, string providerName) {
 
             _db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB(connectionString, providerName);
             Init();            
@@ -95,10 +95,10 @@ namespace Solution.DataAccess.DataModel
             TestMode=this._db.DataProvider.ConnectionString.Equals("test", StringComparison.InvariantCultureIgnoreCase);
             _dirtyColumns=new List<IColumn>();
             if(TestMode){
-                DUE01.SetTestRepo();
+                SHOP_SUPPLIER_RELATION.SetTestRepo();
                 _repo=_testRepo;
             }else{
-                _repo = new SubSonicRepository<DUE01>(_db);
+                _repo = new SubSonicRepository<SHOP_SUPPLIER_RELATION>(_db);
             }
             tbl=_repo.GetTable();
             SetIsNew(true);
@@ -106,7 +106,7 @@ namespace Solution.DataAccess.DataModel
 
         }
         
-        public DUE01(){
+        public SHOP_SUPPLIER_RELATION(){
 			_db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB();
             Init();            
         }
@@ -120,31 +120,13 @@ namespace Solution.DataAccess.DataModel
                
             SHOP_ID = readRecord.get_string("SHOP_ID",null);
                
-            TAKEIN_ID = readRecord.get_string("TAKEIN_ID",null);
+            SUP_ID = readRecord.get_string("SUP_ID",null);
                
-            SNO = readRecord.get_int("SNO",null);
-               
-            PROD_ID = readRecord.get_string("PROD_ID",null);
-               
-            STD_UNIT = readRecord.get_string("STD_UNIT",null);
-               
-            STD_QUAN = readRecord.get_decimal("STD_QUAN",null);
-               
-            STD_PRICE = readRecord.get_decimal("STD_PRICE",null);
-               
-            TAX = readRecord.get_decimal("TAX",null);
-               
-            QUAN1 = readRecord.get_decimal("QUAN1",null);
-               
-            QUAN2 = readRecord.get_decimal("QUAN2",null);
-               
-            ITEM_DISC_AMT = readRecord.get_decimal("ITEM_DISC_AMT",null);
+            SUP_NAME = readRecord.get_string("SUP_NAME",null);
                
             MEMO = readRecord.get_string("MEMO",null);
                
-            BAT_NO = readRecord.get_string("BAT_NO",null);
-               
-            COST = readRecord.get_decimal("COST",null);
+            CRT_DATETIME = readRecord.get_datetime("CRT_DATETIME",null);
                 }   
 
         partial void OnCreated();
@@ -161,40 +143,40 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        public DUE01(Expression<Func<DUE01, bool>> expression):this() {
+        public SHOP_SUPPLIER_RELATION(Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression):this() {
 
             SetIsLoaded(_repo.Load(this,expression));
         }
         
        
         
-        internal static IRepository<DUE01> GetRepo(string connectionString, string providerName){
+        internal static IRepository<SHOP_SUPPLIER_RELATION> GetRepo(string connectionString, string providerName){
             Solution.DataAccess.DataModel.SolutionDataBase_standardDB db;
             if(String.IsNullOrEmpty(connectionString)){
                 db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB();
             }else{
                 db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB(connectionString, providerName);
             }
-            IRepository<DUE01> _repo;
+            IRepository<SHOP_SUPPLIER_RELATION> _repo;
             
             if(db.TestMode){
-                DUE01.SetTestRepo();
+                SHOP_SUPPLIER_RELATION.SetTestRepo();
                 _repo=_testRepo;
             }else{
-                _repo = new SubSonicRepository<DUE01>(db);
+                _repo = new SubSonicRepository<SHOP_SUPPLIER_RELATION>(db);
             }
             return _repo;        
         }       
         
-        internal static IRepository<DUE01> GetRepo(){
+        internal static IRepository<SHOP_SUPPLIER_RELATION> GetRepo(){
             return GetRepo("","");
         }
         
-        public static DUE01 SingleOrDefault(Expression<Func<DUE01, bool>> expression) {
+        public static SHOP_SUPPLIER_RELATION SingleOrDefault(Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression) {
 
             var repo = GetRepo();
             var results=repo.Find(expression);
-            DUE01 single=null;
+            SHOP_SUPPLIER_RELATION single=null;
             if(results.Count() > 0){
                 single=results.ToList()[0];
                 single.OnLoaded();
@@ -205,10 +187,10 @@ namespace Solution.DataAccess.DataModel
             return single;
         }      
         
-        public static DUE01 SingleOrDefault(Expression<Func<DUE01, bool>> expression,string connectionString, string providerName) {
+        public static SHOP_SUPPLIER_RELATION SingleOrDefault(Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression,string connectionString, string providerName) {
             var repo = GetRepo(connectionString,providerName);
             var results=repo.Find(expression);
-            DUE01 single=null;
+            SHOP_SUPPLIER_RELATION single=null;
             if(results.Count() > 0){
                 single=results.ToList()[0];
             }
@@ -219,49 +201,49 @@ namespace Solution.DataAccess.DataModel
         }
         
         
-        public static bool Exists(Expression<Func<DUE01, bool>> expression,string connectionString, string providerName) {
+        public static bool Exists(Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression,string connectionString, string providerName) {
            
             return All(connectionString,providerName).Any(expression);
         }        
-        public static bool Exists(Expression<Func<DUE01, bool>> expression) {
+        public static bool Exists(Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression) {
            
             return All().Any(expression);
         }        
 
-        public static IList<DUE01> Find(Expression<Func<DUE01, bool>> expression) {
+        public static IList<SHOP_SUPPLIER_RELATION> Find(Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression) {
             
             var repo = GetRepo();
             return repo.Find(expression).ToList();
         }
         
-        public static IList<DUE01> Find(Expression<Func<DUE01, bool>> expression,string connectionString, string providerName) {
+        public static IList<SHOP_SUPPLIER_RELATION> Find(Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression,string connectionString, string providerName) {
 
             var repo = GetRepo(connectionString,providerName);
             return repo.Find(expression).ToList();
 
         }
-        public static IQueryable<DUE01> All(string connectionString, string providerName) {
+        public static IQueryable<SHOP_SUPPLIER_RELATION> All(string connectionString, string providerName) {
             return GetRepo(connectionString,providerName).GetAll();
         }
-        public static IQueryable<DUE01> All() {
+        public static IQueryable<SHOP_SUPPLIER_RELATION> All() {
             return GetRepo().GetAll();
         }
         
-        public static PagedList<DUE01> GetPaged(string sortBy, int pageIndex, int pageSize,string connectionString, string providerName) {
+        public static PagedList<SHOP_SUPPLIER_RELATION> GetPaged(string sortBy, int pageIndex, int pageSize,string connectionString, string providerName) {
             return GetRepo(connectionString,providerName).GetPaged(sortBy, pageIndex, pageSize);
         }
       
-        public static PagedList<DUE01> GetPaged(string sortBy, int pageIndex, int pageSize) {
+        public static PagedList<SHOP_SUPPLIER_RELATION> GetPaged(string sortBy, int pageIndex, int pageSize) {
             return GetRepo().GetPaged(sortBy, pageIndex, pageSize);
         }
 
-        public static PagedList<DUE01> GetPaged(int pageIndex, int pageSize,string connectionString, string providerName) {
+        public static PagedList<SHOP_SUPPLIER_RELATION> GetPaged(int pageIndex, int pageSize,string connectionString, string providerName) {
             return GetRepo(connectionString,providerName).GetPaged(pageIndex, pageSize);
             
         }
 
 
-        public static PagedList<DUE01> GetPaged(int pageIndex, int pageSize) {
+        public static PagedList<SHOP_SUPPLIER_RELATION> GetPaged(int pageIndex, int pageSize) {
             return GetRepo().GetPaged(pageIndex, pageSize);
             
         }
@@ -288,8 +270,8 @@ namespace Solution.DataAccess.DataModel
                     }
 
         public override bool Equals(object obj){
-            if(obj.GetType()==typeof(DUE01)){
-                DUE01 compare=(DUE01)obj;
+            if(obj.GetType()==typeof(SHOP_SUPPLIER_RELATION)){
+                SHOP_SUPPLIER_RELATION compare=(SHOP_SUPPLIER_RELATION)obj;
                 return compare.KeyValue()==this.KeyValue();
             }else{
                 return base.Equals(obj);
@@ -347,7 +329,7 @@ namespace Solution.DataAccess.DataModel
 
         string _SHOP_ID;
 		/// <summary>
-		/// 
+		/// 分店编号
 		/// </summary>
         public string SHOP_ID
         {
@@ -367,18 +349,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _TAKEIN_ID;
+        string _SUP_ID;
 		/// <summary>
-		/// 
+		/// 供应商编号
 		/// </summary>
-        public string TAKEIN_ID
+        public string SUP_ID
         {
-            get { return _TAKEIN_ID; }
+            get { return _SUP_ID; }
             set
             {
-                if(_TAKEIN_ID!=value || _isLoaded){
-                    _TAKEIN_ID=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="TAKEIN_ID");
+                if(_SUP_ID!=value || _isLoaded){
+                    _SUP_ID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="SUP_ID");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -389,194 +371,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        int _SNO;
+        string _SUP_NAME;
 		/// <summary>
-		/// 
+		/// 供应商名称
 		/// </summary>
-        public int SNO
+        public string SUP_NAME
         {
-            get { return _SNO; }
+            get { return _SUP_NAME; }
             set
             {
-                if(_SNO!=value || _isLoaded){
-                    _SNO=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="SNO");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        string _PROD_ID;
-		/// <summary>
-		/// 
-		/// </summary>
-        public string PROD_ID
-        {
-            get { return _PROD_ID; }
-            set
-            {
-                if(_PROD_ID!=value || _isLoaded){
-                    _PROD_ID=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_ID");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        string _STD_UNIT;
-		/// <summary>
-		/// 
-		/// </summary>
-        public string STD_UNIT
-        {
-            get { return _STD_UNIT; }
-            set
-            {
-                if(_STD_UNIT!=value || _isLoaded){
-                    _STD_UNIT=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="STD_UNIT");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        decimal _STD_QUAN;
-		/// <summary>
-		/// 
-		/// </summary>
-        public decimal STD_QUAN
-        {
-            get { return _STD_QUAN; }
-            set
-            {
-                if(_STD_QUAN!=value || _isLoaded){
-                    _STD_QUAN=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="STD_QUAN");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        decimal _STD_PRICE;
-		/// <summary>
-		/// 
-		/// </summary>
-        public decimal STD_PRICE
-        {
-            get { return _STD_PRICE; }
-            set
-            {
-                if(_STD_PRICE!=value || _isLoaded){
-                    _STD_PRICE=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="STD_PRICE");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        decimal _TAX;
-		/// <summary>
-		/// 
-		/// </summary>
-        public decimal TAX
-        {
-            get { return _TAX; }
-            set
-            {
-                if(_TAX!=value || _isLoaded){
-                    _TAX=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="TAX");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        decimal _QUAN1;
-		/// <summary>
-		/// 
-		/// </summary>
-        public decimal QUAN1
-        {
-            get { return _QUAN1; }
-            set
-            {
-                if(_QUAN1!=value || _isLoaded){
-                    _QUAN1=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="QUAN1");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        decimal _QUAN2;
-		/// <summary>
-		/// 
-		/// </summary>
-        public decimal QUAN2
-        {
-            get { return _QUAN2; }
-            set
-            {
-                if(_QUAN2!=value || _isLoaded){
-                    _QUAN2=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="QUAN2");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        decimal _ITEM_DISC_AMT;
-		/// <summary>
-		/// 
-		/// </summary>
-        public decimal ITEM_DISC_AMT
-        {
-            get { return _ITEM_DISC_AMT; }
-            set
-            {
-                if(_ITEM_DISC_AMT!=value || _isLoaded){
-                    _ITEM_DISC_AMT=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="ITEM_DISC_AMT");
+                if(_SUP_NAME!=value || _isLoaded){
+                    _SUP_NAME=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="SUP_NAME");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -589,7 +395,7 @@ namespace Solution.DataAccess.DataModel
 
         string _MEMO;
 		/// <summary>
-		/// 
+		/// 备注
 		/// </summary>
         public string MEMO
         {
@@ -609,40 +415,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _BAT_NO;
+        DateTime _CRT_DATETIME;
 		/// <summary>
-		/// 
+		/// 创建时间
 		/// </summary>
-        public string BAT_NO
+        public DateTime CRT_DATETIME
         {
-            get { return _BAT_NO; }
+            get { return _CRT_DATETIME; }
             set
             {
-                if(_BAT_NO!=value || _isLoaded){
-                    _BAT_NO=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="BAT_NO");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        decimal _COST;
-		/// <summary>
-		/// 成本
-		/// </summary>
-        public decimal COST
-        {
-            get { return _COST; }
-            set
-            {
-                if(_COST!=value || _isLoaded){
-                    _COST=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="COST");
+                if(_CRT_DATETIME!=value || _isLoaded){
+                    _CRT_DATETIME=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="CRT_DATETIME");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -744,7 +528,7 @@ namespace Solution.DataAccess.DataModel
         }
 
 
-        public static void Delete(Expression<Func<DUE01, bool>> expression) {
+        public static void Delete(Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression) {
             var repo = GetRepo();
             
        
