@@ -223,15 +223,36 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
         }
 
-        #region 列表属性绑定
+        protected void ButtonApproval_Click(object sender, EventArgs e)
+        {
+            string str = GridViewHelper.GetSelectedKey(Grid1, true);
+            string[] col_id_shop_id = str.Split(',');
+            string shop_id = col_id_shop_id[1];
+            string col_id = col_id_shop_id[0];
 
-        #region 列表按键绑定——修改列表控件属性
-        /// <summary>
-        /// 列表按键绑定——修改列表控件属性
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void Grid1_PreRowDataBound(object sender, FineUI.GridPreRowEventArgs e)
+            int ex_int = OUT00Bll.GetInstence().SplitOrders(col_id);
+
+            if (ex_int == 1)
+            {
+                Alert.Show("核准失败，请重新核准！");
+            }
+            else {
+                Alert.Show("核准成功！");
+            }
+
+        }
+
+
+
+            #region 列表属性绑定
+
+            #region 列表按键绑定——修改列表控件属性
+            /// <summary>
+            /// 列表按键绑定——修改列表控件属性
+            /// </summary>
+            /// <param name="sender"></param>
+            /// <param name="e"></param>
+            protected void Grid1_PreRowDataBound(object sender, FineUI.GridPreRowEventArgs e)
         {
             //绑定是否显示状态列
             int o = e.RowIndex;

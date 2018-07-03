@@ -357,6 +357,7 @@
     <Compile Include="Systems\ORDER_DEP00Bll.cs" />
     <Compile Include="Systems\ORDER_DEP01Bll.cs" />
     <Compile Include="Systems\ORDER_DEP02Bll.cs" />
+    <Compile Include="Systems\OUT00Bll.cs" />
     <Compile Include="Systems\PagePowerSignPublicBll.cs" />
     <Compile Include="Systems\PRODUCT00Bll.cs" />
     <Compile Include="Systems\PROD_CateBll.cs" />

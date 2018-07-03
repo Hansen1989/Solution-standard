@@ -191,12 +191,11 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("IB_ID",IB_ID,DbType.AnsiString);
             return sp;
         }
-        public static StoredProcedure SplitOrders(string col_id,int prod_type){
+        public static StoredProcedure SplitOrders(string col_id){
             StoredProcedure sp=new StoredProcedure("SplitOrders");
 			
 
             sp.Command.AddParameter("col_id",col_id,DbType.AnsiString);
-            sp.Command.AddParameter("prod_type",prod_type,DbType.Int32);
             return sp;
         }
         public static StoredProcedure Tran_PRICE_UNIT(string PROD_ID,decimal P_PRICE,int UNIT_TYPE){
