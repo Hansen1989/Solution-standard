@@ -249,8 +249,8 @@ namespace Solution.Logic.Managers {
                         expression = x => x.BILL_AMOUNT == (decimal)value;
                         break;
 					case "PAY_METHOD" :
-						model = list.SingleOrDefault(x => x.PAY_METHOD == (byte)value);
-                        expression = x => x.PAY_METHOD == (byte)value;
+						model = list.SingleOrDefault(x => x.PAY_METHOD == (int)value);
+                        expression = x => x.PAY_METHOD == (int)value;
                         break;
 					case "BILL_DATE" :
 						model = list.SingleOrDefault(x => x.BILL_DATE == (DateTime)value);
@@ -544,7 +544,7 @@ namespace Solution.Logic.Managers {
 					model.BILL_AMOUNT = (decimal)value;
                     break;
 				case "PAY_METHOD" :
-					model.PAY_METHOD = ConvertHelper.Ctinyint(value);
+					model.PAY_METHOD = (int)value;
                     break;
 				case "BILL_DATE" :
 					model.BILL_DATE = (DateTime)value;
@@ -1254,25 +1254,6 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, id, dic, content, isCache, isAddUseLog);
         }
         #endregion
-		
-		#region 更新PAY_METHOD字段值
-		/// <summary>
-		/// 更新PAY_METHOD字段值
-		/// </summary>
-		/// <param name="page">当前页面指针</param>
-		/// <param name="pkValue">主键Id，当等于0时，则更新所有记录</param>
-		/// <param name="updateValue">更新值</param>
-        /// <param name="isCache">是否同步更新缓存</param>
-		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-		public void UpdatePAY_METHOD(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
-			//设置更新值
-			var setValue = new Dictionary<string, object>();
-			setValue[SHOP_BILLTable.PAY_METHOD] = updateValue;
-
-			//更新
-			UpdateValue(page, pkValue, setValue, "{0}更新了SHOP_BILL表id为【" + pkValue + "】的记录，更新内容为将PAY_METHOD字段值修改为" + updateValue, isCache, isAddUseLog);
-		}
-		#endregion
 		
     
 		#endregion 模版生成函数

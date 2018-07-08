@@ -245,8 +245,8 @@ namespace Solution.Logic.Managers {
                         expression = x => x.OUT_ID == (string)value;
                         break;
 					case "STATUS" :
-						model = list.SingleOrDefault(x => x.STATUS == (byte)value);
-                        expression = x => x.STATUS == (byte)value;
+						model = list.SingleOrDefault(x => x.STATUS == (int)value);
+                        expression = x => x.STATUS == (int)value;
                         break;
 					case "INPUT_DATE" :
 						model = list.SingleOrDefault(x => x.INPUT_DATE == (DateTime)value);
@@ -583,7 +583,7 @@ namespace Solution.Logic.Managers {
 					model.OUT_ID = (string)value;
                     break;
 				case "STATUS" :
-					model.STATUS = ConvertHelper.Ctinyint(value);
+					model.STATUS = (int)value;
                     break;
 				case "INPUT_DATE" :
 					model.INPUT_DATE = (DateTime)value;
@@ -1331,25 +1331,6 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, id, dic, content, isCache, isAddUseLog);
         }
         #endregion
-		
-		#region 更新STATUS字段值
-		/// <summary>
-		/// 更新STATUS字段值
-		/// </summary>
-		/// <param name="page">当前页面指针</param>
-		/// <param name="pkValue">主键Id，当等于0时，则更新所有记录</param>
-		/// <param name="updateValue">更新值</param>
-        /// <param name="isCache">是否同步更新缓存</param>
-		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-		public void UpdateSTATUS(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
-			//设置更新值
-			var setValue = new Dictionary<string, object>();
-			setValue[RECEIVABLES00Table.STATUS] = updateValue;
-
-			//更新
-			UpdateValue(page, pkValue, setValue, "{0}更新了RECEIVABLES00表id为【" + pkValue + "】的记录，更新内容为将STATUS字段值修改为" + updateValue, isCache, isAddUseLog);
-		}
-		#endregion
 		
     
 		#endregion 模版生成函数
