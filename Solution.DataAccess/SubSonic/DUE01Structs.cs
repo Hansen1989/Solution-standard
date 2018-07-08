@@ -105,7 +105,7 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "STD_PRICE"
                 });
 
-                Columns.Add(new DatabaseColumn("Tax", this)
+                Columns.Add(new DatabaseColumn("TAX", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.Decimal,
@@ -113,7 +113,7 @@ namespace Solution.DataAccess.DataModel {
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 0,
-					PropertyName = "Tax"
+					PropertyName = "TAX"
                 });
 
                 Columns.Add(new DatabaseColumn("QUAN1", this)
@@ -169,6 +169,17 @@ namespace Solution.DataAccess.DataModel {
 	                IsForeignKey = false,
 	                MaxLength = 40,
 					PropertyName = "BAT_NO"
+                });
+
+                Columns.Add(new DatabaseColumn("COST", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "COST"
                 });
                     
                 
@@ -231,9 +242,9 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn Tax{
+            public IColumn TAX{
                 get{
-                    return this.GetColumn("Tax");
+                    return this.GetColumn("TAX");
                 }
             }
 				
@@ -269,6 +280,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn BAT_NO{
                 get{
                     return this.GetColumn("BAT_NO");
+                }
+            }
+				
+            
+            public IColumn COST{
+                get{
+                    return this.GetColumn("COST");
                 }
             }
 				

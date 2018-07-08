@@ -83,6 +83,17 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "QUANTITY"
                 });
 
+                Columns.Add(new DatabaseColumn("STD_TYPE", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Int32,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "STD_TYPE"
+                });
+
                 Columns.Add(new DatabaseColumn("STD_UNIT", this)
                 {
 	                IsPrimaryKey = false,
@@ -235,6 +246,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn QUANTITY{
                 get{
                     return this.GetColumn("QUANTITY");
+                }
+            }
+				
+            
+            public IColumn STD_TYPE{
+                get{
+                    return this.GetColumn("STD_TYPE");
                 }
             }
 				

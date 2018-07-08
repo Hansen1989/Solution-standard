@@ -14,31 +14,31 @@ using SubSonic.Query;
 
 namespace Solution.Logic.Managers {
 	/// <summary>
-	/// SHOP_BILL表逻辑类
+	/// SHOP_SUPPLIER_RELATION表逻辑类
 	/// </summary>
-	public partial class SHOP_BILLBll : LogicBase {
+	public partial class SHOP_SUPPLIER_RELATIONBll : LogicBase {
  
  		/***********************************************************************
 		 * 模版生成函数                                                        *
 		 ***********************************************************************/
 		#region 模版生成函数
 				
-		private const string const_CacheKey = "Cache_SHOP_BILL";
-        private const string const_CacheKey_Date = "Cache_SHOP_BILL_Date";
+		private const string const_CacheKey = "Cache_SHOP_SUPPLIER_RELATION";
+        private const string const_CacheKey_Date = "Cache_SHOP_SUPPLIER_RELATION_Date";
 
 		#region 单例模式
 		//定义单例实体
-		private static SHOP_BILLBll _SHOP_BILLBll = null;
+		private static SHOP_SUPPLIER_RELATIONBll _SHOP_SUPPLIER_RELATIONBll = null;
 
 		/// <summary>
 		/// 获取本逻辑类单例
 		/// </summary>
 		/// <returns></returns>
-		public static SHOP_BILLBll GetInstence() {
-			if (_SHOP_BILLBll == null) {
-				_SHOP_BILLBll = new SHOP_BILLBll();
+		public static SHOP_SUPPLIER_RELATIONBll GetInstence() {
+			if (_SHOP_SUPPLIER_RELATIONBll == null) {
+				_SHOP_SUPPLIER_RELATIONBll = new SHOP_SUPPLIER_RELATIONBll();
 			}
-			return _SHOP_BILLBll;
+			return _SHOP_SUPPLIER_RELATIONBll;
 		}
 		#endregion
 		
@@ -59,12 +59,12 @@ namespace Solution.Logic.Managers {
 
 		#region IIS缓存函数
 		
-		#region 从IIS缓存中获取SHOP_BILL表记录
+		#region 从IIS缓存中获取SHOP_SUPPLIER_RELATION表记录
 		/// <summary>
-        /// 从IIS缓存中获取SHOP_BILL表记录
+        /// 从IIS缓存中获取SHOP_SUPPLIER_RELATION表记录
         /// </summary>
 	    /// <param name="isCache">是否从缓存中读取</param>
-        public IList<DataAccess.Model.SHOP_BILL> GetList(bool isCache = true)
+        public IList<DataAccess.Model.SHOP_SUPPLIER_RELATION> GetList(bool isCache = true)
         {
 			try
 			{
@@ -93,27 +93,27 @@ namespace Solution.Logic.Managers {
 					//缓存中存在数据，则直接返回
 					else
 					{
-						return (IList<DataAccess.Model.SHOP_BILL>)obj;
+						return (IList<DataAccess.Model.SHOP_SUPPLIER_RELATION>)obj;
 					}
 				}
 				else
 				{
 					//定义临时实体集
-					IList<DataAccess.Model.SHOP_BILL> list = null;
+					IList<DataAccess.Model.SHOP_SUPPLIER_RELATION> list = null;
 
 					//获取全表缓存加载条件表达式
-					var exp = GetExpression<SHOP_BILL>();
+					var exp = GetExpression<SHOP_SUPPLIER_RELATION>();
                     //如果条件为空，则查询全表所有记录
 					if (exp == null)
 					{
 						//从数据库中获取所有记录
-						var all = SHOP_BILL.All();
+						var all = SHOP_SUPPLIER_RELATION.All();
                         list = all == null ? null : Transform(all.ToList());
 					}
 					else
 					{
                         //从数据库中查询出指定条件的记录，并转换为指定实体集
-						var all = SHOP_BILL.Find(exp);
+						var all = SHOP_SUPPLIER_RELATION.Find(exp);
                         list = all == null ? null : Transform(all);
 					}
 
@@ -123,7 +123,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取SHOP_BILL表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取SHOP_SUPPLIER_RELATION表记录时出现异常", e);
 			}
             
             return null;
@@ -136,8 +136,8 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="id">主键Id</param>
         /// <param name="isCache">是否从缓存中读取</param>
-		/// <returns>DataAccess.Model.SHOP_BILL</returns>
-        public DataAccess.Model.SHOP_BILL GetModel(long id, bool isCache = true)
+		/// <returns>DataAccess.Model.SHOP_SUPPLIER_RELATION</returns>
+        public DataAccess.Model.SHOP_SUPPLIER_RELATION GetModel(long id, bool isCache = true)
         {
             //判断是否使用缓存
 		    if (CommonBll.IsUseCache() && isCache)
@@ -157,7 +157,7 @@ namespace Solution.Logic.Managers {
 		    else
 		    {
                 //从数据库中直接读取
-                var model = SHOP_BILL.SingleOrDefault(x => x.Id == id);
+                var model = SHOP_SUPPLIER_RELATION.SingleOrDefault(x => x.Id == id);
                 if (model == null)
                 {
                     return null;
@@ -176,8 +176,8 @@ namespace Solution.Logic.Managers {
         /// 从IIS缓存中获取指定Id记录
         /// </summary>
         /// <param name="id">主键Id</param>
-		/// <returns>DataAccess.Model.SHOP_BILL</returns>
-        public DataAccess.Model.SHOP_BILL GetModelForCache(long id)
+		/// <returns>DataAccess.Model.SHOP_SUPPLIER_RELATION</returns>
+        public DataAccess.Model.SHOP_SUPPLIER_RELATION GetModelForCache(long id)
         {
 			try
 			{
@@ -186,7 +186,7 @@ namespace Solution.Logic.Managers {
 
 				if (model == null){
 					//从数据库中读取
-					var tem = SHOP_BILL.SingleOrDefault(x => x.Id == id);
+					var tem = SHOP_SUPPLIER_RELATION.SingleOrDefault(x => x.Id == id);
 					if (tem == null)
 					{
 						return null;
@@ -206,7 +206,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取SHOP_BILL表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取SHOP_SUPPLIER_RELATION表记录时出现异常", e);
 
                 return null;
             }
@@ -219,15 +219,15 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="conditionColName">条件列名</param>
         /// <param name="value">条件值</param>
-        /// <returns>DataAccess.Model.SHOP_BILL</returns>
-        public DataAccess.Model.SHOP_BILL GetModelForCache(string conditionColName, object value)
+        /// <returns>DataAccess.Model.SHOP_SUPPLIER_RELATION</returns>
+        public DataAccess.Model.SHOP_SUPPLIER_RELATION GetModelForCache(string conditionColName, object value)
         {
 		try
             {
                 //从缓存中获取List
                 var list = GetList();
-                DataAccess.Model.SHOP_BILL model = null;
-                Expression<Func<SHOP_BILL, bool>> expression = null;
+                DataAccess.Model.SHOP_SUPPLIER_RELATION model = null;
+                Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression = null;
 
                 //返回指定条件的实体
                 switch (conditionColName)
@@ -236,41 +236,25 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.Id == (int)value);
                         expression = x => x.Id == (int)value;
                         break;
-					case "HEAD_SHOP_ID" :
-						model = list.SingleOrDefault(x => x.HEAD_SHOP_ID == (string)value);
-                        expression = x => x.HEAD_SHOP_ID == (string)value;
-                        break;
 					case "SHOP_ID" :
 						model = list.SingleOrDefault(x => x.SHOP_ID == (string)value);
                         expression = x => x.SHOP_ID == (string)value;
                         break;
-					case "BILL_AMOUNT" :
-						model = list.SingleOrDefault(x => x.BILL_AMOUNT == (decimal)value);
-                        expression = x => x.BILL_AMOUNT == (decimal)value;
+					case "SUP_ID" :
+						model = list.SingleOrDefault(x => x.SUP_ID == (string)value);
+                        expression = x => x.SUP_ID == (string)value;
                         break;
-					case "PAY_METHOD" :
-						model = list.SingleOrDefault(x => x.PAY_METHOD == (int)value);
-                        expression = x => x.PAY_METHOD == (int)value;
+					case "SUP_NAME" :
+						model = list.SingleOrDefault(x => x.SUP_NAME == (string)value);
+                        expression = x => x.SUP_NAME == (string)value;
                         break;
-					case "BILL_DATE" :
-						model = list.SingleOrDefault(x => x.BILL_DATE == (DateTime)value);
-                        expression = x => x.BILL_DATE == (DateTime)value;
-                        break;
-					case "PAY_DATE" :
-						model = list.SingleOrDefault(x => x.PAY_DATE == (DateTime)value);
-                        expression = x => x.PAY_DATE == (DateTime)value;
-                        break;
-					case "Memo" :
-						model = list.SingleOrDefault(x => x.Memo == (string)value);
-                        expression = x => x.Memo == (string)value;
+					case "MEMO" :
+						model = list.SingleOrDefault(x => x.MEMO == (string)value);
+                        expression = x => x.MEMO == (string)value;
                         break;
 					case "CRT_DATETIME" :
 						model = list.SingleOrDefault(x => x.CRT_DATETIME == (DateTime)value);
                         expression = x => x.CRT_DATETIME == (DateTime)value;
-                        break;
-					case "CRT_USER_ID" :
-						model = list.SingleOrDefault(x => x.CRT_USER_ID == (string)value);
-                        expression = x => x.CRT_USER_ID == (string)value;
                         break;
 
                     default :
@@ -280,7 +264,7 @@ namespace Solution.Logic.Managers {
                 if (model == null)
                 {
                     //从数据库中读取
-                    var tem = SHOP_BILL.SingleOrDefault(expression);
+                    var tem = SHOP_SUPPLIER_RELATION.SingleOrDefault(expression);
                     if (tem == null)
                     {
                         return null;
@@ -301,7 +285,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取SHOP_BILL表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取SHOP_SUPPLIER_RELATION表记录时出现异常", e);
 
                 return null;
             }
@@ -313,8 +297,8 @@ namespace Solution.Logic.Managers {
         /// 从IIS缓存中获取指定条件的记录
         /// </summary>
         /// <param name="expression">条件</param>
-        /// <returns>DataAccess.Model.SHOP_BILL</returns>
-        public DataAccess.Model.SHOP_BILL GetModelForCache(Expression<Func<DataAccess.Model.SHOP_BILL, bool>> expression)
+        /// <returns>DataAccess.Model.SHOP_SUPPLIER_RELATION</returns>
+        public DataAccess.Model.SHOP_SUPPLIER_RELATION GetModelForCache(Expression<Func<DataAccess.Model.SHOP_SUPPLIER_RELATION, bool>> expression)
         {
 			//从缓存中读取记录列表
 			var list = GetList();
@@ -337,7 +321,7 @@ namespace Solution.Logic.Managers {
         /// 更新IIS缓存中指定Id记录
         /// </summary>
         /// <param name="model">记录实体</param>
-        public void SetModelForCache(DataAccess.Model.SHOP_BILL model)
+        public void SetModelForCache(DataAccess.Model.SHOP_SUPPLIER_RELATION model)
         {
             //从缓存中读取记录列表
             var list = GetList();
@@ -351,7 +335,7 @@ namespace Solution.Logic.Managers {
         /// 更新IIS缓存中指定Id记录
         /// </summary>
         /// <param name="model">记录实体</param>
-        public void SetModelForCache(SHOP_BILL model)
+        public void SetModelForCache(SHOP_SUPPLIER_RELATION model)
         {
             SetModelForCache(Transform(model));
         }
@@ -393,10 +377,10 @@ namespace Solution.Logic.Managers {
         }
 
 		/// <summary>
-        /// 按条件删除IIS缓存中SHOP_BILL表的指定记录
+        /// 按条件删除IIS缓存中SHOP_SUPPLIER_RELATION表的指定记录
         /// </summary>
         /// <param name="expression">条件，值为null时删除全有记录</param>
-		public void DelCache(Expression<Func<DataAccess.Model.SHOP_BILL, bool>> expression)
+		public void DelCache(Expression<Func<DataAccess.Model.SHOP_SUPPLIER_RELATION, bool>> expression)
         {
             //从缓存中获取List
 		    var list = GetList();
@@ -425,76 +409,68 @@ namespace Solution.Logic.Managers {
 
 		#region 实体转换
 		/// <summary>
-		/// 将SHOP_BILL记录实体（SubSonic实体）转换为普通的实体（DataAccess.Model.SHOP_BILL）
+		/// 将SHOP_SUPPLIER_RELATION记录实体（SubSonic实体）转换为普通的实体（DataAccess.Model.SHOP_SUPPLIER_RELATION）
 		/// </summary>
         /// <param name="model">SubSonic插件生成的实体</param>
-		/// <returns>DataAccess.Model.SHOP_BILL</returns>
-		public DataAccess.Model.SHOP_BILL Transform(SHOP_BILL model)
+		/// <returns>DataAccess.Model.SHOP_SUPPLIER_RELATION</returns>
+		public DataAccess.Model.SHOP_SUPPLIER_RELATION Transform(SHOP_SUPPLIER_RELATION model)
         {			
 			if (model == null) 
 				return null;
 
-            return new DataAccess.Model.SHOP_BILL
+            return new DataAccess.Model.SHOP_SUPPLIER_RELATION
             {
                 Id = model.Id,
-                HEAD_SHOP_ID = model.HEAD_SHOP_ID,
                 SHOP_ID = model.SHOP_ID,
-                BILL_AMOUNT = model.BILL_AMOUNT,
-                PAY_METHOD = model.PAY_METHOD,
-                BILL_DATE = model.BILL_DATE,
-                PAY_DATE = model.PAY_DATE,
-                Memo = model.Memo,
+                SUP_ID = model.SUP_ID,
+                SUP_NAME = model.SUP_NAME,
+                MEMO = model.MEMO,
                 CRT_DATETIME = model.CRT_DATETIME,
-                CRT_USER_ID = model.CRT_USER_ID,
             };
         }
 
 		/// <summary>
-		/// 将SHOP_BILL记录实体集（SubSonic实体）转换为普通的实体集（DataAccess.Model.SHOP_BILL）
+		/// 将SHOP_SUPPLIER_RELATION记录实体集（SubSonic实体）转换为普通的实体集（DataAccess.Model.SHOP_SUPPLIER_RELATION）
 		/// </summary>
         /// <param name="sourceList">SubSonic插件生成的实体集</param>
-        public IList<DataAccess.Model.SHOP_BILL> Transform(IList<SHOP_BILL> sourceList)
+        public IList<DataAccess.Model.SHOP_SUPPLIER_RELATION> Transform(IList<SHOP_SUPPLIER_RELATION> sourceList)
         {
 			//创建List容器
-            var list = new List<DataAccess.Model.SHOP_BILL>();
+            var list = new List<DataAccess.Model.SHOP_SUPPLIER_RELATION>();
 			//将SubSonic插件生成的实体集转换后存储到刚创建的List容器中
             sourceList.ToList().ForEach(r => list.Add(Transform(r)));
             return list;
         }
 
 		/// <summary>
-		/// 将SHOP_BILL记录实体由普通的实体（DataAccess.Model.SHOP_BILL）转换为SubSonic插件生成的实体
+		/// 将SHOP_SUPPLIER_RELATION记录实体由普通的实体（DataAccess.Model.SHOP_SUPPLIER_RELATION）转换为SubSonic插件生成的实体
 		/// </summary>
-        /// <param name="model">普通的实体（DataAccess.Model.SHOP_BILL）</param>
-		/// <returns>SHOP_BILL</returns>
-		public SHOP_BILL Transform(DataAccess.Model.SHOP_BILL model)
+        /// <param name="model">普通的实体（DataAccess.Model.SHOP_SUPPLIER_RELATION）</param>
+		/// <returns>SHOP_SUPPLIER_RELATION</returns>
+		public SHOP_SUPPLIER_RELATION Transform(DataAccess.Model.SHOP_SUPPLIER_RELATION model)
         {
 			if (model == null) 
 				return null;
 
-            return new SHOP_BILL
+            return new SHOP_SUPPLIER_RELATION
             {
                 Id = model.Id,
-                HEAD_SHOP_ID = model.HEAD_SHOP_ID,
                 SHOP_ID = model.SHOP_ID,
-                BILL_AMOUNT = model.BILL_AMOUNT,
-                PAY_METHOD = model.PAY_METHOD,
-                BILL_DATE = model.BILL_DATE,
-                PAY_DATE = model.PAY_DATE,
-                Memo = model.Memo,
+                SUP_ID = model.SUP_ID,
+                SUP_NAME = model.SUP_NAME,
+                MEMO = model.MEMO,
                 CRT_DATETIME = model.CRT_DATETIME,
-                CRT_USER_ID = model.CRT_USER_ID,
             };
         }
 
 		/// <summary>
-		/// 将SHOP_BILL记录实体由普通实体集（DataAccess.Model.SHOP_BILL）转换为SubSonic插件生成的实体集
+		/// 将SHOP_SUPPLIER_RELATION记录实体由普通实体集（DataAccess.Model.SHOP_SUPPLIER_RELATION）转换为SubSonic插件生成的实体集
 		/// </summary>
-        /// <param name="sourceList">普通实体集（DataAccess.Model.SHOP_BILL）</param>
-        public IList<SHOP_BILL> Transform(IList<DataAccess.Model.SHOP_BILL> sourceList)
+        /// <param name="sourceList">普通实体集（DataAccess.Model.SHOP_SUPPLIER_RELATION）</param>
+        public IList<SHOP_SUPPLIER_RELATION> Transform(IList<DataAccess.Model.SHOP_SUPPLIER_RELATION> sourceList)
         {
 			//创建List容器
-            var list = new List<SHOP_BILL>();
+            var list = new List<SHOP_SUPPLIER_RELATION>();
 			//将普通实体集转换后存储到刚创建的List容器中
             sourceList.ToList().ForEach(r => list.Add(Transform(r)));
             return list;
@@ -507,7 +483,7 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="model">实体</param>
         /// <param name="dic">列名与值</param>
-		public void SetModelValue(DataAccess.Model.SHOP_BILL model, Dictionary<string, object> dic)
+		public void SetModelValue(DataAccess.Model.SHOP_SUPPLIER_RELATION model, Dictionary<string, object> dic)
 		{
 			if (model == null || dic == null) return;
 
@@ -524,7 +500,7 @@ namespace Solution.Logic.Managers {
         /// <param name="model">实体</param>
         /// <param name="colName">列名</param>
         /// <param name="value">值</param>
-		public void SetModelValue(DataAccess.Model.SHOP_BILL model, string colName, object value)
+		public void SetModelValue(DataAccess.Model.SHOP_SUPPLIER_RELATION model, string colName, object value)
 		{
 			if (model == null || string.IsNullOrEmpty(colName)) return;
 
@@ -534,32 +510,20 @@ namespace Solution.Logic.Managers {
 				case "Id" :
 					model.Id = (int)value;
                     break;
-				case "HEAD_SHOP_ID" :
-					model.HEAD_SHOP_ID = (string)value;
-                    break;
 				case "SHOP_ID" :
 					model.SHOP_ID = (string)value;
                     break;
-				case "BILL_AMOUNT" :
-					model.BILL_AMOUNT = (decimal)value;
+				case "SUP_ID" :
+					model.SUP_ID = (string)value;
                     break;
-				case "PAY_METHOD" :
-					model.PAY_METHOD = (int)value;
+				case "SUP_NAME" :
+					model.SUP_NAME = (string)value;
                     break;
-				case "BILL_DATE" :
-					model.BILL_DATE = (DateTime)value;
-                    break;
-				case "PAY_DATE" :
-					model.PAY_DATE = (DateTime)value;
-                    break;
-				case "Memo" :
-					model.Memo = (string)value;
+				case "MEMO" :
+					model.MEMO = (string)value;
                     break;
 				case "CRT_DATETIME" :
 					model.CRT_DATETIME = (DateTime)value;
-                    break;
-				case "CRT_USER_ID" :
-					model.CRT_USER_ID = (string)value;
                     break;
             }
 		}
@@ -568,9 +532,9 @@ namespace Solution.Logic.Managers {
 
 		#endregion
 
-		#region 获取SHOP_BILL表记录总数
+		#region 获取SHOP_SUPPLIER_RELATION表记录总数
         /// <summary>
-        /// 获取SHOP_BILL表记录总数
+        /// 获取SHOP_SUPPLIER_RELATION表记录总数
         /// </summary>
         /// <returns>记录总数</returns>
         public int GetRecordCount()
@@ -591,23 +555,23 @@ namespace Solution.Logic.Managers {
         }
 
 		/// <summary>
-		/// 获取SHOP_BILL表记录总数——从数据库中查询
+		/// 获取SHOP_SUPPLIER_RELATION表记录总数——从数据库中查询
 		/// </summary>
         /// <param name="wheres">条件</param>
 		/// <returns>int</returns>
 		public int GetRecordCount(List<ConditionFun.SqlqueryCondition> wheres) {
 			var select = new SelectHelper();
-			return select.GetRecordCount<SHOP_BILL>(wheres);
+			return select.GetRecordCount<SHOP_SUPPLIER_RELATION>(wheres);
 
 		}
 
 		/// <summary>
-		/// 获取SHOP_BILL表指定条件的记录总数——从数据库中查询
+		/// 获取SHOP_SUPPLIER_RELATION表指定条件的记录总数——从数据库中查询
 		/// </summary>
         /// <param name="expression">条件</param>
 		/// <returns>int</returns>
-		public int GetRecordCount(Expression<Func<SHOP_BILL, bool>> expression) {
-            return new Select().From<SHOP_BILL>().Where(expression).GetRecordCount();
+		public int GetRecordCount(Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression) {
+            return new Select().From<SHOP_SUPPLIER_RELATION>().Where(expression).GetRecordCount();
 		}
 
         #endregion
@@ -617,7 +581,7 @@ namespace Solution.Logic.Managers {
         /// 查找指定条件的记录集合——从IIS缓存中查找
         /// </summary>
         /// <param name="expression">条件语句</param>
-        public IList<DataAccess.Model.SHOP_BILL> Find(Expression<Func<DataAccess.Model.SHOP_BILL, bool>> expression)
+        public IList<DataAccess.Model.SHOP_SUPPLIER_RELATION> Find(Expression<Func<DataAccess.Model.SHOP_SUPPLIER_RELATION, bool>> expression)
         {
 			//从缓存中获取记录集
 			var list = GetList();
@@ -657,7 +621,7 @@ namespace Solution.Logic.Managers {
             }
             
             //从数据库中查找
-            return SHOP_BILL.Exists(x => x.Id == id);
+            return SHOP_SUPPLIER_RELATION.Exists(x => x.Id == id);
         }
 
         /// <summary>
@@ -665,7 +629,7 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="expression">条件语句</param>
         /// <returns></returns>
-        public bool Exist(Expression<Func<DataAccess.Model.SHOP_BILL, bool>> expression)
+        public bool Exist(Expression<Func<DataAccess.Model.SHOP_SUPPLIER_RELATION, bool>> expression)
         {
             var list = GetList();
             if (list == null) 
@@ -677,9 +641,9 @@ namespace Solution.Logic.Managers {
         }
         #endregion
 
-		#region 获取SHOP_BILL表记录
+		#region 获取SHOP_SUPPLIER_RELATION表记录
 		/// <summary>
-		/// 获取SHOP_BILL表记录
+		/// 获取SHOP_SUPPLIER_RELATION表记录
 		/// </summary>
 		/// <param name="norepeat">是否使用去重复</param>
 		/// <param name="top">获取指定数量记录</param>
@@ -694,12 +658,12 @@ namespace Solution.Logic.Managers {
             {
                 //分页查询
                 var select = new SelectHelper();
-                return select.SelectDataTable<SHOP_BILL>(norepeat, top, columns, pageIndex, pageSize, wheres, sorts);
+                return select.SelectDataTable<SHOP_SUPPLIER_RELATION>(norepeat, top, columns, pageIndex, pageSize, wheres, sorts);
             }
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("获取SHOP_BILL表记录时出现异常", e);
+                CommonBll.WriteLog("获取SHOP_SUPPLIER_RELATION表记录时出现异常", e);
 
                 return null;
             }
@@ -796,16 +760,16 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 
-		#region 添加与编辑SHOP_BILL表记录
+		#region 添加与编辑SHOP_SUPPLIER_RELATION表记录
 		/// <summary>
-		/// 添加与编辑SHOP_BILL记录
+		/// 添加与编辑SHOP_SUPPLIER_RELATION记录
 		/// </summary>
 	    /// <param name="page">当前页面指针</param>
-		/// <param name="model">SHOP_BILL表实体</param>
+		/// <param name="model">SHOP_SUPPLIER_RELATION表实体</param>
         /// <param name="content">更新说明</param>
         /// <param name="isCache">是否更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void Save(Page page, SHOP_BILL model, string content = null, bool isCache = true, bool isAddUseLog = true)
+        public void Save(Page page, SHOP_SUPPLIER_RELATION model, string content = null, bool isCache = true, bool isAddUseLog = true)
         {
 			try {
 				//保存
@@ -821,7 +785,7 @@ namespace Solution.Logic.Managers {
 				{
 					if (string.IsNullOrEmpty(content))
 					{
-						content = "{0}" + (model.Id == 0 ? "添加" : "编辑") + "SHOP_BILL记录成功，ID为【" + model.Id + "】";
+						content = "{0}" + (model.Id == 0 ? "添加" : "编辑") + "SHOP_SUPPLIER_RELATION记录成功，ID为【" + model.Id + "】";
 					}
 
 					//添加用户访问记录
@@ -829,7 +793,7 @@ namespace Solution.Logic.Managers {
 				}
 			}
 			catch (Exception e) {
-				var result = "执行SHOP_BILLBll.Save()函数出错！";
+				var result = "执行SHOP_SUPPLIER_RELATIONBll.Save()函数出错！";
 
 				//出现异常，保存出错日志信息
 				CommonBll.WriteLog(result, e);
@@ -837,9 +801,9 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 
-		#region 删除SHOP_BILL表记录
+		#region 删除SHOP_SUPPLIER_RELATION表记录
 		/// <summary>
-		/// 删除SHOP_BILL表记录
+		/// 删除SHOP_SUPPLIER_RELATION表记录
 		/// </summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="id">记录的主键值</param>
@@ -847,7 +811,7 @@ namespace Solution.Logic.Managers {
 		public override void Delete(Page page, int id, bool isAddUseLog = true) 
 		{
 			//设置Sql语句
-			var sql = string.Format("delete from {0} where {1} = {2}", SHOP_BILLTable.TableName,  SHOP_BILLTable.Id, id);
+			var sql = string.Format("delete from {0} where {1} = {2}", SHOP_SUPPLIER_RELATIONTable.TableName,  SHOP_SUPPLIER_RELATIONTable.Id, id);
 
 			//删除
 			var delete = new DeleteHelper();
@@ -863,12 +827,12 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了SHOP_BILL表id为【" + id + "】的记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了SHOP_SUPPLIER_RELATION表id为【" + id + "】的记录！");
 			}
 		}
 
 		/// <summary>
-		/// 删除SHOP_BILL表记录
+		/// 删除SHOP_SUPPLIER_RELATION表记录
 		/// </summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="id">记录的主键值</param>
@@ -880,7 +844,7 @@ namespace Solution.Logic.Managers {
 			var str = string.Join(",", id);
 
 			//设置Sql语句
-			var sql = string.Format("delete from {0} where {1} in ({2})", SHOP_BILLTable.TableName,  SHOP_BILLTable.Id, str);
+			var sql = string.Format("delete from {0} where {1} in ({2})", SHOP_SUPPLIER_RELATIONTable.TableName,  SHOP_SUPPLIER_RELATIONTable.Id, str);
 
 			//删除
 			var delete = new DeleteHelper();
@@ -896,7 +860,7 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了SHOP_BILL表id为【" + str + "】的记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了SHOP_SUPPLIER_RELATION表id为【" + str + "】的记录！");
 			}
 		}
 
@@ -906,10 +870,10 @@ namespace Solution.Logic.Managers {
         /// <param name="page">当前页面指针</param>
         /// <param name="expression">条件语句</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void Delete(Page page, Expression<Func<SHOP_BILL, bool>> expression, bool isAddUseLog = true)
+        public void Delete(Page page, Expression<Func<SHOP_SUPPLIER_RELATION, bool>> expression, bool isAddUseLog = true)
         {
 			//执行删除
-			SHOP_BILL.Delete(expression);
+			SHOP_SUPPLIER_RELATION.Delete(expression);
 
             //判断是否启用缓存
             if (CommonBll.IsUseCache())
@@ -923,7 +887,7 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了SHOP_BILL表记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了SHOP_SUPPLIER_RELATION表记录！");
 			}
         }
 		#endregion
@@ -940,7 +904,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateSort(Page page, FineUI.Grid grid1, string tbxSort, string sortName = "Sort")
 	    {
 		     //更新排序
-			if (CommonBll.UpdateSort(page, grid1, tbxSort, "SHOP_BILL", sortName, "Id"))
+			if (CommonBll.UpdateSort(page, grid1, tbxSort, "SHOP_SUPPLIER_RELATION", sortName, "Id"))
 		    {
 				//判断是否启用缓存
                 if (CommonBll.IsUseCache())
@@ -952,7 +916,7 @@ namespace Solution.Logic.Managers {
                 }
 				
 			    //添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}更新了SHOP_BILL表排序！");
+				UseLogBll.GetInstence().Save(page, "{0}更新了SHOP_SUPPLIER_RELATION表排序！");
 
 			    return true;
 		    }
@@ -973,7 +937,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateAutoSort(Page page, string strWhere = "", bool isExistsMoreLv = false, int pid = 0, string fieldName = "Sort", string fieldParentId = "ParentId")
 	    {
 		    //更新排序
-			if (CommonBll.AutoSort("Id", "SHOP_BILL", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
+			if (CommonBll.AutoSort("Id", "SHOP_SUPPLIER_RELATION", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
 		    {
 				//判断是否启用缓存
                 if (CommonBll.IsUseCache())
@@ -985,7 +949,7 @@ namespace Solution.Logic.Managers {
                 }
 
 			    //添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}对SHOP_BILL表进行了自动排序操作！");
+				UseLogBll.GetInstence().Save(page, "{0}对SHOP_SUPPLIER_RELATION表进行了自动排序操作！");
 
 			    return true;
 		    }
@@ -1019,7 +983,7 @@ namespace Solution.Logic.Managers {
 	    {
             //如果条件列为空，则默认为主键列
             if (string.IsNullOrEmpty(conditionColName))
-                conditionColName = SHOP_BILLTable.Id;
+                conditionColName = SHOP_SUPPLIER_RELATIONTable.Id;
 
             //在内存中查询
 	        if (isCache)
@@ -1064,7 +1028,7 @@ namespace Solution.Logic.Managers {
         /// <param name="colName">获取的列名</param>
         /// <param name="expression">条件</param>
         /// <returns></returns>
-        public object GetFieldValue(string colName, Expression<Func<DataAccess.Model.SHOP_BILL, bool>> expression)
+        public object GetFieldValue(string colName, Expression<Func<DataAccess.Model.SHOP_SUPPLIER_RELATION, bool>> expression)
 	    {
 	        return GetFieldValue(GetModelForCache(expression), colName);
 	    }
@@ -1099,7 +1063,7 @@ namespace Solution.Logic.Managers {
         public object GetFieldValue(string colName, List<ConditionFun.SqlqueryCondition> wheres)
         {
             var select = new SelectHelper();
-            return select.GetColumnsValue<SHOP_BILL>(colName, wheres);
+            return select.GetColumnsValue<SHOP_SUPPLIER_RELATION>(colName, wheres);
         }
 
 		/// <summary>
@@ -1108,7 +1072,7 @@ namespace Solution.Logic.Managers {
         /// <param name="model">实体</param>
         /// <param name="colName">获取的字段名</param>
         /// <returns></returns>
-		private object GetFieldValue(DataAccess.Model.SHOP_BILL model, string colName)
+		private object GetFieldValue(DataAccess.Model.SHOP_SUPPLIER_RELATION model, string colName)
 		{
 			if (model == null || string.IsNullOrEmpty(colName)) return null;
 			//返回指定的列值
@@ -1116,24 +1080,16 @@ namespace Solution.Logic.Managers {
 			{
 				case "Id" :
 					return model.Id;
-				case "HEAD_SHOP_ID" :
-					return model.HEAD_SHOP_ID;
 				case "SHOP_ID" :
 					return model.SHOP_ID;
-				case "BILL_AMOUNT" :
-					return model.BILL_AMOUNT;
-				case "PAY_METHOD" :
-					return model.PAY_METHOD;
-				case "BILL_DATE" :
-					return model.BILL_DATE;
-				case "PAY_DATE" :
-					return model.PAY_DATE;
-				case "Memo" :
-					return model.Memo;
+				case "SUP_ID" :
+					return model.SUP_ID;
+				case "SUP_NAME" :
+					return model.SUP_NAME;
+				case "MEMO" :
+					return model.MEMO;
 				case "CRT_DATETIME" :
 					return model.CRT_DATETIME;
-				case "CRT_USER_ID" :
-					return model.CRT_USER_ID;
 			}
 
 			return null;
@@ -1141,8 +1097,8 @@ namespace Solution.Logic.Managers {
 
 		#endregion
 		
-		#region 更新SHOP_BILL表指定字段值
-		/// <summary>更新SHOP_BILL表记录指定字段值，如果使用了缓存，保存成功后会清空本表的所有缓存记录，然后重新加载进缓存</summary>
+		#region 更新SHOP_SUPPLIER_RELATION表指定字段值
+		/// <summary>更新SHOP_SUPPLIER_RELATION表记录指定字段值，如果使用了缓存，保存成功后会清空本表的所有缓存记录，然后重新加载进缓存</summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="dic">需要更新的字段与值</param>
 		/// <param name="wheres">条件</param>
@@ -1152,7 +1108,7 @@ namespace Solution.Logic.Managers {
 		public void UpdateValue(Page page, Dictionary<string, object> dic, List<ConditionFun.SqlqueryCondition> wheres = null, string content = "", bool isCache = true, bool isAddUseLog = true) {
 			//更新
 			var update = new UpdateHelper();
-			update.Update<SHOP_BILL>(dic, wheres);
+			update.Update<SHOP_SUPPLIER_RELATION>(dic, wheres);
 
 			//判断是否启用缓存
 			if (isCache && CommonBll.IsUseCache())
@@ -1167,7 +1123,7 @@ namespace Solution.Logic.Managers {
 				if (string.IsNullOrEmpty(content))
 				{
 					//添加用户操作记录
-					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}修改了SHOP_BILL表记录。");				
+					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}修改了SHOP_SUPPLIER_RELATION表记录。");				
 				}
 				else
 				{
@@ -1178,8 +1134,8 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 				
-		#region 更新SHOP_BILL表指定主键Id的字段值
-		/// <summary>更新SHOP_BILL表记录指定字段值</summary>
+		#region 更新SHOP_SUPPLIER_RELATION表指定主键Id的字段值
+		/// <summary>更新SHOP_SUPPLIER_RELATION表记录指定字段值</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
 	    /// <param name="dic">需要更新的字段与值</param>
@@ -1188,14 +1144,14 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
 	    public void UpdateValue(Page page, int id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-			content = content != "" ? content : "{0}修改了SHOP_BILL表主键Id值为" + id + "的记录。";
+			content = content != "" ? content : "{0}修改了SHOP_SUPPLIER_RELATION表主键Id值为" + id + "的记录。";
 			
             //条件
 		    List<ConditionFun.SqlqueryCondition> wheres = null;
             if (id > 0)
             {
                 wheres = new List<ConditionFun.SqlqueryCondition>();
-                wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, SHOP_BILLTable.Id, Comparison.Equals, id));
+                wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, SHOP_SUPPLIER_RELATIONTable.Id, Comparison.Equals, id));
             };
 
 			//判断是否启用缓存——为了防止并发问题，所以先更新缓存再更新数据库
@@ -1213,7 +1169,7 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, dic, wheres, content, false, isAddUseLog);
         }
 
-        /// <summary>更新SHOP_BILL表记录指定字段值（更新一个字段值）</summary>
+        /// <summary>更新SHOP_SUPPLIER_RELATION表记录指定字段值（更新一个字段值）</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
         /// <param name="columnName">要更新的列名</param>
@@ -1223,7 +1179,7 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
         public void UpdateValue(Page page, int id, string columnName, object columnValue, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-            content = content != "" ? content : "{0}修改了SHOP_BILL表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
+            content = content != "" ? content : "{0}修改了SHOP_SUPPLIER_RELATION表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
             //设置更新字段
             var dic = new Dictionary<string, object>();
             dic.Add(columnName, columnValue);
@@ -1232,7 +1188,7 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, id, dic, content, isCache, isAddUseLog);
         }
 
-		 /// <summary>更新SHOP_BILL表记录指定字段值（更新两个字段值）</summary>
+		 /// <summary>更新SHOP_SUPPLIER_RELATION表记录指定字段值（更新两个字段值）</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
         /// <param name="columnName1">要更新的列名</param>
@@ -1244,7 +1200,7 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
         public void UpdateValue(Page page, int id, string columnName1, object columnValue1, string columnName2, object columnValue2, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-            content = content != "" ? content : "{0}修改了SHOP_BILL表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
+            content = content != "" ? content : "{0}修改了SHOP_SUPPLIER_RELATION表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
             //设置更新字段
             var dic = new Dictionary<string, object>();
             dic.Add(columnName1, columnValue1);

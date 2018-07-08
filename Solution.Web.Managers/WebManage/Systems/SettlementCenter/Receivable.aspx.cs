@@ -1,4 +1,5 @@
 ﻿using DotNet.Utilities;
+using DotNet.Utilities.Constants;
 using FineUI;
 using Solution.DataAccess.DataModel;
 using Solution.DataAccess.DbHelper;
@@ -28,6 +29,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
         /// 登录用户所属分店ID
         /// </summary>
         private string shopId = "";
+
+        /// <summary>
+        /// 更新代理
+        /// </summary>
+        private UpdateHelper updaterHelper = new UpdateHelper();
+
+        /// <summary>
+        /// 查询代理
+        /// </summary>
+        private SelectHelper selectHelper = new SelectHelper();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -91,16 +102,29 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
             //获取用户所属shop
             shopId = OlUser.SHOP_ID;
 
-            
 
             //绑定门店下拉列表
             //SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, shopIdDropdown);
 
             //查询查询所有分店
-            List<ConditionFun.SqlqueryCondition> shopCondition = new List<ConditionFun.SqlqueryCondition>();
-            shopCondition.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "", Comparison.Equals, shopId, false, false));
+            var shop = SHOP00Bll.GetInstence().GetModelForCache(s => s.SHOP_ID.Equals(shopId));
 
-            SHOP00Bll.GetInstence().GetDataTable(false, 0, null, 0, 0);
+
+
+            List<ConditionFun.SqlqueryCondition> shopCondition = new List<ConditionFun.SqlqueryCondition>();
+            shopCondition.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "SHOP_Area_ID", Comparison.Equals, shop.SHOP_Area_ID, false, false));
+
+            List<SHOP00> shopList = selectHelper.Select<SHOP00>(false, 0, null, shopCondition, null).ExecuteTypedList<SHOP00>();
+
+            shopIdDropdown.DataSource = shopList;
+            shopIdDropdown.DataTextField = "SHOP_NAME1";
+            shopIdDropdown.DataValueField = "SHOP_ID";
+            shopIdDropdown.DataBind();
+
+            foreach(SHOP00 shop00 in shopList)
+            {
+                shopDic[shop00.SHOP_ID] = shop00.SHOP_NAME1;
+            }
 
             //初始化时间
             DatePicker outStartDate = archiveWindow.FindControl("archiveDatePanel").FindControl("outStartDate") as DatePicker;
@@ -112,15 +136,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
         #endregion
 
 
-        /// <summary>
-        /// 更换分店事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void shopIdDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadData();
-        }
+        ///// <summary>
+        ///// 更换分店事件
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //protected void shopIdDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    LoadData();
+        //}
 
         /// <summary>
         /// 汇整出货单
@@ -158,10 +182,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
             //6.保存应收明细
 
             int total = 0;
-
-            var updaterHelper = new UpdateHelper();
-
-            var selectHelper = new SelectHelper();
+                       
 
             //循环查询
             while (true)
@@ -348,6 +369,105 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
         protected void ButtonQuery_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        /// <summary>
+        /// 行绑定事件，每行显示之前调用该方法
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void resultGrid_PreRowDataBound(object sender, GridPreRowEventArgs e)
+        {
+            DataRowView row = e.DataItem as DataRowView;
+            FineUI.BoundField shopName = resultGrid.FindColumn("SHOP_NAME") as FineUI.BoundField;
+            shopName.NullDisplayText = shopDic[row["SHOP_ID"].ToString()];
+
+            FineUI.BoundField status = resultGrid.FindColumn("STATUS_DESC") as FineUI.BoundField;
+            switch (row["STATUS"].ToString())
+            {
+                case "1":
+                    status.NullDisplayText = "存档";
+                    break;
+                case "2":
+                    status.NullDisplayText = "核准";
+                    break;
+                case "3":
+                    status.NullDisplayText = "作废";
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    status.NullDisplayText = "月结(关单)";
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 核准
+        /// </summary>
+        public override void Approval()
+        {
+            GridRow row = resultGrid.SelectedRow;
+            if(row == null)
+            {
+                Alert.Show("请选择需要核准的应付账单");
+                return;
+            }
+            try
+            {
+                int id = Convert.ToInt32(row.DataKeys[0].ToString());
+                RECEIVABLES00 pay = selectHelper.SelectSingle<RECEIVABLES00>(false, null, new List<ConditionFun.SqlqueryCondition>() { new ConditionFun.SqlqueryCondition(ConstraintType.Where, "Id", Comparison.Equals, id, false, false) });
+                if (SubsonicConstants.STATUS_NEW ==  pay.STATUS)
+                {
+                    Alert.Show("应付账单状态不是存档状态，不能核准");
+                    return;
+                }
+                else
+                {
+                    var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
+
+                    int ret = updaterHelper.Update(string.Format("update RECEIVABLES00 set status = 2  where status = 1 and id = {0}", id));
+                    
+                    //核准时间
+                    pay.MOD_DATETIME = DateTime.Now;
+                    //核准人
+                    pay.MOD_USER_ID = OlUser.Manager_LoginName;
+                    pay.Save();
+                    if(ret == 1)
+                    {
+                        Alert.Show(string.Format("出货单号[{0}]核准成功", pay.OUT_ID));
+
+                    }else
+                    {
+                        Alert.Show(string.Format("出货单号[{0}]核准失败", pay.OUT_ID));
+                    }
+                    LoadData();
+                }
+            }catch(Exception e)
+            {
+                CommonBll.WriteLog(string.Format("id:{0}核准失败", row.DataKeys[0]), e);
+            }            
+        }
+
+        /// <summary>
+        /// 单击行
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void resultGrid_RowClick(object sender, GridRowClickEventArgs e)
+        {
+            
+            GridRow row = resultGrid.Rows[e.RowIndex];
+            //分店编号
+            string shopId = row.DataKeys[1].ToString();
+            //出货单号
+            string outId = row.DataKeys[2].ToString();
+
+            List<ConditionFun.SqlqueryCondition> wheres = new List<ConditionFun.SqlqueryCondition>();
+            wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "SHOP_ID", Comparison.Equals, shopId));
+            wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, "OUT_ID", Comparison.Equals, outId));
+
+            RECEIVABLES01Bll.GetInstence().BindGrid(itemGrid, 0, 100, wheres);         
         }
     }
 }

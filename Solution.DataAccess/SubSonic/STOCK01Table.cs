@@ -120,6 +120,14 @@ namespace Solution.DataAccess.DataModel {
         			return "LAST_UPDATE";
       			}
 		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string SHOP_ID{
+			      get{
+        			return "SHOP_ID";
+      			}
+		    }
                     
         }
 }

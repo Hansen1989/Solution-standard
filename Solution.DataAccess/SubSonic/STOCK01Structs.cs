@@ -159,6 +159,17 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 0,
 					PropertyName = "LAST_UPDATE"
                 });
+
+                Columns.Add(new DatabaseColumn("SHOP_ID", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 50,
+					PropertyName = "SHOP_ID"
+                });
                     
                 
                 
@@ -251,6 +262,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn LAST_UPDATE{
                 get{
                     return this.GetColumn("LAST_UPDATE");
+                }
+            }
+				
+            
+            public IColumn SHOP_ID{
+                get{
+                    return this.GetColumn("SHOP_ID");
                 }
             }
 				

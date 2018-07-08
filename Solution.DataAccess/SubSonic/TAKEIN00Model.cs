@@ -178,6 +178,16 @@ namespace Solution.DataAccess.Model
 			get { return _Trans_STATUS; }
 			set { _Trans_STATUS = value; }
 		}
+
+		byte _TAKEIN_TYPE = 0;
+		/// <summary>
+		/// 进货类型 1-一般进货 2-试用进货 3-直进直出 4-厂商退货
+		/// </summary>
+		public byte TAKEIN_TYPE
+		{
+			get { return _TAKEIN_TYPE; }
+			set { _TAKEIN_TYPE = value; }
+		}
     } 
 
 }

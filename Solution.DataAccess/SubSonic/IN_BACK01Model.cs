@@ -69,6 +69,16 @@ namespace Solution.DataAccess.Model
 			set { _QUANTITY = value; }
 		}
 
+		string _STD_TYPE = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string STD_TYPE
+		{
+			get { return _STD_TYPE; }
+			set { _STD_TYPE = value; }
+		}
+
 		string _STD_UNIT = "";
 		/// <summary>
 		/// 

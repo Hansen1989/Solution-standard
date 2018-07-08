@@ -152,6 +152,14 @@ namespace Solution.DataAccess.DataModel {
         			return "Trans_STATUS";
       			}
 		    }
+			/// <summary>
+			/// 进货类型 1-一般进货 2-试用进货 3-直进直出 4-厂商退货
+			/// </summary>
+   			public static string TAKEIN_TYPE{
+			      get{
+        			return "TAKEIN_TYPE";
+      			}
+		    }
                     
         }
 }

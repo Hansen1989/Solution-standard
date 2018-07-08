@@ -83,9 +83,9 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string Tax{
+   			public static string TAX{
 			      get{
-        			return "Tax";
+        			return "TAX";
       			}
 		    }
 			/// <summary>
@@ -126,6 +126,14 @@ namespace Solution.DataAccess.DataModel {
    			public static string BAT_NO{
 			      get{
         			return "BAT_NO";
+      			}
+		    }
+			/// <summary>
+			/// 成本
+			/// </summary>
+   			public static string COST{
+			      get{
+        			return "COST";
       			}
 		    }
                     

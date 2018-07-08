@@ -122,7 +122,7 @@ namespace Solution.DataAccess.DataModel
                
             TAKEIN_ID = readRecord.get_string("TAKEIN_ID",null);
                
-            STATUS = readRecord.get_byte("STATUS",null);
+            STATUS = readRecord.get_int("STATUS",null);
                
             INPUT_DATE = readRecord.get_datetime("INPUT_DATE",null);
                
@@ -405,11 +405,11 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        byte _STATUS;
+        int _STATUS;
 		/// <summary>
 		/// 应付账单状态
 		/// </summary>
-        public byte STATUS
+        public int STATUS
         {
             get { return _STATUS; }
             set

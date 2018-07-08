@@ -53,7 +53,7 @@ namespace Solution.DataAccess.DataModel {
                 Columns.Add(new DatabaseColumn("STATUS", this)
                 {
 	                IsPrimaryKey = false,
-	                DataType = DbType.Byte,
+	                DataType = DbType.Int32,
 	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
@@ -196,7 +196,7 @@ namespace Solution.DataAccess.DataModel {
                 Columns.Add(new DatabaseColumn("TAKEIN_TYPE", this)
                 {
 	                IsPrimaryKey = false,
-	                DataType = DbType.Byte,
+	                DataType = DbType.Int32,
 	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,

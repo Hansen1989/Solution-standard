@@ -7,7 +7,7 @@ using System.Data;
 namespace Solution.DataAccess.DataModel {
         /// <summary>
         /// Table: RECEIVABLES00
-        /// Primary Key: Id
+        /// Primary Key: 
         /// </summary>
 
         public class RECEIVABLES00Structs: DatabaseTable {
@@ -19,7 +19,7 @@ namespace Solution.DataAccess.DataModel {
 
                 Columns.Add(new DatabaseColumn("Id", this)
                 {
-	                IsPrimaryKey = true,
+	                IsPrimaryKey = false,
 	                DataType = DbType.Int64,
 	                IsNullable = false,
 	                AutoIncrement = true,
@@ -53,7 +53,7 @@ namespace Solution.DataAccess.DataModel {
                 Columns.Add(new DatabaseColumn("STATUS", this)
                 {
 	                IsPrimaryKey = false,
-	                DataType = DbType.Byte,
+	                DataType = DbType.Int32,
 	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,

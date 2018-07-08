@@ -300,6 +300,10 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.Trans_STATUS == (byte)value);
                         expression = x => x.Trans_STATUS == (byte)value;
                         break;
+					case "TAKEIN_TYPE" :
+						model = list.SingleOrDefault(x => x.TAKEIN_TYPE == (byte)value);
+                        expression = x => x.TAKEIN_TYPE == (byte)value;
+                        break;
 
                     default :
                         return null;
@@ -481,6 +485,7 @@ namespace Solution.Logic.Managers {
                 MOD_USER_ID = model.MOD_USER_ID,
                 LAST_UPDATE = model.LAST_UPDATE,
                 Trans_STATUS = model.Trans_STATUS,
+                TAKEIN_TYPE = model.TAKEIN_TYPE,
             };
         }
 
@@ -526,6 +531,7 @@ namespace Solution.Logic.Managers {
                 MOD_USER_ID = model.MOD_USER_ID,
                 LAST_UPDATE = model.LAST_UPDATE,
                 Trans_STATUS = model.Trans_STATUS,
+                TAKEIN_TYPE = model.TAKEIN_TYPE,
             };
         }
 
@@ -623,6 +629,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "Trans_STATUS" :
 					model.Trans_STATUS = ConvertHelper.Ctinyint(value);
+                    break;
+				case "TAKEIN_TYPE" :
+					model.TAKEIN_TYPE = ConvertHelper.Ctinyint(value);
                     break;
             }
 		}
@@ -1211,6 +1220,8 @@ namespace Solution.Logic.Managers {
 					return model.LAST_UPDATE;
 				case "Trans_STATUS" :
 					return model.Trans_STATUS;
+				case "TAKEIN_TYPE" :
+					return model.TAKEIN_TYPE;
 			}
 
 			return null;
@@ -1367,6 +1378,25 @@ namespace Solution.Logic.Managers {
 
 			//更新
 			UpdateValue(page, pkValue, setValue, "{0}更新了TAKEIN00表id为【" + pkValue + "】的记录，更新内容为将Trans_STATUS字段值修改为" + updateValue, isCache, isAddUseLog);
+		}
+		#endregion
+		
+		#region 更新TAKEIN_TYPE字段值
+		/// <summary>
+		/// 更新TAKEIN_TYPE字段值
+		/// </summary>
+		/// <param name="page">当前页面指针</param>
+		/// <param name="pkValue">主键Id，当等于0时，则更新所有记录</param>
+		/// <param name="updateValue">更新值</param>
+        /// <param name="isCache">是否同步更新缓存</param>
+		/// <param name="isAddUseLog">是否添加用户操作日志</param>
+		public void UpdateTAKEIN_TYPE(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
+			//设置更新值
+			var setValue = new Dictionary<string, object>();
+			setValue[TAKEIN00Table.TAKEIN_TYPE] = updateValue;
+
+			//更新
+			UpdateValue(page, pkValue, setValue, "{0}更新了TAKEIN00表id为【" + pkValue + "】的记录，更新内容为将TAKEIN_TYPE字段值修改为" + updateValue, isCache, isAddUseLog);
 		}
 		#endregion
 		
