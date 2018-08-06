@@ -49,11 +49,11 @@ namespace Solution.DataAccess.Model
 			set { _BILL_AMOUNT = value; }
 		}
 
-		byte _PAY_METHOD = 0;
+		int _PAY_METHOD = 0;
 		/// <summary>
 		/// 
 		/// </summary>
-		public byte PAY_METHOD
+		public int PAY_METHOD
 		{
 			get { return _PAY_METHOD; }
 			set { _PAY_METHOD = value; }

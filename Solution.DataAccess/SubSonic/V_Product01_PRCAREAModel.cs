@@ -109,6 +109,16 @@ namespace Solution.DataAccess.Model
 			set { _PROD_UNIT = value; }
 		}
 
+		string _UNIT_NAME = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string UNIT_NAME
+		{
+			get { return _UNIT_NAME; }
+			set { _UNIT_NAME = value; }
+		}
+
 		string _PROD_UNIT1 = "";
 		/// <summary>
 		/// 
@@ -117,6 +127,16 @@ namespace Solution.DataAccess.Model
 		{
 			get { return _PROD_UNIT1; }
 			set { _PROD_UNIT1 = value; }
+		}
+
+		string _UNIT_NAME1 = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string UNIT_NAME1
+		{
+			get { return _UNIT_NAME1; }
+			set { _UNIT_NAME1 = value; }
 		}
 
 		int _PROD_CONVERT1 = 0;
@@ -137,6 +157,16 @@ namespace Solution.DataAccess.Model
 		{
 			get { return _PROD_UNIT2; }
 			set { _PROD_UNIT2 = value; }
+		}
+
+		string _UNIT_NAME2 = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string UNIT_NAME2
+		{
+			get { return _UNIT_NAME2; }
+			set { _UNIT_NAME2 = value; }
 		}
 
 		int _PROD_CONVERT2 = 0;
@@ -437,6 +467,16 @@ namespace Solution.DataAccess.Model
 		{
 			get { return _Purchase_UNIT; }
 			set { _Purchase_UNIT = value; }
+		}
+
+		string _Purchase_UNIT_NAME = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string Purchase_UNIT_NAME
+		{
+			get { return _Purchase_UNIT_NAME; }
+			set { _Purchase_UNIT_NAME = value; }
 		}
 
 		int _Purchase_QUAN = 0;

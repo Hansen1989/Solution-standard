@@ -64,7 +64,7 @@ namespace Solution.DataAccess.DataModel {
                 Columns.Add(new DatabaseColumn("PAY_METHOD", this)
                 {
 	                IsPrimaryKey = false,
-	                DataType = DbType.Byte,
+	                DataType = DbType.Int32,
 	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,

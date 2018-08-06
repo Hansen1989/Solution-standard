@@ -136,11 +136,17 @@ namespace Solution.DataAccess.DataModel
                
             PROD_UNIT = readRecord.get_string("PROD_UNIT",null);
                
+            UNIT_NAME = readRecord.get_string("UNIT_NAME",null);
+               
             PROD_UNIT1 = readRecord.get_string("PROD_UNIT1",null);
+               
+            UNIT_NAME1 = readRecord.get_string("UNIT_NAME1",null);
                
             PROD_CONVERT1 = readRecord.get_int("PROD_CONVERT1",null);
                
             PROD_UNIT2 = readRecord.get_string("PROD_UNIT2",null);
+               
+            UNIT_NAME2 = readRecord.get_string("UNIT_NAME2",null);
                
             PROD_CONVERT2 = readRecord.get_int("PROD_CONVERT2",null);
                
@@ -201,6 +207,8 @@ namespace Solution.DataAccess.DataModel
             ORDER_QUAN = readRecord.get_int("ORDER_QUAN",null);
                
             Purchase_UNIT = readRecord.get_int("Purchase_UNIT",null);
+               
+            Purchase_UNIT_NAME = readRecord.get_string("Purchase_UNIT_NAME",null);
                
             Purchase_QUAN = readRecord.get_int("Purchase_QUAN",null);
                
@@ -620,6 +628,28 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
+        string _UNIT_NAME;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string UNIT_NAME
+        {
+            get { return _UNIT_NAME; }
+            set
+            {
+                if(_UNIT_NAME!=value || _isLoaded){
+                    _UNIT_NAME=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="UNIT_NAME");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
         string _PROD_UNIT1;
 		/// <summary>
 		/// 
@@ -632,6 +662,28 @@ namespace Solution.DataAccess.DataModel
                 if(_PROD_UNIT1!=value || _isLoaded){
                     _PROD_UNIT1=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_UNIT1");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _UNIT_NAME1;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string UNIT_NAME1
+        {
+            get { return _UNIT_NAME1; }
+            set
+            {
+                if(_UNIT_NAME1!=value || _isLoaded){
+                    _UNIT_NAME1=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="UNIT_NAME1");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -676,6 +728,28 @@ namespace Solution.DataAccess.DataModel
                 if(_PROD_UNIT2!=value || _isLoaded){
                     _PROD_UNIT2=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_UNIT2");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _UNIT_NAME2;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string UNIT_NAME2
+        {
+            get { return _UNIT_NAME2; }
+            set
+            {
+                if(_UNIT_NAME2!=value || _isLoaded){
+                    _UNIT_NAME2=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="UNIT_NAME2");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -1336,6 +1410,28 @@ namespace Solution.DataAccess.DataModel
                 if(_Purchase_UNIT!=value || _isLoaded){
                     _Purchase_UNIT=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Purchase_UNIT");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _Purchase_UNIT_NAME;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string Purchase_UNIT_NAME
+        {
+            get { return _Purchase_UNIT_NAME; }
+            set
+            {
+                if(_Purchase_UNIT_NAME!=value || _isLoaded){
+                    _Purchase_UNIT_NAME=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Purchase_UNIT_NAME");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

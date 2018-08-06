@@ -39,11 +39,11 @@ namespace Solution.DataAccess.Model
 			set { _TAKEIN_ID = value; }
 		}
 
-		byte _STATUS = 0;
+		int _STATUS = 0;
 		/// <summary>
 		/// 应付账单状态
 		/// </summary>
-		public byte STATUS
+		public int STATUS
 		{
 			get { return _STATUS; }
 			set { _STATUS = value; }

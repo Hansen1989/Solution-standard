@@ -153,6 +153,8 @@ namespace Solution.DataAccess.DataModel
             MOD_DATETIME = readRecord.get_datetime("MOD_DATETIME",null);
                
             MOD_USER_ID = readRecord.get_string("MOD_USER_ID",null);
+               
+            STD_TYPE = readRecord.get_string("STD_TYPE",null);
                 }   
 
         partial void OnCreated();
@@ -739,6 +741,28 @@ namespace Solution.DataAccess.DataModel
                 if(_MOD_USER_ID!=value || _isLoaded){
                     _MOD_USER_ID=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MOD_USER_ID");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _STD_TYPE;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string STD_TYPE
+        {
+            get { return _STD_TYPE; }
+            set
+            {
+                if(_STD_TYPE!=value || _isLoaded){
+                    _STD_TYPE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="STD_TYPE");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

@@ -124,7 +124,7 @@ namespace Solution.DataAccess.DataModel
                
             BILL_AMOUNT = readRecord.get_decimal("BILL_AMOUNT",null);
                
-            PAY_METHOD = readRecord.get_byte("PAY_METHOD",null);
+            PAY_METHOD = readRecord.get_int("PAY_METHOD",null);
                
             BILL_DATE = readRecord.get_datetime("BILL_DATE",null);
                
@@ -401,11 +401,11 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        byte _PAY_METHOD;
+        int _PAY_METHOD;
 		/// <summary>
 		/// 
 		/// </summary>
-        public byte PAY_METHOD
+        public int PAY_METHOD
         {
             get { return _PAY_METHOD; }
             set

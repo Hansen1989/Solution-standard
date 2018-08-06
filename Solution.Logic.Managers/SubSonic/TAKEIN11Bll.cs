@@ -300,6 +300,10 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.Exp_DateTime == (DateTime)value);
                         expression = x => x.Exp_DateTime == (DateTime)value;
                         break;
+					case "STD_TYPE" :
+						model = list.SingleOrDefault(x => x.STD_TYPE == (string)value);
+                        expression = x => x.STD_TYPE == (string)value;
+                        break;
 
                     default :
                         return null;
@@ -481,6 +485,7 @@ namespace Solution.Logic.Managers {
                 MEMO = model.MEMO,
                 BAT_NO = model.BAT_NO,
                 Exp_DateTime = model.Exp_DateTime,
+                STD_TYPE = model.STD_TYPE,
             };
         }
 
@@ -526,6 +531,7 @@ namespace Solution.Logic.Managers {
                 MEMO = model.MEMO,
                 BAT_NO = model.BAT_NO,
                 Exp_DateTime = model.Exp_DateTime,
+                STD_TYPE = model.STD_TYPE,
             };
         }
 
@@ -623,6 +629,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "Exp_DateTime" :
 					model.Exp_DateTime = (DateTime)value;
+                    break;
+				case "STD_TYPE" :
+					model.STD_TYPE = (string)value;
                     break;
             }
 		}
@@ -1211,6 +1220,8 @@ namespace Solution.Logic.Managers {
 					return model.BAT_NO;
 				case "Exp_DateTime" :
 					return model.Exp_DateTime;
+				case "STD_TYPE" :
+					return model.STD_TYPE;
 			}
 
 			return null;

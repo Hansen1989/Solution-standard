@@ -127,6 +127,17 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "PROD_UNIT"
                 });
 
+                Columns.Add(new DatabaseColumn("UNIT_NAME", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10,
+					PropertyName = "UNIT_NAME"
+                });
+
                 Columns.Add(new DatabaseColumn("PROD_UNIT1", this)
                 {
 	                IsPrimaryKey = false,
@@ -136,6 +147,17 @@ namespace Solution.DataAccess.DataModel {
 	                IsForeignKey = false,
 	                MaxLength = 6,
 					PropertyName = "PROD_UNIT1"
+                });
+
+                Columns.Add(new DatabaseColumn("UNIT_NAME1", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10,
+					PropertyName = "UNIT_NAME1"
                 });
 
                 Columns.Add(new DatabaseColumn("PROD_CONVERT1", this)
@@ -158,6 +180,17 @@ namespace Solution.DataAccess.DataModel {
 	                IsForeignKey = false,
 	                MaxLength = 6,
 					PropertyName = "PROD_UNIT2"
+                });
+
+                Columns.Add(new DatabaseColumn("UNIT_NAME2", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10,
+					PropertyName = "UNIT_NAME2"
                 });
 
                 Columns.Add(new DatabaseColumn("PROD_CONVERT2", this)
@@ -490,6 +523,17 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "Purchase_UNIT"
                 });
 
+                Columns.Add(new DatabaseColumn("Purchase_UNIT_NAME", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10,
+					PropertyName = "Purchase_UNIT_NAME"
+                });
+
                 Columns.Add(new DatabaseColumn("Purchase_QUAN", this)
                 {
 	                IsPrimaryKey = false,
@@ -685,9 +729,23 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
+            public IColumn UNIT_NAME{
+                get{
+                    return this.GetColumn("UNIT_NAME");
+                }
+            }
+				
+            
             public IColumn PROD_UNIT1{
                 get{
                     return this.GetColumn("PROD_UNIT1");
+                }
+            }
+				
+            
+            public IColumn UNIT_NAME1{
+                get{
+                    return this.GetColumn("UNIT_NAME1");
                 }
             }
 				
@@ -702,6 +760,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn PROD_UNIT2{
                 get{
                     return this.GetColumn("PROD_UNIT2");
+                }
+            }
+				
+            
+            public IColumn UNIT_NAME2{
+                get{
+                    return this.GetColumn("UNIT_NAME2");
                 }
             }
 				
@@ -912,6 +977,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn Purchase_UNIT{
                 get{
                     return this.GetColumn("Purchase_UNIT");
+                }
+            }
+				
+            
+            public IColumn Purchase_UNIT_NAME{
+                get{
+                    return this.GetColumn("Purchase_UNIT_NAME");
                 }
             }
 				
