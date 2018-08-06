@@ -221,8 +221,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             defaultObj.Add("PROD_SPEC", "");
             defaultObj.Add("PROD_UNIT", "");
 
-            defaultObj.Add("ON_QUAN", 1);
-            defaultObj.Add("STD_PRICE", "0.000000");
+            defaultObj.Add("ON_QUAN", "");
+            defaultObj.Add("STD_PRICE", "0.00");
 
             defaultObj.Add("QUAN1", 0);
             defaultObj.Add("Order_QUAN", 1);
@@ -419,9 +419,17 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     model_1.MOD_DATETIME = DateTime.Now;
                     model_1.MOD_USER_ID = txtMOD_USER_ID.Text;
 
+                    model_1.STD_TYPE = "";
+
+                    try {
+                        ORDER01Bll.GetInstence().Save(this, model_1);
+                    } catch (Exception ee) {
+                        result = "保存失败！";
+                        CommonBll.WriteLog(result + ":" + DateTime.Now.ToString(), ee );
+                    }
                     //----------------------------------------------------------
                     //存储到数据库
-                    ORDER01Bll.GetInstence().Save(this, model_1);
+                    
                 }
 
                 ///grid2

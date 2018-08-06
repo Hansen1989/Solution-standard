@@ -14,31 +14,31 @@ using SubSonic.Query;
 
 namespace Solution.Logic.Managers {
 	/// <summary>
-	/// V_Product01_PRCAREA表逻辑类
+	/// V_Purchase01_PRODUCT00表逻辑类
 	/// </summary>
-	public partial class V_Product01_PRCAREABll : LogicBase {
+	public partial class V_Purchase01_PRODUCT00Bll : LogicBase {
  
  		/***********************************************************************
 		 * 模版生成函数                                                        *
 		 ***********************************************************************/
 		#region 模版生成函数
 				
-		private const string const_CacheKey = "Cache_V_Product01_PRCAREA";
-        private const string const_CacheKey_Date = "Cache_V_Product01_PRCAREA_Date";
+		private const string const_CacheKey = "Cache_V_Purchase01_PRODUCT00";
+        private const string const_CacheKey_Date = "Cache_V_Purchase01_PRODUCT00_Date";
 
 		#region 单例模式
 		//定义单例实体
-		private static V_Product01_PRCAREABll _V_Product01_PRCAREABll = null;
+		private static V_Purchase01_PRODUCT00Bll _V_Purchase01_PRODUCT00Bll = null;
 
 		/// <summary>
 		/// 获取本逻辑类单例
 		/// </summary>
 		/// <returns></returns>
-		public static V_Product01_PRCAREABll GetInstence() {
-			if (_V_Product01_PRCAREABll == null) {
-				_V_Product01_PRCAREABll = new V_Product01_PRCAREABll();
+		public static V_Purchase01_PRODUCT00Bll GetInstence() {
+			if (_V_Purchase01_PRODUCT00Bll == null) {
+				_V_Purchase01_PRODUCT00Bll = new V_Purchase01_PRODUCT00Bll();
 			}
-			return _V_Product01_PRCAREABll;
+			return _V_Purchase01_PRODUCT00Bll;
 		}
 		#endregion
 		
@@ -59,12 +59,12 @@ namespace Solution.Logic.Managers {
 
 		#region IIS缓存函数
 		
-		#region 从IIS缓存中获取V_Product01_PRCAREA表记录
+		#region 从IIS缓存中获取V_Purchase01_PRODUCT00表记录
 		/// <summary>
-        /// 从IIS缓存中获取V_Product01_PRCAREA表记录
+        /// 从IIS缓存中获取V_Purchase01_PRODUCT00表记录
         /// </summary>
 	    /// <param name="isCache">是否从缓存中读取</param>
-        public IList<DataAccess.Model.V_Product01_PRCAREA> GetList(bool isCache = true)
+        public IList<DataAccess.Model.V_Purchase01_PRODUCT00> GetList(bool isCache = true)
         {
 			try
 			{
@@ -93,27 +93,27 @@ namespace Solution.Logic.Managers {
 					//缓存中存在数据，则直接返回
 					else
 					{
-						return (IList<DataAccess.Model.V_Product01_PRCAREA>)obj;
+						return (IList<DataAccess.Model.V_Purchase01_PRODUCT00>)obj;
 					}
 				}
 				else
 				{
 					//定义临时实体集
-					IList<DataAccess.Model.V_Product01_PRCAREA> list = null;
+					IList<DataAccess.Model.V_Purchase01_PRODUCT00> list = null;
 
 					//获取全表缓存加载条件表达式
-					var exp = GetExpression<V_Product01_PRCAREA>();
+					var exp = GetExpression<V_Purchase01_PRODUCT00>();
                     //如果条件为空，则查询全表所有记录
 					if (exp == null)
 					{
 						//从数据库中获取所有记录
-						var all = V_Product01_PRCAREA.All();
+						var all = V_Purchase01_PRODUCT00.All();
                         list = all == null ? null : Transform(all.ToList());
 					}
 					else
 					{
                         //从数据库中查询出指定条件的记录，并转换为指定实体集
-						var all = V_Product01_PRCAREA.Find(exp);
+						var all = V_Purchase01_PRODUCT00.Find(exp);
                         list = all == null ? null : Transform(all);
 					}
 
@@ -123,7 +123,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取V_Product01_PRCAREA表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取V_Purchase01_PRODUCT00表记录时出现异常", e);
 			}
             
             return null;
@@ -136,8 +136,8 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="id">主键Id</param>
         /// <param name="isCache">是否从缓存中读取</param>
-		/// <returns>DataAccess.Model.V_Product01_PRCAREA</returns>
-        public DataAccess.Model.V_Product01_PRCAREA GetModel(long id, bool isCache = true)
+		/// <returns>DataAccess.Model.V_Purchase01_PRODUCT00</returns>
+        public DataAccess.Model.V_Purchase01_PRODUCT00 GetModel(long id, bool isCache = true)
         {
             //判断是否使用缓存
 		    if (CommonBll.IsUseCache() && isCache)
@@ -157,7 +157,7 @@ namespace Solution.Logic.Managers {
 		    else
 		    {
                 //从数据库中直接读取
-                var model = V_Product01_PRCAREA.SingleOrDefault(x => x.Id == id);
+                var model = V_Purchase01_PRODUCT00.SingleOrDefault(x => x.Id == id);
                 if (model == null)
                 {
                     return null;
@@ -176,8 +176,8 @@ namespace Solution.Logic.Managers {
         /// 从IIS缓存中获取指定Id记录
         /// </summary>
         /// <param name="id">主键Id</param>
-		/// <returns>DataAccess.Model.V_Product01_PRCAREA</returns>
-        public DataAccess.Model.V_Product01_PRCAREA GetModelForCache(long id)
+		/// <returns>DataAccess.Model.V_Purchase01_PRODUCT00</returns>
+        public DataAccess.Model.V_Purchase01_PRODUCT00 GetModelForCache(long id)
         {
 			try
 			{
@@ -186,7 +186,7 @@ namespace Solution.Logic.Managers {
 
 				if (model == null){
 					//从数据库中读取
-					var tem = V_Product01_PRCAREA.SingleOrDefault(x => x.Id == id);
+					var tem = V_Purchase01_PRODUCT00.SingleOrDefault(x => x.Id == id);
 					if (tem == null)
 					{
 						return null;
@@ -206,7 +206,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取V_Product01_PRCAREA表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取V_Purchase01_PRODUCT00表记录时出现异常", e);
 
                 return null;
             }
@@ -219,15 +219,15 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="conditionColName">条件列名</param>
         /// <param name="value">条件值</param>
-        /// <returns>DataAccess.Model.V_Product01_PRCAREA</returns>
-        public DataAccess.Model.V_Product01_PRCAREA GetModelForCache(string conditionColName, object value)
+        /// <returns>DataAccess.Model.V_Purchase01_PRODUCT00</returns>
+        public DataAccess.Model.V_Purchase01_PRODUCT00 GetModelForCache(string conditionColName, object value)
         {
 		try
             {
                 //从缓存中获取List
                 var list = GetList();
-                DataAccess.Model.V_Product01_PRCAREA model = null;
-                Expression<Func<V_Product01_PRCAREA, bool>> expression = null;
+                DataAccess.Model.V_Purchase01_PRODUCT00 model = null;
+                Expression<Func<V_Purchase01_PRODUCT00, bool>> expression = null;
 
                 //返回指定条件的实体
                 switch (conditionColName)
@@ -236,89 +236,69 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.Id == (int)value);
                         expression = x => x.Id == (int)value;
                         break;
-					case "PRCAREA_ID" :
-						model = list.SingleOrDefault(x => x.PRCAREA_ID == (string)value);
-                        expression = x => x.PRCAREA_ID == (string)value;
+					case "SHOP_ID" :
+						model = list.SingleOrDefault(x => x.SHOP_ID == (string)value);
+                        expression = x => x.SHOP_ID == (string)value;
                         break;
-					case "PRCAREA_NAME" :
-						model = list.SingleOrDefault(x => x.PRCAREA_NAME == (string)value);
-                        expression = x => x.PRCAREA_NAME == (string)value;
+					case "Purchase_ID" :
+						model = list.SingleOrDefault(x => x.Purchase_ID == (string)value);
+                        expression = x => x.Purchase_ID == (string)value;
+                        break;
+					case "SNo" :
+						model = list.SingleOrDefault(x => x.SNo == (int)value);
+                        expression = x => x.SNo == (int)value;
                         break;
 					case "PROD_ID" :
 						model = list.SingleOrDefault(x => x.PROD_ID == (string)value);
                         expression = x => x.PROD_ID == (string)value;
                         break;
+					case "QUANTITY" :
+						model = list.SingleOrDefault(x => x.QUANTITY == (decimal)value);
+                        expression = x => x.QUANTITY == (decimal)value;
+                        break;
+					case "STD_UNIT" :
+						model = list.SingleOrDefault(x => x.STD_UNIT == (string)value);
+                        expression = x => x.STD_UNIT == (string)value;
+                        break;
+					case "STD_CONVERT" :
+						model = list.SingleOrDefault(x => x.STD_CONVERT == (int)value);
+                        expression = x => x.STD_CONVERT == (int)value;
+                        break;
+					case "STD_QUAN" :
+						model = list.SingleOrDefault(x => x.STD_QUAN == (decimal)value);
+                        expression = x => x.STD_QUAN == (decimal)value;
+                        break;
+					case "STD_PRICE" :
+						model = list.SingleOrDefault(x => x.STD_PRICE == (decimal)value);
+                        expression = x => x.STD_PRICE == (decimal)value;
+                        break;
+					case "Tax" :
+						model = list.SingleOrDefault(x => x.Tax == (decimal)value);
+                        expression = x => x.Tax == (decimal)value;
+                        break;
+					case "QUAN1" :
+						model = list.SingleOrDefault(x => x.QUAN1 == (decimal)value);
+                        expression = x => x.QUAN1 == (decimal)value;
+                        break;
+					case "QUAN2" :
+						model = list.SingleOrDefault(x => x.QUAN2 == (decimal)value);
+                        expression = x => x.QUAN2 == (decimal)value;
+                        break;
+					case "Item_DISC_Amt" :
+						model = list.SingleOrDefault(x => x.Item_DISC_Amt == (decimal)value);
+                        expression = x => x.Item_DISC_Amt == (decimal)value;
+                        break;
+					case "MEMO" :
+						model = list.SingleOrDefault(x => x.MEMO == (string)value);
+                        expression = x => x.MEMO == (string)value;
+                        break;
 					case "PROD_NAME1" :
 						model = list.SingleOrDefault(x => x.PROD_NAME1 == (string)value);
                         expression = x => x.PROD_NAME1 == (string)value;
                         break;
-					case "PROD_NAME1_SPELLING" :
-						model = list.SingleOrDefault(x => x.PROD_NAME1_SPELLING == (string)value);
-                        expression = x => x.PROD_NAME1_SPELLING == (string)value;
-                        break;
-					case "PROD_KIND" :
-						model = list.SingleOrDefault(x => x.PROD_KIND == (string)value);
-                        expression = x => x.PROD_KIND == (string)value;
-                        break;
-					case "PROD_DEP" :
-						model = list.SingleOrDefault(x => x.PROD_DEP == (string)value);
-                        expression = x => x.PROD_DEP == (string)value;
-                        break;
-					case "PROD_CATE" :
-						model = list.SingleOrDefault(x => x.PROD_CATE == (string)value);
-                        expression = x => x.PROD_CATE == (string)value;
-                        break;
-					case "PROD_UNIT" :
-						model = list.SingleOrDefault(x => x.PROD_UNIT == (string)value);
-                        expression = x => x.PROD_UNIT == (string)value;
-                        break;
-					case "UNIT_NAME" :
-						model = list.SingleOrDefault(x => x.UNIT_NAME == (string)value);
-                        expression = x => x.UNIT_NAME == (string)value;
-                        break;
-					case "PROD_UNIT1" :
-						model = list.SingleOrDefault(x => x.PROD_UNIT1 == (string)value);
-                        expression = x => x.PROD_UNIT1 == (string)value;
-                        break;
-					case "UNIT_NAME1" :
-						model = list.SingleOrDefault(x => x.UNIT_NAME1 == (string)value);
-                        expression = x => x.UNIT_NAME1 == (string)value;
-                        break;
-					case "PROD_CONVERT1" :
-						model = list.SingleOrDefault(x => x.PROD_CONVERT1 == (int)value);
-                        expression = x => x.PROD_CONVERT1 == (int)value;
-                        break;
-					case "PROD_UNIT2" :
-						model = list.SingleOrDefault(x => x.PROD_UNIT2 == (string)value);
-                        expression = x => x.PROD_UNIT2 == (string)value;
-                        break;
-					case "UNIT_NAME2" :
-						model = list.SingleOrDefault(x => x.UNIT_NAME2 == (string)value);
-                        expression = x => x.UNIT_NAME2 == (string)value;
-                        break;
-					case "PROD_CONVERT2" :
-						model = list.SingleOrDefault(x => x.PROD_CONVERT2 == (int)value);
-                        expression = x => x.PROD_CONVERT2 == (int)value;
-                        break;
-					case "SUP_ID" :
-						model = list.SingleOrDefault(x => x.SUP_ID == (string)value);
-                        expression = x => x.SUP_ID == (string)value;
-                        break;
-					case "SUP_NAME" :
-						model = list.SingleOrDefault(x => x.SUP_NAME == (string)value);
-                        expression = x => x.SUP_NAME == (string)value;
-                        break;
-					case "SEND_TYPE" :
-						model = list.SingleOrDefault(x => x.SEND_TYPE == (byte)value);
-                        expression = x => x.SEND_TYPE == (byte)value;
-                        break;
-					case "TAX_TYPE" :
-						model = list.SingleOrDefault(x => x.TAX_TYPE == (byte)value);
-                        expression = x => x.TAX_TYPE == (byte)value;
-                        break;
-					case "Tax" :
-						model = list.SingleOrDefault(x => x.Tax == (int)value);
-                        expression = x => x.Tax == (int)value;
+					case "STD_UNIT_NAME" :
+						model = list.SingleOrDefault(x => x.STD_UNIT_NAME == (string)value);
+                        expression = x => x.STD_UNIT_NAME == (string)value;
                         break;
 					case "SUP_COST" :
 						model = list.SingleOrDefault(x => x.SUP_COST == (decimal)value);
@@ -332,137 +312,37 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.SUP_COST2 == (decimal)value);
                         expression = x => x.SUP_COST2 == (decimal)value;
                         break;
-					case "SUP_Return" :
-						model = list.SingleOrDefault(x => x.SUP_Return == (decimal)value);
-                        expression = x => x.SUP_Return == (decimal)value;
+					case "UNIT_NAME" :
+						model = list.SingleOrDefault(x => x.UNIT_NAME == (string)value);
+                        expression = x => x.UNIT_NAME == (string)value;
                         break;
-					case "SUP_Return1" :
-						model = list.SingleOrDefault(x => x.SUP_Return1 == (decimal)value);
-                        expression = x => x.SUP_Return1 == (decimal)value;
+					case "UNIT_NAME1" :
+						model = list.SingleOrDefault(x => x.UNIT_NAME1 == (string)value);
+                        expression = x => x.UNIT_NAME1 == (string)value;
                         break;
-					case "SUP_Return2" :
-						model = list.SingleOrDefault(x => x.SUP_Return2 == (decimal)value);
-                        expression = x => x.SUP_Return2 == (decimal)value;
+					case "UNIT_NAME2" :
+						model = list.SingleOrDefault(x => x.UNIT_NAME2 == (string)value);
+                        expression = x => x.UNIT_NAME2 == (string)value;
                         break;
-					case "U_Cost" :
-						model = list.SingleOrDefault(x => x.U_Cost == (decimal)value);
-                        expression = x => x.U_Cost == (decimal)value;
+					case "PROD_CONVERT1" :
+						model = list.SingleOrDefault(x => x.PROD_CONVERT1 == (int)value);
+                        expression = x => x.PROD_CONVERT1 == (int)value;
                         break;
-					case "U_Cost1" :
-						model = list.SingleOrDefault(x => x.U_Cost1 == (decimal)value);
-                        expression = x => x.U_Cost1 == (decimal)value;
+					case "PROD_CONVERT2" :
+						model = list.SingleOrDefault(x => x.PROD_CONVERT2 == (int)value);
+                        expression = x => x.PROD_CONVERT2 == (int)value;
                         break;
-					case "U_Cost2" :
-						model = list.SingleOrDefault(x => x.U_Cost2 == (decimal)value);
-                        expression = x => x.U_Cost2 == (decimal)value;
+					case "PRCAREA_ID" :
+						model = list.SingleOrDefault(x => x.PRCAREA_ID == (string)value);
+                        expression = x => x.PRCAREA_ID == (string)value;
                         break;
-					case "U_Ret_COST" :
-						model = list.SingleOrDefault(x => x.U_Ret_COST == (decimal)value);
-                        expression = x => x.U_Ret_COST == (decimal)value;
+					case "TAX_TYPE" :
+						model = list.SingleOrDefault(x => x.TAX_TYPE == (byte)value);
+                        expression = x => x.TAX_TYPE == (byte)value;
                         break;
-					case "U_Ret_COST1" :
-						model = list.SingleOrDefault(x => x.U_Ret_COST1 == (decimal)value);
-                        expression = x => x.U_Ret_COST1 == (decimal)value;
-                        break;
-					case "U_Ret_COST2" :
-						model = list.SingleOrDefault(x => x.U_Ret_COST2 == (decimal)value);
-                        expression = x => x.U_Ret_COST2 == (decimal)value;
-                        break;
-					case "T_COST" :
-						model = list.SingleOrDefault(x => x.T_COST == (decimal)value);
-                        expression = x => x.T_COST == (decimal)value;
-                        break;
-					case "T_COST1" :
-						model = list.SingleOrDefault(x => x.T_COST1 == (decimal)value);
-                        expression = x => x.T_COST1 == (decimal)value;
-                        break;
-					case "T_COST2" :
-						model = list.SingleOrDefault(x => x.T_COST2 == (decimal)value);
-                        expression = x => x.T_COST2 == (decimal)value;
-                        break;
-					case "T_Ret_COST" :
-						model = list.SingleOrDefault(x => x.T_Ret_COST == (decimal)value);
-                        expression = x => x.T_Ret_COST == (decimal)value;
-                        break;
-					case "T_Ret_COST1" :
-						model = list.SingleOrDefault(x => x.T_Ret_COST1 == (decimal)value);
-                        expression = x => x.T_Ret_COST1 == (decimal)value;
-                        break;
-					case "T_Ret_COST2" :
-						model = list.SingleOrDefault(x => x.T_Ret_COST2 == (decimal)value);
-                        expression = x => x.T_Ret_COST2 == (decimal)value;
-                        break;
-					case "COST" :
-						model = list.SingleOrDefault(x => x.COST == (decimal)value);
-                        expression = x => x.COST == (decimal)value;
-                        break;
-					case "COST1" :
-						model = list.SingleOrDefault(x => x.COST1 == (decimal)value);
-                        expression = x => x.COST1 == (decimal)value;
-                        break;
-					case "COST2" :
-						model = list.SingleOrDefault(x => x.COST2 == (decimal)value);
-                        expression = x => x.COST2 == (decimal)value;
-                        break;
-					case "ORDER_UNIT" :
-						model = list.SingleOrDefault(x => x.ORDER_UNIT == (int)value);
-                        expression = x => x.ORDER_UNIT == (int)value;
-                        break;
-					case "ORDER_QUAN" :
-						model = list.SingleOrDefault(x => x.ORDER_QUAN == (int)value);
-                        expression = x => x.ORDER_QUAN == (int)value;
-                        break;
-					case "Purchase_UNIT" :
-						model = list.SingleOrDefault(x => x.Purchase_UNIT == (int)value);
-                        expression = x => x.Purchase_UNIT == (int)value;
-                        break;
-					case "Purchase_UNIT_NAME" :
-						model = list.SingleOrDefault(x => x.Purchase_UNIT_NAME == (string)value);
-                        expression = x => x.Purchase_UNIT_NAME == (string)value;
-                        break;
-					case "Purchase_QUAN" :
-						model = list.SingleOrDefault(x => x.Purchase_QUAN == (int)value);
-                        expression = x => x.Purchase_QUAN == (int)value;
-                        break;
-					case "SAFE_QUAN" :
-						model = list.SingleOrDefault(x => x.SAFE_QUAN == (int)value);
-                        expression = x => x.SAFE_QUAN == (int)value;
-                        break;
-					case "PROD_PRICE" :
-						model = list.SingleOrDefault(x => x.PROD_PRICE == (decimal)value);
-                        expression = x => x.PROD_PRICE == (decimal)value;
-                        break;
-					case "ENABLE" :
-						model = list.SingleOrDefault(x => x.ENABLE == (byte)value);
-                        expression = x => x.ENABLE == (byte)value;
-                        break;
-					case "VISIBLE" :
-						model = list.SingleOrDefault(x => x.VISIBLE == (byte)value);
-                        expression = x => x.VISIBLE == (byte)value;
-                        break;
-					case "BOM_ID" :
-						model = list.SingleOrDefault(x => x.BOM_ID == (string)value);
-                        expression = x => x.BOM_ID == (string)value;
-                        break;
-					case "CRT_DATETIME" :
-						model = list.SingleOrDefault(x => x.CRT_DATETIME == (DateTime)value);
-                        expression = x => x.CRT_DATETIME == (DateTime)value;
-                        break;
-					case "CRT_USER_ID" :
-						model = list.SingleOrDefault(x => x.CRT_USER_ID == (string)value);
-                        expression = x => x.CRT_USER_ID == (string)value;
-                        break;
-					case "MOD_DATETIME" :
-						model = list.SingleOrDefault(x => x.MOD_DATETIME == (DateTime)value);
-                        expression = x => x.MOD_DATETIME == (DateTime)value;
-                        break;
-					case "MOD_USER_ID" :
-						model = list.SingleOrDefault(x => x.MOD_USER_ID == (string)value);
-                        expression = x => x.MOD_USER_ID == (string)value;
-                        break;
-					case "LAST_UPDATE" :
-						model = list.SingleOrDefault(x => x.LAST_UPDATE == (DateTime)value);
-                        expression = x => x.LAST_UPDATE == (DateTime)value;
+					case "Tax_Num" :
+						model = list.SingleOrDefault(x => x.Tax_Num == (int)value);
+                        expression = x => x.Tax_Num == (int)value;
                         break;
 
                     default :
@@ -472,7 +352,7 @@ namespace Solution.Logic.Managers {
                 if (model == null)
                 {
                     //从数据库中读取
-                    var tem = V_Product01_PRCAREA.SingleOrDefault(expression);
+                    var tem = V_Purchase01_PRODUCT00.SingleOrDefault(expression);
                     if (tem == null)
                     {
                         return null;
@@ -493,7 +373,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取V_Product01_PRCAREA表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取V_Purchase01_PRODUCT00表记录时出现异常", e);
 
                 return null;
             }
@@ -505,8 +385,8 @@ namespace Solution.Logic.Managers {
         /// 从IIS缓存中获取指定条件的记录
         /// </summary>
         /// <param name="expression">条件</param>
-        /// <returns>DataAccess.Model.V_Product01_PRCAREA</returns>
-        public DataAccess.Model.V_Product01_PRCAREA GetModelForCache(Expression<Func<DataAccess.Model.V_Product01_PRCAREA, bool>> expression)
+        /// <returns>DataAccess.Model.V_Purchase01_PRODUCT00</returns>
+        public DataAccess.Model.V_Purchase01_PRODUCT00 GetModelForCache(Expression<Func<DataAccess.Model.V_Purchase01_PRODUCT00, bool>> expression)
         {
 			//从缓存中读取记录列表
 			var list = GetList();
@@ -529,7 +409,7 @@ namespace Solution.Logic.Managers {
         /// 更新IIS缓存中指定Id记录
         /// </summary>
         /// <param name="model">记录实体</param>
-        public void SetModelForCache(DataAccess.Model.V_Product01_PRCAREA model)
+        public void SetModelForCache(DataAccess.Model.V_Purchase01_PRODUCT00 model)
         {
             //从缓存中读取记录列表
             var list = GetList();
@@ -543,7 +423,7 @@ namespace Solution.Logic.Managers {
         /// 更新IIS缓存中指定Id记录
         /// </summary>
         /// <param name="model">记录实体</param>
-        public void SetModelForCache(V_Product01_PRCAREA model)
+        public void SetModelForCache(V_Purchase01_PRODUCT00 model)
         {
             SetModelForCache(Transform(model));
         }
@@ -585,10 +465,10 @@ namespace Solution.Logic.Managers {
         }
 
 		/// <summary>
-        /// 按条件删除IIS缓存中V_Product01_PRCAREA表的指定记录
+        /// 按条件删除IIS缓存中V_Purchase01_PRODUCT00表的指定记录
         /// </summary>
         /// <param name="expression">条件，值为null时删除全有记录</param>
-		public void DelCache(Expression<Func<DataAccess.Model.V_Product01_PRCAREA, bool>> expression)
+		public void DelCache(Expression<Func<DataAccess.Model.V_Purchase01_PRODUCT00, bool>> expression)
         {
             //从缓存中获取List
 		    var list = GetList();
@@ -617,172 +497,112 @@ namespace Solution.Logic.Managers {
 
 		#region 实体转换
 		/// <summary>
-		/// 将V_Product01_PRCAREA记录实体（SubSonic实体）转换为普通的实体（DataAccess.Model.V_Product01_PRCAREA）
+		/// 将V_Purchase01_PRODUCT00记录实体（SubSonic实体）转换为普通的实体（DataAccess.Model.V_Purchase01_PRODUCT00）
 		/// </summary>
         /// <param name="model">SubSonic插件生成的实体</param>
-		/// <returns>DataAccess.Model.V_Product01_PRCAREA</returns>
-		public DataAccess.Model.V_Product01_PRCAREA Transform(V_Product01_PRCAREA model)
+		/// <returns>DataAccess.Model.V_Purchase01_PRODUCT00</returns>
+		public DataAccess.Model.V_Purchase01_PRODUCT00 Transform(V_Purchase01_PRODUCT00 model)
         {			
 			if (model == null) 
 				return null;
 
-            return new DataAccess.Model.V_Product01_PRCAREA
+            return new DataAccess.Model.V_Purchase01_PRODUCT00
             {
                 Id = model.Id,
-                PRCAREA_ID = model.PRCAREA_ID,
-                PRCAREA_NAME = model.PRCAREA_NAME,
+                SHOP_ID = model.SHOP_ID,
+                Purchase_ID = model.Purchase_ID,
+                SNo = model.SNo,
                 PROD_ID = model.PROD_ID,
-                PROD_NAME1 = model.PROD_NAME1,
-                PROD_NAME1_SPELLING = model.PROD_NAME1_SPELLING,
-                PROD_KIND = model.PROD_KIND,
-                PROD_DEP = model.PROD_DEP,
-                PROD_CATE = model.PROD_CATE,
-                PROD_UNIT = model.PROD_UNIT,
-                UNIT_NAME = model.UNIT_NAME,
-                PROD_UNIT1 = model.PROD_UNIT1,
-                UNIT_NAME1 = model.UNIT_NAME1,
-                PROD_CONVERT1 = model.PROD_CONVERT1,
-                PROD_UNIT2 = model.PROD_UNIT2,
-                UNIT_NAME2 = model.UNIT_NAME2,
-                PROD_CONVERT2 = model.PROD_CONVERT2,
-                SUP_ID = model.SUP_ID,
-                SUP_NAME = model.SUP_NAME,
-                SEND_TYPE = model.SEND_TYPE,
-                TAX_TYPE = model.TAX_TYPE,
+                QUANTITY = model.QUANTITY,
+                STD_UNIT = model.STD_UNIT,
+                STD_CONVERT = model.STD_CONVERT,
+                STD_QUAN = model.STD_QUAN,
+                STD_PRICE = model.STD_PRICE,
                 Tax = model.Tax,
+                QUAN1 = model.QUAN1,
+                QUAN2 = model.QUAN2,
+                Item_DISC_Amt = model.Item_DISC_Amt,
+                MEMO = model.MEMO,
+                PROD_NAME1 = model.PROD_NAME1,
+                STD_UNIT_NAME = model.STD_UNIT_NAME,
                 SUP_COST = model.SUP_COST,
                 SUP_COST1 = model.SUP_COST1,
                 SUP_COST2 = model.SUP_COST2,
-                SUP_Return = model.SUP_Return,
-                SUP_Return1 = model.SUP_Return1,
-                SUP_Return2 = model.SUP_Return2,
-                U_Cost = model.U_Cost,
-                U_Cost1 = model.U_Cost1,
-                U_Cost2 = model.U_Cost2,
-                U_Ret_COST = model.U_Ret_COST,
-                U_Ret_COST1 = model.U_Ret_COST1,
-                U_Ret_COST2 = model.U_Ret_COST2,
-                T_COST = model.T_COST,
-                T_COST1 = model.T_COST1,
-                T_COST2 = model.T_COST2,
-                T_Ret_COST = model.T_Ret_COST,
-                T_Ret_COST1 = model.T_Ret_COST1,
-                T_Ret_COST2 = model.T_Ret_COST2,
-                COST = model.COST,
-                COST1 = model.COST1,
-                COST2 = model.COST2,
-                ORDER_UNIT = model.ORDER_UNIT,
-                ORDER_QUAN = model.ORDER_QUAN,
-                Purchase_UNIT = model.Purchase_UNIT,
-                Purchase_UNIT_NAME = model.Purchase_UNIT_NAME,
-                Purchase_QUAN = model.Purchase_QUAN,
-                SAFE_QUAN = model.SAFE_QUAN,
-                PROD_PRICE = model.PROD_PRICE,
-                ENABLE = model.ENABLE,
-                VISIBLE = model.VISIBLE,
-                BOM_ID = model.BOM_ID,
-                CRT_DATETIME = model.CRT_DATETIME,
-                CRT_USER_ID = model.CRT_USER_ID,
-                MOD_DATETIME = model.MOD_DATETIME,
-                MOD_USER_ID = model.MOD_USER_ID,
-                LAST_UPDATE = model.LAST_UPDATE,
+                UNIT_NAME = model.UNIT_NAME,
+                UNIT_NAME1 = model.UNIT_NAME1,
+                UNIT_NAME2 = model.UNIT_NAME2,
+                PROD_CONVERT1 = model.PROD_CONVERT1,
+                PROD_CONVERT2 = model.PROD_CONVERT2,
+                PRCAREA_ID = model.PRCAREA_ID,
+                TAX_TYPE = model.TAX_TYPE,
+                Tax_Num = model.Tax_Num,
             };
         }
 
 		/// <summary>
-		/// 将V_Product01_PRCAREA记录实体集（SubSonic实体）转换为普通的实体集（DataAccess.Model.V_Product01_PRCAREA）
+		/// 将V_Purchase01_PRODUCT00记录实体集（SubSonic实体）转换为普通的实体集（DataAccess.Model.V_Purchase01_PRODUCT00）
 		/// </summary>
         /// <param name="sourceList">SubSonic插件生成的实体集</param>
-        public IList<DataAccess.Model.V_Product01_PRCAREA> Transform(IList<V_Product01_PRCAREA> sourceList)
+        public IList<DataAccess.Model.V_Purchase01_PRODUCT00> Transform(IList<V_Purchase01_PRODUCT00> sourceList)
         {
 			//创建List容器
-            var list = new List<DataAccess.Model.V_Product01_PRCAREA>();
+            var list = new List<DataAccess.Model.V_Purchase01_PRODUCT00>();
 			//将SubSonic插件生成的实体集转换后存储到刚创建的List容器中
             sourceList.ToList().ForEach(r => list.Add(Transform(r)));
             return list;
         }
 
 		/// <summary>
-		/// 将V_Product01_PRCAREA记录实体由普通的实体（DataAccess.Model.V_Product01_PRCAREA）转换为SubSonic插件生成的实体
+		/// 将V_Purchase01_PRODUCT00记录实体由普通的实体（DataAccess.Model.V_Purchase01_PRODUCT00）转换为SubSonic插件生成的实体
 		/// </summary>
-        /// <param name="model">普通的实体（DataAccess.Model.V_Product01_PRCAREA）</param>
-		/// <returns>V_Product01_PRCAREA</returns>
-		public V_Product01_PRCAREA Transform(DataAccess.Model.V_Product01_PRCAREA model)
+        /// <param name="model">普通的实体（DataAccess.Model.V_Purchase01_PRODUCT00）</param>
+		/// <returns>V_Purchase01_PRODUCT00</returns>
+		public V_Purchase01_PRODUCT00 Transform(DataAccess.Model.V_Purchase01_PRODUCT00 model)
         {
 			if (model == null) 
 				return null;
 
-            return new V_Product01_PRCAREA
+            return new V_Purchase01_PRODUCT00
             {
                 Id = model.Id,
-                PRCAREA_ID = model.PRCAREA_ID,
-                PRCAREA_NAME = model.PRCAREA_NAME,
+                SHOP_ID = model.SHOP_ID,
+                Purchase_ID = model.Purchase_ID,
+                SNo = model.SNo,
                 PROD_ID = model.PROD_ID,
-                PROD_NAME1 = model.PROD_NAME1,
-                PROD_NAME1_SPELLING = model.PROD_NAME1_SPELLING,
-                PROD_KIND = model.PROD_KIND,
-                PROD_DEP = model.PROD_DEP,
-                PROD_CATE = model.PROD_CATE,
-                PROD_UNIT = model.PROD_UNIT,
-                UNIT_NAME = model.UNIT_NAME,
-                PROD_UNIT1 = model.PROD_UNIT1,
-                UNIT_NAME1 = model.UNIT_NAME1,
-                PROD_CONVERT1 = model.PROD_CONVERT1,
-                PROD_UNIT2 = model.PROD_UNIT2,
-                UNIT_NAME2 = model.UNIT_NAME2,
-                PROD_CONVERT2 = model.PROD_CONVERT2,
-                SUP_ID = model.SUP_ID,
-                SUP_NAME = model.SUP_NAME,
-                SEND_TYPE = model.SEND_TYPE,
-                TAX_TYPE = model.TAX_TYPE,
+                QUANTITY = model.QUANTITY,
+                STD_UNIT = model.STD_UNIT,
+                STD_CONVERT = model.STD_CONVERT,
+                STD_QUAN = model.STD_QUAN,
+                STD_PRICE = model.STD_PRICE,
                 Tax = model.Tax,
+                QUAN1 = model.QUAN1,
+                QUAN2 = model.QUAN2,
+                Item_DISC_Amt = model.Item_DISC_Amt,
+                MEMO = model.MEMO,
+                PROD_NAME1 = model.PROD_NAME1,
+                STD_UNIT_NAME = model.STD_UNIT_NAME,
                 SUP_COST = model.SUP_COST,
                 SUP_COST1 = model.SUP_COST1,
                 SUP_COST2 = model.SUP_COST2,
-                SUP_Return = model.SUP_Return,
-                SUP_Return1 = model.SUP_Return1,
-                SUP_Return2 = model.SUP_Return2,
-                U_Cost = model.U_Cost,
-                U_Cost1 = model.U_Cost1,
-                U_Cost2 = model.U_Cost2,
-                U_Ret_COST = model.U_Ret_COST,
-                U_Ret_COST1 = model.U_Ret_COST1,
-                U_Ret_COST2 = model.U_Ret_COST2,
-                T_COST = model.T_COST,
-                T_COST1 = model.T_COST1,
-                T_COST2 = model.T_COST2,
-                T_Ret_COST = model.T_Ret_COST,
-                T_Ret_COST1 = model.T_Ret_COST1,
-                T_Ret_COST2 = model.T_Ret_COST2,
-                COST = model.COST,
-                COST1 = model.COST1,
-                COST2 = model.COST2,
-                ORDER_UNIT = model.ORDER_UNIT,
-                ORDER_QUAN = model.ORDER_QUAN,
-                Purchase_UNIT = model.Purchase_UNIT,
-                Purchase_UNIT_NAME = model.Purchase_UNIT_NAME,
-                Purchase_QUAN = model.Purchase_QUAN,
-                SAFE_QUAN = model.SAFE_QUAN,
-                PROD_PRICE = model.PROD_PRICE,
-                ENABLE = model.ENABLE,
-                VISIBLE = model.VISIBLE,
-                BOM_ID = model.BOM_ID,
-                CRT_DATETIME = model.CRT_DATETIME,
-                CRT_USER_ID = model.CRT_USER_ID,
-                MOD_DATETIME = model.MOD_DATETIME,
-                MOD_USER_ID = model.MOD_USER_ID,
-                LAST_UPDATE = model.LAST_UPDATE,
+                UNIT_NAME = model.UNIT_NAME,
+                UNIT_NAME1 = model.UNIT_NAME1,
+                UNIT_NAME2 = model.UNIT_NAME2,
+                PROD_CONVERT1 = model.PROD_CONVERT1,
+                PROD_CONVERT2 = model.PROD_CONVERT2,
+                PRCAREA_ID = model.PRCAREA_ID,
+                TAX_TYPE = model.TAX_TYPE,
+                Tax_Num = model.Tax_Num,
             };
         }
 
 		/// <summary>
-		/// 将V_Product01_PRCAREA记录实体由普通实体集（DataAccess.Model.V_Product01_PRCAREA）转换为SubSonic插件生成的实体集
+		/// 将V_Purchase01_PRODUCT00记录实体由普通实体集（DataAccess.Model.V_Purchase01_PRODUCT00）转换为SubSonic插件生成的实体集
 		/// </summary>
-        /// <param name="sourceList">普通实体集（DataAccess.Model.V_Product01_PRCAREA）</param>
-        public IList<V_Product01_PRCAREA> Transform(IList<DataAccess.Model.V_Product01_PRCAREA> sourceList)
+        /// <param name="sourceList">普通实体集（DataAccess.Model.V_Purchase01_PRODUCT00）</param>
+        public IList<V_Purchase01_PRODUCT00> Transform(IList<DataAccess.Model.V_Purchase01_PRODUCT00> sourceList)
         {
 			//创建List容器
-            var list = new List<V_Product01_PRCAREA>();
+            var list = new List<V_Purchase01_PRODUCT00>();
 			//将普通实体集转换后存储到刚创建的List容器中
             sourceList.ToList().ForEach(r => list.Add(Transform(r)));
             return list;
@@ -795,7 +615,7 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="model">实体</param>
         /// <param name="dic">列名与值</param>
-		public void SetModelValue(DataAccess.Model.V_Product01_PRCAREA model, Dictionary<string, object> dic)
+		public void SetModelValue(DataAccess.Model.V_Purchase01_PRODUCT00 model, Dictionary<string, object> dic)
 		{
 			if (model == null || dic == null) return;
 
@@ -812,7 +632,7 @@ namespace Solution.Logic.Managers {
         /// <param name="model">实体</param>
         /// <param name="colName">列名</param>
         /// <param name="value">值</param>
-		public void SetModelValue(DataAccess.Model.V_Product01_PRCAREA model, string colName, object value)
+		public void SetModelValue(DataAccess.Model.V_Purchase01_PRODUCT00 model, string colName, object value)
 		{
 			if (model == null || string.IsNullOrEmpty(colName)) return;
 
@@ -822,68 +642,53 @@ namespace Solution.Logic.Managers {
 				case "Id" :
 					model.Id = (int)value;
                     break;
-				case "PRCAREA_ID" :
-					model.PRCAREA_ID = (string)value;
+				case "SHOP_ID" :
+					model.SHOP_ID = (string)value;
                     break;
-				case "PRCAREA_NAME" :
-					model.PRCAREA_NAME = (string)value;
+				case "Purchase_ID" :
+					model.Purchase_ID = (string)value;
+                    break;
+				case "SNo" :
+					model.SNo = (int)value;
                     break;
 				case "PROD_ID" :
 					model.PROD_ID = (string)value;
                     break;
+				case "QUANTITY" :
+					model.QUANTITY = (decimal)value;
+                    break;
+				case "STD_UNIT" :
+					model.STD_UNIT = (string)value;
+                    break;
+				case "STD_CONVERT" :
+					model.STD_CONVERT = (int)value;
+                    break;
+				case "STD_QUAN" :
+					model.STD_QUAN = (decimal)value;
+                    break;
+				case "STD_PRICE" :
+					model.STD_PRICE = (decimal)value;
+                    break;
+				case "Tax" :
+					model.Tax = (decimal)value;
+                    break;
+				case "QUAN1" :
+					model.QUAN1 = (decimal)value;
+                    break;
+				case "QUAN2" :
+					model.QUAN2 = (decimal)value;
+                    break;
+				case "Item_DISC_Amt" :
+					model.Item_DISC_Amt = (decimal)value;
+                    break;
+				case "MEMO" :
+					model.MEMO = (string)value;
+                    break;
 				case "PROD_NAME1" :
 					model.PROD_NAME1 = (string)value;
                     break;
-				case "PROD_NAME1_SPELLING" :
-					model.PROD_NAME1_SPELLING = (string)value;
-                    break;
-				case "PROD_KIND" :
-					model.PROD_KIND = (string)value;
-                    break;
-				case "PROD_DEP" :
-					model.PROD_DEP = (string)value;
-                    break;
-				case "PROD_CATE" :
-					model.PROD_CATE = (string)value;
-                    break;
-				case "PROD_UNIT" :
-					model.PROD_UNIT = (string)value;
-                    break;
-				case "UNIT_NAME" :
-					model.UNIT_NAME = (string)value;
-                    break;
-				case "PROD_UNIT1" :
-					model.PROD_UNIT1 = (string)value;
-                    break;
-				case "UNIT_NAME1" :
-					model.UNIT_NAME1 = (string)value;
-                    break;
-				case "PROD_CONVERT1" :
-					model.PROD_CONVERT1 = (int)value;
-                    break;
-				case "PROD_UNIT2" :
-					model.PROD_UNIT2 = (string)value;
-                    break;
-				case "UNIT_NAME2" :
-					model.UNIT_NAME2 = (string)value;
-                    break;
-				case "PROD_CONVERT2" :
-					model.PROD_CONVERT2 = (int)value;
-                    break;
-				case "SUP_ID" :
-					model.SUP_ID = (string)value;
-                    break;
-				case "SUP_NAME" :
-					model.SUP_NAME = (string)value;
-                    break;
-				case "SEND_TYPE" :
-					model.SEND_TYPE = ConvertHelper.Ctinyint(value);
-                    break;
-				case "TAX_TYPE" :
-					model.TAX_TYPE = ConvertHelper.Ctinyint(value);
-                    break;
-				case "Tax" :
-					model.Tax = (int)value;
+				case "STD_UNIT_NAME" :
+					model.STD_UNIT_NAME = (string)value;
                     break;
 				case "SUP_COST" :
 					model.SUP_COST = (decimal)value;
@@ -894,104 +699,29 @@ namespace Solution.Logic.Managers {
 				case "SUP_COST2" :
 					model.SUP_COST2 = (decimal)value;
                     break;
-				case "SUP_Return" :
-					model.SUP_Return = (decimal)value;
+				case "UNIT_NAME" :
+					model.UNIT_NAME = (string)value;
                     break;
-				case "SUP_Return1" :
-					model.SUP_Return1 = (decimal)value;
+				case "UNIT_NAME1" :
+					model.UNIT_NAME1 = (string)value;
                     break;
-				case "SUP_Return2" :
-					model.SUP_Return2 = (decimal)value;
+				case "UNIT_NAME2" :
+					model.UNIT_NAME2 = (string)value;
                     break;
-				case "U_Cost" :
-					model.U_Cost = (decimal)value;
+				case "PROD_CONVERT1" :
+					model.PROD_CONVERT1 = (int)value;
                     break;
-				case "U_Cost1" :
-					model.U_Cost1 = (decimal)value;
+				case "PROD_CONVERT2" :
+					model.PROD_CONVERT2 = (int)value;
                     break;
-				case "U_Cost2" :
-					model.U_Cost2 = (decimal)value;
+				case "PRCAREA_ID" :
+					model.PRCAREA_ID = (string)value;
                     break;
-				case "U_Ret_COST" :
-					model.U_Ret_COST = (decimal)value;
+				case "TAX_TYPE" :
+					model.TAX_TYPE = ConvertHelper.Ctinyint(value);
                     break;
-				case "U_Ret_COST1" :
-					model.U_Ret_COST1 = (decimal)value;
-                    break;
-				case "U_Ret_COST2" :
-					model.U_Ret_COST2 = (decimal)value;
-                    break;
-				case "T_COST" :
-					model.T_COST = (decimal)value;
-                    break;
-				case "T_COST1" :
-					model.T_COST1 = (decimal)value;
-                    break;
-				case "T_COST2" :
-					model.T_COST2 = (decimal)value;
-                    break;
-				case "T_Ret_COST" :
-					model.T_Ret_COST = (decimal)value;
-                    break;
-				case "T_Ret_COST1" :
-					model.T_Ret_COST1 = (decimal)value;
-                    break;
-				case "T_Ret_COST2" :
-					model.T_Ret_COST2 = (decimal)value;
-                    break;
-				case "COST" :
-					model.COST = (decimal)value;
-                    break;
-				case "COST1" :
-					model.COST1 = (decimal)value;
-                    break;
-				case "COST2" :
-					model.COST2 = (decimal)value;
-                    break;
-				case "ORDER_UNIT" :
-					model.ORDER_UNIT = (int)value;
-                    break;
-				case "ORDER_QUAN" :
-					model.ORDER_QUAN = (int)value;
-                    break;
-				case "Purchase_UNIT" :
-					model.Purchase_UNIT = (int)value;
-                    break;
-				case "Purchase_UNIT_NAME" :
-					model.Purchase_UNIT_NAME = (string)value;
-                    break;
-				case "Purchase_QUAN" :
-					model.Purchase_QUAN = (int)value;
-                    break;
-				case "SAFE_QUAN" :
-					model.SAFE_QUAN = (int)value;
-                    break;
-				case "PROD_PRICE" :
-					model.PROD_PRICE = (decimal)value;
-                    break;
-				case "ENABLE" :
-					model.ENABLE = ConvertHelper.Ctinyint(value);
-                    break;
-				case "VISIBLE" :
-					model.VISIBLE = ConvertHelper.Ctinyint(value);
-                    break;
-				case "BOM_ID" :
-					model.BOM_ID = (string)value;
-                    break;
-				case "CRT_DATETIME" :
-					model.CRT_DATETIME = (DateTime)value;
-                    break;
-				case "CRT_USER_ID" :
-					model.CRT_USER_ID = (string)value;
-                    break;
-				case "MOD_DATETIME" :
-					model.MOD_DATETIME = (DateTime)value;
-                    break;
-				case "MOD_USER_ID" :
-					model.MOD_USER_ID = (string)value;
-                    break;
-				case "LAST_UPDATE" :
-					model.LAST_UPDATE = (DateTime)value;
+				case "Tax_Num" :
+					model.Tax_Num = (int)value;
                     break;
             }
 		}
@@ -1000,9 +730,9 @@ namespace Solution.Logic.Managers {
 
 		#endregion
 
-		#region 获取V_Product01_PRCAREA表记录总数
+		#region 获取V_Purchase01_PRODUCT00表记录总数
         /// <summary>
-        /// 获取V_Product01_PRCAREA表记录总数
+        /// 获取V_Purchase01_PRODUCT00表记录总数
         /// </summary>
         /// <returns>记录总数</returns>
         public int GetRecordCount()
@@ -1023,23 +753,23 @@ namespace Solution.Logic.Managers {
         }
 
 		/// <summary>
-		/// 获取V_Product01_PRCAREA表记录总数——从数据库中查询
+		/// 获取V_Purchase01_PRODUCT00表记录总数——从数据库中查询
 		/// </summary>
         /// <param name="wheres">条件</param>
 		/// <returns>int</returns>
 		public int GetRecordCount(List<ConditionFun.SqlqueryCondition> wheres) {
 			var select = new SelectHelper();
-			return select.GetRecordCount<V_Product01_PRCAREA>(wheres);
+			return select.GetRecordCount<V_Purchase01_PRODUCT00>(wheres);
 
 		}
 
 		/// <summary>
-		/// 获取V_Product01_PRCAREA表指定条件的记录总数——从数据库中查询
+		/// 获取V_Purchase01_PRODUCT00表指定条件的记录总数——从数据库中查询
 		/// </summary>
         /// <param name="expression">条件</param>
 		/// <returns>int</returns>
-		public int GetRecordCount(Expression<Func<V_Product01_PRCAREA, bool>> expression) {
-            return new Select().From<V_Product01_PRCAREA>().Where(expression).GetRecordCount();
+		public int GetRecordCount(Expression<Func<V_Purchase01_PRODUCT00, bool>> expression) {
+            return new Select().From<V_Purchase01_PRODUCT00>().Where(expression).GetRecordCount();
 		}
 
         #endregion
@@ -1049,7 +779,7 @@ namespace Solution.Logic.Managers {
         /// 查找指定条件的记录集合——从IIS缓存中查找
         /// </summary>
         /// <param name="expression">条件语句</param>
-        public IList<DataAccess.Model.V_Product01_PRCAREA> Find(Expression<Func<DataAccess.Model.V_Product01_PRCAREA, bool>> expression)
+        public IList<DataAccess.Model.V_Purchase01_PRODUCT00> Find(Expression<Func<DataAccess.Model.V_Purchase01_PRODUCT00, bool>> expression)
         {
 			//从缓存中获取记录集
 			var list = GetList();
@@ -1089,7 +819,7 @@ namespace Solution.Logic.Managers {
             }
             
             //从数据库中查找
-            return V_Product01_PRCAREA.Exists(x => x.Id == id);
+            return V_Purchase01_PRODUCT00.Exists(x => x.Id == id);
         }
 
         /// <summary>
@@ -1097,7 +827,7 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="expression">条件语句</param>
         /// <returns></returns>
-        public bool Exist(Expression<Func<DataAccess.Model.V_Product01_PRCAREA, bool>> expression)
+        public bool Exist(Expression<Func<DataAccess.Model.V_Purchase01_PRODUCT00, bool>> expression)
         {
             var list = GetList();
             if (list == null) 
@@ -1109,9 +839,9 @@ namespace Solution.Logic.Managers {
         }
         #endregion
 
-		#region 获取V_Product01_PRCAREA表记录
+		#region 获取V_Purchase01_PRODUCT00表记录
 		/// <summary>
-		/// 获取V_Product01_PRCAREA表记录
+		/// 获取V_Purchase01_PRODUCT00表记录
 		/// </summary>
 		/// <param name="norepeat">是否使用去重复</param>
 		/// <param name="top">获取指定数量记录</param>
@@ -1126,12 +856,12 @@ namespace Solution.Logic.Managers {
             {
                 //分页查询
                 var select = new SelectHelper();
-                return select.SelectDataTable<V_Product01_PRCAREA>(norepeat, top, columns, pageIndex, pageSize, wheres, sorts);
+                return select.SelectDataTable<V_Purchase01_PRODUCT00>(norepeat, top, columns, pageIndex, pageSize, wheres, sorts);
             }
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("获取V_Product01_PRCAREA表记录时出现异常", e);
+                CommonBll.WriteLog("获取V_Purchase01_PRODUCT00表记录时出现异常", e);
 
                 return null;
             }
@@ -1228,16 +958,16 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 
-		#region 添加与编辑V_Product01_PRCAREA表记录
+		#region 添加与编辑V_Purchase01_PRODUCT00表记录
 		/// <summary>
-		/// 添加与编辑V_Product01_PRCAREA记录
+		/// 添加与编辑V_Purchase01_PRODUCT00记录
 		/// </summary>
 	    /// <param name="page">当前页面指针</param>
-		/// <param name="model">V_Product01_PRCAREA表实体</param>
+		/// <param name="model">V_Purchase01_PRODUCT00表实体</param>
         /// <param name="content">更新说明</param>
         /// <param name="isCache">是否更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void Save(Page page, V_Product01_PRCAREA model, string content = null, bool isCache = true, bool isAddUseLog = true)
+        public void Save(Page page, V_Purchase01_PRODUCT00 model, string content = null, bool isCache = true, bool isAddUseLog = true)
         {
 			try {
 				//保存
@@ -1253,7 +983,7 @@ namespace Solution.Logic.Managers {
 				{
 					if (string.IsNullOrEmpty(content))
 					{
-						content = "{0}" + (model.Id == 0 ? "添加" : "编辑") + "V_Product01_PRCAREA记录成功，ID为【" + model.Id + "】";
+						content = "{0}" + (model.Id == 0 ? "添加" : "编辑") + "V_Purchase01_PRODUCT00记录成功，ID为【" + model.Id + "】";
 					}
 
 					//添加用户访问记录
@@ -1261,7 +991,7 @@ namespace Solution.Logic.Managers {
 				}
 			}
 			catch (Exception e) {
-				var result = "执行V_Product01_PRCAREABll.Save()函数出错！";
+				var result = "执行V_Purchase01_PRODUCT00Bll.Save()函数出错！";
 
 				//出现异常，保存出错日志信息
 				CommonBll.WriteLog(result, e);
@@ -1269,9 +999,9 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 
-		#region 删除V_Product01_PRCAREA表记录
+		#region 删除V_Purchase01_PRODUCT00表记录
 		/// <summary>
-		/// 删除V_Product01_PRCAREA表记录
+		/// 删除V_Purchase01_PRODUCT00表记录
 		/// </summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="id">记录的主键值</param>
@@ -1279,7 +1009,7 @@ namespace Solution.Logic.Managers {
 		public override void Delete(Page page, int id, bool isAddUseLog = true) 
 		{
 			//设置Sql语句
-			var sql = string.Format("delete from {0} where {1} = {2}", V_Product01_PRCAREATable.TableName,  V_Product01_PRCAREATable.Id, id);
+			var sql = string.Format("delete from {0} where {1} = {2}", V_Purchase01_PRODUCT00Table.TableName,  V_Purchase01_PRODUCT00Table.Id, id);
 
 			//删除
 			var delete = new DeleteHelper();
@@ -1295,12 +1025,12 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了V_Product01_PRCAREA表id为【" + id + "】的记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了V_Purchase01_PRODUCT00表id为【" + id + "】的记录！");
 			}
 		}
 
 		/// <summary>
-		/// 删除V_Product01_PRCAREA表记录
+		/// 删除V_Purchase01_PRODUCT00表记录
 		/// </summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="id">记录的主键值</param>
@@ -1312,7 +1042,7 @@ namespace Solution.Logic.Managers {
 			var str = string.Join(",", id);
 
 			//设置Sql语句
-			var sql = string.Format("delete from {0} where {1} in ({2})", V_Product01_PRCAREATable.TableName,  V_Product01_PRCAREATable.Id, str);
+			var sql = string.Format("delete from {0} where {1} in ({2})", V_Purchase01_PRODUCT00Table.TableName,  V_Purchase01_PRODUCT00Table.Id, str);
 
 			//删除
 			var delete = new DeleteHelper();
@@ -1328,7 +1058,7 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了V_Product01_PRCAREA表id为【" + str + "】的记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了V_Purchase01_PRODUCT00表id为【" + str + "】的记录！");
 			}
 		}
 
@@ -1338,10 +1068,10 @@ namespace Solution.Logic.Managers {
         /// <param name="page">当前页面指针</param>
         /// <param name="expression">条件语句</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void Delete(Page page, Expression<Func<V_Product01_PRCAREA, bool>> expression, bool isAddUseLog = true)
+        public void Delete(Page page, Expression<Func<V_Purchase01_PRODUCT00, bool>> expression, bool isAddUseLog = true)
         {
 			//执行删除
-			V_Product01_PRCAREA.Delete(expression);
+			V_Purchase01_PRODUCT00.Delete(expression);
 
             //判断是否启用缓存
             if (CommonBll.IsUseCache())
@@ -1355,7 +1085,7 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了V_Product01_PRCAREA表记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了V_Purchase01_PRODUCT00表记录！");
 			}
         }
 		#endregion
@@ -1372,7 +1102,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateSort(Page page, FineUI.Grid grid1, string tbxSort, string sortName = "Sort")
 	    {
 		     //更新排序
-			if (CommonBll.UpdateSort(page, grid1, tbxSort, "V_Product01_PRCAREA", sortName, "Id"))
+			if (CommonBll.UpdateSort(page, grid1, tbxSort, "V_Purchase01_PRODUCT00", sortName, "Id"))
 		    {
 				//判断是否启用缓存
                 if (CommonBll.IsUseCache())
@@ -1384,7 +1114,7 @@ namespace Solution.Logic.Managers {
                 }
 				
 			    //添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}更新了V_Product01_PRCAREA表排序！");
+				UseLogBll.GetInstence().Save(page, "{0}更新了V_Purchase01_PRODUCT00表排序！");
 
 			    return true;
 		    }
@@ -1405,7 +1135,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateAutoSort(Page page, string strWhere = "", bool isExistsMoreLv = false, int pid = 0, string fieldName = "Sort", string fieldParentId = "ParentId")
 	    {
 		    //更新排序
-			if (CommonBll.AutoSort("Id", "V_Product01_PRCAREA", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
+			if (CommonBll.AutoSort("Id", "V_Purchase01_PRODUCT00", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
 		    {
 				//判断是否启用缓存
                 if (CommonBll.IsUseCache())
@@ -1417,7 +1147,7 @@ namespace Solution.Logic.Managers {
                 }
 
 			    //添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}对V_Product01_PRCAREA表进行了自动排序操作！");
+				UseLogBll.GetInstence().Save(page, "{0}对V_Purchase01_PRODUCT00表进行了自动排序操作！");
 
 			    return true;
 		    }
@@ -1451,7 +1181,7 @@ namespace Solution.Logic.Managers {
 	    {
             //如果条件列为空，则默认为主键列
             if (string.IsNullOrEmpty(conditionColName))
-                conditionColName = V_Product01_PRCAREATable.Id;
+                conditionColName = V_Purchase01_PRODUCT00Table.Id;
 
             //在内存中查询
 	        if (isCache)
@@ -1496,7 +1226,7 @@ namespace Solution.Logic.Managers {
         /// <param name="colName">获取的列名</param>
         /// <param name="expression">条件</param>
         /// <returns></returns>
-        public object GetFieldValue(string colName, Expression<Func<DataAccess.Model.V_Product01_PRCAREA, bool>> expression)
+        public object GetFieldValue(string colName, Expression<Func<DataAccess.Model.V_Purchase01_PRODUCT00, bool>> expression)
 	    {
 	        return GetFieldValue(GetModelForCache(expression), colName);
 	    }
@@ -1531,7 +1261,7 @@ namespace Solution.Logic.Managers {
         public object GetFieldValue(string colName, List<ConditionFun.SqlqueryCondition> wheres)
         {
             var select = new SelectHelper();
-            return select.GetColumnsValue<V_Product01_PRCAREA>(colName, wheres);
+            return select.GetColumnsValue<V_Purchase01_PRODUCT00>(colName, wheres);
         }
 
 		/// <summary>
@@ -1540,7 +1270,7 @@ namespace Solution.Logic.Managers {
         /// <param name="model">实体</param>
         /// <param name="colName">获取的字段名</param>
         /// <returns></returns>
-		private object GetFieldValue(DataAccess.Model.V_Product01_PRCAREA model, string colName)
+		private object GetFieldValue(DataAccess.Model.V_Purchase01_PRODUCT00 model, string colName)
 		{
 			if (model == null || string.IsNullOrEmpty(colName)) return null;
 			//返回指定的列值
@@ -1548,120 +1278,60 @@ namespace Solution.Logic.Managers {
 			{
 				case "Id" :
 					return model.Id;
-				case "PRCAREA_ID" :
-					return model.PRCAREA_ID;
-				case "PRCAREA_NAME" :
-					return model.PRCAREA_NAME;
+				case "SHOP_ID" :
+					return model.SHOP_ID;
+				case "Purchase_ID" :
+					return model.Purchase_ID;
+				case "SNo" :
+					return model.SNo;
 				case "PROD_ID" :
 					return model.PROD_ID;
-				case "PROD_NAME1" :
-					return model.PROD_NAME1;
-				case "PROD_NAME1_SPELLING" :
-					return model.PROD_NAME1_SPELLING;
-				case "PROD_KIND" :
-					return model.PROD_KIND;
-				case "PROD_DEP" :
-					return model.PROD_DEP;
-				case "PROD_CATE" :
-					return model.PROD_CATE;
-				case "PROD_UNIT" :
-					return model.PROD_UNIT;
-				case "UNIT_NAME" :
-					return model.UNIT_NAME;
-				case "PROD_UNIT1" :
-					return model.PROD_UNIT1;
-				case "UNIT_NAME1" :
-					return model.UNIT_NAME1;
-				case "PROD_CONVERT1" :
-					return model.PROD_CONVERT1;
-				case "PROD_UNIT2" :
-					return model.PROD_UNIT2;
-				case "UNIT_NAME2" :
-					return model.UNIT_NAME2;
-				case "PROD_CONVERT2" :
-					return model.PROD_CONVERT2;
-				case "SUP_ID" :
-					return model.SUP_ID;
-				case "SUP_NAME" :
-					return model.SUP_NAME;
-				case "SEND_TYPE" :
-					return model.SEND_TYPE;
-				case "TAX_TYPE" :
-					return model.TAX_TYPE;
+				case "QUANTITY" :
+					return model.QUANTITY;
+				case "STD_UNIT" :
+					return model.STD_UNIT;
+				case "STD_CONVERT" :
+					return model.STD_CONVERT;
+				case "STD_QUAN" :
+					return model.STD_QUAN;
+				case "STD_PRICE" :
+					return model.STD_PRICE;
 				case "Tax" :
 					return model.Tax;
+				case "QUAN1" :
+					return model.QUAN1;
+				case "QUAN2" :
+					return model.QUAN2;
+				case "Item_DISC_Amt" :
+					return model.Item_DISC_Amt;
+				case "MEMO" :
+					return model.MEMO;
+				case "PROD_NAME1" :
+					return model.PROD_NAME1;
+				case "STD_UNIT_NAME" :
+					return model.STD_UNIT_NAME;
 				case "SUP_COST" :
 					return model.SUP_COST;
 				case "SUP_COST1" :
 					return model.SUP_COST1;
 				case "SUP_COST2" :
 					return model.SUP_COST2;
-				case "SUP_Return" :
-					return model.SUP_Return;
-				case "SUP_Return1" :
-					return model.SUP_Return1;
-				case "SUP_Return2" :
-					return model.SUP_Return2;
-				case "U_Cost" :
-					return model.U_Cost;
-				case "U_Cost1" :
-					return model.U_Cost1;
-				case "U_Cost2" :
-					return model.U_Cost2;
-				case "U_Ret_COST" :
-					return model.U_Ret_COST;
-				case "U_Ret_COST1" :
-					return model.U_Ret_COST1;
-				case "U_Ret_COST2" :
-					return model.U_Ret_COST2;
-				case "T_COST" :
-					return model.T_COST;
-				case "T_COST1" :
-					return model.T_COST1;
-				case "T_COST2" :
-					return model.T_COST2;
-				case "T_Ret_COST" :
-					return model.T_Ret_COST;
-				case "T_Ret_COST1" :
-					return model.T_Ret_COST1;
-				case "T_Ret_COST2" :
-					return model.T_Ret_COST2;
-				case "COST" :
-					return model.COST;
-				case "COST1" :
-					return model.COST1;
-				case "COST2" :
-					return model.COST2;
-				case "ORDER_UNIT" :
-					return model.ORDER_UNIT;
-				case "ORDER_QUAN" :
-					return model.ORDER_QUAN;
-				case "Purchase_UNIT" :
-					return model.Purchase_UNIT;
-				case "Purchase_UNIT_NAME" :
-					return model.Purchase_UNIT_NAME;
-				case "Purchase_QUAN" :
-					return model.Purchase_QUAN;
-				case "SAFE_QUAN" :
-					return model.SAFE_QUAN;
-				case "PROD_PRICE" :
-					return model.PROD_PRICE;
-				case "ENABLE" :
-					return model.ENABLE;
-				case "VISIBLE" :
-					return model.VISIBLE;
-				case "BOM_ID" :
-					return model.BOM_ID;
-				case "CRT_DATETIME" :
-					return model.CRT_DATETIME;
-				case "CRT_USER_ID" :
-					return model.CRT_USER_ID;
-				case "MOD_DATETIME" :
-					return model.MOD_DATETIME;
-				case "MOD_USER_ID" :
-					return model.MOD_USER_ID;
-				case "LAST_UPDATE" :
-					return model.LAST_UPDATE;
+				case "UNIT_NAME" :
+					return model.UNIT_NAME;
+				case "UNIT_NAME1" :
+					return model.UNIT_NAME1;
+				case "UNIT_NAME2" :
+					return model.UNIT_NAME2;
+				case "PROD_CONVERT1" :
+					return model.PROD_CONVERT1;
+				case "PROD_CONVERT2" :
+					return model.PROD_CONVERT2;
+				case "PRCAREA_ID" :
+					return model.PRCAREA_ID;
+				case "TAX_TYPE" :
+					return model.TAX_TYPE;
+				case "Tax_Num" :
+					return model.Tax_Num;
 			}
 
 			return null;
@@ -1669,8 +1339,8 @@ namespace Solution.Logic.Managers {
 
 		#endregion
 		
-		#region 更新V_Product01_PRCAREA表指定字段值
-		/// <summary>更新V_Product01_PRCAREA表记录指定字段值，如果使用了缓存，保存成功后会清空本表的所有缓存记录，然后重新加载进缓存</summary>
+		#region 更新V_Purchase01_PRODUCT00表指定字段值
+		/// <summary>更新V_Purchase01_PRODUCT00表记录指定字段值，如果使用了缓存，保存成功后会清空本表的所有缓存记录，然后重新加载进缓存</summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="dic">需要更新的字段与值</param>
 		/// <param name="wheres">条件</param>
@@ -1680,7 +1350,7 @@ namespace Solution.Logic.Managers {
 		public void UpdateValue(Page page, Dictionary<string, object> dic, List<ConditionFun.SqlqueryCondition> wheres = null, string content = "", bool isCache = true, bool isAddUseLog = true) {
 			//更新
 			var update = new UpdateHelper();
-			update.Update<V_Product01_PRCAREA>(dic, wheres);
+			update.Update<V_Purchase01_PRODUCT00>(dic, wheres);
 
 			//判断是否启用缓存
 			if (isCache && CommonBll.IsUseCache())
@@ -1695,7 +1365,7 @@ namespace Solution.Logic.Managers {
 				if (string.IsNullOrEmpty(content))
 				{
 					//添加用户操作记录
-					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}修改了V_Product01_PRCAREA表记录。");				
+					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}修改了V_Purchase01_PRODUCT00表记录。");				
 				}
 				else
 				{
@@ -1706,8 +1376,8 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 				
-		#region 更新V_Product01_PRCAREA表指定主键Id的字段值
-		/// <summary>更新V_Product01_PRCAREA表记录指定字段值</summary>
+		#region 更新V_Purchase01_PRODUCT00表指定主键Id的字段值
+		/// <summary>更新V_Purchase01_PRODUCT00表记录指定字段值</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
 	    /// <param name="dic">需要更新的字段与值</param>
@@ -1716,14 +1386,14 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
 	    public void UpdateValue(Page page, int id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-			content = content != "" ? content : "{0}修改了V_Product01_PRCAREA表主键Id值为" + id + "的记录。";
+			content = content != "" ? content : "{0}修改了V_Purchase01_PRODUCT00表主键Id值为" + id + "的记录。";
 			
             //条件
 		    List<ConditionFun.SqlqueryCondition> wheres = null;
             if (id > 0)
             {
                 wheres = new List<ConditionFun.SqlqueryCondition>();
-                wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Product01_PRCAREATable.Id, Comparison.Equals, id));
+                wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Purchase01_PRODUCT00Table.Id, Comparison.Equals, id));
             };
 
 			//判断是否启用缓存——为了防止并发问题，所以先更新缓存再更新数据库
@@ -1741,7 +1411,7 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, dic, wheres, content, false, isAddUseLog);
         }
 
-        /// <summary>更新V_Product01_PRCAREA表记录指定字段值（更新一个字段值）</summary>
+        /// <summary>更新V_Purchase01_PRODUCT00表记录指定字段值（更新一个字段值）</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
         /// <param name="columnName">要更新的列名</param>
@@ -1751,7 +1421,7 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
         public void UpdateValue(Page page, int id, string columnName, object columnValue, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-            content = content != "" ? content : "{0}修改了V_Product01_PRCAREA表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
+            content = content != "" ? content : "{0}修改了V_Purchase01_PRODUCT00表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
             //设置更新字段
             var dic = new Dictionary<string, object>();
             dic.Add(columnName, columnValue);
@@ -1760,7 +1430,7 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, id, dic, content, isCache, isAddUseLog);
         }
 
-		 /// <summary>更新V_Product01_PRCAREA表记录指定字段值（更新两个字段值）</summary>
+		 /// <summary>更新V_Purchase01_PRODUCT00表记录指定字段值（更新两个字段值）</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
         /// <param name="columnName1">要更新的列名</param>
@@ -1772,7 +1442,7 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
         public void UpdateValue(Page page, int id, string columnName1, object columnValue1, string columnName2, object columnValue2, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-            content = content != "" ? content : "{0}修改了V_Product01_PRCAREA表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
+            content = content != "" ? content : "{0}修改了V_Purchase01_PRODUCT00表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
             //设置更新字段
             var dic = new Dictionary<string, object>();
             dic.Add(columnName1, columnValue1);
@@ -1782,25 +1452,6 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, id, dic, content, isCache, isAddUseLog);
         }
         #endregion
-		
-		#region 更新SEND_TYPE字段值
-		/// <summary>
-		/// 更新SEND_TYPE字段值
-		/// </summary>
-		/// <param name="page">当前页面指针</param>
-		/// <param name="pkValue">主键Id，当等于0时，则更新所有记录</param>
-		/// <param name="updateValue">更新值</param>
-        /// <param name="isCache">是否同步更新缓存</param>
-		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-		public void UpdateSEND_TYPE(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
-			//设置更新值
-			var setValue = new Dictionary<string, object>();
-			setValue[V_Product01_PRCAREATable.SEND_TYPE] = updateValue;
-
-			//更新
-			UpdateValue(page, pkValue, setValue, "{0}更新了V_Product01_PRCAREA表id为【" + pkValue + "】的记录，更新内容为将SEND_TYPE字段值修改为" + updateValue, isCache, isAddUseLog);
-		}
-		#endregion
 		
 		#region 更新TAX_TYPE字段值
 		/// <summary>
@@ -1814,48 +1465,10 @@ namespace Solution.Logic.Managers {
 		public void UpdateTAX_TYPE(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
 			//设置更新值
 			var setValue = new Dictionary<string, object>();
-			setValue[V_Product01_PRCAREATable.TAX_TYPE] = updateValue;
+			setValue[V_Purchase01_PRODUCT00Table.TAX_TYPE] = updateValue;
 
 			//更新
-			UpdateValue(page, pkValue, setValue, "{0}更新了V_Product01_PRCAREA表id为【" + pkValue + "】的记录，更新内容为将TAX_TYPE字段值修改为" + updateValue, isCache, isAddUseLog);
-		}
-		#endregion
-		
-		#region 更新ENABLE字段值
-		/// <summary>
-		/// 更新ENABLE字段值
-		/// </summary>
-		/// <param name="page">当前页面指针</param>
-		/// <param name="pkValue">主键Id，当等于0时，则更新所有记录</param>
-		/// <param name="updateValue">更新值</param>
-        /// <param name="isCache">是否同步更新缓存</param>
-		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-		public void UpdateENABLE(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
-			//设置更新值
-			var setValue = new Dictionary<string, object>();
-			setValue[V_Product01_PRCAREATable.ENABLE] = updateValue;
-
-			//更新
-			UpdateValue(page, pkValue, setValue, "{0}更新了V_Product01_PRCAREA表id为【" + pkValue + "】的记录，更新内容为将ENABLE字段值修改为" + updateValue, isCache, isAddUseLog);
-		}
-		#endregion
-		
-		#region 更新VISIBLE字段值
-		/// <summary>
-		/// 更新VISIBLE字段值
-		/// </summary>
-		/// <param name="page">当前页面指针</param>
-		/// <param name="pkValue">主键Id，当等于0时，则更新所有记录</param>
-		/// <param name="updateValue">更新值</param>
-        /// <param name="isCache">是否同步更新缓存</param>
-		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-		public void UpdateVISIBLE(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
-			//设置更新值
-			var setValue = new Dictionary<string, object>();
-			setValue[V_Product01_PRCAREATable.VISIBLE] = updateValue;
-
-			//更新
-			UpdateValue(page, pkValue, setValue, "{0}更新了V_Product01_PRCAREA表id为【" + pkValue + "】的记录，更新内容为将VISIBLE字段值修改为" + updateValue, isCache, isAddUseLog);
+			UpdateValue(page, pkValue, setValue, "{0}更新了V_Purchase01_PRODUCT00表id为【" + pkValue + "】的记录，更新内容为将TAX_TYPE字段值修改为" + updateValue, isCache, isAddUseLog);
 		}
 		#endregion
 		

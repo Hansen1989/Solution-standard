@@ -1239,6 +1239,18 @@
     <Compile Include="SubSonic\V_PROD_DEPTable.cs">
       <DependentUpon>EntityTable.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubSonic\V_Purchase01_PRODUCT00.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_Purchase01_PRODUCT00Model.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_Purchase01_PRODUCT00Structs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_Purchase01_PRODUCT00Table.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\V_STOCK01_PRODUCT00.cs">
       <DependentUpon>ActiveRecord.tt</DependentUpon>
     </Compile>

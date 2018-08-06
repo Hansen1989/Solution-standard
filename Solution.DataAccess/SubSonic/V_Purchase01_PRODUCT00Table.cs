@@ -3,16 +3,16 @@ using System;
 
 namespace Solution.DataAccess.DataModel {
         /// <summary>
-        /// Table: TAKEIN11
+        /// Table: V_Purchase01_PRODUCT00
         /// </summary>
 
-        public class TAKEIN11Table {
+        public class V_Purchase01_PRODUCT00Table {
 			/// <summary>
 			/// 表名
 			/// </summary>
 			public static string TableName {
 				get{
-        			return "TAKEIN11";
+        			return "V_Purchase01_PRODUCT00";
       			}
 			}
 
@@ -25,7 +25,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 分店编号
+			/// 
 			/// </summary>
    			public static string SHOP_ID{
 			      get{
@@ -33,15 +33,15 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 进货单
+			/// 
 			/// </summary>
-   			public static string TAKEIN_ID{
+   			public static string Purchase_ID{
 			      get{
-        			return "TAKEIN_ID";
+        			return "Purchase_ID";
       			}
 		    }
 			/// <summary>
-			/// 序号
+			/// 
 			/// </summary>
    			public static string SNo{
 			      get{
@@ -49,7 +49,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 商品编号
+			/// 
 			/// </summary>
    			public static string PROD_ID{
 			      get{
@@ -57,7 +57,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 数量
+			/// 
 			/// </summary>
    			public static string QUANTITY{
 			      get{
@@ -65,7 +65,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 验收单位
+			/// 
 			/// </summary>
    			public static string STD_UNIT{
 			      get{
@@ -73,7 +73,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 标准转换量
+			/// 
 			/// </summary>
    			public static string STD_CONVERT{
 			      get{
@@ -81,7 +81,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 验收量
+			/// 
 			/// </summary>
    			public static string STD_QUAN{
 			      get{
@@ -89,7 +89,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 标准单价
+			/// 
 			/// </summary>
    			public static string STD_PRICE{
 			      get{
@@ -97,7 +97,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 税额
+			/// 
 			/// </summary>
    			public static string Tax{
 			      get{
@@ -105,7 +105,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 采购量
+			/// 
 			/// </summary>
    			public static string QUAN1{
 			      get{
@@ -113,7 +113,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 取消量
+			/// 
 			/// </summary>
    			public static string QUAN2{
 			      get{
@@ -121,7 +121,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 折价金额
+			/// 
 			/// </summary>
    			public static string Item_DISC_Amt{
 			      get{
@@ -129,7 +129,7 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 备注
+			/// 
 			/// </summary>
    			public static string MEMO{
 			      get{
@@ -137,27 +137,107 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 批号
+			/// 
 			/// </summary>
-   			public static string BAT_NO{
+   			public static string PROD_NAME1{
 			      get{
-        			return "BAT_NO";
-      			}
-		    }
-			/// <summary>
-			/// 有效日期
-			/// </summary>
-   			public static string Exp_DateTime{
-			      get{
-        			return "Exp_DateTime";
+        			return "PROD_NAME1";
       			}
 		    }
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string STD_TYPE{
+   			public static string STD_UNIT_NAME{
 			      get{
-        			return "STD_TYPE";
+        			return "STD_UNIT_NAME";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string SUP_COST{
+			      get{
+        			return "SUP_COST";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string SUP_COST1{
+			      get{
+        			return "SUP_COST1";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string SUP_COST2{
+			      get{
+        			return "SUP_COST2";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string UNIT_NAME{
+			      get{
+        			return "UNIT_NAME";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string UNIT_NAME1{
+			      get{
+        			return "UNIT_NAME1";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string UNIT_NAME2{
+			      get{
+        			return "UNIT_NAME2";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PROD_CONVERT1{
+			      get{
+        			return "PROD_CONVERT1";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PROD_CONVERT2{
+			      get{
+        			return "PROD_CONVERT2";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PRCAREA_ID{
+			      get{
+        			return "PRCAREA_ID";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string TAX_TYPE{
+			      get{
+        			return "TAX_TYPE";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string Tax_Num{
+			      get{
+        			return "Tax_Num";
       			}
 		    }
                     

@@ -157,7 +157,7 @@
             <f:Panel ID="Panel3" runat="server" EnableFrame="false" BodyPadding="5px" EnableCollapse="True" ShowHeader="False" ShowBorder="False">
                 <Items>
                
-             <f:Grid ID="Grid1" Title="表格" ShowBorder="false" ShowHeader="false" EnableCollapse="true" Width="1000px"
+             <f:Grid ID="Grid1" Title="表格" ShowBorder="false" ShowHeader="false" EnableCollapse="true" Width="900px"
             runat="server" DataKeyNames="ID,PROD_NAME1" AllowCellEditing="true" ClicksToEdit="1" OnPreDataBound="Grid1_PreDataBound" 
             DataIDField="ID" EnableCheckBoxSelect="true" EnableColumnLines="true"> 
             <Toolbars>
@@ -213,14 +213,14 @@
                 <f:RenderField Width="100px" ColumnID="ON_QUAN" DataField="ON_QUAN"  FieldType="String"
                     HeaderText="订货量"> <%--FieldType="Int"--%>
                     <Editor>
-                        <f:NumberBox ID="txtON_QUAN" Required="true" runat="server"> <%--NoDecimal="true" NoNegative="true" --%>
+                        <f:NumberBox ID="txtON_QUAN" Required="true" runat="server" DecimalPrecision="2"> <%--NoDecimal="true" NoNegative="true" --%>
                         </f:NumberBox>
                     </Editor>
                 </f:RenderField>
-                <f:RenderField Width="100px" ColumnID="STD_PRICE" DataField="STD_PRICE" 
+                <f:RenderField Width="100px" ColumnID="STD_PRICE" DataField="STD_PRICE"
                     HeaderText="单价"> <%--FieldType="Int"--%>
                     <Editor>
-                        <f:NumberBox ID="txtCOST" Required="true" runat="server"> <%--NoDecimal="false" NoNegative="true" --%>
+                        <f:NumberBox ID="txtCOST" Required="true" runat="server" DecimalPrecision="2"> <%--NoDecimal="false" NoNegative="true" --%>
                         </f:NumberBox>
                     </Editor>
                 </f:RenderField>
@@ -232,7 +232,7 @@
                         </Editor>
                 </f:RenderField>
                <%-- <f:BoundField runat="server" ColumnID="Order_QUAN" DataField="Order_QUAN" TextAlign="Center" HeaderText="最小单位" />--%>
-                 <f:RenderField Width="100px" ColumnID="PROD_MEMO" DataField="PROD_MEMO" TextAlign="Center"  FieldType="String" MinWidth="140px"
+                 <f:RenderField Width="140px" ColumnID="PROD_MEMO" DataField="PROD_MEMO" TextAlign="Center"  FieldType="String" MinWidth="140px"
                     HeaderText="备注" >
                       <Editor>
                           <f:TextBox ID="txtPROD_MEMO" runat="server" />
@@ -478,10 +478,10 @@
                         me.f_updateCellValue(rowId, 'PROD_ID', obj[0].PROD_ID);
                         me.f_updateCellValue(rowId, 'PROD_SPEC', obj[0].PROD_SPEC);
                         me.f_updateCellValue(rowId, 'PROD_UNIT', obj[0].PROD_UNIT);
-                        me.f_updateCellValue(rowId, 'ON_QUAN', 1);
+                        me.f_updateCellValue(rowId, 'ON_QUAN', obj[0].Order_QUAN);
                         me.f_updateCellValue(rowId, 'STD_PRICE', obj[0].STD_PRICE);
 
-                        me.f_updateCellValue(rowId, 'QUAN1', obj[0].STD_PRICE * 1);
+                        me.f_updateCellValue(rowId, 'QUAN1', obj[0].STD_PRICE * obj[0].Order_QUAN);
                         //me.f_updateCellValue(rowId, 'Order_QUAN', obj[0].Order_QUAN);
                         me.f_updateCellValue(rowId, 'PROD_MEMO', '');
                     }

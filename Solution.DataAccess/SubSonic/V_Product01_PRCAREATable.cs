@@ -99,9 +99,25 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
+   			public static string UNIT_NAME{
+			      get{
+        			return "UNIT_NAME";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
    			public static string PROD_UNIT1{
 			      get{
         			return "PROD_UNIT1";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string UNIT_NAME1{
+			      get{
+        			return "UNIT_NAME1";
       			}
 		    }
 			/// <summary>
@@ -118,6 +134,14 @@ namespace Solution.DataAccess.DataModel {
    			public static string PROD_UNIT2{
 			      get{
         			return "PROD_UNIT2";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string UNIT_NAME2{
+			      get{
+        			return "UNIT_NAME2";
       			}
 		    }
 			/// <summary>
@@ -358,6 +382,14 @@ namespace Solution.DataAccess.DataModel {
    			public static string Purchase_UNIT{
 			      get{
         			return "Purchase_UNIT";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string Purchase_UNIT_NAME{
+			      get{
+        			return "Purchase_UNIT_NAME";
       			}
 		    }
 			/// <summary>

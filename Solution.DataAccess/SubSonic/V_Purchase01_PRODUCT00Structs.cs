@@ -6,23 +6,23 @@ using System.Data;
 
 namespace Solution.DataAccess.DataModel {
         /// <summary>
-        /// Table: TAKEIN11
-        /// Primary Key: Id
+        /// Table: V_Purchase01_PRODUCT00
+        /// Primary Key: 
         /// </summary>
 
-        public class TAKEIN11Structs: DatabaseTable {
+        public class V_Purchase01_PRODUCT00Structs: DatabaseTable {
             
-            public TAKEIN11Structs(IDataProvider provider):base("TAKEIN11",provider){
-                ClassName = "TAKEIN11";
+            public V_Purchase01_PRODUCT00Structs(IDataProvider provider):base("V_Purchase01_PRODUCT00",provider){
+                ClassName = "V_Purchase01_PRODUCT00";
                 SchemaName = "dbo";
                 
 
                 Columns.Add(new DatabaseColumn("Id", this)
                 {
-	                IsPrimaryKey = true,
+	                IsPrimaryKey = false,
 	                DataType = DbType.Int32,
 	                IsNullable = false,
-	                AutoIncrement = true,
+	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 0,
 					PropertyName = "Id"
@@ -39,7 +39,7 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "SHOP_ID"
                 });
 
-                Columns.Add(new DatabaseColumn("TAKEIN_ID", this)
+                Columns.Add(new DatabaseColumn("Purchase_ID", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
@@ -47,7 +47,7 @@ namespace Solution.DataAccess.DataModel {
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 30,
-					PropertyName = "TAKEIN_ID"
+					PropertyName = "Purchase_ID"
                 });
 
                 Columns.Add(new DatabaseColumn("SNo", this)
@@ -182,37 +182,147 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "MEMO"
                 });
 
-                Columns.Add(new DatabaseColumn("BAT_NO", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 40,
-					PropertyName = "BAT_NO"
-                });
-
-                Columns.Add(new DatabaseColumn("Exp_DateTime", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "Exp_DateTime"
-                });
-
-                Columns.Add(new DatabaseColumn("STD_TYPE", this)
+                Columns.Add(new DatabaseColumn("PROD_NAME1", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
 	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
-	                MaxLength = 50,
-					PropertyName = "STD_TYPE"
+	                MaxLength = 40,
+					PropertyName = "PROD_NAME1"
+                });
+
+                Columns.Add(new DatabaseColumn("STD_UNIT_NAME", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10,
+					PropertyName = "STD_UNIT_NAME"
+                });
+
+                Columns.Add(new DatabaseColumn("SUP_COST", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "SUP_COST"
+                });
+
+                Columns.Add(new DatabaseColumn("SUP_COST1", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "SUP_COST1"
+                });
+
+                Columns.Add(new DatabaseColumn("SUP_COST2", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "SUP_COST2"
+                });
+
+                Columns.Add(new DatabaseColumn("UNIT_NAME", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10,
+					PropertyName = "UNIT_NAME"
+                });
+
+                Columns.Add(new DatabaseColumn("UNIT_NAME1", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10,
+					PropertyName = "UNIT_NAME1"
+                });
+
+                Columns.Add(new DatabaseColumn("UNIT_NAME2", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10,
+					PropertyName = "UNIT_NAME2"
+                });
+
+                Columns.Add(new DatabaseColumn("PROD_CONVERT1", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Int32,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "PROD_CONVERT1"
+                });
+
+                Columns.Add(new DatabaseColumn("PROD_CONVERT2", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Int32,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "PROD_CONVERT2"
+                });
+
+                Columns.Add(new DatabaseColumn("PRCAREA_ID", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 6,
+					PropertyName = "PRCAREA_ID"
+                });
+
+                Columns.Add(new DatabaseColumn("TAX_TYPE", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Byte,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "TAX_TYPE"
+                });
+
+                Columns.Add(new DatabaseColumn("Tax_Num", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Int32,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "Tax_Num"
                 });
                     
                 
@@ -233,9 +343,9 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn TAKEIN_ID{
+            public IColumn Purchase_ID{
                 get{
-                    return this.GetColumn("TAKEIN_ID");
+                    return this.GetColumn("Purchase_ID");
                 }
             }
 				
@@ -324,23 +434,93 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn BAT_NO{
+            public IColumn PROD_NAME1{
                 get{
-                    return this.GetColumn("BAT_NO");
+                    return this.GetColumn("PROD_NAME1");
                 }
             }
 				
             
-            public IColumn Exp_DateTime{
+            public IColumn STD_UNIT_NAME{
                 get{
-                    return this.GetColumn("Exp_DateTime");
+                    return this.GetColumn("STD_UNIT_NAME");
                 }
             }
 				
             
-            public IColumn STD_TYPE{
+            public IColumn SUP_COST{
                 get{
-                    return this.GetColumn("STD_TYPE");
+                    return this.GetColumn("SUP_COST");
+                }
+            }
+				
+            
+            public IColumn SUP_COST1{
+                get{
+                    return this.GetColumn("SUP_COST1");
+                }
+            }
+				
+            
+            public IColumn SUP_COST2{
+                get{
+                    return this.GetColumn("SUP_COST2");
+                }
+            }
+				
+            
+            public IColumn UNIT_NAME{
+                get{
+                    return this.GetColumn("UNIT_NAME");
+                }
+            }
+				
+            
+            public IColumn UNIT_NAME1{
+                get{
+                    return this.GetColumn("UNIT_NAME1");
+                }
+            }
+				
+            
+            public IColumn UNIT_NAME2{
+                get{
+                    return this.GetColumn("UNIT_NAME2");
+                }
+            }
+				
+            
+            public IColumn PROD_CONVERT1{
+                get{
+                    return this.GetColumn("PROD_CONVERT1");
+                }
+            }
+				
+            
+            public IColumn PROD_CONVERT2{
+                get{
+                    return this.GetColumn("PROD_CONVERT2");
+                }
+            }
+				
+            
+            public IColumn PRCAREA_ID{
+                get{
+                    return this.GetColumn("PRCAREA_ID");
+                }
+            }
+				
+            
+            public IColumn TAX_TYPE{
+                get{
+                    return this.GetColumn("TAX_TYPE");
+                }
+            }
+				
+            
+            public IColumn Tax_Num{
+                get{
+                    return this.GetColumn("Tax_Num");
                 }
             }
 				
