@@ -238,9 +238,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             List<ConditionFun.SqlqueryCondition> condiList = new List<ConditionFun.SqlqueryCondition>();
             var model = new SHOP00(x => x.SHOP_ID == _shop_id);
             string _PRCAREA_ID = model.SHOP_Price_Area;
-            condiList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_Purchase01_PRODUCT00Table.SHOP_ID, Comparison.Equals, _shop_id, false, false));
+            //condiList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_Purchase01_PRODUCT00Table.SHOP_ID, Comparison.Equals, _shop_id, false, false));
             condiList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_Purchase01_PRODUCT00Table.Purchase_ID, Comparison.Equals, _Purchase_ID, false, false));
-            condiList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_Purchase01_PRODUCT00Table.PRCAREA_ID, Comparison.Equals, _PRCAREA_ID, false, false));
+            condiList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Purchase01_PRODUCT00Table.PRCAREA_ID, Comparison.Equals, _PRCAREA_ID, false, false));
             return condiList;
         }
 

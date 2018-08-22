@@ -23,8 +23,6 @@
                           <f:Button ID="ButtonEdit" runat="server" Text="修改" Icon="Disk" OnClick="Btn_MainEdit"></f:Button>
                           <f:Button ID="ButtonCheck" runat="server" Text="核准" Icon="Disk" OnClick="Btn_MainCheck"></f:Button>
                           <f:Button ID="ButtonCancel" runat="server" Text="作废" Icon="Disk" OnClick="Btn_MainCancel"></f:Button>
-
-
                       </Items>
                       </f:Toolbar>
                     </Toolbars>
@@ -50,8 +48,6 @@
 
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
-                                    <f:DropDownList runat="server" Label="到货分店" ID="ddlIN_SHOP" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList>
-                                    <f:DropDownList runat="server" Label="仓库名称" ID="ddlSTOCK_ID" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList> 
                                     <f:TextBox runat="server" Label="制单人" ID="tbxUSER_ID" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
                                     <f:TextBox runat="server" Label="审核人" ID="tbxAPP_USER" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
                                     <f:DatePicker ID="dpAPP_DATETIME" Label="审核时间" Required="true" Readonly="false" DateFormatString="yyyy-MM-dd" runat="server" ShowRedStar="True" Enabled="false">
@@ -63,20 +59,29 @@
 
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
+                                    <f:DropDownList runat="server" Label="到货分店" ID="ddlIN_SHOP" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList>
                                     <f:CheckBox ID="cbExported" Label="引入标记" runat="server" Enabled="false"></f:CheckBox>
                                     <f:TextBox ID="tbxExported_ID" Label="调入单号" runat="server"  Enabled="false" ></f:TextBox>
                                     <f:TextBox ID="tbxRELATE_ID" Label="关联单号" runat="server"  Enabled="false" ></f:TextBox>
-                                    <f:TextBox runat="server" ID="tbxMemo" Label="备注" Enabled="true"></f:TextBox>
-                                    <f:CheckBox ID="ckLOCKED" Text="月结锁定" runat="server" Enabled="false"></f:CheckBox>  
+
                                 </Items>
                             </f:FormRow>
+
+                            <f:FormRow>
+                                <Items>
+                                    <f:DropDownList runat="server" Label="仓库名称" ID="ddlSTOCK_ID" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList> 
+                                    <f:CheckBox ID="ckLOCKED" Label="月结锁定" runat="server" Enabled="false"></f:CheckBox>  
+                                    <f:TextBox runat="server" ID="tbxMemo" Label="备注" Enabled="true"></f:TextBox>
+                                    <f:TextBox runat="server" ID="tbxLAST_UPDATE" Label="最后异动时间" Enabled="false"></f:TextBox>
+                                </Items>
+                            </f:FormRow>
+
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
                                     <f:TextBox runat="server" ID="tbxCRT_DATETIME" Label="建档日期" Enabled="false"></f:TextBox>
                                     <f:TextBox runat="server" ID="tbxCRT_USER_ID" Label="建档人员" Enabled="false"></f:TextBox>
                                     <f:TextBox runat="server" ID="tbxMOD_DATETIME" Label="修改日期" Enabled="false"></f:TextBox>
                                     <f:TextBox runat="server" ID="tbxMOD_USER_ID" Label="修改人员" Enabled="false"></f:TextBox>
-                                    <f:TextBox runat="server" ID="tbxLAST_UPDATE" Label="最后异动时间" Enabled="false"></f:TextBox>
                                 </Items>
                             </f:FormRow>
                         </Rows>

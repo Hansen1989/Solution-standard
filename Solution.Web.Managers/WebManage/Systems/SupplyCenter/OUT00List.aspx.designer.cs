@@ -157,24 +157,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.DropDownList ddlStatus;
         
         /// <summary>
-        /// ddlIN_SHOP 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DropDownList ddlIN_SHOP;
-        
-        /// <summary>
-        /// ddlSTOCK_ID 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DropDownList ddlSTOCK_ID;
-        
-        /// <summary>
         /// tbxUSER_ID 控件。
         /// </summary>
         /// <remarks>
@@ -211,6 +193,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.DatePicker dpEXPECT_DATE;
         
         /// <summary>
+        /// ddlIN_SHOP 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList ddlIN_SHOP;
+        
+        /// <summary>
         /// cbExported 控件。
         /// </summary>
         /// <remarks>
@@ -238,13 +229,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.TextBox tbxRELATE_ID;
         
         /// <summary>
-        /// tbxMemo 控件。
+        /// ddlSTOCK_ID 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxMemo;
+        protected global::FineUI.DropDownList ddlSTOCK_ID;
         
         /// <summary>
         /// ckLOCKED 控件。
@@ -254,6 +245,24 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.CheckBox ckLOCKED;
+        
+        /// <summary>
+        /// tbxMemo 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox tbxMemo;
+        
+        /// <summary>
+        /// tbxLAST_UPDATE 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox tbxLAST_UPDATE;
         
         /// <summary>
         /// tbxCRT_DATETIME 控件。
@@ -290,15 +299,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox tbxMOD_USER_ID;
-        
-        /// <summary>
-        /// tbxLAST_UPDATE 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox tbxLAST_UPDATE;
         
         /// <summary>
         /// Panel12 控件。
