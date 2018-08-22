@@ -51,6 +51,7 @@
     <Compile Include="Api\Win32Private.cs" />
     <Compile Include="Api\Win32Public.cs" />
     <Compile Include="Chart\Assistant.cs" />
+    <Compile Include="Constants\SubsonicConstants.cs" />
     <Compile Include="Control\BindDataControl.cs" />
     <Compile Include="Chart\OWCChart11.cs" />
     <Compile Include="Convert\ConvertHelper.cs" />

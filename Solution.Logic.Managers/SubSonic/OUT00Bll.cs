@@ -1447,5 +1447,6 @@ namespace Solution.Logic.Managers {
     
 		#endregion 模版生成函数
 
+ 
     } 
 }

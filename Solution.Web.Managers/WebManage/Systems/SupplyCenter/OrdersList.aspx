@@ -60,7 +60,7 @@
                             <f:Form ID="Form5" runat="server" Width="780px" LabelWidth="100px" BodyPadding="5px" LabelAlign="Right" Title="表单" ShowBorder="false" ShowHeader="false"  >
                                     <Rows>
                                     <f:FormRow ColumnWidths="300px">
-                                        <Items>
+                                        <Items><%-- --%>
                                             <f:DropDownList runat="server" AutoPostBack="true" Enabled="false" Required="true" CssClass="textbackcolor1" OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" Label="分店名称" ID="ddlShop" Width="250px"></f:DropDownList>
                                             <f:TextBox runat="server" Label="订单编号" ID="txtORDER_ID" Enabled="false" Width="250px"></f:TextBox>
                                             
@@ -231,7 +231,7 @@
                             <f:Label ID="txtQUAN1" runat="server" />
                         </Editor>
                 </f:RenderField>
-                <f:BoundField runat="server" ColumnID="Order_QUAN" DataField="Order_QUAN" TextAlign="Center" HeaderText="最小单位" />
+               <%-- <f:BoundField runat="server" ColumnID="Order_QUAN" DataField="Order_QUAN" TextAlign="Center" HeaderText="最小单位" />--%>
                  <f:RenderField Width="100px" ColumnID="PROD_MEMO" DataField="PROD_MEMO" TextAlign="Center"  FieldType="String" MinWidth="140px"
                     HeaderText="备注" >
                       <Editor>
@@ -421,15 +421,7 @@
             </Content>
         </f:Window>
 
-
-
-
-
-
-
-
-
-
+         
     </form>
     <script type="text/javascript">
         function renderSTATUS(value) {
@@ -490,7 +482,7 @@
                         me.f_updateCellValue(rowId, 'STD_PRICE', obj[0].STD_PRICE);
 
                         me.f_updateCellValue(rowId, 'QUAN1', obj[0].STD_PRICE * 1);
-                        me.f_updateCellValue(rowId, 'Order_QUAN', obj[0].Order_QUAN);
+                        //me.f_updateCellValue(rowId, 'Order_QUAN', obj[0].Order_QUAN);
                         me.f_updateCellValue(rowId, 'PROD_MEMO', '');
                     }
                     else {

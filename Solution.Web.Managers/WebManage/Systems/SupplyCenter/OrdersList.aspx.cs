@@ -554,7 +554,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 ButtonAdd.Enabled = true;
                 ButtonSave.Enabled = true;
-                ButtonApproval.Enabled = false;
+                ButtonApproval.Enabled = true;
                 ButtonBackApproval.Enabled = false;
             }
 
@@ -570,7 +570,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 ButtonAdd.Enabled = true;
                 ButtonSave.Enabled = false;
-                ButtonApproval.Enabled = false;
+                ButtonApproval.Enabled = true;
                 ButtonBackApproval.Enabled = true;
             }
 
