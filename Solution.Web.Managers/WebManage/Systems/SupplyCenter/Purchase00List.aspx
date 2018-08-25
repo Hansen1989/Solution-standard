@@ -264,6 +264,7 @@
                                                     <f:NumberBox runat="server" ID="NumberBox2" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
+
                                          <f:RenderField Width="130px" ColumnID="STD_QUAN01" DataField="STD_QUAN" FieldType="Float" Enabled="true"
                                                 HeaderText="标准采购量">
                                                 <Editor>
@@ -276,7 +277,7 @@
                                                     <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
-                                          <f:RenderField Width="130px" ColumnID="SUP_COST01" DataField="SUP_COST" FieldType="Float" Enabled="true" Hidden="true"
+                                         <f:RenderField Width="130px" ColumnID="SUP_COST01" DataField="SUP_COST" FieldType="Float" Enabled="true" Hidden="true"
                                                 HeaderText="进价1">
                                                 <Editor>
                                                     <f:NumberBox runat="server" ID="NumberBox3" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>

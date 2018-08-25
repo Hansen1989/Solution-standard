@@ -20,7 +20,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             if (!IsPostBack)
             {
                 //123
-                DatePicker1.SelectedDate = DateTime.Now;
+                DatePicker1.SelectedDate = DateTime.Now.AddMonths(-10);
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
                 SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
                 SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlIN_SHOP);
@@ -162,7 +162,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 List<ConditionFun.SqlqueryCondition> conditiondetail = new List<ConditionFun.SqlqueryCondition>();
                 conditiondetail.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT00Table.OUT_ID, Comparison.Equals, _tbxOUT_ID, false, false));
-                OUT01Bll.GetInstence().BindGrid(Grid2, 0, 0, conditiondetail, sortList);
+                V_OUT01_PRODUCT00Bll.GetInstence().BindGrid(Grid2, 0, 0, conditiondetail, sortList);
             }
         }
         /// <summary>
