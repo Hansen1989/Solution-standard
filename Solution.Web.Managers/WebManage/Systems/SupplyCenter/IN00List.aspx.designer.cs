@@ -166,15 +166,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.DropDownList ddlOUT_SHOP;
         
         /// <summary>
-        /// ddlSTOCK_ID 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DropDownList ddlSTOCK_ID;
-        
-        /// <summary>
         /// tbxUSER_ID 控件。
         /// </summary>
         /// <remarks>
@@ -200,6 +191,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.DatePicker dpAPP_DATETIME;
+        
+        /// <summary>
+        /// ddlSTOCK_ID 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList ddlSTOCK_ID;
         
         /// <summary>
         /// tbxRELATE_ID 控件。
@@ -263,15 +263,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox tbxMOD_USER_ID;
-        
-        /// <summary>
-        /// tbxLAST_UPDATE 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox tbxLAST_UPDATE;
         
         /// <summary>
         /// Panel12 控件。

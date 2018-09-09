@@ -20,7 +20,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             if (!IsPostBack)
             {
                 //123
-                DatePicker1.SelectedDate = DateTime.Now;
+                DatePicker1.SelectedDate = DateTime.Now.AddDays(-90);
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
                 SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
                 SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlOUT_SHOP);
@@ -147,7 +147,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 tbxCRT_USER_ID.Text = model.CRT_USER_ID;
                 tbxMOD_DATETIME.Text = model.MOD_DATETIME.ToString();
                 tbxMOD_USER_ID.Text = model.MOD_USER_ID;
-                tbxLAST_UPDATE.Text = model.LAST_UPDATE.ToString();
+                //tbxLAST_UPDATE.Text = model.LAST_UPDATE.ToString();
                 OrderStatus(model.STATUS);
             }
         }
@@ -261,7 +261,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             tbxCRT_USER_ID.Text = "";
             tbxMOD_DATETIME.Text = "";
             tbxMOD_USER_ID.Text = "";
-            tbxLAST_UPDATE.Text = "";
+            //tbxLAST_UPDATE.Text = "";
 
             Grid2.DataSource = null;
             Grid2.DataBind();

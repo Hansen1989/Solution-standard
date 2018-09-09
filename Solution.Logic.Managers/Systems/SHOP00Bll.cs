@@ -9,8 +9,10 @@ using System.Collections;
 using System.Web;
 using Solution.DataAccess.Model;
 using Solution.DataAccess.DataModel;
- 
- 
+using System.Data;
+using Solution.DataAccess.DbHelper;
+using SubSonic.Query;
+
 
 namespace Solution.Logic.Managers
 {
@@ -298,6 +300,38 @@ namespace Solution.Logic.Managers
             }
         }
         #endregion
+
+        /// <summary>
+        /// 根据门店区域编码，获取该区域下所有的门店，包括自己,并绑定到DropList
+        /// </summary>
+        /// <returns></returns>
+        public void GetShopList(Page page, string shop_id,FineUI.DropDownList ddl)
+        {
+            try
+            {
+                List<ConditionFun.SqlqueryCondition> shopCondit = new List<ConditionFun.SqlqueryCondition>();
+                shopCondit.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, SHOP00Table.SHOP_Area_ID, Comparison.Equals, shop_id, false, false));
+                shopCondit.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Or, SHOP00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
+                var dt = DataTableHelper.GetFilterData(GetDataTable(false, 0, null, 0, 0, shopCondit, null), "1", "1", SHOP00Table.Id, " desc");
+                //显示值
+                ddl.DataTextField = SHOP00Table.SHOP_NAME1;
+                //显示key
+                ddl.DataValueField = SHOP00Table.SHOP_ID;
+                //数据层次
+                //绑定数据源
+                ddl.DataSource = dt;
+                ddl.DataBind();
+                ddl.SelectedIndex = 0;
+
+                //ddl.Items.Insert(0, new FineUI.ListItem("请选择分店", "0"));
+                //ddl.SelectedValue = "0";
+            }
+            catch (Exception e)
+            {
+                // 记录日志
+                CommonBll.WriteLog("", e);
+            }
+        }
 
 
         #endregion 自定义函数
