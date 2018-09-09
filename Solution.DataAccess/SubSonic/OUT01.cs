@@ -147,6 +147,8 @@ namespace Solution.DataAccess.DataModel
             BAT_NO = readRecord.get_string("BAT_NO",null);
                
             Exp_DateTime = readRecord.get_datetime("Exp_DateTime",null);
+               
+            STD_TYPE = readRecord.get_string("STD_TYPE",null);
                 }   
 
         partial void OnCreated();
@@ -667,6 +669,28 @@ namespace Solution.DataAccess.DataModel
                 if(_Exp_DateTime!=value || _isLoaded){
                     _Exp_DateTime=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Exp_DateTime");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _STD_TYPE;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string STD_TYPE
+        {
+            get { return _STD_TYPE; }
+            set
+            {
+                if(_STD_TYPE!=value || _isLoaded){
+                    _STD_TYPE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="STD_TYPE");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

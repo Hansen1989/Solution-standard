@@ -47,7 +47,7 @@ namespace Solution.Web.Managers
             #region 展示用户信息
 
             //在线人数
-            txtOnlineUserCount.Text = OnlineUsersBll.GetInstence().GetUserOnlineCount() + "";
+           // txtOnlineUserCount.Text = OnlineUsersBll.GetInstence().GetUserOnlineCount() + "";
 
             //当前用户信息
             var userHashKey = OnlineUsersBll.GetInstence().GetUserHashKey();
@@ -144,37 +144,37 @@ namespace Solution.Web.Managers
         /// <param name="e"></param>
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-            Timer1.Enabled = false;
+            //Timer1.Enabled = false;
 
-            #region 检测当前用户是否退出
-            OnlineUsersBll.GetInstence().IsTimeOut();
-            #endregion
+            //#region 检测当前用户是否退出
+            //OnlineUsersBll.GetInstence().IsTimeOut();
+            //#endregion
 
-            #region 检测用户登录的有效性（是否被系统踢下线或管理员踢下线）
-            if (OnlineUsersBll.GetInstence().IsOffline(this))
-                return;
-            #endregion
+            //#region 检测用户登录的有效性（是否被系统踢下线或管理员踢下线）
+            //if (OnlineUsersBll.GetInstence().IsOffline(this))
+            //    return;
+            //#endregion
 
-            #region 更新信息（在线人数，未读取的短消息）
-            if (HttpRuntime.Cache == null)
-            {
-                txtOnlineUserCount.Text = "--";
-            }
-            else
-            {
-                //更新当前在线用户数量
-                txtOnlineUserCount.Text = OnlineUsersBll.GetInstence().GetUserOnlineCount() + "";
-            }
-            #endregion
+            //#region 更新信息（在线人数，未读取的短消息）
+            ////if (HttpRuntime.Cache == null)
+            ////{
+            ////    txtOnlineUserCount.Text = "--";
+            ////}
+            ////else
+            ////{
+            ////    //更新当前在线用户数量
+            ////    txtOnlineUserCount.Text = OnlineUsersBll.GetInstence().GetUserOnlineCount() + "";
+            ////}
+            //#endregion
 
-            #region 修改用户最后在线时间
+            //#region 修改用户最后在线时间
 
-            //修改用户最后在线时间
-            OnlineUsersBll.GetInstence().UpdateTime();
+            ////修改用户最后在线时间
+            //OnlineUsersBll.GetInstence().UpdateTime();
 
-            #endregion
+            //#endregion
 
-            Timer1.Enabled = true;
+            //Timer1.Enabled = true;
         }
         #endregion
         

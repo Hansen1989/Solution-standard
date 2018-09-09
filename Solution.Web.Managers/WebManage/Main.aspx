@@ -69,10 +69,10 @@
                             </f:ToolbarText>
                             <f:ToolbarText ID="txtPositionInfoName" runat="server" CssClass="content">
                             </f:ToolbarText>
-                            <f:ToolbarText Text="在线人数：" runat="server" CssClass="label">
-                            </f:ToolbarText>
-                            <f:ToolbarText ID="txtOnlineUserCount" runat="server" CssClass="content">
-                            </f:ToolbarText>
+                           <%-- <f:ToolbarText Text="在线人数：" runat="server" CssClass="label">
+                            </f:ToolbarText>--%>
+                           <%-- <f:ToolbarText ID="txtOnlineUserCount" runat="server" CssClass="content">
+                            </f:ToolbarText>--%>
                             <f:ToolbarFill runat="server" />
                             <f:Button ID="btnClearCache" runat="server" Icon="controlblank" Text="清除后端缓存" OnClick="btnClearCache_Click"
                                 EnablePostBack="false" CssStyle="background-color: transparent;background-image: none !important;border-width: 0 !important;">
