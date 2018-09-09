@@ -36,7 +36,7 @@
                      <f:Panel runat="server" ID="panelCenterRegion" RegionPosition="center" Layout="Fit" Title="要货明细" ShowBorder="true" ShowHeader="true" AutoScroll="true">
                     <Items>
                         <f:Panel ID="Panel1" runat="server" EnableFrame="false" EnableCollapse="True" ShowHeader="False">  <%----%>
-                    <Toolbars>
+         <Toolbars>
             <f:Toolbar ID="toolBar" runat="server" >
                 <Items>
                      <f:Button ID="ButtonAdd" runat="server" Text="新增" Icon="Add" OnClick="ButtonAdd_Click"></f:Button>
