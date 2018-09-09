@@ -20,7 +20,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             //这里更改了
             if (!IsPostBack)
             {
-                DatePicker1.SelectedDate = DateTime.Now;
+                DatePicker1.SelectedDate = DateTime.Now.AddDays(-90);
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
                 SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
                 SUPPLIERSBll.GetInstence().BandDropDownListShowSup(this, ddlSUP_NAME);
@@ -199,7 +199,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 ButtonUpdate.Enabled = false;
                 ButtonCheck.Enabled = false;
                 ButtonCheck.Enabled = false;
-                Grid2.Enabled = false;
+                //Grid2.Enabled = false;
                 Grid2.AllowCellEditing = false;
             }
         }
@@ -222,7 +222,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// </summary>
         public void LoadDataPur01()
         {
-            Purchase01Bll.GetInstence().BindGrid(Grid2, 0, 0, InquiryCondition(), null);
+            Grid2.DataSource = null;
+            Grid2.DataBind();
+            V_Purchase01_PRODUCT00Bll.GetInstence().BindGrid(Grid2, 0, 0, InquiryCondition(), new List<string> { "ID"});
         }
         /// <summary>
         /// 条件
@@ -234,8 +236,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string _shop_id = ddlSHOP_NAME.SelectedValue;
             string _Purchase_ID = tbxPurchase_ID.Text;
             List<ConditionFun.SqlqueryCondition> condiList = new List<ConditionFun.SqlqueryCondition>();
-            condiList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, Purchase01Table.SHOP_ID, Comparison.Equals, _shop_id, false, false));
-            condiList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, Purchase01Table.Purchase_ID, Comparison.Equals, _Purchase_ID, false, false));
+            var model = new SHOP00(x => x.SHOP_ID == _shop_id);
+            string _PRCAREA_ID = model.SHOP_Price_Area;
+            //condiList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_Purchase01_PRODUCT00Table.SHOP_ID, Comparison.Equals, _shop_id, false, false));
+            condiList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_Purchase01_PRODUCT00Table.Purchase_ID, Comparison.Equals, _Purchase_ID, false, false));
+            condiList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Purchase01_PRODUCT00Table.PRCAREA_ID, Comparison.Equals, _PRCAREA_ID, false, false));
             return condiList;
         }
 
@@ -317,8 +322,47 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             B_BtnAddCon.Hidden = false;
             Window3.Hidden = false;
         }
+
         /// <summary>
-        ///  替换按钮触发事件
+        /// 删除事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void btn_Pur02Delete(Object sender, EventArgs e)
+        {
+            string[] eCell = Grid2.SelectedCell;
+            if (eCell==null)
+            {
+                FineUI.Alert.ShowInParent("请先选中一个删除项", FineUI.MessageBoxIcon.Information);
+                return;
+            }
+            string a = Grid2.SelectedRowID;
+            int iii=Grid2.SelectedRowIndex;
+
+            JArray upJson = Grid2.GetMergedData();
+            DataTable da = new DataTable();
+            for (int i = 0; i < upJson.Count; i++)
+            {
+                
+                if (upJson[i]["status"].ToString() != "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
+                {
+                    int _id = ConvertHelper.Cint(upJson[i]["values"]["Id00"].ToString());
+                    FineUI.Alert.ShowInParent(_id.ToString(), FineUI.MessageBoxIcon.Information);
+                    Grid2.DeleteSelectedRows();
+                    //COMPONENT01Bll.GetInstence().Delete(this, _id);
+                    //hidORDDEP_ID.Text = "";
+                    break;
+                }
+                else if (upJson[i]["status"].ToString() == "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
+                {
+                    Grid2.DeleteSelectedRows();
+                    //hidORDDEP_ID.Text = "";
+                    break;
+                }
+            }
+        }
+        /// <summary>
+        ///  替换按钮触发事件，暂时作废
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -449,6 +493,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 //FineUI.Alert.ShowInParent("分店编码不允许为空", FineUI.MessageBoxIcon.Error);
                 return "分店编码不允许为空";
             }
+
             //string _EXPECT_DATE = dpAPP_DATETIME.SelectedDate.ToString();
             //if (dpAPP_DATETIME.SelectedDate < DateTime.Now)
             //{
@@ -623,6 +668,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     model.QUAN2 = ConvertHelper.StringToDecimal(pJson[i]["values"]["QUAN201"].ToString());
                     model.Item_DISC_Amt = ConvertHelper.StringToDecimal(pJson[i]["values"]["Item_DISC_Amt01"].ToString());
                     model.MEMO = pJson[i]["values"]["MEMO"].ToString();
+                    
                     Purchase01Bll.GetInstence().Save(this, model);
                 }
                 catch (Exception err)
@@ -659,6 +705,19 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             //LoadDataPur01();
             return result;
+        }
+
+        public string DetailChecked(JArray pJson)
+        {
+            string result = "";
+            for (int i = 0; i < pJson.Count; i++)
+            {
+                if (String.IsNullOrEmpty(pJson[i]["values"]["STD_QUAN01"].ToString())&& ConvertHelper.StringToDecimal(pJson[i]["values"]["STD_QUAN01"].ToString())>0)
+                {
+                    result = pJson[i]["values"]["PROD_NAME101"].ToString()+"商品，标准采购量不能为空并且数量大于0";
+                }
+            }
+            return "";
         }
 
         #endregion
@@ -729,6 +788,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             var model = new SHOP00(x => x.SHOP_ID == _shop_id);
             List<ConditionFun.SqlqueryCondition> conditionProdduct00List = new List<ConditionFun.SqlqueryCondition>();
             bool sFlag = true;
+            string _SUP_ID = ddlSUP_NAME.SelectedValue;
+
+            if (!String.IsNullOrEmpty(_SUP_ID))
+            {
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.SUP_ID, Comparison.Like, _SUP_ID, false, false));
+                sFlag = false;
+            }
+
             if (!String.IsNullOrEmpty(model.SHOP_Price_Area))
             {
                 conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PRCAREA_ID, Comparison.Like, model.SHOP_Price_Area, false, false));
@@ -827,6 +894,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 foreach (int i in selections)
                 {
                     string _Prod_ID = Grid4.DataKeys[i][0].ToString();
+                    string _prod_name = Grid4.DataKeys[i][1].ToString();
+                    string checkresult = ProdAddCheck(_Prod_ID, _prod_name);
+                    if (!String.IsNullOrEmpty(checkresult))
+                    {
+                        result = result+ "\r\n"+ checkresult;
+                        continue;
+                    }
                     string _shop_id = ddlSHOP_NAME.SelectedValue;
                     var model = new V_Product01_PRCAREA(x => x.PROD_ID == _Prod_ID && x.PRCAREA_ID == _priceArea_id);
                     int rowCount = Grid2.Rows.Count;
@@ -840,14 +914,45 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     deObject.Add("PROD_NAME01", model.PROD_NAME1);
                     deObject.Add("QUANTITY01", model.ORDER_QUAN);
                     deObject.Add("STD_UNIT01", model.Purchase_UNIT);
-                    deObject.Add("STD_CONVERT01", model.PROD_CONVERT1);
+                    deObject.Add("STD_UNIT_NAME01", model.Purchase_UNIT_NAME);
+                    if (model.Purchase_UNIT == 2)
+                    {
+                        deObject.Add("STD_CONVERT01", model.PROD_CONVERT1);
+                    }
+                    else if (model.Purchase_UNIT == 3)
+                    {
+                        deObject.Add("STD_CONVERT01", model.PROD_CONVERT2);
+                    }
+                    else
+                    {
+                        deObject.Add("STD_CONVERT01", model.COST*model.ORDER_QUAN*model.Tax);
+                    }
+
                     deObject.Add("STD_QUAN01", model.Purchase_QUAN);
                     deObject.Add("STD_PRICE01", model.COST);
-                    deObject.Add("Tax01", 0);
+                    if (model.TAX_TYPE == '0')
+                    {
+                        deObject.Add("Tax01", 0);
+                    }
+                    else
+                    {
+                        deObject.Add("Tax01", model.Tax*model.TAX_TYPE);
+                    }
                     deObject.Add("QUAN101", 0);
                     deObject.Add("QUAN201", 0);
                     deObject.Add("Item_DISC_Amt01", 0);
                     deObject.Add("MEMO", "");
+
+                    deObject.Add("UNIT_NAME01", model.UNIT_NAME);
+                    deObject.Add("UNIT_NAME101", model.UNIT_NAME1);
+                    deObject.Add("UNIT_NAME201", model.UNIT_NAME2);
+                    deObject.Add("PROD_CONVERT101", model.PROD_CONVERT1);
+                    deObject.Add("PROD_CONVERT201", model.PROD_CONVERT2);
+                    deObject.Add("SUP_COST01", model.SUP_COST);
+                    deObject.Add("SUP_COST101", model.SUP_COST1);
+                    deObject.Add("SUP_COST201", model.SUP_COST2);
+                    deObject.Add("Tax_Num01", model.Tax);
+                    deObject.Add("Tax_Type01", model.TAX_TYPE);
                     //var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
                     //string lgname = OlUser.Manager_LoginName;
                     //deObject.Add("CRT_USER_ID1", lgname);
@@ -865,6 +970,23 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
             }
+        }
+
+        private string ProdAddCheck(string prod_id,string prod_name)
+        {
+            JArray pJson = Grid2.GetMergedData();
+            string result = "";
+
+            for (int i = 0; i < pJson.Count; i++)
+            {
+                if (prod_id == pJson[i]["values"]["PROD_ID01"].ToString())
+                {
+                    result = "商品:"+ prod_name + "已存在，不允许添加";
+                    break;
+                }
+            }
+
+            return result;
         }
     }
 

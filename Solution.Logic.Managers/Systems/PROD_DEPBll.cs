@@ -31,6 +31,7 @@ namespace Solution.Logic.Managers
                 ddl.DataTextField = PROD_DEPTable.DEP_NAME;
                 //显示key
                 ddl.DataValueField = PROD_DEPTable.DEP_ID;
+               
                 //数据层次
                 //绑定数据源
                 ddl.DataSource = dt;

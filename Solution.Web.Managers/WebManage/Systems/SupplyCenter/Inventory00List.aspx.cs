@@ -253,7 +253,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string result = MAINEdit();
             if (String.IsNullOrEmpty(result))
             {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                result = DetailEdit();
+                if (String.IsNullOrEmpty(result))
+                {
+                    FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
+                }
             }
             else
             {
@@ -392,11 +400,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 model.LAST_UPDATE = DateTime.Now;
                 model.Trans_STATUS = 0;
                 Inventory00Bll.GetInstence().Save(this, model);
+                tbxINV_ID.Text = model.INV_ID;
+                LoadMAIN();
             }
             catch (Exception err)
             {
                 return err.Message;
             }
+            
             return "";
         }
 
@@ -420,18 +431,18 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     {
                         model2.SetIsNew(false);
                     }
-                    else if (jarr[i]["status"].ToString().Equals("unchanged"))
-                    {
-                        continue;
-                    }
+                    //else if (jarr[i]["status"].ToString().Equals("unchanged"))
+                    //{
+                    //    continue;
+                    //}
                     else
                     {
                         model2.SetIsNew(true);
                     }
                     model2.SHOP_ID = jarr[i]["values"]["SHOP_ID01"].ToString();
-                    if (!String.IsNullOrEmpty(jarr[i]["values"]["INV_ID01"].ToString()))
+                    if (!String.IsNullOrEmpty(tbxINV_ID.Text))
                     {
-                        model2.INV_ID = jarr[i]["values"]["INV_ID01"].ToString();
+                        model2.INV_ID = tbxINV_ID.Text;
                     }
                     else
                     {
@@ -481,11 +492,17 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         protected void ButtonPRODAdd_Click(object sender, EventArgs e)
         {
             FineUI.DropDownList ddlstock = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("window_ddl_Stock") as FineUI.DropDownList;
-            FineUI.DropDownList ddl_INV_TYPE = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("window_ddl_INV_TYPE") as FineUI.DropDownList;
-            string _ddlstock = ddlstock.SelectedValue;
-            string _ddl_INV_TYPE = ddl_INV_TYPE.SelectedValue;
-            string _SHOP_ID = ddlSHOP_NAME.SelectedValue;
-            string _Inv_ID = tbxINV_ID.Text;
+            FineUI.DropDownList _window_ddl_INV_TYPE = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("window_ddl_INV_TYPE") as FineUI.DropDownList;
+            FineUI.DropDownList _window_ddl_Stock = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("window_ddl_Stock") as FineUI.DropDownList;
+            string invType= _window_ddl_INV_TYPE.SelectedValue;
+            string invStock = _window_ddl_Stock.SelectedValue;
+
+            ddlINV_TYPE.SelectedValue = invType;
+            ddlstock.SelectedValue = invStock;            string _SHOP_ID = ddlSHOP_NAME.SelectedValue;
+            DataTable dt = new DataTable();
+            dt = (DataTable)SPs.GET_STOCK01_PROD(invStock, "", _SHOP_ID, invType).ExecuteDataTable();
+            Grid2.DataSource = dt;
+            Grid2.DataBind();
         }
         #endregion
     }
