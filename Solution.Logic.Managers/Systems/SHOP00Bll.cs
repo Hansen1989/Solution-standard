@@ -16,7 +16,7 @@ using SubSonic.Query;
 
 namespace Solution.Logic.Managers
 {
-     
+
     public partial class SHOP00Bll : LogicBase
     {
         /***********************************************************************
@@ -24,7 +24,7 @@ namespace Solution.Logic.Managers
 		 ***********************************************************************/
 
         #region 自定义函数
-    
+
         private const string const_CacheKey_Model = "Cache_SHOP00_AllModel";
 
 
@@ -238,11 +238,11 @@ namespace Solution.Logic.Managers
         /// <summary>
         /// 绑定菜单下拉列表——显示所有的数据
         /// </summary>
-        public void BandDropDownListShowShop(Page page, FineUI.DropDownList ddl,string shop_id)
+        public void BandDropDownListShowShop(Page page, FineUI.DropDownList ddl, string shop_id)
         {
-            
+
             //在内存中筛选记录
-            var dt = DataTableHelper.GetFilterData(GetDataTable(),string.Format("{0} = '{1}'",SHOP00Table.SHOP_ID,shop_id) ,SHOP00Table.Id);
+            var dt = DataTableHelper.GetFilterData(GetDataTable(), string.Format("{0} = '{1}'", SHOP00Table.SHOP_ID, shop_id), SHOP00Table.Id);
 
             try
             {
@@ -254,7 +254,7 @@ namespace Solution.Logic.Managers
                 //绑定数据源
                 ddl.DataSource = dt;
                 ddl.DataBind();
-             //   ddl.SelectedIndex = 0;
+                //   ddl.SelectedIndex = 0;
 
                 //ddl.Items.Insert(0, new FineUI.ListItem("请选择分店", "0"));
                 //ddl.SelectedValue = "0";
@@ -305,12 +305,45 @@ namespace Solution.Logic.Managers
         /// 根据门店区域编码，获取该区域下所有的门店，包括自己,并绑定到DropList
         /// </summary>
         /// <returns></returns>
-        public void GetShopList(Page page, string shop_id,FineUI.DropDownList ddl)
+        public void GetShopList(Page page, string shop_id, FineUI.DropDownList ddl)
         {
             try
             {
                 List<ConditionFun.SqlqueryCondition> shopCondit = new List<ConditionFun.SqlqueryCondition>();
                 shopCondit.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, SHOP00Table.SHOP_Area_ID, Comparison.Equals, shop_id, false, false));
+                shopCondit.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Or, SHOP00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
+                var dt = DataTableHelper.GetFilterData(GetDataTable(false, 0, null, 0, 0, shopCondit, null), "1", "1", SHOP00Table.Id, " desc");
+                //显示值
+                ddl.DataTextField = SHOP00Table.SHOP_NAME1;
+                //显示key
+                ddl.DataValueField = SHOP00Table.SHOP_ID;
+                //数据层次
+                //绑定数据源
+                ddl.DataSource = dt;
+                ddl.DataBind();
+                ddl.SelectedIndex = 0;
+
+                //ddl.Items.Insert(0, new FineUI.ListItem("请选择分店", "0"));
+                //ddl.SelectedValue = "0";
+            }
+            catch (Exception e)
+            {
+                // 记录日志
+                CommonBll.WriteLog("", e);
+            }
+        }
+
+        /// <summary>
+        /// 下拉列表只绑定当前的用户,如果传入的是隶属区域则绑定到区域
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="shop_id"></param>
+        /// <param name="ddl"></param>
+        public void BindOnlineUser(Page page, string shop_id, FineUI.DropDownList ddl)
+        {
+            try
+            {
+                List<ConditionFun.SqlqueryCondition> shopCondit = new List<ConditionFun.SqlqueryCondition>();
                 shopCondit.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Or, SHOP00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
                 var dt = DataTableHelper.GetFilterData(GetDataTable(false, 0, null, 0, 0, shopCondit, null), "1", "1", SHOP00Table.Id, " desc");
                 //显示值

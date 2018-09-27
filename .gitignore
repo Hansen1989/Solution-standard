@@ -245,3 +245,5 @@ ModelManifest.xml
 /Solution.DataAccess/SubSonic/V_ORDER01_PRODUCT01Model.cs
 /Solution.DataAccess/SubSonic/V_ORDER01_PRODUCT01.cs
 /Solution.Logic.Managers/SubSonic/V_ORDER01_PRODUCT01Bll.cs
+/Solution.DataAccess/SubSonic
+/Solution.Logic.Managers/SubSonic

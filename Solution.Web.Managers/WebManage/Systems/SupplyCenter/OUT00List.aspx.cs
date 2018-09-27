@@ -22,8 +22,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 //123
                 DatePicker1.SelectedDate = DateTime.Now.AddMonths(-10);
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
-                SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
-                SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlIN_SHOP);
                 LoadList();
                 LoadData();
                 OrderStatus(new OUT00());
@@ -41,7 +39,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         public void LoadList()
         {
             var model = GetOnlineUserShop();
-            SHOP00Bll.GetInstence().GetShopList(this,model.SHOP_ID, ddlSHOP_NAME);
+            
+            SHOP00Bll.GetInstence().BindOnlineUser(this,model.SHOP_ID, ddlSHOP_NAME);
             SHOP00Bll.GetInstence().GetShopList(this,model.SHOP_ID, ddlIN_SHOP);
             SHOP00Bll.GetInstence().GetShopList(this,model.SHOP_ID, ddlSHOP_NAME1);
             STOCKBll.GetInstence().BandDropDownListStock(this, ddlSTOCK_ID);
@@ -697,7 +696,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 if (upJson[i]["status"].ToString() != "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
                 {
                     int _id = ConvertHelper.Cint(upJson[i]["values"]["Id01"].ToString());
-                    FineUI.Alert.ShowInParent(_id.ToString(), FineUI.MessageBoxIcon.Information);
+                    //FineUI.Alert.ShowInParent(_id.ToString(), FineUI.MessageBoxIcon.Information);
                     Grid2.DeleteSelectedRows();
                     OUT01Bll.GetInstence().Delete(this, _id);
                     //hidORDDEP_ID.Text = "";
