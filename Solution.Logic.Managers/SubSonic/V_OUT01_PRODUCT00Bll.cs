@@ -296,9 +296,9 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.Exp_DateTime == (DateTime)value);
                         expression = x => x.Exp_DateTime == (DateTime)value;
                         break;
-					case "STD_TYPE" :
-						model = list.SingleOrDefault(x => x.STD_TYPE == (string)value);
-                        expression = x => x.STD_TYPE == (string)value;
+					case "SHOP_NAME1" :
+						model = list.SingleOrDefault(x => x.SHOP_NAME1 == (string)value);
+                        expression = x => x.SHOP_NAME1 == (string)value;
                         break;
 					case "PROD_NAME1" :
 						model = list.SingleOrDefault(x => x.PROD_NAME1 == (string)value);
@@ -544,7 +544,7 @@ namespace Solution.Logic.Managers {
                 MEMO = model.MEMO,
                 BAT_NO = model.BAT_NO,
                 Exp_DateTime = model.Exp_DateTime,
-                STD_TYPE = model.STD_TYPE,
+                SHOP_NAME1 = model.SHOP_NAME1,
                 PROD_NAME1 = model.PROD_NAME1,
                 STD_UNIT_NAME = model.STD_UNIT_NAME,
                 COST1 = model.COST1,
@@ -605,7 +605,7 @@ namespace Solution.Logic.Managers {
                 MEMO = model.MEMO,
                 BAT_NO = model.BAT_NO,
                 Exp_DateTime = model.Exp_DateTime,
-                STD_TYPE = model.STD_TYPE,
+                SHOP_NAME1 = model.SHOP_NAME1,
                 PROD_NAME1 = model.PROD_NAME1,
                 STD_UNIT_NAME = model.STD_UNIT_NAME,
                 COST1 = model.COST1,
@@ -717,8 +717,8 @@ namespace Solution.Logic.Managers {
 				case "Exp_DateTime" :
 					model.Exp_DateTime = (DateTime)value;
                     break;
-				case "STD_TYPE" :
-					model.STD_TYPE = (string)value;
+				case "SHOP_NAME1" :
+					model.SHOP_NAME1 = (string)value;
                     break;
 				case "PROD_NAME1" :
 					model.PROD_NAME1 = (string)value;
@@ -1353,8 +1353,8 @@ namespace Solution.Logic.Managers {
 					return model.BAT_NO;
 				case "Exp_DateTime" :
 					return model.Exp_DateTime;
-				case "STD_TYPE" :
-					return model.STD_TYPE;
+				case "SHOP_NAME1" :
+					return model.SHOP_NAME1;
 				case "PROD_NAME1" :
 					return model.PROD_NAME1;
 				case "STD_UNIT_NAME" :

@@ -6,14 +6,14 @@ using System.Data;
 
 namespace Solution.DataAccess.DataModel {
         /// <summary>
-        /// Table: V_OUT01_PRODUCT00
+        /// Table: V_IN01_PRODUCT01
         /// Primary Key: 
         /// </summary>
 
-        public class V_OUT01_PRODUCT00Structs: DatabaseTable {
+        public class V_IN01_PRODUCT01Structs: DatabaseTable {
             
-            public V_OUT01_PRODUCT00Structs(IDataProvider provider):base("V_OUT01_PRODUCT00",provider){
-                ClassName = "V_OUT01_PRODUCT00";
+            public V_IN01_PRODUCT01Structs(IDataProvider provider):base("V_IN01_PRODUCT01",provider){
+                ClassName = "V_IN01_PRODUCT01";
                 SchemaName = "dbo";
                 
 
@@ -39,7 +39,7 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "SHOP_ID"
                 });
 
-                Columns.Add(new DatabaseColumn("OUT_ID", this)
+                Columns.Add(new DatabaseColumn("IN_ID", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
@@ -47,7 +47,7 @@ namespace Solution.DataAccess.DataModel {
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 30,
-					PropertyName = "OUT_ID"
+					PropertyName = "IN_ID"
                 });
 
                 Columns.Add(new DatabaseColumn("SNo", this)
@@ -398,9 +398,9 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn OUT_ID{
+            public IColumn IN_ID{
                 get{
-                    return this.GetColumn("OUT_ID");
+                    return this.GetColumn("IN_ID");
                 }
             }
 				

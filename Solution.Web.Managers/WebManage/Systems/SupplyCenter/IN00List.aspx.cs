@@ -524,7 +524,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     model2.SNo = ConvertHelper.Cint(jarr[i]["values"]["SNo01"].ToString());
                     model2.PROD_ID = jarr[i]["values"]["PROD_ID01"].ToString();
                     model2.QUANTITY = ConvertHelper.StringToDecimal(jarr[i]["values"]["QUANTITY01"].ToString());
-                    model2.STD_TYPE= ConvertHelper.Cint(jarr[i]["values"]["STD_TYPE01"].ToString());
+                    //model2.STD_TYPE= ConvertHelper.Cint(jarr[i]["values"]["STD_TYPE01"].ToString());
                     model2.STD_UNIT = jarr[i]["values"]["STD_UNIT01"].ToString();
                     model2.STD_CONVERT = ConvertHelper.Cint(jarr[i]["values"]["STD_CONVERT01"].ToString());
                     model2.STD_QUAN = ConvertHelper.StringToDecimal(jarr[i]["values"]["STD_QUAN01"].ToString());

@@ -4,9 +4,9 @@ using System;
 namespace Solution.DataAccess.Model
 {
     /// <summary>
-    /// V_OUT01_PRODUCT00表实体类
+    /// V_IN01_PRODUCT01表实体类
     /// </summary>
-    public partial class V_OUT01_PRODUCT00
+    public partial class V_IN01_PRODUCT01
     {
 
 		int _Id = 0;
@@ -29,14 +29,14 @@ namespace Solution.DataAccess.Model
 			set { _SHOP_ID = value; }
 		}
 
-		string _OUT_ID = "";
+		string _IN_ID = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public string OUT_ID
+		public string IN_ID
 		{
-			get { return _OUT_ID; }
-			set { _OUT_ID = value; }
+			get { return _IN_ID; }
+			set { _IN_ID = value; }
 		}
 
 		int _SNo = 0;

@@ -220,6 +220,8 @@ namespace Solution.DataAccess.DataModel
         public Query<DataAccess.Model.UploadType> UploadType { get; set; }
         public Query<DataAccess.Model.UseLog> UseLog { get; set; }
         public Query<DataAccess.Model.V_COMPONENT01_PRODUCT00> V_COMPONENT01_PRODUCT00 { get; set; }
+        public Query<DataAccess.Model.V_IN01_PRODUCT01> V_IN01_PRODUCT01 { get; set; }
+        public Query<DataAccess.Model.V_ORDER01_PRODUCT01> V_ORDER01_PRODUCT01 { get; set; }
         public Query<DataAccess.Model.V_ORDERDEP02_PRODDEP> V_ORDERDEP02_PRODDEP { get; set; }
         public Query<DataAccess.Model.V_OUT01_PRODUCT00> V_OUT01_PRODUCT00 { get; set; }
         public Query<DataAccess.Model.V_Position_Branch> V_Position_Branch { get; set; }
@@ -420,6 +422,8 @@ namespace Solution.DataAccess.DataModel
             UploadType = new Query<DataAccess.Model.UploadType>(provider);
             UseLog = new Query<DataAccess.Model.UseLog>(provider);
             V_COMPONENT01_PRODUCT00 = new Query<DataAccess.Model.V_COMPONENT01_PRODUCT00>(provider);
+            V_IN01_PRODUCT01 = new Query<DataAccess.Model.V_IN01_PRODUCT01>(provider);
+            V_ORDER01_PRODUCT01 = new Query<DataAccess.Model.V_ORDER01_PRODUCT01>(provider);
             V_ORDERDEP02_PRODDEP = new Query<DataAccess.Model.V_ORDERDEP02_PRODDEP>(provider);
             V_OUT01_PRODUCT00 = new Query<DataAccess.Model.V_OUT01_PRODUCT00>(provider);
             V_Position_Branch = new Query<DataAccess.Model.V_Position_Branch>(provider);
@@ -523,6 +527,8 @@ namespace Solution.DataAccess.DataModel
             	DataProvider.Schema.Tables.Add(new UploadTypeStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new UseLogStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_COMPONENT01_PRODUCT00Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new V_IN01_PRODUCT01Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new V_ORDER01_PRODUCT01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_ORDERDEP02_PRODDEPStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_OUT01_PRODUCT00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_Position_BranchStructs(DataProvider));
