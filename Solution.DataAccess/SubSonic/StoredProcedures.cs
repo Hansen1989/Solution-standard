@@ -230,6 +230,34 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("UNIT_TYPE",UNIT_TYPE,DbType.Int32);
             return sp;
         }
+        public static StoredProcedure Update_in00_stock01(string IN_id){
+            StoredProcedure sp=new StoredProcedure("Update_in00_stock01");
+			
+
+            sp.Command.AddParameter("IN_id",IN_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_in00_stock01_cancel(string IN_id){
+            StoredProcedure sp=new StoredProcedure("Update_in00_stock01_cancel");
+			
+
+            sp.Command.AddParameter("IN_id",IN_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_out_back00_stock01(string BK_id){
+            StoredProcedure sp=new StoredProcedure("Update_out_back00_stock01");
+			
+
+            sp.Command.AddParameter("BK_id",BK_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_out_back00_stock01_cancel(string BK_id){
+            StoredProcedure sp=new StoredProcedure("Update_out_back00_stock01_cancel");
+			
+
+            sp.Command.AddParameter("BK_id",BK_id,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure Update_out00_stock01(string out_id){
             StoredProcedure sp=new StoredProcedure("Update_out00_stock01");
 			

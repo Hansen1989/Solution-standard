@@ -26,7 +26,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
 
                 // BranchBll.GetInstence().BandDropDownListShowMenu(this, ddlParentId);
 
-               // LoadData();
+                LoadData();
             }
         }
 
@@ -375,7 +375,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             string shop_id = plan_id_shop_id[0];
 
             DataTable dt_left = null;
-            dt_left = PLAN00Bll.GetInstence().GET_PLAN_RIGHT_LIST(plan_id);// Get_PLAN_Left_List(plan_id);
+            dt_left = PLAN00Bll.GetInstence().GET_PLAN_LEFT_LIST(plan_id);// Get_PLAN_Left_List(plan_id);
 
             Grid2.DataSource = dt_left;
             Grid2.DataBind();

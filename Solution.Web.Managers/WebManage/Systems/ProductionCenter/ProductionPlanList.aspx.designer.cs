@@ -202,42 +202,6 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter {
         protected global::FineUI.Grid Grid3;
         
         /// <summary>
-        /// txtSTD_QUAN 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox txtSTD_QUAN;
-        
-        /// <summary>
-        /// txtSUP_QUAN 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox txtSUP_QUAN;
-        
-        /// <summary>
-        /// txtOUT_QUAN 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox txtOUT_QUAN;
-        
-        /// <summary>
-        /// txtImmediate 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox txtImmediate;
-        
-        /// <summary>
         /// Window1 控件。
         /// </summary>
         /// <remarks>

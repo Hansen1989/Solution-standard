@@ -36,7 +36,7 @@ namespace Solution.Logic.Managers
             int error = 0;
             try
             {
-                dt = SPs.Get_PLAN_Left_List(plan_id).ExecuteDataTable();
+                dt = SPs.Get_PLAN_Right_List(plan_id).ExecuteDataTable();
 
             }
             catch (Exception)

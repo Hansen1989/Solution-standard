@@ -223,6 +223,7 @@ namespace Solution.DataAccess.DataModel
         public Query<DataAccess.Model.V_IN01_PRODUCT01> V_IN01_PRODUCT01 { get; set; }
         public Query<DataAccess.Model.V_ORDER01_PRODUCT01> V_ORDER01_PRODUCT01 { get; set; }
         public Query<DataAccess.Model.V_ORDERDEP02_PRODDEP> V_ORDERDEP02_PRODDEP { get; set; }
+        public Query<DataAccess.Model.V_OUT_BACK01_PRODUCT00> V_OUT_BACK01_PRODUCT00 { get; set; }
         public Query<DataAccess.Model.V_OUT01_PRODUCT00> V_OUT01_PRODUCT00 { get; set; }
         public Query<DataAccess.Model.V_Position_Branch> V_Position_Branch { get; set; }
         public Query<DataAccess.Model.V_PROD_CATE> V_PROD_CATE { get; set; }
@@ -232,6 +233,7 @@ namespace Solution.DataAccess.DataModel
         public Query<DataAccess.Model.V_Purchase01_PRODUCT00> V_Purchase01_PRODUCT00 { get; set; }
         public Query<DataAccess.Model.V_STOCK_SHOP00> V_STOCK_SHOP00 { get; set; }
         public Query<DataAccess.Model.V_STOCK01_PRODUCT00> V_STOCK01_PRODUCT00 { get; set; }
+        public Query<DataAccess.Model.V_STOCK01_PRODUCT01> V_STOCK01_PRODUCT01 { get; set; }
         public Query<DataAccess.Model.V_STOCK02_PRODUCT00> V_STOCK02_PRODUCT00 { get; set; }
         public Query<DataAccess.Model.WebConfig> WebConfig { get; set; }
 
@@ -425,6 +427,7 @@ namespace Solution.DataAccess.DataModel
             V_IN01_PRODUCT01 = new Query<DataAccess.Model.V_IN01_PRODUCT01>(provider);
             V_ORDER01_PRODUCT01 = new Query<DataAccess.Model.V_ORDER01_PRODUCT01>(provider);
             V_ORDERDEP02_PRODDEP = new Query<DataAccess.Model.V_ORDERDEP02_PRODDEP>(provider);
+            V_OUT_BACK01_PRODUCT00 = new Query<DataAccess.Model.V_OUT_BACK01_PRODUCT00>(provider);
             V_OUT01_PRODUCT00 = new Query<DataAccess.Model.V_OUT01_PRODUCT00>(provider);
             V_Position_Branch = new Query<DataAccess.Model.V_Position_Branch>(provider);
             V_PROD_CATE = new Query<DataAccess.Model.V_PROD_CATE>(provider);
@@ -434,6 +437,7 @@ namespace Solution.DataAccess.DataModel
             V_Purchase01_PRODUCT00 = new Query<DataAccess.Model.V_Purchase01_PRODUCT00>(provider);
             V_STOCK_SHOP00 = new Query<DataAccess.Model.V_STOCK_SHOP00>(provider);
             V_STOCK01_PRODUCT00 = new Query<DataAccess.Model.V_STOCK01_PRODUCT00>(provider);
+            V_STOCK01_PRODUCT01 = new Query<DataAccess.Model.V_STOCK01_PRODUCT01>(provider);
             V_STOCK02_PRODUCT00 = new Query<DataAccess.Model.V_STOCK02_PRODUCT00>(provider);
             WebConfig = new Query<DataAccess.Model.WebConfig>(provider);
             #endregion
@@ -530,6 +534,7 @@ namespace Solution.DataAccess.DataModel
             	DataProvider.Schema.Tables.Add(new V_IN01_PRODUCT01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_ORDER01_PRODUCT01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_ORDERDEP02_PRODDEPStructs(DataProvider));
+            	//DataProvider.Schema.Tables.Add(new V_OUT_BACK01_PRODUCT00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_OUT01_PRODUCT00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_Position_BranchStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_PROD_CATEStructs(DataProvider));
@@ -539,6 +544,7 @@ namespace Solution.DataAccess.DataModel
             	DataProvider.Schema.Tables.Add(new V_Purchase01_PRODUCT00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_STOCK_SHOP00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_STOCK01_PRODUCT00Structs(DataProvider));
+            	//DataProvider.Schema.Tables.Add(new V_STOCK01_PRODUCT01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_STOCK02_PRODUCT00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new WebConfigStructs(DataProvider));
             }

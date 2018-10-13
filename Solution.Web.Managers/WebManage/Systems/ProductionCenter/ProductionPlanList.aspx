@@ -122,8 +122,8 @@
                     Width="600px"  Title="左侧面板" ShowBorder="false" ShowHeader="false" > <%--BodyPadding="5px" --%>
                     <Items>
                           <f:Grid ID="Grid2" EnableFrame="false" EnableCollapse="true" ShowBorder="false" ShowHeader="false" runat="server" 
-                              EnableCheckBoxSelect="false" DataKeyNames="PROD_ID" EnableColumnLines="true"
-                              EnableMultiSelect="false" EnableRowSelectEvent="true" OnRowSelect="Grid2_RowSelect">
+                               DataKeyNames="PROD_ID" EnableColumnLines="true"
+                              EnableMultiSelect="false" EnableRowSelectEvent="true" >
                               <Columns>
                                   <f:RowNumberField />
                                   <f:BoundField Width="50px" DataField="SNo" DataFormatString="{0}" HeaderText="序号" />
@@ -142,37 +142,15 @@
                     Title="右侧面板" ShowBorder="false" ShowHeader="false" > <%--BodyPadding="5px"  --%>
                     <Items><%--Width="650px" --%>
                         <f:Grid ID="Grid3" EnableFrame="false" EnableCollapse="true" ShowBorder="false" ShowHeader="false" 
-                            runat="server" EnableCheckBoxSelect="false" DataKeyNames="Id" EnableColumnLines="true"
-                             AllowCellEditing="true" ClicksToEdit="1">
+                            runat="server"  DataKeyNames="Id" EnableColumnLines="true">
                               <Columns>
-                                  <f:BoundField Width="120px" DataField="SHOP_NAME1" DataFormatString="{0}" HeaderText="申请分店" />
-                                  <f:BoundField Width="80px" DataField="STD_QUAN" DataFormatString="{0}" HeaderText="申请量" />
-                                  <f:RenderField runat="server" ColumnID="SUP_QUAN0" DataField="SUP_QUAN" Width="80px" HeaderText="生产量">
-                                      <Editor>
-                                          <f:TextBox ID="txtSTD_QUAN" runat="server" />
-                                      </Editor>
-                                  </f:RenderField>
-                                  <f:RenderField runat="server" ColumnID="SUP_QUAN1" DataField="SUP_QUAN" Width="80px" HeaderText="采购量" >
-                                      <Editor>
-                                          <f:TextBox ID="txtSUP_QUAN" runat="server" />
-                                      </Editor>
-                                  </f:RenderField>
-                                  <f:RenderField runat="server" ColumnID="OUT_QUAN" DataField="OUT_QUAN" Width="80px" HeaderText="调拨量">
-                                      <Editor>
-                                          <f:TextBox ID="txtOUT_QUAN" runat="server" />
-                                      </Editor>
-                                  </f:RenderField>
-                                   <f:RenderField runat="server" ColumnID="STD_QUAN4" DataField="STD_QUAN4" Width="120px" HeaderText="即时订货量">
-                                      <Editor>
-                                          <f:TextBox ID="txtImmediate" runat="server" />
-                                      </Editor>
-                                  </f:RenderField>
-
-                                  <%--<f:BoundField Width="80px" DataField="STD_QUAN" DataFormatString="{0}" HeaderText="生产量" />--%>
-                                  <%--<f:BoundField Width="80px" DataField="STD_QUAN" DataFormatString="{0}" HeaderText="" />
-                                  <f:BoundField Width="80px" DataField="STD_QUAN" DataFormatString="{0}" HeaderText="" />
-                                  <f:BoundField Width="100px" DataField="QUAN" DataFormatString="{0}" HeaderText="" />--%>
-                                   
+                                  <f:BoundField runat="server" DataField="SHOP_ID" DataFormatString="{0}" HeaderText="申请分店" />
+                                  <f:BoundField runat="server" DataField="BATCH_SNo" DataFormatString="{0}" HeaderText="生产批次" />
+                                  <f:BoundField runat="server" DataField="QUANTITY" DataFormatString="{0}" HeaderText="最小单位数量"/>          
+                                  <f:BoundField runat="server" DataField="STD_UNIT"  DataFormatString="{0}" HeaderText="生产单位" />
+                                  <f:BoundField runat="server" DataField="STD_CONVERT" DataFormatString="{0}"  HeaderText="标准转换量"/>
+                                  <f:BoundField runat="server" DataField="STD_QUAN" DataFormatString="{0}"  HeaderText="执行生产量"/>
+                                  <f:BoundField runat="server" DataField="STD_PRICE" DataFormatString="{0}"  HeaderText="计划单价"/>
                               </Columns>
 
                           </f:Grid>
