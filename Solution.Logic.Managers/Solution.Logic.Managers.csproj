@@ -327,6 +327,9 @@
     <Compile Include="SubSonic\V_OUT01_PRODUCT00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubSonic\V_OUT_BACK01_PRODUCT00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\V_Position_BranchBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
@@ -346,6 +349,9 @@
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_STOCK01_PRODUCT00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_STOCK01_PRODUCT01Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_STOCK02_PRODUCT00Bll.cs">

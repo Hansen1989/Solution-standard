@@ -162,7 +162,7 @@ namespace Solution.Web.Managers.WebManage.Systems.DataCenter
                 model.SHOP_NAME1 = txtSHOP_NAME1.Text;
                 model.SHOP_NAME2 = txtSHOP_NAME2.Text;
                 model.SHOP_KIND = ConvertHelper.Cint0(txtSHOP_KIND.Text.ToString());
-                model.SHOP_Area_ID = txtSHOP_Area_ID.SelectedValue.ToString();//ConvertHelper.Cint0();
+                model.SHOP_Area_ID = txtSHOP_Area_ID.SelectedValue.ToString();
                 model.SHOP_Price_Area = ddlSHOP_Price_Area.SelectedValue.ToString();
                 model.SHOP_ADD = txtSHOP_ADD.Text;
                 model.SHOP_TEL = txtSHOP_TEL.Text;
