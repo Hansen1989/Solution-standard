@@ -49,7 +49,6 @@
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
                                     <f:DropDownList runat="server" Label="出货分店" ID="ddlOUT_SHOP" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList>
-                                    <f:DropDownList runat="server" Label="仓库名称" ID="ddlSTOCK_ID" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList> 
                                     <f:TextBox runat="server" Label="制单人" ID="tbxUSER_ID" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
                                     <f:TextBox runat="server" Label="审核人" ID="tbxAPP_USER" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
                                     <f:DatePicker ID="dpAPP_DATETIME" Label="审核时间" Required="true" Readonly="false" DateFormatString="yyyy-MM-dd" runat="server" ShowRedStar="True" Enabled="false">
@@ -59,6 +58,7 @@
 
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
+                                    <f:DropDownList runat="server" Label="仓库名称" ID="ddlSTOCK_ID" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList>
                                     <f:TextBox ID="tbxRELATE_ID" Label="关联单号" runat="server"  Enabled="false" ></f:TextBox>
                                     <f:TextBox runat="server" ID="tbxMemo" Label="备注" Enabled="true"></f:TextBox>
                                     <f:CheckBox ID="ckLOCKED" Text="月结锁定" runat="server" Enabled="false"></f:CheckBox>  
@@ -70,7 +70,7 @@
                                     <f:TextBox runat="server" ID="tbxCRT_USER_ID" Label="建档人员" Enabled="false"></f:TextBox>
                                     <f:TextBox runat="server" ID="tbxMOD_DATETIME" Label="修改日期" Enabled="false"></f:TextBox>
                                     <f:TextBox runat="server" ID="tbxMOD_USER_ID" Label="修改人员" Enabled="false"></f:TextBox>
-                                    <f:TextBox runat="server" ID="tbxLAST_UPDATE" Label="最后异动时间" Enabled="false"></f:TextBox>
+<%--                                    <f:TextBox runat="server" ID="tbxLAST_UPDATE" Label="最后异动时间" Enabled="false"></f:TextBox>--%>
                                 </Items>
                             </f:FormRow>
                         </Rows>
@@ -83,6 +83,7 @@
                              <f:Toolbar ID="Toolbar21111" runat="server">
                                <Items>
                                   <f:Button ID="ButtonDetailAdd" runat="server" Text="添加" Icon="Add" OnClick="btn_DetailAdd"></f:Button>
+                                  <f:Button ID="ButtonDetailDelete" runat="server" Text="删除" Icon="Delete" OnClick="btn_DetailDelete"></f:Button>
                                   <%--<f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add"></f:Button>--%>
                                </Items>
                              </f:Toolbar>
@@ -107,7 +108,7 @@
                                                     </f:TextBox>
                                                 </Editor>
                                         </f:RenderField>
-                                        <f:RenderField Width="130px" ColumnID="SHOP_NAME01" DataField="SHOP_ID" FieldType="String" Enabled="false"
+                                        <f:RenderField Width="130px" ColumnID="SHOP_NAME101" DataField="SHOP_NAME1" FieldType="String" Enabled="false"
                                                 HeaderText="分店名称">
                                                 <Editor>
                                                     <f:TextBox ID="TextBox2" runat="server" Required="true" ShowRedStar="true" Enabled="false">
@@ -135,7 +136,7 @@
                                                     </f:TextBox>
                                                 </Editor>
                                          </f:RenderField>
-                                          <f:RenderField Width="130px" ColumnID="PROD_NAME01" DataField="PROD_NAME" FieldType="String" Enabled="false"
+                                          <f:RenderField Width="130px" ColumnID="PROD_NAME101" DataField="PROD_NAME1" FieldType="String" Enabled="false"
                                                 HeaderText="商品名称">
                                                 <Editor>
                                                     <f:TextBox ID="TextBox1" runat="server" Required="true" ShowRedStar="true" Enabled="false">
@@ -148,26 +149,65 @@
                                                     <f:NumberBox runat="server" ID="numQUANTITY" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
-                                          <f:RenderField Width="130px" ColumnID="STD_TYPE01" DataField="STD_TYPE" FieldType="String" Enabled="false"
-                                                HeaderText="入库单位类别">
+                                         <f:RenderField Width="130px" ColumnID="STD_UNIT01" DataField="STD_UNIT" FieldType="String" Enabled="false"
+                                                HeaderText="入库单位类别" RendererFunction="renderSTD_UNIT0101">
                                                 <Editor>
-                                                    <f:TextBox ID="tbxSTD_TYPE01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
-                                                    </f:TextBox>
+                                                    <f:DropDownList ID="ddlSTD_TYPE01" runat="server">
+                                                        <f:ListItem Text="最小单位" Value="1" />
+                                                        <f:ListItem Text="包装单位" Value="2" />
+                                                        <f:ListItem Text="外箱单位" Value="3" />
+                                                    </f:DropDownList>
                                                 </Editor>
                                          </f:RenderField>
-                                         <f:RenderField Width="130px" ColumnID="STD_UNIT01" DataField="STD_UNIT" FieldType="String" Enabled="false"
+                                         <f:RenderField Width="130px" ColumnID="STD_UNIT_NAME01" DataField="STD_UNIT_NAME" FieldType="String" Enabled="false"
                                                 HeaderText="入库单位">
                                                 <Editor>
                                                     <f:TextBox ID="tbxSTD_UNIT01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
                                                     </f:TextBox>
                                                 </Editor>
                                          </f:RenderField>
+                                         <f:RenderField Width="130px" ColumnID="UNIT_NAME01" DataField="UNIT_NAME" FieldType="String" Enabled="false"
+                                                HeaderText="最小单位" Hidden="true">
+                                                <Editor>
+                                                    <f:TextBox ID="TextBox4" runat="server" Required="true" ShowRedStar="true" Enabled="false">
+                                                    </f:TextBox>
+                                                </Editor>
+                                         </f:RenderField>
+                                         <f:RenderField Width="130px" ColumnID="UNIT_NAME101" DataField="UNIT_NAME1" FieldType="String" Enabled="false"
+                                                HeaderText="包装单位" Hidden="true">
+                                                <Editor>
+                                                    <f:TextBox ID="TextBox5" runat="server" Required="true" ShowRedStar="true" Enabled="false">
+                                                    </f:TextBox>
+                                                </Editor>
+                                         </f:RenderField>
+                                         <f:RenderField Width="130px" ColumnID="UNIT_NAME201" DataField="UNIT_NAME2" FieldType="String" Enabled="false"
+                                                HeaderText="外箱单位" Hidden="true">
+                                                <Editor>
+                                                    <f:TextBox ID="TextBox6" runat="server" Required="true" ShowRedStar="true" Enabled="false">
+                                                    </f:TextBox>
+                                                </Editor>
+                                         </f:RenderField>
+
                                          <f:RenderField Width="130px" ColumnID="STD_CONVERT01" DataField="STD_CONVERT" FieldType="Int" Enabled="false" Hidden="false"
                                                 HeaderText="标准转换量">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numSTD_CONVERT"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numSTD_CONVERT" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
+                                         
+                                          <f:RenderField Width="130px" ColumnID="PROD_CONVERT101" DataField="PROD_CONVERT1" FieldType="Int" Enabled="true" Hidden="true"
+                                                HeaderText="包装转换量">
+                                                <Editor>
+                                                    <f:NumberBox runat="server" ID="NumberBox1" Enabled="false"></f:NumberBox>
+                                                </Editor>
+                                         </f:RenderField>
+                                         <f:RenderField Width="130px" ColumnID="PROD_CONVERT201" DataField="PROD_CONVERT2" FieldType="Int" Enabled="true" Hidden="true"
+                                                HeaderText="外箱转换量">
+                                                <Editor>
+                                                    <f:NumberBox runat="server" ID="NumberBox2" Enabled="false"></f:NumberBox>
+                                                </Editor>
+                                         </f:RenderField>
+
                                          <f:RenderField Width="130px" ColumnID="STD_QUAN01" DataField="STD_QUAN" FieldType="Float" Enabled="false"
                                                 HeaderText="入库量">
                                                 <Editor>
@@ -180,12 +220,52 @@
                                                     <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
+
+                                        <f:RenderField Width="130px" ColumnID="STD_PRICE101" DataField="STD_PRICE1" FieldType="String" Enabled="true" Hidden="true"
+                                                HeaderText="入库单价1">
+                                                <Editor>
+                                                    <f:NumberBox runat="server" ID="NumberBox3" NoNegative="true" Enabled="false"></f:NumberBox>
+                                                </Editor>
+                                         </f:RenderField>
+                                          <f:RenderField Width="130px" ColumnID="STD_PRICE201" DataField="STD_PRICE2" FieldType="String" Enabled="true" Hidden="true"
+                                                HeaderText="入库单价2">
+                                                <Editor>
+                                                    <f:NumberBox runat="server" ID="NumberBox4" NoNegative="true" Enabled="false"></f:NumberBox>
+                                                </Editor>
+                                         </f:RenderField>
+                                          <f:RenderField Width="130px" ColumnID="STD_PRICE301" DataField="STD_PRICE3" FieldType="String" Enabled="true" Hidden="true"
+                                                HeaderText="入库单价3">
+                                                <Editor>
+                                                    <f:NumberBox runat="server" ID="NumberBox5" NoNegative="true" Enabled="false"></f:NumberBox>
+                                                </Editor>
+                                         </f:RenderField>
+
                                          <f:RenderField Width="130px" ColumnID="COST01" DataField="COST" FieldType="Float" Enabled="false"
                                                 HeaderText="入库成本">
                                                 <Editor>
                                                     <f:NumberBox runat="server" ID="numCOST" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
+
+                                        <f:RenderField Width="130px" ColumnID="COST101" DataField="COST1" FieldType="string" Enabled="true" Hidden="true"
+                                                HeaderText="入库成本1">
+                                                <Editor>
+                                                    <f:NumberBox runat="server" ID="costnumbox" NoNegative="true" Enabled="false"></f:NumberBox>
+                                                </Editor>
+                                         </f:RenderField>
+                                          <f:RenderField Width="130px" ColumnID="COST201" DataField="COST2" FieldType="string" Enabled="true" Hidden="true"
+                                                HeaderText="入库成本2">
+                                                <Editor>
+                                                    <f:NumberBox runat="server" ID="NumberBox7" NoNegative="true" Enabled="false"></f:NumberBox>
+                                                </Editor>
+                                         </f:RenderField>
+                                          <f:RenderField Width="130px" ColumnID="COST301" DataField="COST3" FieldType="string" Enabled="true" Hidden="true"
+                                                HeaderText="入库成本3">
+                                                <Editor>
+                                                    <f:NumberBox runat="server" ID="NumberBox8" NoNegative="true" Enabled="false"></f:NumberBox>
+                                                </Editor>
+                                         </f:RenderField>
+
                                          <f:RenderField Width="130px" ColumnID="QUAN101" DataField="QUAN1" FieldType="Int" Enabled="false"
                                                 HeaderText="验收量">
                                                 <Editor>
@@ -213,6 +293,9 @@
                                                 </Editor>
                                          </f:RenderField>
                                       </Columns>
+                                      <Listeners>
+                                          <f:Listener Event="edit" Handler="onGridAfterEdit" />
+                                      </Listeners>
                               </f:Grid>
                            </Items>
                        </f:Panel>
@@ -233,8 +316,6 @@
                             CompareOperator="GreaterThan" CompareMessage="结束日期应该大于开始日期" Label="结束日期"
                             runat="server" ShowRedStar="True">
                         </f:DatePicker>
-                        <f:DropDownList runat="server" ID="ddlSHOP_NAME1" Required="true" ShowRedStar="true" Label="分店名称" Enabled="false">
-                        </f:DropDownList>
                         <f:Button ID="ButtonSearch" runat="server" Text="查询" Icon="Magnifier" OnClick="BtnSearchOrder_click"></f:Button>
                     </Items>
                     <Items>
@@ -356,5 +437,60 @@
             </Content>
         </f:Window>   
   </form>
+     <script>
+        function renderSTD_UNIT0101(value) {
+            switch (value)
+            {
+                case '1': return "最小单位";
+                case '2': return "包装单位";
+                case '3': return "外箱单位";
+            }
+        }
+
+        function onGridAfterEdit(editor, params) {
+        
+            var me = this, columnId = params.column.id, rowId = params.record.getId();
+            var strSTD_TYPE01 = me.f_getCellValue(rowId, 'STD_UNIT01');
+            var strUnit = me.f_getCellValue(rowId, 'UNIT_NAME01');
+            var strUnit1 = me.f_getCellValue(rowId, 'UNIT_NAME101');
+            var strUnit2 = me.f_getCellValue(rowId, 'UNIT_NAME201');
+
+            var convert1 = me.f_getCellValue(rowId, 'PROD_CONVERT101');
+            var convert2 = me.f_getCellValue(rowId, 'PROD_CONVERT201');
+
+
+
+            var cost = me.f_getCellValue(rowId, 'COST01');
+            var cost1 = me.f_getCellValue(rowId, 'COST101');
+            var cost2 = me.f_getCellValue(rowId, 'COST201');
+
+            var std_price = me.f_getCellValue(rowId, 'STD_PRICE101');
+            var std_price1 = me.f_getCellValue(rowId, 'STD_PRICE201');
+            var std_price2 = me.f_getCellValue(rowId, 'STD_PRICE301');
+
+            var std_quan = me.f_getCellValue(rowId, 'STD_QUAN01');
+
+            if (columnId == 'STD_UNIT01') {
+                switch (strSTD_TYPE01) {
+                    case '1': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit);
+                        me.f_updateCellValue(rowId, 'STD_CONVERT01', 0);
+                        me.f_updateCellValue(rowId, 'STD_PRICE01', std_price);
+                        me.f_updateCellValue(rowId, 'COST01', cost);
+                        return;
+                    case '2': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit1);
+                        me.f_updateCellValue(rowId, 'STD_CONVERT01', convert1);
+                        me.f_updateCellValue(rowId, 'STD_PRICE01', std_price1);
+                        me.f_updateCellValue(rowId, 'COST01', cost1);
+                        return;
+                    case '3': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit2);
+                        me.f_updateCellValue(rowId, 'STD_CONVERT01', convert2);
+                        me.f_updateCellValue(rowId, 'STD_PRICE01', std_price2);
+                        me.f_updateCellValue(rowId, 'COST01', cost2);
+                        return;
+                }
+            }
+        }
+
+    </script>
 </body>
 </html>

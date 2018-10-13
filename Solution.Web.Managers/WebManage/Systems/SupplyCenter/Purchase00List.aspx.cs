@@ -304,7 +304,10 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         public void BtnPur01_Edit(Object sender, EventArgs e)
         {
             string result = Pur_Edit();
-            FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
+            if (!String.IsNullOrEmpty(result))
+            {
+                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
+            }
         }
         /// <summary>
         /// 新增按钮触发事件
@@ -346,10 +349,10 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 
                 if (upJson[i]["status"].ToString() != "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
                 {
-                    int _id = ConvertHelper.Cint(upJson[i]["values"]["Id00"].ToString());
+                    int _id = ConvertHelper.Cint(upJson[i]["values"]["Id01"].ToString());
                     FineUI.Alert.ShowInParent(_id.ToString(), FineUI.MessageBoxIcon.Information);
                     Grid2.DeleteSelectedRows();
-                    //COMPONENT01Bll.GetInstence().Delete(this, _id);
+                    Purchase01Bll.GetInstence().Delete(this, _id);
                     //hidORDDEP_ID.Text = "";
                     break;
                 }

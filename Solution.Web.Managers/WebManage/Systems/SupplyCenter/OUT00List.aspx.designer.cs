@@ -328,6 +328,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Button ButtonDetailAdd;
         
         /// <summary>
+        /// ButtonDetailDelete 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonDetailDelete;
+        
+        /// <summary>
         /// Grid2 控件。
         /// </summary>
         /// <remarks>
@@ -490,6 +499,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.NumberBox numSTD_QUAN;
         
         /// <summary>
+        /// NumberBox6 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.NumberBox NumberBox6;
+        
+        /// <summary>
         /// numSTD_PRICE 控件。
         /// </summary>
         /// <remarks>
@@ -535,13 +553,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.NumberBox numCOST;
         
         /// <summary>
-        /// COST201 控件。
+        /// costnumbox 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.NumberBox COST201;
+        protected global::FineUI.NumberBox costnumbox;
         
         /// <summary>
         /// NumberBox7 控件。

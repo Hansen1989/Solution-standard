@@ -20,13 +20,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             if (!IsPostBack)
             {
                 //123
-                DatePicker1.SelectedDate = DateTime.Now;
+                DatePicker1.SelectedDate = DateTime.Now.AddDays(-90);
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
-                SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
-                SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlIN_SHOP);
                 LoadList();
                 LoadData();
-                OrderStatus(-1);
+                OrderStatus(new OUT_BACK00());
             }
         }
 
@@ -40,11 +38,26 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// </summary>
         public void LoadList()
         {
-            SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
-            STOCKBll.GetInstence().BandDropDownListStock(this, ddlSTOCK_ID);
-            SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlIN_SHOP);
-            SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME1);
+            var model = GetOnlineUserShop();
+
+            SHOP00Bll.GetInstence().BindOnlineUser(this, model.SHOP_ID,ddlSHOP_NAME);
+            ddlSHOP_NAME.SelectedValue = model.SHOP_ID;
+            STOCKBll.GetInstence().BandOnlineUserStock(this,model.SHOP_ID, ddlSTOCK_ID);
+            SHOP00Bll.GetInstence().BindOnlineUser(this,model.SHOP_Area_ID,ddlIN_SHOP);
         }
+
+        /// <summary>
+        /// 根据当前账户，获取所属门店信息
+        /// </summary>
+        /// <returns></returns>
+        public SHOP00 GetOnlineUserShop()
+        {
+            var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
+            var shop_id = OlUser.SHOP_ID;
+            var model = new SHOP00(x => x.SHOP_ID == shop_id);
+            return model;
+        }
+
         /// <summary>
         /// 按时间范围检索
         /// </summary>
@@ -72,10 +85,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             //conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "1", Comparison.Equals, "1", false, false));
             bool sFlag = true;
 
-
+            var model = GetOnlineUserShop();
             string st = DatePicker1.Text;
             string et = DatePicker2.Text;
-            string sn = ddlSHOP_NAME1.SelectedValue;
             string DateType = ddrDataType.SelectedValue;
             if (DateType.Equals("1"))
             {
@@ -87,11 +99,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT_BACK00Table.APP_DATETIME, Comparison.LessOrEquals, et, false, false));
                 conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT_BACK00Table.APP_DATETIME, Comparison.GreaterOrEquals, st, false, false));
             }
-
-            if (!sn.Equals("0") && !String.IsNullOrEmpty(sn))
-            {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT_BACK00Table.SHOP_ID, Comparison.Equals, sn, false, false));
-            }
+            conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT_BACK00Table.SHOP_ID, Comparison.Equals, model.SHOP_ID, false, false));
 
             return conditionList;
         }
@@ -146,7 +154,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 tbxMOD_DATETIME.Text = model.MOD_DATETIME.ToString();
                 tbxMOD_USER_ID.Text = model.MOD_USER_ID;
                 tbxLAST_UPDATE.Text = model.LAST_UPDATE.ToString();
-                OrderStatus(model.STATUS);
+                OrderStatus(model);
             }
         }
 
@@ -157,19 +165,28 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 List<ConditionFun.SqlqueryCondition> conditiondetail = new List<ConditionFun.SqlqueryCondition>();
                 conditiondetail.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT_BACK01Table.BK_ID, Comparison.Equals, _tbxBK_ID, false, false));
-                OUT_BACK01Bll.GetInstence().BindGrid(Grid2, 0, 0, conditiondetail, sortList);
+                V_OUT_BACK01_PRODUCT00Bll.GetInstence().BindGrid(Grid2, 0, 0, conditiondetail, sortList);
             }
         }
         /// <summary>
         /// 状态位的判定
         /// </summary>
         /// <param name="status"></param>
-        public void OrderStatus(int status)
+        public void OrderStatus(OUT_BACK00 model)
         {
+            OrderStatus2(model);
+        }
+        /// <summary>
+        /// 订单为存档，核准，作废的状态判定
+        /// </summary>
+        /// <param name="model"></param>
+        public void OrderStatus2(OUT_BACK00 model)
+        {
+
             //1:存档 2：核准 3：作废 4：已引入
             //新增：ButtonAdd 保存：ButtonSave 更新：ButtonUpdate 核准：ButtonCheck 作废：ButtonCancel
             //Pur02新增：ButtonPur02Add
-            switch (status)
+            switch (model.STATUS)
             {
                 case 1:
                     ButtonSave.Enabled = false;
@@ -177,10 +194,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Enabled = true;
                     ButtonCheck.Enabled = true;
                     ButtonCheck.Text = "核准";
-                    ButtonCancel.Text = "作废";
-                    ButtonDetailAdd.Enabled = true;
-                    Grid2.Enabled = true;
-                    Grid2.AllowCellEditing = true; break;
+                    ButtonCancel.Text = "作废"; 
+                    Toolbar21111.Enabled = true; break;
                 case 2:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
@@ -188,8 +203,10 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = true;
-                    ButtonDetailAdd.Enabled = false;
-                    Grid2.Enabled = false; break;
+                    Toolbar21111.Enabled = false;
+                    Grid2.Enabled = false;
+                    //Grid2.EnableCheckBoxSelect = false;
+                    break;
                 case 3:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
@@ -197,9 +214,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCheck.Enabled = false;
                     ButtonCancel.Text = "取消作废";
                     ButtonCancel.Enabled = true;
-                    ButtonDetailAdd.Enabled = false;
+                    Toolbar21111.Enabled = false;
                     Grid2.Enabled = false;
-                    //Grid2.AllowCellEditing = false;
+                    Grid2.AllowCellEditing = false;
                     break;
                 case 4:
                     ButtonSave.Enabled = false;
@@ -208,9 +225,17 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    ButtonDetailAdd.Enabled = false;
+                    Toolbar21111.Enabled = false;
                     Grid2.Enabled = false;
                     Grid2.AllowCellEditing = false; break;
+                case 5:
+                    ButtonSave.Enabled = false;
+                    ButtonEdit.Enabled = false;
+                    ButtonCancel.Enabled = false;
+                    ButtonCheck.Enabled = false;
+                    Grid2.Enabled = false;
+                    Grid2.AllowCellEditing = false;
+                    Toolbar21111.Enabled = false; break;
                 default:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
@@ -218,7 +243,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    ButtonDetailAdd.Enabled = false;
+                    Toolbar21111.Enabled = false;
                     Grid2.AllowCellEditing = true; break;
             }
         }
@@ -228,7 +253,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// </summary>
         public void BtnAdd_Click(Object sender, EventArgs e)
         {
-            OrderStatus(-1);
+            OrderStatus(new OUT_BACK00());
             ButtonSave.Enabled = true;
             tbxBK_ID.Text = "";
             ddlSHOP_NAME.Enabled = true;
@@ -304,6 +329,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             string _BK_ID = tbxBK_ID.Text.ToString();
             var model = OUT_BACK00.SingleOrDefault(x => x.BK_ID == _BK_ID);
+            int out_status = model.STATUS;
             if (model == null)
             {
                 FineUI.Alert.ShowInParent("订单单号不存在", FineUI.MessageBoxIcon.Information);
@@ -338,6 +364,20 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 result = MAINEdit();
             }
+
+            if (String.IsNullOrEmpty(result))
+            {
+                //dsCom = (DataSet)SPs.Get_Purchase00(st, et, type).ExecuteDataSet();
+                if (out_status == 2)
+                {
+                    SPs.Update_out_back00_stock01(_BK_ID).Execute();
+                }
+                else
+                {
+                    SPs.Update_out_back00_stock01_cancel(_BK_ID).Execute();
+                }
+            }
+
             if (!String.IsNullOrEmpty(result))
             {
                 FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
@@ -490,7 +530,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     model2.SNo = ConvertHelper.Cint(jarr[i]["values"]["SNo01"].ToString());
                     model2.PROD_ID = jarr[i]["values"]["PROD_ID01"].ToString();
                     model2.QUANTITY = ConvertHelper.Cdbl(jarr[i]["values"]["QUANTITY01"].ToString());
-                    model2.STD_TYPE = jarr[i]["values"]["STD_TYPE01"].ToString();
                     model2.STD_UNIT = jarr[i]["values"]["STD_UNIT01"].ToString();
                     model2.STD_CONVERT = ConvertHelper.Cint(jarr[i]["values"]["STD_CONVERT01"].ToString());
                     model2.STD_QUAN = ConvertHelper.StringToDecimal(jarr[i]["values"]["STD_QUAN01"].ToString());
@@ -645,39 +684,67 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             int[] selections = Grid4.SelectedRowIndexArray;
             string _BK_ID = tbxBK_ID.Text;
             string _Shop_ID = ddlSHOP_NAME.SelectedValue;
-            string _Shop_Name = ddlSHOP_NAME.SelectedText;
+            //string _Shop_Name = ddlSHOP_NAME.SelectedText;
             string result = "";
-            var m_Shop = new SHOP00(x => x.SHOP_ID == _Shop_ID);
-            string _priceArea_id = m_Shop.SHOP_Price_Area;
             if (!String.IsNullOrEmpty(_BK_ID))
             {
+                int rowCount = Grid2.Rows.Count;
                 foreach (int i in selections)
                 {
                     string _Prod_ID = Grid4.DataKeys[i][0].ToString();
                     string _shop_id = ddlSHOP_NAME.SelectedValue;
-                    var model = new V_Product01_PRCAREA(x => x.PROD_ID == _Prod_ID && x.PRCAREA_ID == _priceArea_id);
-                    int rowCount = Grid2.Rows.Count;
+                    var model = new V_STOCK01_PRODUCT01(x => x.PROD_ID == _Prod_ID && x.SHOP_ID == _Shop_ID);
                     JObject deObject = new JObject();
                     deObject.Add("Id01", "0");
                     deObject.Add("SHOP_ID01", _Shop_ID);
-                    deObject.Add("SHOP_NAME01", _Shop_Name);
+                    deObject.Add("SHOP_NAME101", model.SHOP_NAME1);
                     deObject.Add("BK_ID01", _BK_ID);
                     deObject.Add("SNo01", rowCount + 1);
                     deObject.Add("PROD_ID01", _Prod_ID);
-                    deObject.Add("PROD_NAME01", model.PROD_NAME1);
+                    deObject.Add("PROD_NAME101", model.PROD_NAME1);
                     deObject.Add("QUANTITY01", model.ORDER_QUAN);
-                    deObject.Add("STD_TYPE01", model.Purchase_UNIT);
-                    deObject.Add("STD_UNIT01", model.Purchase_UNIT);
+                    deObject.Add("STD_UNIT01", model.ORDER_UNIT);
                     deObject.Add("STD_CONVERT01", model.PROD_CONVERT1);
-                    deObject.Add("STD_QUAN01", model.Purchase_QUAN);
-                    deObject.Add("STD_PRICE01", model.COST);
-                    deObject.Add("COST01", 0);
+                    deObject.Add("STD_QUAN01", model.ORDER_QUAN);
+                    switch (model.ORDER_UNIT)
+                    {
+                        case 1: deObject.Add("STD_PRICE01", model.S_Cost);
+                            deObject.Add("COST01", model.COST);
+                            break;
+                        case 2: deObject.Add("STD_PRICE01", model.S_Cost1);
+                            deObject.Add("COST01", model.COST1);
+                            break;
+                        case 3: deObject.Add("STD_PRICE01", model.S_Cost2);
+                            deObject.Add("COST01", model.COST2);
+                            break;
+                        default: deObject.Add("STD_PRICE01", 0);
+                            deObject.Add("COST01", 0);
+                            break;
+                    }
                     deObject.Add("QUAN101", 0);
                     deObject.Add("QUAN201", 0);
                     deObject.Add("REASON_ID01", 0);
                     deObject.Add("MEMO01", "");
                     deObject.Add("BAT_NO", "");
 
+
+                    deObject.Add("STD_UNIT_NAME01", model.ORDER_NAME);
+                    deObject.Add("UNIT_NAME01", model.UNIT_NAME);
+                    deObject.Add("UNIT_NAME101", model.UNIT_NAME1);
+                    deObject.Add("UNIT_NAME201", model.UNIT_NAME2);
+
+                    deObject.Add("PROD_CONVERT101", model.PROD_CONVERT1);
+                    deObject.Add("PROD_CONVERT201", model.PROD_CONVERT2);
+
+
+                    deObject.Add("S_RET_COST01", model.S_Ret_Cost);
+                    deObject.Add("S_RET_COST101", model.S_Ret_Cost1);
+                    deObject.Add("S_RET_COST201", model.S_Ret_Cost2);
+
+                    deObject.Add("R_COST01", model.COST);
+                    deObject.Add("R_COST101", model.COST1);
+                    deObject.Add("R_COST201", model.COST2);
+                    rowCount++;
                     Grid2.AddNewRecord(deObject, true);
                 }
             }

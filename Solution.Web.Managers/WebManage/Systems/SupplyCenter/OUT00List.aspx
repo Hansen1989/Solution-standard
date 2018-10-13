@@ -94,14 +94,14 @@
                              <f:Toolbar ID="Toolbar21111" runat="server">
                                <Items>
                                   <f:Button ID="ButtonDetailAdd" runat="server" Text="添加" Icon="Add" OnClick="btn_DetailAdd"></f:Button>
+                                   <f:Button ID="ButtonDetailDelete" runat="server" Text="删除" Icon="Delete" OnClick="btn_DetailDelete"></f:Button>
                                   <%--<f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add"></f:Button>--%>
                                </Items>
                              </f:Toolbar>
                            </Toolbars>
                            <Items>
-                              <f:Grid ID="Grid2" Title="验收子表" EnableFrame="false" EnableCollapse="true" ShowHeader="false" runat="server" Height="600px"
-                                   DataKeyNames="Id" EnableColumnLines="true" AllowPaging="true"
-                                    EnableCheckBoxSelect="true" AllowCellEditing="true" ClicksToEdit="1"> 
+                              <f:Grid ID="Grid2" Title="验收子表" EnableFrame="false" EnableCollapse="true" ShowHeader="false" runat="server"
+                                   DataKeyNames="Id" EnableColumnLines="true" EnableCheckBoxSelect="true" AllowCellEditing="true" ClicksToEdit="1"> 
                                       <Columns>
                                         <f:RowNumberField />
                                         <f:RenderField Width="130px" ColumnID="Id01" DataField="Id" FieldType="String" Hidden="true"
@@ -118,7 +118,7 @@
                                                     </f:TextBox>
                                                 </Editor>
                                         </f:RenderField>
-                                        <f:RenderField Width="130px" ColumnID="SHOP_NAME01" DataField="SHOP_ID" FieldType="String" Enabled="false"
+                                        <f:RenderField Width="130px" ColumnID="SHOP_NAME101" DataField="SHOP_NAME1" FieldType="String" Enabled="false"
                                                 HeaderText="分店名称">
                                                 <Editor>
                                                     <f:TextBox ID="TextBox2" runat="server" Required="true" ShowRedStar="true" Enabled="false">
@@ -132,7 +132,7 @@
                                                     </f:TextBox>
                                                 </Editor>
                                         </f:RenderField>
-                                        <f:RenderField Width="130px" ColumnID="SNo01" DataField="SNo" FieldType="String" Enabled="false"
+                                        <f:RenderField Width="130px" ColumnID="SNo01" DataField="SNo" FieldType="String" Enabled="false" Hidden="false"
                                                 HeaderText=" 序号">
                                                 <Editor>
                                                     <f:TextBox ID="tbxSNo" runat="server" Required="true" ShowRedStar="true" Enabled="false">
@@ -220,75 +220,81 @@
                                                 </Editor>
                                          </f:RenderField>
 
-                                         <f:RenderField Width="130px" ColumnID="STD_QUAN01" DataField="STD_QUAN" FieldType="Float" Enabled="false"
+                                         <f:RenderField Width="130px" ColumnID="STD_QUAN01" DataField="STD_QUAN" FieldType="String" Enabled="false"
                                                 HeaderText="出货量">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numSTD_QUAN" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numSTD_QUAN" NoNegative="true"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
-                                         <f:RenderField Width="130px" ColumnID="STD_PRICE01" DataField="STD_PRICE" FieldType="Float" Enabled="false"
+                                         <f:RenderField Width="130px" ColumnID="MIN_STD_QUAN01" DataField="MIN_STD_QUAN" FieldType="String" Hidden="true" Enabled="false"
+                                                HeaderText="最少出货量">
+                                                <Editor>
+                                                    <f:NumberBox runat="server" ID="NumberBox6" NoNegative="true"></f:NumberBox>
+                                                </Editor>
+                                         </f:RenderField>
+                                         <f:RenderField Width="130px" ColumnID="STD_PRICE01" DataField="STD_PRICE" FieldType="String" Enabled="false"
                                                 HeaderText="出货单价">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
 
-                                          <f:RenderField Width="130px" ColumnID="STD_PRICE101" DataField="STD_PRICE1" FieldType="Float" Enabled="true" Hidden="true"
+                                          <f:RenderField Width="130px" ColumnID="STD_PRICE101" DataField="STD_PRICE1" FieldType="String" Enabled="true" Hidden="true"
                                                 HeaderText="出货价1">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="NumberBox3" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="NumberBox3" NoNegative="true" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
-                                          <f:RenderField Width="130px" ColumnID="STD_PRICE201" DataField="STD_PRICE2" FieldType="Float" Enabled="true" Hidden="true"
+                                          <f:RenderField Width="130px" ColumnID="STD_PRICE201" DataField="STD_PRICE2" FieldType="String" Enabled="true" Hidden="true"
                                                 HeaderText="出货价2">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="NumberBox4" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="NumberBox4" NoNegative="true" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
-                                          <f:RenderField Width="130px" ColumnID="STD_PRICE303" DataField="STD_PRICE3" FieldType="Float" Enabled="true" Hidden="true"
+                                          <f:RenderField Width="130px" ColumnID="STD_PRICE301" DataField="STD_PRICE3" FieldType="String" Enabled="true" Hidden="true"
                                                 HeaderText="出货价3">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="NumberBox5" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="NumberBox5" NoNegative="true" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
 
 
-                                         <f:RenderField Width="130px" ColumnID="COST01" DataField="COST" FieldType="Float" Enabled="false"
+                                         <f:RenderField Width="130px" ColumnID="COST01" DataField="COST" FieldType="string" Enabled="false"
                                                 HeaderText="出货成本">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numCOST" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numCOST" NoNegative="true" ></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
 
-                                          <f:RenderField Width="130px" ColumnID="COST101" DataField="COST1" FieldType="Float" Enabled="true" Hidden="true"
+                                          <f:RenderField Width="130px" ColumnID="COST101" DataField="COST1" FieldType="string" Enabled="true" Hidden="true"
                                                 HeaderText="出货成本1">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="COST201" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="costnumbox" NoNegative="true" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
-                                          <f:RenderField Width="130px" ColumnID="STD_PRICE201" DataField="COST2" FieldType="Float" Enabled="true" Hidden="true"
+                                          <f:RenderField Width="130px" ColumnID="COST201" DataField="COST2" FieldType="string" Enabled="true" Hidden="true"
                                                 HeaderText="出货成本2">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="NumberBox7" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="NumberBox7" NoNegative="true" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
-                                          <f:RenderField Width="130px" ColumnID="COST301" DataField="COST3" FieldType="Float" Enabled="true" Hidden="true"
+                                          <f:RenderField Width="130px" ColumnID="COST301" DataField="COST3" FieldType="string" Enabled="true" Hidden="true"
                                                 HeaderText="出货成本3">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="NumberBox8" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="NumberBox8" NoNegative="true" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
 
-                                         <f:RenderField Width="130px" ColumnID="QUAN101" DataField="QUAN1" FieldType="Int" Enabled="false"
+                                         <f:RenderField Width="130px" ColumnID="QUAN101" DataField="QUAN1" FieldType="Int" Enabled="true"
                                                 HeaderText="验收量">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numQUAN1" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numQUAN1" NoNegative="true" DecimalPrecision="6" Enabled="true"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
-                                         <f:RenderField Width="130px" ColumnID="QUAN201" DataField="QUAN2" FieldType="Int" Enabled="false"
+                                         <f:RenderField Width="130px" ColumnID="QUAN201" DataField="QUAN2" FieldType="Int" Enabled="true"
                                                 HeaderText="取消量">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numQUAN2" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numQUAN2" NoNegative="true" DecimalPrecision="6" Enabled="true"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="MEMO01" DataField="MEMO" FieldType="String" Enabled="True"
@@ -306,6 +312,9 @@
                                                 </Editor>
                                          </f:RenderField>
                                       </Columns>
+                                      <Listeners>
+                                        <f:Listener Event="edit" Handler="onGridAfterEdit" />
+                                      </Listeners>
                               </f:Grid>
                            </Items>
                        </f:Panel>
@@ -332,8 +341,7 @@
                     </Items>
                     <Items>
                        <f:Grid ID="Grid1" Title="总部出货作业列表" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="OUT_ID"
-                         EnableCheckBoxSelect="true" KeepCurrentSelection="false" EnableMultiSelect="false" PageSize="15"
-                         EnableRowClickEvent="true" OnRowClick="Grid1_RowClick" >
+                         EnableCheckBoxSelect="true" EnableMultiSelect="false" EnableRowClickEvent="true" OnRowClick="Grid1_RowClick" >
                          <Columns>
                            <f:RowNumberField />
                            <f:BoundField Width="125px" DataField="OUT_ID" HeaderText="进货单号" />
@@ -380,7 +388,7 @@
                         </f:Toolbar>
                     </Items>
                     <Items>
-                       <f:Grid ID="Grid4" Title="商品资料" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="PROD_ID"
+                       <f:Grid ID="Grid4" Title="商品资料" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="PROD_ID,PROD_NAME1"
                          EnableCheckBoxSelect="true" KeepCurrentSelection="true" PageSize="1000"
                          ><%--EnableRowClickEvent="true" OnRowClick="Grid1_RowClick" --%>
                          <Columns>
@@ -420,6 +428,7 @@
                                      CompareOperator="GreaterThan" CompareMessage="结束日期应该大于开始日期" Label="结束日期"
                                      runat="server" ShowRedStar="True">
                                 </f:DatePicker>
+                                <f:DropDownList runat="server" Label="分店名称" ID="w4_ddlSHOP_NAME" Required="true" ShowRedStar="true" Enabled="true"></f:DropDownList>
                             </Items>
                         </f:Panel>
                     </Items>
@@ -460,7 +469,7 @@
         }
 
         function onGridAfterEdit(editor, params) {
-            return;
+        
             var me = this, columnId = params.column.id, rowId = params.record.getId();
             var strSTD_TYPE01 = me.f_getCellValue(rowId, 'STD_UNIT01');
             var strUnit = me.f_getCellValue(rowId, 'UNIT_NAME01');
@@ -470,47 +479,36 @@
             var convert1 = me.f_getCellValue(rowId, 'PROD_CONVERT101');
             var convert2 = me.f_getCellValue(rowId, 'PROD_CONVERT201');
 
-            var cost = me.f_getCellValue(rowId, 'SUP_COST01');
-            var cost1 = me.f_getCellValue(rowId, 'SUP_COST101');
-            var cost2 = me.f_getCellValue(rowId, 'SUP_COST201');
+
+
+            var cost = me.f_getCellValue(rowId, 'COST01');
+            var cost1 = me.f_getCellValue(rowId, 'COST101');
+            var cost2 = me.f_getCellValue(rowId, 'COST201');
+
+            var std_price = me.f_getCellValue(rowId, 'STD_PRICE101');
+            var std_price1 = me.f_getCellValue(rowId, 'STD_PRICE201');
+            var std_price2 = me.f_getCellValue(rowId, 'STD_PRICE301');
 
             var std_quan = me.f_getCellValue(rowId, 'STD_QUAN01');
-            var tax_num = me.f_getCellValue(rowId, 'Tax_Num01');
-            var tax_type = me.f_getCellValue(rowId, 'Tax_Type');
-            var tax
-            if (tax_type == 0) {
-                tax = 0;
-            }
-            else {
-                tax = tax_num.toFixed(4) * std_quan.toFixed(4);
-            }
+
             if (columnId == 'STD_UNIT01') {
                 switch (strSTD_TYPE01) {
                     case '1': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit);
                         me.f_updateCellValue(rowId, 'STD_CONVERT01', 0);
-                        me.f_updateCellValue(rowId, 'STD_PRICE01', cost.toFixed(4));
-                        me.f_updateCellValue(rowId, 'Tax01', cost.toFixed(4) * tax.toFixed(4));
+                        me.f_updateCellValue(rowId, 'STD_PRICE01', std_price);
+                        me.f_updateCellValue(rowId, 'COST01', cost);
                         return;
                     case '2': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit1);
                         me.f_updateCellValue(rowId, 'STD_CONVERT01', convert1);
-                        me.f_updateCellValue(rowId, 'STD_PRICE01', cost1.toFixed(4));
-                        me.f_updateCellValue(rowId, 'Tax01', cost1.toFixed(4) * tax.toFixed(4));
+                        me.f_updateCellValue(rowId, 'STD_PRICE01', std_price1);
+                        me.f_updateCellValue(rowId, 'COST01', cost1);
                         return;
                     case '3': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit2);
                         me.f_updateCellValue(rowId, 'STD_CONVERT01', convert2);
-                        me.f_updateCellValue(rowId, 'STD_PRICE01', cost2.toFixed(4));
-                        me.f_updateCellValue(rowId, 'Tax01', cost2.toFixed(4) * tax.toFixed(4));
+                        me.f_updateCellValue(rowId, 'STD_PRICE01', std_price2);
+                        me.f_updateCellValue(rowId, 'COST01', cost2);
                         return;
                 }
-            }
-
-            if (columnId == 'STD_QUAN01')
-            {
-                var std_price = me.f_getCellValue(rowId, 'STD_PRICE01');
-                var sum_tax = std_price.toFixed(4) * tax.toFixed(4);
-                alert(std_price);
-                alert(sum_tax);
-                me.f_updateCellValue(rowId, 'Tax01', sum_tax);
             }
         }
 
