@@ -501,6 +501,17 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "ORDER_UNIT"
                 });
 
+                Columns.Add(new DatabaseColumn("ORDER_NAME", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10,
+					PropertyName = "ORDER_NAME"
+                });
+
                 Columns.Add(new DatabaseColumn("ORDER_QUAN", this)
                 {
 	                IsPrimaryKey = false,
@@ -963,6 +974,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn ORDER_UNIT{
                 get{
                     return this.GetColumn("ORDER_UNIT");
+                }
+            }
+				
+            
+            public IColumn ORDER_NAME{
+                get{
+                    return this.GetColumn("ORDER_NAME");
                 }
             }
 				
