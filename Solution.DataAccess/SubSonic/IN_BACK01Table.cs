@@ -67,6 +67,14 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
+   			public static string STD_TYPE{
+			      get{
+        			return "STD_TYPE";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
    			public static string STD_UNIT{
 			      get{
         			return "STD_UNIT";

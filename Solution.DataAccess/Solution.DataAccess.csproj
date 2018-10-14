@@ -661,18 +661,6 @@
     <Compile Include="SubSonic\PagePowerSignTable.cs">
       <DependentUpon>EntityTable.tt</DependentUpon>
     </Compile>
-    <Compile Include="SubSonic\PARAMETER.cs">
-      <DependentUpon>ActiveRecord.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\PARAMETERModel.cs">
-      <DependentUpon>CreateModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\PARAMETERStructs.cs">
-      <DependentUpon>Structs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\PARAMETERTable.cs">
-      <DependentUpon>EntityTable.tt</DependentUpon>
-    </Compile>
     <Compile Include="SubSonic\PLAN00.cs">
       <DependentUpon>ActiveRecord.tt</DependentUpon>
       <SubType>Code</SubType>
@@ -1177,42 +1165,6 @@
     <Compile Include="SubSonic\V_COMPONENT01_PRODUCT00Table.cs">
       <DependentUpon>EntityTable.tt</DependentUpon>
     </Compile>
-    <Compile Include="SubSonic\V_IN01_PRODUCT01.cs">
-      <DependentUpon>ActiveRecord.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_IN01_PRODUCT01Model.cs">
-      <DependentUpon>CreateModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_IN01_PRODUCT01Structs.cs">
-      <DependentUpon>Structs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_IN01_PRODUCT01Table.cs">
-      <DependentUpon>EntityTable.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_IN_BACK01_PRODUCT00.cs">
-      <DependentUpon>ActiveRecord.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_IN_BACK01_PRODUCT00Model.cs">
-      <DependentUpon>CreateModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_IN_BACK01_PRODUCT00Structs.cs">
-      <DependentUpon>Structs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_IN_BACK01_PRODUCT00Table.cs">
-      <DependentUpon>EntityTable.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_ORDER01_PRODUCT01.cs">
-      <DependentUpon>ActiveRecord.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_ORDER01_PRODUCT01Model.cs">
-      <DependentUpon>CreateModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_ORDER01_PRODUCT01Structs.cs">
-      <DependentUpon>Structs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_ORDER01_PRODUCT01Table.cs">
-      <DependentUpon>EntityTable.tt</DependentUpon>
-    </Compile>
     <Compile Include="SubSonic\V_ORDERDEP02_PRODDEP.cs">
       <DependentUpon>ActiveRecord.tt</DependentUpon>
     </Compile>
@@ -1235,18 +1187,6 @@
       <DependentUpon>Structs.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_OUT01_PRODUCT00Table.cs">
-      <DependentUpon>EntityTable.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_OUT_BACK01_PRODUCT00.cs">
-      <DependentUpon>ActiveRecord.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_OUT_BACK01_PRODUCT00Model.cs">
-      <DependentUpon>CreateModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_OUT_BACK01_PRODUCT00Structs.cs">
-      <DependentUpon>Structs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_OUT_BACK01_PRODUCT00Table.cs">
       <DependentUpon>EntityTable.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_Position_Branch.cs">
@@ -1333,18 +1273,6 @@
       <DependentUpon>Structs.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_STOCK01_PRODUCT00Table.cs">
-      <DependentUpon>EntityTable.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_STOCK01_PRODUCT01.cs">
-      <DependentUpon>ActiveRecord.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_STOCK01_PRODUCT01Model.cs">
-      <DependentUpon>CreateModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_STOCK01_PRODUCT01Structs.cs">
-      <DependentUpon>Structs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_STOCK01_PRODUCT01Table.cs">
       <DependentUpon>EntityTable.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_STOCK02_PRODUCT00.cs">

@@ -104,17 +104,6 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 0,
 					PropertyName = "MOD_DATETIME"
                 });
-
-                Columns.Add(new DatabaseColumn("CREDIT_AMOUNT", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Decimal,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "CREDIT_AMOUNT"
-                });
                     
                 
                 
@@ -172,13 +161,6 @@ namespace Solution.DataAccess.DataModel {
             public IColumn MOD_DATETIME{
                 get{
                     return this.GetColumn("MOD_DATETIME");
-                }
-            }
-				
-            
-            public IColumn CREDIT_AMOUNT{
-                get{
-                    return this.GetColumn("CREDIT_AMOUNT");
                 }
             }
 				

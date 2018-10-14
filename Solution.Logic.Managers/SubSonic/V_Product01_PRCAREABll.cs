@@ -408,10 +408,6 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.ORDER_UNIT == (int)value);
                         expression = x => x.ORDER_UNIT == (int)value;
                         break;
-					case "ORDER_NAME" :
-						model = list.SingleOrDefault(x => x.ORDER_NAME == (string)value);
-                        expression = x => x.ORDER_NAME == (string)value;
-                        break;
 					case "ORDER_QUAN" :
 						model = list.SingleOrDefault(x => x.ORDER_QUAN == (int)value);
                         expression = x => x.ORDER_QUAN == (int)value;
@@ -676,7 +672,6 @@ namespace Solution.Logic.Managers {
                 COST1 = model.COST1,
                 COST2 = model.COST2,
                 ORDER_UNIT = model.ORDER_UNIT,
-                ORDER_NAME = model.ORDER_NAME,
                 ORDER_QUAN = model.ORDER_QUAN,
                 Purchase_UNIT = model.Purchase_UNIT,
                 Purchase_UNIT_NAME = model.Purchase_UNIT_NAME,
@@ -763,7 +758,6 @@ namespace Solution.Logic.Managers {
                 COST1 = model.COST1,
                 COST2 = model.COST2,
                 ORDER_UNIT = model.ORDER_UNIT,
-                ORDER_NAME = model.ORDER_NAME,
                 ORDER_QUAN = model.ORDER_QUAN,
                 Purchase_UNIT = model.Purchase_UNIT,
                 Purchase_UNIT_NAME = model.Purchase_UNIT_NAME,
@@ -956,9 +950,6 @@ namespace Solution.Logic.Managers {
                     break;
 				case "ORDER_UNIT" :
 					model.ORDER_UNIT = (int)value;
-                    break;
-				case "ORDER_NAME" :
-					model.ORDER_NAME = (string)value;
                     break;
 				case "ORDER_QUAN" :
 					model.ORDER_QUAN = (int)value;
@@ -1643,8 +1634,6 @@ namespace Solution.Logic.Managers {
 					return model.COST2;
 				case "ORDER_UNIT" :
 					return model.ORDER_UNIT;
-				case "ORDER_NAME" :
-					return model.ORDER_NAME;
 				case "ORDER_QUAN" :
 					return model.ORDER_QUAN;
 				case "Purchase_UNIT" :

@@ -75,11 +75,11 @@ namespace Solution.DataAccess.DataModel {
                 Columns.Add(new DatabaseColumn("SHOP_Area_ID", this)
                 {
 	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
+	                DataType = DbType.Int32,
 	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
-	                MaxLength = 10,
+	                MaxLength = 0,
 					PropertyName = "SHOP_Area_ID"
                 });
 

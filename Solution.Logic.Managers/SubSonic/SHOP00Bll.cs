@@ -253,8 +253,8 @@ namespace Solution.Logic.Managers {
                         expression = x => x.SHOP_KIND == (int)value;
                         break;
 					case "SHOP_Area_ID" :
-						model = list.SingleOrDefault(x => x.SHOP_Area_ID == (string)value);
-                        expression = x => x.SHOP_Area_ID == (string)value;
+						model = list.SingleOrDefault(x => x.SHOP_Area_ID == (int)value);
+                        expression = x => x.SHOP_Area_ID == (int)value;
                         break;
 					case "SHOP_Price_Area" :
 						model = list.SingleOrDefault(x => x.SHOP_Price_Area == (string)value);
@@ -607,7 +607,7 @@ namespace Solution.Logic.Managers {
 					model.SHOP_KIND = (int)value;
                     break;
 				case "SHOP_Area_ID" :
-					model.SHOP_Area_ID = (string)value;
+					model.SHOP_Area_ID = (int)value;
                     break;
 				case "SHOP_Price_Area" :
 					model.SHOP_Price_Area = (string)value;

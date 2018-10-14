@@ -204,8 +204,6 @@ namespace Solution.DataAccess.DataModel
                
             ORDER_UNIT = readRecord.get_int("ORDER_UNIT",null);
                
-            ORDER_NAME = readRecord.get_string("ORDER_NAME",null);
-               
             ORDER_QUAN = readRecord.get_int("ORDER_QUAN",null);
                
             Purchase_UNIT = readRecord.get_int("Purchase_UNIT",null);
@@ -1368,28 +1366,6 @@ namespace Solution.DataAccess.DataModel
                 if(_ORDER_UNIT!=value || _isLoaded){
                     _ORDER_UNIT=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="ORDER_UNIT");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        string _ORDER_NAME;
-		/// <summary>
-		/// 
-		/// </summary>
-        public string ORDER_NAME
-        {
-            get { return _ORDER_NAME; }
-            set
-            {
-                if(_ORDER_NAME!=value || _isLoaded){
-                    _ORDER_NAME=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="ORDER_NAME");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

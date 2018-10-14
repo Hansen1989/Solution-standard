@@ -449,16 +449,6 @@ namespace Solution.DataAccess.Model
 			set { _ORDER_UNIT = value; }
 		}
 
-		string _ORDER_NAME = "";
-		/// <summary>
-		/// 
-		/// </summary>
-		public string ORDER_NAME
-		{
-			get { return _ORDER_NAME; }
-			set { _ORDER_NAME = value; }
-		}
-
 		int _ORDER_QUAN = 0;
 		/// <summary>
 		/// 

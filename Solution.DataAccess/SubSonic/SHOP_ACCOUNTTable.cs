@@ -80,14 +80,6 @@ namespace Solution.DataAccess.DataModel {
         			return "MOD_DATETIME";
       			}
 		    }
-			/// <summary>
-			/// 信用额度
-			/// </summary>
-   			public static string CREDIT_AMOUNT{
-			      get{
-        			return "CREDIT_AMOUNT";
-      			}
-		    }
                     
         }
 }
