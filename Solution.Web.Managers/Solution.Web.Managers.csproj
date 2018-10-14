@@ -7556,7 +7556,6 @@
     <Content Include="res\ueditor\ueditor.config.js" />
     <Content Include="res\ueditor\ueditor.parse.js" />
     <Content Include="Solution.Web.Managers - 副本.csproj" />
-    <Content Include="Solution.Web.Managers.Publish.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -8256,7 +8255,7 @@
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Debug\ResolveAssemblyReference.cache" />
     <None Include="obj\Debug\Solution.Web.Managers.csprojResolveAssemblyReference.cache" />
-    <None Include="Properties\PublishProfiles\配置文件1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="res\ckeditor\CHANGES.md" />
     <None Include="res\ckeditor\LICENSE.md" />
     <None Include="res\ckeditor\plugins\scayt\LICENSE.md" />
