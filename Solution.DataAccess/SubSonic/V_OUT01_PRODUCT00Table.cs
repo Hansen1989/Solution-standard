@@ -147,14 +147,6 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string SHOP_NAME1{
-			      get{
-        			return "SHOP_NAME1";
-      			}
-		    }
-			/// <summary>
-			/// 
-			/// </summary>
    			public static string PROD_NAME1{
 			      get{
         			return "PROD_NAME1";

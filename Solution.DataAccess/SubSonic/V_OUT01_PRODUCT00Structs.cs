@@ -193,17 +193,6 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "Exp_DateTime"
                 });
 
-                Columns.Add(new DatabaseColumn("SHOP_NAME1", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 40,
-					PropertyName = "SHOP_NAME1"
-                });
-
                 Columns.Add(new DatabaseColumn("PROD_NAME1", this)
                 {
 	                IsPrimaryKey = false,
@@ -230,7 +219,7 @@ namespace Solution.DataAccess.DataModel {
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.Decimal,
-	                IsNullable = false,
+	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 0,
@@ -241,7 +230,7 @@ namespace Solution.DataAccess.DataModel {
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.Decimal,
-	                IsNullable = false,
+	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 0,
@@ -252,7 +241,7 @@ namespace Solution.DataAccess.DataModel {
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.Decimal,
-	                IsNullable = false,
+	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 0,
@@ -351,7 +340,7 @@ namespace Solution.DataAccess.DataModel {
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
-	                IsNullable = false,
+	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 6,
@@ -362,7 +351,7 @@ namespace Solution.DataAccess.DataModel {
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.Byte,
-	                IsNullable = false,
+	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 0,
@@ -373,7 +362,7 @@ namespace Solution.DataAccess.DataModel {
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.Int32,
-	                IsNullable = false,
+	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 0,
@@ -492,13 +481,6 @@ namespace Solution.DataAccess.DataModel {
             public IColumn Exp_DateTime{
                 get{
                     return this.GetColumn("Exp_DateTime");
-                }
-            }
-				
-            
-            public IColumn SHOP_NAME1{
-                get{
-                    return this.GetColumn("SHOP_NAME1");
                 }
             }
 				

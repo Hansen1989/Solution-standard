@@ -169,16 +169,6 @@ namespace Solution.DataAccess.Model
 			set { _Exp_DateTime = value; }
 		}
 
-		string _SHOP_NAME1 = "";
-		/// <summary>
-		/// 
-		/// </summary>
-		public string SHOP_NAME1
-		{
-			get { return _SHOP_NAME1; }
-			set { _SHOP_NAME1 = value; }
-		}
-
 		string _PROD_NAME1 = "";
 		/// <summary>
 		/// 

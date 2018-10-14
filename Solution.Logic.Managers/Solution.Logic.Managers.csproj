@@ -198,9 +198,6 @@
     <Compile Include="SubSonic\PagePowerSignPublicBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
-    <Compile Include="SubSonic\PARAMETERBll.cs">
-      <DependentUpon>CreateBll.tt</DependentUpon>
-    </Compile>
     <Compile Include="SubSonic\PLAN00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
@@ -319,9 +316,6 @@
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_IN01_PRODUCT01Bll.cs">
-      <DependentUpon>CreateBll.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubSonic\V_IN_BACK01_PRODUCT00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_ORDER01_PRODUCT01Bll.cs">

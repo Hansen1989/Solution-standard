@@ -131,8 +131,6 @@ namespace Solution.DataAccess.DataModel
             CRT_USER_ID = readRecord.get_string("CRT_USER_ID",null);
                
             MOD_DATETIME = readRecord.get_datetime("MOD_DATETIME",null);
-               
-            CREDIT_AMOUNT = readRecord.get_decimal("CREDIT_AMOUNT",null);
                 }   
 
         partial void OnCreated();
@@ -477,28 +475,6 @@ namespace Solution.DataAccess.DataModel
                 if(_MOD_DATETIME!=value || _isLoaded){
                     _MOD_DATETIME=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MOD_DATETIME");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        decimal _CREDIT_AMOUNT;
-		/// <summary>
-		/// 信用额度
-		/// </summary>
-        public decimal CREDIT_AMOUNT
-        {
-            get { return _CREDIT_AMOUNT; }
-            set
-            {
-                if(_CREDIT_AMOUNT!=value || _isLoaded){
-                    _CREDIT_AMOUNT=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="CREDIT_AMOUNT");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

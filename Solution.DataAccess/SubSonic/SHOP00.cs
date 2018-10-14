@@ -126,7 +126,7 @@ namespace Solution.DataAccess.DataModel
                
             SHOP_KIND = readRecord.get_int("SHOP_KIND",null);
                
-            SHOP_Area_ID = readRecord.get_string("SHOP_Area_ID",null);
+            SHOP_Area_ID = readRecord.get_int("SHOP_Area_ID",null);
                
             SHOP_Price_Area = readRecord.get_string("SHOP_Price_Area",null);
                
@@ -443,11 +443,11 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _SHOP_Area_ID;
+        int _SHOP_Area_ID;
 		/// <summary>
 		/// 
 		/// </summary>
-        public string SHOP_Area_ID
+        public int SHOP_Area_ID
         {
             get { return _SHOP_Area_ID; }
             set

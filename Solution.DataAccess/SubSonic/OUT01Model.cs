@@ -168,6 +168,16 @@ namespace Solution.DataAccess.Model
 			get { return _Exp_DateTime; }
 			set { _Exp_DateTime = value; }
 		}
+
+		string _STD_TYPE = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string STD_TYPE
+		{
+			get { return _STD_TYPE; }
+			set { _STD_TYPE = value; }
+		}
     } 
 
 }

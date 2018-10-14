@@ -144,6 +144,14 @@ namespace Solution.DataAccess.DataModel {
         			return "Exp_DateTime";
       			}
 		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string STD_TYPE{
+			      get{
+        			return "STD_TYPE";
+      			}
+		    }
                     
         }
 }
