@@ -371,6 +371,14 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
+   			public static string ORDER_NAME{
+			      get{
+        			return "ORDER_NAME";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
    			public static string ORDER_QUAN{
 			      get{
         			return "ORDER_QUAN";

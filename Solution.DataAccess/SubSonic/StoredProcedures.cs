@@ -127,6 +127,20 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("OUT_ID",OUT_ID,DbType.AnsiString);
             return sp;
         }
+        public static StoredProcedure Get_PLAN_Left_List(string plan_id){
+            StoredProcedure sp=new StoredProcedure("Get_PLAN_Left_List");
+			
+
+            sp.Command.AddParameter("plan_id",plan_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Get_PLAN_Right_List(string plan_id){
+            StoredProcedure sp=new StoredProcedure("Get_PLAN_Right_List");
+			
+
+            sp.Command.AddParameter("plan_id",plan_id,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure Get_PROD_KIND_DEP_CATE(string type){
             StoredProcedure sp=new StoredProcedure("Get_PROD_KIND_DEP_CATE");
 			
@@ -176,6 +190,24 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("SEED_DATETIME",SEED_DATETIME,DbType.AnsiString);
             return sp;
         }
+        public static StoredProcedure IN_OUT01_IN01(string OUT_ID,string IN_ID,string SHOP_ID){
+            StoredProcedure sp=new StoredProcedure("IN_OUT01_IN01");
+			
+
+            sp.Command.AddParameter("OUT_ID",OUT_ID,DbType.AnsiString);
+            sp.Command.AddParameter("IN_ID",IN_ID,DbType.AnsiString);
+            sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure IN_OUTBACK01_INBACK01(string BK_ID,string IB_ID,string SHOP_ID){
+            StoredProcedure sp=new StoredProcedure("IN_OUTBACK01_INBACK01");
+			
+
+            sp.Command.AddParameter("BK_ID",BK_ID,DbType.AnsiString);
+            sp.Command.AddParameter("IB_ID",IB_ID,DbType.AnsiString);
+            sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure Insert_PRODUCT01(string PROD_ID,string CRT_USER_ID){
             StoredProcedure sp=new StoredProcedure("Insert_PRODUCT01");
 			
@@ -205,6 +237,62 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("PROD_ID",PROD_ID,DbType.AnsiString);
             sp.Command.AddParameter("P_PRICE",P_PRICE,DbType.Decimal);
             sp.Command.AddParameter("UNIT_TYPE",UNIT_TYPE,DbType.Int32);
+            return sp;
+        }
+        public static StoredProcedure Update_in_back00_stock01(string IB_id){
+            StoredProcedure sp=new StoredProcedure("Update_in_back00_stock01");
+			
+
+            sp.Command.AddParameter("IB_id",IB_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_in_back00_stock01_cancel(string ib_id){
+            StoredProcedure sp=new StoredProcedure("Update_in_back00_stock01_cancel");
+			
+
+            sp.Command.AddParameter("ib_id",ib_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_in00_stock01(string IN_id){
+            StoredProcedure sp=new StoredProcedure("Update_in00_stock01");
+			
+
+            sp.Command.AddParameter("IN_id",IN_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_in00_stock01_cancel(string IN_id){
+            StoredProcedure sp=new StoredProcedure("Update_in00_stock01_cancel");
+			
+
+            sp.Command.AddParameter("IN_id",IN_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_out_back00_stock01(string BK_id){
+            StoredProcedure sp=new StoredProcedure("Update_out_back00_stock01");
+			
+
+            sp.Command.AddParameter("BK_id",BK_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_out_back00_stock01_cancel(string BK_id){
+            StoredProcedure sp=new StoredProcedure("Update_out_back00_stock01_cancel");
+			
+
+            sp.Command.AddParameter("BK_id",BK_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_out00_stock01(string out_id){
+            StoredProcedure sp=new StoredProcedure("Update_out00_stock01");
+			
+
+            sp.Command.AddParameter("out_id",out_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_out00_stock01_cancel(string out_id){
+            StoredProcedure sp=new StoredProcedure("Update_out00_stock01_cancel");
+			
+
+            sp.Command.AddParameter("out_id",out_id,DbType.AnsiString);
             return sp;
         }
         public static StoredProcedure UPDATE_Purchase00(string Purchase_ID,int STATUS,string SUP_ID,DateTime APP_DATETIME,string MOD_USER_ID){

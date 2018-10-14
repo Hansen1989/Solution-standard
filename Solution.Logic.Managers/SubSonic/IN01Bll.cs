@@ -256,10 +256,6 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.QUANTITY == (decimal)value);
                         expression = x => x.QUANTITY == (decimal)value;
                         break;
-					case "STD_TYPE" :
-						model = list.SingleOrDefault(x => x.STD_TYPE == (int)value);
-                        expression = x => x.STD_TYPE == (int)value;
-                        break;
 					case "STD_UNIT" :
 						model = list.SingleOrDefault(x => x.STD_UNIT == (string)value);
                         expression = x => x.STD_UNIT == (string)value;
@@ -470,7 +466,6 @@ namespace Solution.Logic.Managers {
                 SNo = model.SNo,
                 PROD_ID = model.PROD_ID,
                 QUANTITY = model.QUANTITY,
-                STD_TYPE = model.STD_TYPE,
                 STD_UNIT = model.STD_UNIT,
                 STD_CONVERT = model.STD_CONVERT,
                 STD_QUAN = model.STD_QUAN,
@@ -515,7 +510,6 @@ namespace Solution.Logic.Managers {
                 SNo = model.SNo,
                 PROD_ID = model.PROD_ID,
                 QUANTITY = model.QUANTITY,
-                STD_TYPE = model.STD_TYPE,
                 STD_UNIT = model.STD_UNIT,
                 STD_CONVERT = model.STD_CONVERT,
                 STD_QUAN = model.STD_QUAN,
@@ -590,9 +584,6 @@ namespace Solution.Logic.Managers {
                     break;
 				case "QUANTITY" :
 					model.QUANTITY = (decimal)value;
-                    break;
-				case "STD_TYPE" :
-					model.STD_TYPE = (int)value;
                     break;
 				case "STD_UNIT" :
 					model.STD_UNIT = (string)value;
@@ -1189,8 +1180,6 @@ namespace Solution.Logic.Managers {
 					return model.PROD_ID;
 				case "QUANTITY" :
 					return model.QUANTITY;
-				case "STD_TYPE" :
-					return model.STD_TYPE;
 				case "STD_UNIT" :
 					return model.STD_UNIT;
 				case "STD_CONVERT" :

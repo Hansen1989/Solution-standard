@@ -88,6 +88,16 @@ namespace Solution.DataAccess.Model
 			get { return _MOD_DATETIME; }
 			set { _MOD_DATETIME = value; }
 		}
+
+		decimal _CREDIT_AMOUNT = 0;
+		/// <summary>
+		/// 信用额度
+		/// </summary>
+		public decimal CREDIT_AMOUNT
+		{
+			get { return _CREDIT_AMOUNT; }
+			set { _CREDIT_AMOUNT = value; }
+		}
     } 
 
 }
