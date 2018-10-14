@@ -3,16 +3,16 @@ using System;
 
 namespace Solution.DataAccess.DataModel {
         /// <summary>
-        /// Table: OUT01
+        /// Table: V_ORDER01_PRODUCT01
         /// </summary>
 
-        public class OUT01Table {
+        public class V_ORDER01_PRODUCT01Table {
 			/// <summary>
 			/// 表名
 			/// </summary>
 			public static string TableName {
 				get{
-        			return "OUT01";
+        			return "V_ORDER01_PRODUCT01";
       			}
 			}
 
@@ -35,9 +35,9 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string OUT_ID{
+   			public static string ORDER_ID{
 			      get{
-        			return "OUT_ID";
+        			return "ORDER_ID";
       			}
 		    }
 			/// <summary>
@@ -62,6 +62,38 @@ namespace Solution.DataAccess.DataModel {
    			public static string QUANTITY{
 			      get{
         			return "QUANTITY";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string ON_QUAN{
+			      get{
+        			return "ON_QUAN";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string QUAN1{
+			      get{
+        			return "QUAN1";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string QUAN2{
+			      get{
+        			return "QUAN2";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string COST_PRICE{
+			      get{
+        			return "COST_PRICE";
       			}
 		    }
 			/// <summary>
@@ -99,49 +131,65 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string COST{
+   			public static string Memo{
 			      get{
-        			return "COST";
+        			return "Memo";
       			}
 		    }
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string QUAN1{
+   			public static string CRT_DATETIME{
 			      get{
-        			return "QUAN1";
+        			return "CRT_DATETIME";
       			}
 		    }
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string QUAN2{
+   			public static string CRT_USER_ID{
 			      get{
-        			return "QUAN2";
+        			return "CRT_USER_ID";
       			}
 		    }
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string MEMO{
+   			public static string MOD_DATETIME{
 			      get{
-        			return "MEMO";
+        			return "MOD_DATETIME";
       			}
 		    }
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string BAT_NO{
+   			public static string MOD_USER_ID{
 			      get{
-        			return "BAT_NO";
+        			return "MOD_USER_ID";
       			}
 		    }
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string Exp_DateTime{
+   			public static string STD_TYPE{
 			      get{
-        			return "Exp_DateTime";
+        			return "STD_TYPE";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string PROD_NAME1{
+			      get{
+        			return "PROD_NAME1";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string SHOP_NAME1{
+			      get{
+        			return "SHOP_NAME1";
       			}
 		    }
                     

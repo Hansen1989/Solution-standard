@@ -3,16 +3,16 @@ using System;
 
 namespace Solution.DataAccess.DataModel {
         /// <summary>
-        /// Table: V_OUT01_PRODUCT00
+        /// Table: V_IN01_PRODUCT01
         /// </summary>
 
-        public class V_OUT01_PRODUCT00Table {
+        public class V_IN01_PRODUCT01Table {
 			/// <summary>
 			/// 表名
 			/// </summary>
 			public static string TableName {
 				get{
-        			return "V_OUT01_PRODUCT00";
+        			return "V_IN01_PRODUCT01";
       			}
 			}
 
@@ -35,9 +35,9 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string OUT_ID{
+   			public static string IN_ID{
 			      get{
-        			return "OUT_ID";
+        			return "IN_ID";
       			}
 		    }
 			/// <summary>

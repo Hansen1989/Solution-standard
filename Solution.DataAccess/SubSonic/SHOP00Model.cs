@@ -59,11 +59,11 @@ namespace Solution.DataAccess.Model
 			set { _SHOP_KIND = value; }
 		}
 
-		int _SHOP_Area_ID = 0;
+		string _SHOP_Area_ID = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public int SHOP_Area_ID
+		public string SHOP_Area_ID
 		{
 			get { return _SHOP_Area_ID; }
 			set { _SHOP_Area_ID = value; }

@@ -148,6 +148,8 @@ namespace Solution.DataAccess.DataModel
                
             Exp_DateTime = readRecord.get_datetime("Exp_DateTime",null);
                
+            SHOP_NAME1 = readRecord.get_string("SHOP_NAME1",null);
+               
             PROD_NAME1 = readRecord.get_string("PROD_NAME1",null);
                
             STD_UNIT_NAME = readRecord.get_string("STD_UNIT_NAME",null);
@@ -698,6 +700,28 @@ namespace Solution.DataAccess.DataModel
                 if(_Exp_DateTime!=value || _isLoaded){
                     _Exp_DateTime=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Exp_DateTime");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _SHOP_NAME1;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string SHOP_NAME1
+        {
+            get { return _SHOP_NAME1; }
+            set
+            {
+                if(_SHOP_NAME1!=value || _isLoaded){
+                    _SHOP_NAME1=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="SHOP_NAME1");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

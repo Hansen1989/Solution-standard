@@ -264,6 +264,10 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.MOD_DATETIME == (DateTime)value);
                         expression = x => x.MOD_DATETIME == (DateTime)value;
                         break;
+					case "CREDIT_AMOUNT" :
+						model = list.SingleOrDefault(x => x.CREDIT_AMOUNT == (decimal)value);
+                        expression = x => x.CREDIT_AMOUNT == (decimal)value;
+                        break;
 
                     default :
                         return null;
@@ -436,6 +440,7 @@ namespace Solution.Logic.Managers {
                 CRT_DATETIME = model.CRT_DATETIME,
                 CRT_USER_ID = model.CRT_USER_ID,
                 MOD_DATETIME = model.MOD_DATETIME,
+                CREDIT_AMOUNT = model.CREDIT_AMOUNT,
             };
         }
 
@@ -472,6 +477,7 @@ namespace Solution.Logic.Managers {
                 CRT_DATETIME = model.CRT_DATETIME,
                 CRT_USER_ID = model.CRT_USER_ID,
                 MOD_DATETIME = model.MOD_DATETIME,
+                CREDIT_AMOUNT = model.CREDIT_AMOUNT,
             };
         }
 
@@ -542,6 +548,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "MOD_DATETIME" :
 					model.MOD_DATETIME = (DateTime)value;
+                    break;
+				case "CREDIT_AMOUNT" :
+					model.CREDIT_AMOUNT = (decimal)value;
                     break;
             }
 		}
@@ -1112,6 +1121,8 @@ namespace Solution.Logic.Managers {
 					return model.CRT_USER_ID;
 				case "MOD_DATETIME" :
 					return model.MOD_DATETIME;
+				case "CREDIT_AMOUNT" :
+					return model.CREDIT_AMOUNT;
 			}
 
 			return null;

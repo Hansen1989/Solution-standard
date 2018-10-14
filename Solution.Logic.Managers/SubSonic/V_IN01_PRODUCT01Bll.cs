@@ -14,31 +14,31 @@ using SubSonic.Query;
 
 namespace Solution.Logic.Managers {
 	/// <summary>
-	/// IN01表逻辑类
+	/// V_IN01_PRODUCT01表逻辑类
 	/// </summary>
-	public partial class IN01Bll : LogicBase {
+	public partial class V_IN01_PRODUCT01Bll : LogicBase {
  
  		/***********************************************************************
 		 * 模版生成函数                                                        *
 		 ***********************************************************************/
 		#region 模版生成函数
 				
-		private const string const_CacheKey = "Cache_IN01";
-        private const string const_CacheKey_Date = "Cache_IN01_Date";
+		private const string const_CacheKey = "Cache_V_IN01_PRODUCT01";
+        private const string const_CacheKey_Date = "Cache_V_IN01_PRODUCT01_Date";
 
 		#region 单例模式
 		//定义单例实体
-		private static IN01Bll _IN01Bll = null;
+		private static V_IN01_PRODUCT01Bll _V_IN01_PRODUCT01Bll = null;
 
 		/// <summary>
 		/// 获取本逻辑类单例
 		/// </summary>
 		/// <returns></returns>
-		public static IN01Bll GetInstence() {
-			if (_IN01Bll == null) {
-				_IN01Bll = new IN01Bll();
+		public static V_IN01_PRODUCT01Bll GetInstence() {
+			if (_V_IN01_PRODUCT01Bll == null) {
+				_V_IN01_PRODUCT01Bll = new V_IN01_PRODUCT01Bll();
 			}
-			return _IN01Bll;
+			return _V_IN01_PRODUCT01Bll;
 		}
 		#endregion
 		
@@ -59,12 +59,12 @@ namespace Solution.Logic.Managers {
 
 		#region IIS缓存函数
 		
-		#region 从IIS缓存中获取IN01表记录
+		#region 从IIS缓存中获取V_IN01_PRODUCT01表记录
 		/// <summary>
-        /// 从IIS缓存中获取IN01表记录
+        /// 从IIS缓存中获取V_IN01_PRODUCT01表记录
         /// </summary>
 	    /// <param name="isCache">是否从缓存中读取</param>
-        public IList<DataAccess.Model.IN01> GetList(bool isCache = true)
+        public IList<DataAccess.Model.V_IN01_PRODUCT01> GetList(bool isCache = true)
         {
 			try
 			{
@@ -93,27 +93,27 @@ namespace Solution.Logic.Managers {
 					//缓存中存在数据，则直接返回
 					else
 					{
-						return (IList<DataAccess.Model.IN01>)obj;
+						return (IList<DataAccess.Model.V_IN01_PRODUCT01>)obj;
 					}
 				}
 				else
 				{
 					//定义临时实体集
-					IList<DataAccess.Model.IN01> list = null;
+					IList<DataAccess.Model.V_IN01_PRODUCT01> list = null;
 
 					//获取全表缓存加载条件表达式
-					var exp = GetExpression<IN01>();
+					var exp = GetExpression<V_IN01_PRODUCT01>();
                     //如果条件为空，则查询全表所有记录
 					if (exp == null)
 					{
 						//从数据库中获取所有记录
-						var all = IN01.All();
+						var all = V_IN01_PRODUCT01.All();
                         list = all == null ? null : Transform(all.ToList());
 					}
 					else
 					{
                         //从数据库中查询出指定条件的记录，并转换为指定实体集
-						var all = IN01.Find(exp);
+						var all = V_IN01_PRODUCT01.Find(exp);
                         list = all == null ? null : Transform(all);
 					}
 
@@ -123,7 +123,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取IN01表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取V_IN01_PRODUCT01表记录时出现异常", e);
 			}
             
             return null;
@@ -136,8 +136,8 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="id">主键Id</param>
         /// <param name="isCache">是否从缓存中读取</param>
-		/// <returns>DataAccess.Model.IN01</returns>
-        public DataAccess.Model.IN01 GetModel(long id, bool isCache = true)
+		/// <returns>DataAccess.Model.V_IN01_PRODUCT01</returns>
+        public DataAccess.Model.V_IN01_PRODUCT01 GetModel(long id, bool isCache = true)
         {
             //判断是否使用缓存
 		    if (CommonBll.IsUseCache() && isCache)
@@ -157,7 +157,7 @@ namespace Solution.Logic.Managers {
 		    else
 		    {
                 //从数据库中直接读取
-                var model = IN01.SingleOrDefault(x => x.Id == id);
+                var model = V_IN01_PRODUCT01.SingleOrDefault(x => x.Id == id);
                 if (model == null)
                 {
                     return null;
@@ -176,8 +176,8 @@ namespace Solution.Logic.Managers {
         /// 从IIS缓存中获取指定Id记录
         /// </summary>
         /// <param name="id">主键Id</param>
-		/// <returns>DataAccess.Model.IN01</returns>
-        public DataAccess.Model.IN01 GetModelForCache(long id)
+		/// <returns>DataAccess.Model.V_IN01_PRODUCT01</returns>
+        public DataAccess.Model.V_IN01_PRODUCT01 GetModelForCache(long id)
         {
 			try
 			{
@@ -186,7 +186,7 @@ namespace Solution.Logic.Managers {
 
 				if (model == null){
 					//从数据库中读取
-					var tem = IN01.SingleOrDefault(x => x.Id == id);
+					var tem = V_IN01_PRODUCT01.SingleOrDefault(x => x.Id == id);
 					if (tem == null)
 					{
 						return null;
@@ -206,7 +206,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取IN01表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取V_IN01_PRODUCT01表记录时出现异常", e);
 
                 return null;
             }
@@ -219,15 +219,15 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="conditionColName">条件列名</param>
         /// <param name="value">条件值</param>
-        /// <returns>DataAccess.Model.IN01</returns>
-        public DataAccess.Model.IN01 GetModelForCache(string conditionColName, object value)
+        /// <returns>DataAccess.Model.V_IN01_PRODUCT01</returns>
+        public DataAccess.Model.V_IN01_PRODUCT01 GetModelForCache(string conditionColName, object value)
         {
 		try
             {
                 //从缓存中获取List
                 var list = GetList();
-                DataAccess.Model.IN01 model = null;
-                Expression<Func<IN01, bool>> expression = null;
+                DataAccess.Model.V_IN01_PRODUCT01 model = null;
+                Expression<Func<V_IN01_PRODUCT01, bool>> expression = null;
 
                 //返回指定条件的实体
                 switch (conditionColName)
@@ -296,6 +296,74 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.Exp_DateTime == (DateTime)value);
                         expression = x => x.Exp_DateTime == (DateTime)value;
                         break;
+					case "SHOP_NAME1" :
+						model = list.SingleOrDefault(x => x.SHOP_NAME1 == (string)value);
+                        expression = x => x.SHOP_NAME1 == (string)value;
+                        break;
+					case "PROD_NAME1" :
+						model = list.SingleOrDefault(x => x.PROD_NAME1 == (string)value);
+                        expression = x => x.PROD_NAME1 == (string)value;
+                        break;
+					case "STD_UNIT_NAME" :
+						model = list.SingleOrDefault(x => x.STD_UNIT_NAME == (string)value);
+                        expression = x => x.STD_UNIT_NAME == (string)value;
+                        break;
+					case "COST1" :
+						model = list.SingleOrDefault(x => x.COST1 == (decimal)value);
+                        expression = x => x.COST1 == (decimal)value;
+                        break;
+					case "COST2" :
+						model = list.SingleOrDefault(x => x.COST2 == (decimal)value);
+                        expression = x => x.COST2 == (decimal)value;
+                        break;
+					case "COST3" :
+						model = list.SingleOrDefault(x => x.COST3 == (decimal)value);
+                        expression = x => x.COST3 == (decimal)value;
+                        break;
+					case "STD_PRICE1" :
+						model = list.SingleOrDefault(x => x.STD_PRICE1 == (decimal)value);
+                        expression = x => x.STD_PRICE1 == (decimal)value;
+                        break;
+					case "STD_PRICE2" :
+						model = list.SingleOrDefault(x => x.STD_PRICE2 == (decimal)value);
+                        expression = x => x.STD_PRICE2 == (decimal)value;
+                        break;
+					case "STD_PRICE3" :
+						model = list.SingleOrDefault(x => x.STD_PRICE3 == (decimal)value);
+                        expression = x => x.STD_PRICE3 == (decimal)value;
+                        break;
+					case "UNIT_NAME" :
+						model = list.SingleOrDefault(x => x.UNIT_NAME == (string)value);
+                        expression = x => x.UNIT_NAME == (string)value;
+                        break;
+					case "UNIT_NAME1" :
+						model = list.SingleOrDefault(x => x.UNIT_NAME1 == (string)value);
+                        expression = x => x.UNIT_NAME1 == (string)value;
+                        break;
+					case "UNIT_NAME2" :
+						model = list.SingleOrDefault(x => x.UNIT_NAME2 == (string)value);
+                        expression = x => x.UNIT_NAME2 == (string)value;
+                        break;
+					case "PROD_CONVERT1" :
+						model = list.SingleOrDefault(x => x.PROD_CONVERT1 == (int)value);
+                        expression = x => x.PROD_CONVERT1 == (int)value;
+                        break;
+					case "PROD_CONVERT2" :
+						model = list.SingleOrDefault(x => x.PROD_CONVERT2 == (int)value);
+                        expression = x => x.PROD_CONVERT2 == (int)value;
+                        break;
+					case "PRCAREA_ID" :
+						model = list.SingleOrDefault(x => x.PRCAREA_ID == (string)value);
+                        expression = x => x.PRCAREA_ID == (string)value;
+                        break;
+					case "TAX_TYPE" :
+						model = list.SingleOrDefault(x => x.TAX_TYPE == (byte)value);
+                        expression = x => x.TAX_TYPE == (byte)value;
+                        break;
+					case "Tax_Num" :
+						model = list.SingleOrDefault(x => x.Tax_Num == (int)value);
+                        expression = x => x.Tax_Num == (int)value;
+                        break;
 
                     default :
                         return null;
@@ -304,7 +372,7 @@ namespace Solution.Logic.Managers {
                 if (model == null)
                 {
                     //从数据库中读取
-                    var tem = IN01.SingleOrDefault(expression);
+                    var tem = V_IN01_PRODUCT01.SingleOrDefault(expression);
                     if (tem == null)
                     {
                         return null;
@@ -325,7 +393,7 @@ namespace Solution.Logic.Managers {
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("从IIS缓存中获取IN01表记录时出现异常", e);
+                CommonBll.WriteLog("从IIS缓存中获取V_IN01_PRODUCT01表记录时出现异常", e);
 
                 return null;
             }
@@ -337,8 +405,8 @@ namespace Solution.Logic.Managers {
         /// 从IIS缓存中获取指定条件的记录
         /// </summary>
         /// <param name="expression">条件</param>
-        /// <returns>DataAccess.Model.IN01</returns>
-        public DataAccess.Model.IN01 GetModelForCache(Expression<Func<DataAccess.Model.IN01, bool>> expression)
+        /// <returns>DataAccess.Model.V_IN01_PRODUCT01</returns>
+        public DataAccess.Model.V_IN01_PRODUCT01 GetModelForCache(Expression<Func<DataAccess.Model.V_IN01_PRODUCT01, bool>> expression)
         {
 			//从缓存中读取记录列表
 			var list = GetList();
@@ -361,7 +429,7 @@ namespace Solution.Logic.Managers {
         /// 更新IIS缓存中指定Id记录
         /// </summary>
         /// <param name="model">记录实体</param>
-        public void SetModelForCache(DataAccess.Model.IN01 model)
+        public void SetModelForCache(DataAccess.Model.V_IN01_PRODUCT01 model)
         {
             //从缓存中读取记录列表
             var list = GetList();
@@ -375,7 +443,7 @@ namespace Solution.Logic.Managers {
         /// 更新IIS缓存中指定Id记录
         /// </summary>
         /// <param name="model">记录实体</param>
-        public void SetModelForCache(IN01 model)
+        public void SetModelForCache(V_IN01_PRODUCT01 model)
         {
             SetModelForCache(Transform(model));
         }
@@ -417,10 +485,10 @@ namespace Solution.Logic.Managers {
         }
 
 		/// <summary>
-        /// 按条件删除IIS缓存中IN01表的指定记录
+        /// 按条件删除IIS缓存中V_IN01_PRODUCT01表的指定记录
         /// </summary>
         /// <param name="expression">条件，值为null时删除全有记录</param>
-		public void DelCache(Expression<Func<DataAccess.Model.IN01, bool>> expression)
+		public void DelCache(Expression<Func<DataAccess.Model.V_IN01_PRODUCT01, bool>> expression)
         {
             //从缓存中获取List
 		    var list = GetList();
@@ -449,16 +517,16 @@ namespace Solution.Logic.Managers {
 
 		#region 实体转换
 		/// <summary>
-		/// 将IN01记录实体（SubSonic实体）转换为普通的实体（DataAccess.Model.IN01）
+		/// 将V_IN01_PRODUCT01记录实体（SubSonic实体）转换为普通的实体（DataAccess.Model.V_IN01_PRODUCT01）
 		/// </summary>
         /// <param name="model">SubSonic插件生成的实体</param>
-		/// <returns>DataAccess.Model.IN01</returns>
-		public DataAccess.Model.IN01 Transform(IN01 model)
+		/// <returns>DataAccess.Model.V_IN01_PRODUCT01</returns>
+		public DataAccess.Model.V_IN01_PRODUCT01 Transform(V_IN01_PRODUCT01 model)
         {			
 			if (model == null) 
 				return null;
 
-            return new DataAccess.Model.IN01
+            return new DataAccess.Model.V_IN01_PRODUCT01
             {
                 Id = model.Id,
                 SHOP_ID = model.SHOP_ID,
@@ -476,33 +544,50 @@ namespace Solution.Logic.Managers {
                 MEMO = model.MEMO,
                 BAT_NO = model.BAT_NO,
                 Exp_DateTime = model.Exp_DateTime,
+                SHOP_NAME1 = model.SHOP_NAME1,
+                PROD_NAME1 = model.PROD_NAME1,
+                STD_UNIT_NAME = model.STD_UNIT_NAME,
+                COST1 = model.COST1,
+                COST2 = model.COST2,
+                COST3 = model.COST3,
+                STD_PRICE1 = model.STD_PRICE1,
+                STD_PRICE2 = model.STD_PRICE2,
+                STD_PRICE3 = model.STD_PRICE3,
+                UNIT_NAME = model.UNIT_NAME,
+                UNIT_NAME1 = model.UNIT_NAME1,
+                UNIT_NAME2 = model.UNIT_NAME2,
+                PROD_CONVERT1 = model.PROD_CONVERT1,
+                PROD_CONVERT2 = model.PROD_CONVERT2,
+                PRCAREA_ID = model.PRCAREA_ID,
+                TAX_TYPE = model.TAX_TYPE,
+                Tax_Num = model.Tax_Num,
             };
         }
 
 		/// <summary>
-		/// 将IN01记录实体集（SubSonic实体）转换为普通的实体集（DataAccess.Model.IN01）
+		/// 将V_IN01_PRODUCT01记录实体集（SubSonic实体）转换为普通的实体集（DataAccess.Model.V_IN01_PRODUCT01）
 		/// </summary>
         /// <param name="sourceList">SubSonic插件生成的实体集</param>
-        public IList<DataAccess.Model.IN01> Transform(IList<IN01> sourceList)
+        public IList<DataAccess.Model.V_IN01_PRODUCT01> Transform(IList<V_IN01_PRODUCT01> sourceList)
         {
 			//创建List容器
-            var list = new List<DataAccess.Model.IN01>();
+            var list = new List<DataAccess.Model.V_IN01_PRODUCT01>();
 			//将SubSonic插件生成的实体集转换后存储到刚创建的List容器中
             sourceList.ToList().ForEach(r => list.Add(Transform(r)));
             return list;
         }
 
 		/// <summary>
-		/// 将IN01记录实体由普通的实体（DataAccess.Model.IN01）转换为SubSonic插件生成的实体
+		/// 将V_IN01_PRODUCT01记录实体由普通的实体（DataAccess.Model.V_IN01_PRODUCT01）转换为SubSonic插件生成的实体
 		/// </summary>
-        /// <param name="model">普通的实体（DataAccess.Model.IN01）</param>
-		/// <returns>IN01</returns>
-		public IN01 Transform(DataAccess.Model.IN01 model)
+        /// <param name="model">普通的实体（DataAccess.Model.V_IN01_PRODUCT01）</param>
+		/// <returns>V_IN01_PRODUCT01</returns>
+		public V_IN01_PRODUCT01 Transform(DataAccess.Model.V_IN01_PRODUCT01 model)
         {
 			if (model == null) 
 				return null;
 
-            return new IN01
+            return new V_IN01_PRODUCT01
             {
                 Id = model.Id,
                 SHOP_ID = model.SHOP_ID,
@@ -520,17 +605,34 @@ namespace Solution.Logic.Managers {
                 MEMO = model.MEMO,
                 BAT_NO = model.BAT_NO,
                 Exp_DateTime = model.Exp_DateTime,
+                SHOP_NAME1 = model.SHOP_NAME1,
+                PROD_NAME1 = model.PROD_NAME1,
+                STD_UNIT_NAME = model.STD_UNIT_NAME,
+                COST1 = model.COST1,
+                COST2 = model.COST2,
+                COST3 = model.COST3,
+                STD_PRICE1 = model.STD_PRICE1,
+                STD_PRICE2 = model.STD_PRICE2,
+                STD_PRICE3 = model.STD_PRICE3,
+                UNIT_NAME = model.UNIT_NAME,
+                UNIT_NAME1 = model.UNIT_NAME1,
+                UNIT_NAME2 = model.UNIT_NAME2,
+                PROD_CONVERT1 = model.PROD_CONVERT1,
+                PROD_CONVERT2 = model.PROD_CONVERT2,
+                PRCAREA_ID = model.PRCAREA_ID,
+                TAX_TYPE = model.TAX_TYPE,
+                Tax_Num = model.Tax_Num,
             };
         }
 
 		/// <summary>
-		/// 将IN01记录实体由普通实体集（DataAccess.Model.IN01）转换为SubSonic插件生成的实体集
+		/// 将V_IN01_PRODUCT01记录实体由普通实体集（DataAccess.Model.V_IN01_PRODUCT01）转换为SubSonic插件生成的实体集
 		/// </summary>
-        /// <param name="sourceList">普通实体集（DataAccess.Model.IN01）</param>
-        public IList<IN01> Transform(IList<DataAccess.Model.IN01> sourceList)
+        /// <param name="sourceList">普通实体集（DataAccess.Model.V_IN01_PRODUCT01）</param>
+        public IList<V_IN01_PRODUCT01> Transform(IList<DataAccess.Model.V_IN01_PRODUCT01> sourceList)
         {
 			//创建List容器
-            var list = new List<IN01>();
+            var list = new List<V_IN01_PRODUCT01>();
 			//将普通实体集转换后存储到刚创建的List容器中
             sourceList.ToList().ForEach(r => list.Add(Transform(r)));
             return list;
@@ -543,7 +645,7 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="model">实体</param>
         /// <param name="dic">列名与值</param>
-		public void SetModelValue(DataAccess.Model.IN01 model, Dictionary<string, object> dic)
+		public void SetModelValue(DataAccess.Model.V_IN01_PRODUCT01 model, Dictionary<string, object> dic)
 		{
 			if (model == null || dic == null) return;
 
@@ -560,7 +662,7 @@ namespace Solution.Logic.Managers {
         /// <param name="model">实体</param>
         /// <param name="colName">列名</param>
         /// <param name="value">值</param>
-		public void SetModelValue(DataAccess.Model.IN01 model, string colName, object value)
+		public void SetModelValue(DataAccess.Model.V_IN01_PRODUCT01 model, string colName, object value)
 		{
 			if (model == null || string.IsNullOrEmpty(colName)) return;
 
@@ -615,6 +717,57 @@ namespace Solution.Logic.Managers {
 				case "Exp_DateTime" :
 					model.Exp_DateTime = (DateTime)value;
                     break;
+				case "SHOP_NAME1" :
+					model.SHOP_NAME1 = (string)value;
+                    break;
+				case "PROD_NAME1" :
+					model.PROD_NAME1 = (string)value;
+                    break;
+				case "STD_UNIT_NAME" :
+					model.STD_UNIT_NAME = (string)value;
+                    break;
+				case "COST1" :
+					model.COST1 = (decimal)value;
+                    break;
+				case "COST2" :
+					model.COST2 = (decimal)value;
+                    break;
+				case "COST3" :
+					model.COST3 = (decimal)value;
+                    break;
+				case "STD_PRICE1" :
+					model.STD_PRICE1 = (decimal)value;
+                    break;
+				case "STD_PRICE2" :
+					model.STD_PRICE2 = (decimal)value;
+                    break;
+				case "STD_PRICE3" :
+					model.STD_PRICE3 = (decimal)value;
+                    break;
+				case "UNIT_NAME" :
+					model.UNIT_NAME = (string)value;
+                    break;
+				case "UNIT_NAME1" :
+					model.UNIT_NAME1 = (string)value;
+                    break;
+				case "UNIT_NAME2" :
+					model.UNIT_NAME2 = (string)value;
+                    break;
+				case "PROD_CONVERT1" :
+					model.PROD_CONVERT1 = (int)value;
+                    break;
+				case "PROD_CONVERT2" :
+					model.PROD_CONVERT2 = (int)value;
+                    break;
+				case "PRCAREA_ID" :
+					model.PRCAREA_ID = (string)value;
+                    break;
+				case "TAX_TYPE" :
+					model.TAX_TYPE = ConvertHelper.Ctinyint(value);
+                    break;
+				case "Tax_Num" :
+					model.Tax_Num = (int)value;
+                    break;
             }
 		}
 
@@ -622,9 +775,9 @@ namespace Solution.Logic.Managers {
 
 		#endregion
 
-		#region 获取IN01表记录总数
+		#region 获取V_IN01_PRODUCT01表记录总数
         /// <summary>
-        /// 获取IN01表记录总数
+        /// 获取V_IN01_PRODUCT01表记录总数
         /// </summary>
         /// <returns>记录总数</returns>
         public int GetRecordCount()
@@ -645,23 +798,23 @@ namespace Solution.Logic.Managers {
         }
 
 		/// <summary>
-		/// 获取IN01表记录总数——从数据库中查询
+		/// 获取V_IN01_PRODUCT01表记录总数——从数据库中查询
 		/// </summary>
         /// <param name="wheres">条件</param>
 		/// <returns>int</returns>
 		public int GetRecordCount(List<ConditionFun.SqlqueryCondition> wheres) {
 			var select = new SelectHelper();
-			return select.GetRecordCount<IN01>(wheres);
+			return select.GetRecordCount<V_IN01_PRODUCT01>(wheres);
 
 		}
 
 		/// <summary>
-		/// 获取IN01表指定条件的记录总数——从数据库中查询
+		/// 获取V_IN01_PRODUCT01表指定条件的记录总数——从数据库中查询
 		/// </summary>
         /// <param name="expression">条件</param>
 		/// <returns>int</returns>
-		public int GetRecordCount(Expression<Func<IN01, bool>> expression) {
-            return new Select().From<IN01>().Where(expression).GetRecordCount();
+		public int GetRecordCount(Expression<Func<V_IN01_PRODUCT01, bool>> expression) {
+            return new Select().From<V_IN01_PRODUCT01>().Where(expression).GetRecordCount();
 		}
 
         #endregion
@@ -671,7 +824,7 @@ namespace Solution.Logic.Managers {
         /// 查找指定条件的记录集合——从IIS缓存中查找
         /// </summary>
         /// <param name="expression">条件语句</param>
-        public IList<DataAccess.Model.IN01> Find(Expression<Func<DataAccess.Model.IN01, bool>> expression)
+        public IList<DataAccess.Model.V_IN01_PRODUCT01> Find(Expression<Func<DataAccess.Model.V_IN01_PRODUCT01, bool>> expression)
         {
 			//从缓存中获取记录集
 			var list = GetList();
@@ -711,7 +864,7 @@ namespace Solution.Logic.Managers {
             }
             
             //从数据库中查找
-            return IN01.Exists(x => x.Id == id);
+            return V_IN01_PRODUCT01.Exists(x => x.Id == id);
         }
 
         /// <summary>
@@ -719,7 +872,7 @@ namespace Solution.Logic.Managers {
         /// </summary>
         /// <param name="expression">条件语句</param>
         /// <returns></returns>
-        public bool Exist(Expression<Func<DataAccess.Model.IN01, bool>> expression)
+        public bool Exist(Expression<Func<DataAccess.Model.V_IN01_PRODUCT01, bool>> expression)
         {
             var list = GetList();
             if (list == null) 
@@ -731,9 +884,9 @@ namespace Solution.Logic.Managers {
         }
         #endregion
 
-		#region 获取IN01表记录
+		#region 获取V_IN01_PRODUCT01表记录
 		/// <summary>
-		/// 获取IN01表记录
+		/// 获取V_IN01_PRODUCT01表记录
 		/// </summary>
 		/// <param name="norepeat">是否使用去重复</param>
 		/// <param name="top">获取指定数量记录</param>
@@ -748,12 +901,12 @@ namespace Solution.Logic.Managers {
             {
                 //分页查询
                 var select = new SelectHelper();
-                return select.SelectDataTable<IN01>(norepeat, top, columns, pageIndex, pageSize, wheres, sorts);
+                return select.SelectDataTable<V_IN01_PRODUCT01>(norepeat, top, columns, pageIndex, pageSize, wheres, sorts);
             }
             catch (Exception e)
             {
                 //记录日志
-                CommonBll.WriteLog("获取IN01表记录时出现异常", e);
+                CommonBll.WriteLog("获取V_IN01_PRODUCT01表记录时出现异常", e);
 
                 return null;
             }
@@ -850,16 +1003,16 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 
-		#region 添加与编辑IN01表记录
+		#region 添加与编辑V_IN01_PRODUCT01表记录
 		/// <summary>
-		/// 添加与编辑IN01记录
+		/// 添加与编辑V_IN01_PRODUCT01记录
 		/// </summary>
 	    /// <param name="page">当前页面指针</param>
-		/// <param name="model">IN01表实体</param>
+		/// <param name="model">V_IN01_PRODUCT01表实体</param>
         /// <param name="content">更新说明</param>
         /// <param name="isCache">是否更新缓存</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void Save(Page page, IN01 model, string content = null, bool isCache = true, bool isAddUseLog = true)
+        public void Save(Page page, V_IN01_PRODUCT01 model, string content = null, bool isCache = true, bool isAddUseLog = true)
         {
 			try {
 				//保存
@@ -875,7 +1028,7 @@ namespace Solution.Logic.Managers {
 				{
 					if (string.IsNullOrEmpty(content))
 					{
-						content = "{0}" + (model.Id == 0 ? "添加" : "编辑") + "IN01记录成功，ID为【" + model.Id + "】";
+						content = "{0}" + (model.Id == 0 ? "添加" : "编辑") + "V_IN01_PRODUCT01记录成功，ID为【" + model.Id + "】";
 					}
 
 					//添加用户访问记录
@@ -883,7 +1036,7 @@ namespace Solution.Logic.Managers {
 				}
 			}
 			catch (Exception e) {
-				var result = "执行IN01Bll.Save()函数出错！";
+				var result = "执行V_IN01_PRODUCT01Bll.Save()函数出错！";
 
 				//出现异常，保存出错日志信息
 				CommonBll.WriteLog(result, e);
@@ -891,9 +1044,9 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 
-		#region 删除IN01表记录
+		#region 删除V_IN01_PRODUCT01表记录
 		/// <summary>
-		/// 删除IN01表记录
+		/// 删除V_IN01_PRODUCT01表记录
 		/// </summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="id">记录的主键值</param>
@@ -901,7 +1054,7 @@ namespace Solution.Logic.Managers {
 		public override void Delete(Page page, int id, bool isAddUseLog = true) 
 		{
 			//设置Sql语句
-			var sql = string.Format("delete from {0} where {1} = {2}", IN01Table.TableName,  IN01Table.Id, id);
+			var sql = string.Format("delete from {0} where {1} = {2}", V_IN01_PRODUCT01Table.TableName,  V_IN01_PRODUCT01Table.Id, id);
 
 			//删除
 			var delete = new DeleteHelper();
@@ -917,12 +1070,12 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了IN01表id为【" + id + "】的记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了V_IN01_PRODUCT01表id为【" + id + "】的记录！");
 			}
 		}
 
 		/// <summary>
-		/// 删除IN01表记录
+		/// 删除V_IN01_PRODUCT01表记录
 		/// </summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="id">记录的主键值</param>
@@ -934,7 +1087,7 @@ namespace Solution.Logic.Managers {
 			var str = string.Join(",", id);
 
 			//设置Sql语句
-			var sql = string.Format("delete from {0} where {1} in ({2})", IN01Table.TableName,  IN01Table.Id, str);
+			var sql = string.Format("delete from {0} where {1} in ({2})", V_IN01_PRODUCT01Table.TableName,  V_IN01_PRODUCT01Table.Id, str);
 
 			//删除
 			var delete = new DeleteHelper();
@@ -950,7 +1103,7 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了IN01表id为【" + str + "】的记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了V_IN01_PRODUCT01表id为【" + str + "】的记录！");
 			}
 		}
 
@@ -960,10 +1113,10 @@ namespace Solution.Logic.Managers {
         /// <param name="page">当前页面指针</param>
         /// <param name="expression">条件语句</param>
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
-        public void Delete(Page page, Expression<Func<IN01, bool>> expression, bool isAddUseLog = true)
+        public void Delete(Page page, Expression<Func<V_IN01_PRODUCT01, bool>> expression, bool isAddUseLog = true)
         {
 			//执行删除
-			IN01.Delete(expression);
+			V_IN01_PRODUCT01.Delete(expression);
 
             //判断是否启用缓存
             if (CommonBll.IsUseCache())
@@ -977,7 +1130,7 @@ namespace Solution.Logic.Managers {
 			if (isAddUseLog)
 		    {
 				//添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}删除了IN01表记录！");
+				UseLogBll.GetInstence().Save(page, "{0}删除了V_IN01_PRODUCT01表记录！");
 			}
         }
 		#endregion
@@ -994,7 +1147,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateSort(Page page, FineUI.Grid grid1, string tbxSort, string sortName = "Sort")
 	    {
 		     //更新排序
-			if (CommonBll.UpdateSort(page, grid1, tbxSort, "IN01", sortName, "Id"))
+			if (CommonBll.UpdateSort(page, grid1, tbxSort, "V_IN01_PRODUCT01", sortName, "Id"))
 		    {
 				//判断是否启用缓存
                 if (CommonBll.IsUseCache())
@@ -1006,7 +1159,7 @@ namespace Solution.Logic.Managers {
                 }
 				
 			    //添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}更新了IN01表排序！");
+				UseLogBll.GetInstence().Save(page, "{0}更新了V_IN01_PRODUCT01表排序！");
 
 			    return true;
 		    }
@@ -1027,7 +1180,7 @@ namespace Solution.Logic.Managers {
 		public override bool UpdateAutoSort(Page page, string strWhere = "", bool isExistsMoreLv = false, int pid = 0, string fieldName = "Sort", string fieldParentId = "ParentId")
 	    {
 		    //更新排序
-			if (CommonBll.AutoSort("Id", "IN01", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
+			if (CommonBll.AutoSort("Id", "V_IN01_PRODUCT01", strWhere, isExistsMoreLv, pid, fieldName, fieldParentId))
 		    {
 				//判断是否启用缓存
                 if (CommonBll.IsUseCache())
@@ -1039,7 +1192,7 @@ namespace Solution.Logic.Managers {
                 }
 
 			    //添加用户操作记录
-				UseLogBll.GetInstence().Save(page, "{0}对IN01表进行了自动排序操作！");
+				UseLogBll.GetInstence().Save(page, "{0}对V_IN01_PRODUCT01表进行了自动排序操作！");
 
 			    return true;
 		    }
@@ -1073,7 +1226,7 @@ namespace Solution.Logic.Managers {
 	    {
             //如果条件列为空，则默认为主键列
             if (string.IsNullOrEmpty(conditionColName))
-                conditionColName = IN01Table.Id;
+                conditionColName = V_IN01_PRODUCT01Table.Id;
 
             //在内存中查询
 	        if (isCache)
@@ -1118,7 +1271,7 @@ namespace Solution.Logic.Managers {
         /// <param name="colName">获取的列名</param>
         /// <param name="expression">条件</param>
         /// <returns></returns>
-        public object GetFieldValue(string colName, Expression<Func<DataAccess.Model.IN01, bool>> expression)
+        public object GetFieldValue(string colName, Expression<Func<DataAccess.Model.V_IN01_PRODUCT01, bool>> expression)
 	    {
 	        return GetFieldValue(GetModelForCache(expression), colName);
 	    }
@@ -1153,7 +1306,7 @@ namespace Solution.Logic.Managers {
         public object GetFieldValue(string colName, List<ConditionFun.SqlqueryCondition> wheres)
         {
             var select = new SelectHelper();
-            return select.GetColumnsValue<IN01>(colName, wheres);
+            return select.GetColumnsValue<V_IN01_PRODUCT01>(colName, wheres);
         }
 
 		/// <summary>
@@ -1162,7 +1315,7 @@ namespace Solution.Logic.Managers {
         /// <param name="model">实体</param>
         /// <param name="colName">获取的字段名</param>
         /// <returns></returns>
-		private object GetFieldValue(DataAccess.Model.IN01 model, string colName)
+		private object GetFieldValue(DataAccess.Model.V_IN01_PRODUCT01 model, string colName)
 		{
 			if (model == null || string.IsNullOrEmpty(colName)) return null;
 			//返回指定的列值
@@ -1200,6 +1353,40 @@ namespace Solution.Logic.Managers {
 					return model.BAT_NO;
 				case "Exp_DateTime" :
 					return model.Exp_DateTime;
+				case "SHOP_NAME1" :
+					return model.SHOP_NAME1;
+				case "PROD_NAME1" :
+					return model.PROD_NAME1;
+				case "STD_UNIT_NAME" :
+					return model.STD_UNIT_NAME;
+				case "COST1" :
+					return model.COST1;
+				case "COST2" :
+					return model.COST2;
+				case "COST3" :
+					return model.COST3;
+				case "STD_PRICE1" :
+					return model.STD_PRICE1;
+				case "STD_PRICE2" :
+					return model.STD_PRICE2;
+				case "STD_PRICE3" :
+					return model.STD_PRICE3;
+				case "UNIT_NAME" :
+					return model.UNIT_NAME;
+				case "UNIT_NAME1" :
+					return model.UNIT_NAME1;
+				case "UNIT_NAME2" :
+					return model.UNIT_NAME2;
+				case "PROD_CONVERT1" :
+					return model.PROD_CONVERT1;
+				case "PROD_CONVERT2" :
+					return model.PROD_CONVERT2;
+				case "PRCAREA_ID" :
+					return model.PRCAREA_ID;
+				case "TAX_TYPE" :
+					return model.TAX_TYPE;
+				case "Tax_Num" :
+					return model.Tax_Num;
 			}
 
 			return null;
@@ -1207,8 +1394,8 @@ namespace Solution.Logic.Managers {
 
 		#endregion
 		
-		#region 更新IN01表指定字段值
-		/// <summary>更新IN01表记录指定字段值，如果使用了缓存，保存成功后会清空本表的所有缓存记录，然后重新加载进缓存</summary>
+		#region 更新V_IN01_PRODUCT01表指定字段值
+		/// <summary>更新V_IN01_PRODUCT01表记录指定字段值，如果使用了缓存，保存成功后会清空本表的所有缓存记录，然后重新加载进缓存</summary>
 		/// <param name="page">当前页面指针</param>
 		/// <param name="dic">需要更新的字段与值</param>
 		/// <param name="wheres">条件</param>
@@ -1218,7 +1405,7 @@ namespace Solution.Logic.Managers {
 		public void UpdateValue(Page page, Dictionary<string, object> dic, List<ConditionFun.SqlqueryCondition> wheres = null, string content = "", bool isCache = true, bool isAddUseLog = true) {
 			//更新
 			var update = new UpdateHelper();
-			update.Update<IN01>(dic, wheres);
+			update.Update<V_IN01_PRODUCT01>(dic, wheres);
 
 			//判断是否启用缓存
 			if (isCache && CommonBll.IsUseCache())
@@ -1233,7 +1420,7 @@ namespace Solution.Logic.Managers {
 				if (string.IsNullOrEmpty(content))
 				{
 					//添加用户操作记录
-					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}修改了IN01表记录。");				
+					UseLogBll.GetInstence().Save(page, content != "" ? content : "{0}修改了V_IN01_PRODUCT01表记录。");				
 				}
 				else
 				{
@@ -1244,8 +1431,8 @@ namespace Solution.Logic.Managers {
 		}
 		#endregion
 				
-		#region 更新IN01表指定主键Id的字段值
-		/// <summary>更新IN01表记录指定字段值</summary>
+		#region 更新V_IN01_PRODUCT01表指定主键Id的字段值
+		/// <summary>更新V_IN01_PRODUCT01表记录指定字段值</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
 	    /// <param name="dic">需要更新的字段与值</param>
@@ -1254,14 +1441,14 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
 	    public void UpdateValue(Page page, int id, Dictionary<string, object> dic, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-			content = content != "" ? content : "{0}修改了IN01表主键Id值为" + id + "的记录。";
+			content = content != "" ? content : "{0}修改了V_IN01_PRODUCT01表主键Id值为" + id + "的记录。";
 			
             //条件
 		    List<ConditionFun.SqlqueryCondition> wheres = null;
             if (id > 0)
             {
                 wheres = new List<ConditionFun.SqlqueryCondition>();
-                wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, IN01Table.Id, Comparison.Equals, id));
+                wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_IN01_PRODUCT01Table.Id, Comparison.Equals, id));
             };
 
 			//判断是否启用缓存——为了防止并发问题，所以先更新缓存再更新数据库
@@ -1279,7 +1466,7 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, dic, wheres, content, false, isAddUseLog);
         }
 
-        /// <summary>更新IN01表记录指定字段值（更新一个字段值）</summary>
+        /// <summary>更新V_IN01_PRODUCT01表记录指定字段值（更新一个字段值）</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
         /// <param name="columnName">要更新的列名</param>
@@ -1289,7 +1476,7 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
         public void UpdateValue(Page page, int id, string columnName, object columnValue, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-            content = content != "" ? content : "{0}修改了IN01表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
+            content = content != "" ? content : "{0}修改了V_IN01_PRODUCT01表主键Id值为" + id + "的记录，将" + columnName + "字段值修改为" + columnValue;
             //设置更新字段
             var dic = new Dictionary<string, object>();
             dic.Add(columnName, columnValue);
@@ -1298,7 +1485,7 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, id, dic, content, isCache, isAddUseLog);
         }
 
-		 /// <summary>更新IN01表记录指定字段值（更新两个字段值）</summary>
+		 /// <summary>更新V_IN01_PRODUCT01表记录指定字段值（更新两个字段值）</summary>
         /// <param name="page">当前页面指针</param>
         /// <param name="id">主键Id，当小于等于0时，则更新所有记录</param>
         /// <param name="columnName1">要更新的列名</param>
@@ -1310,7 +1497,7 @@ namespace Solution.Logic.Managers {
 		/// <param name="isAddUseLog">是否添加用户操作日志</param>
         public void UpdateValue(Page page, int id, string columnName1, object columnValue1, string columnName2, object columnValue2, string content = "", bool isCache = true, bool isAddUseLog = true)
         {
-            content = content != "" ? content : "{0}修改了IN01表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
+            content = content != "" ? content : "{0}修改了V_IN01_PRODUCT01表主键Id值为" + id + "的记录，将" + columnName1 + "字段值修改为" + columnValue1 + "，" + columnName2 + "字段值修改为" + columnValue2;
             //设置更新字段
             var dic = new Dictionary<string, object>();
             dic.Add(columnName1, columnValue1);
@@ -1320,6 +1507,25 @@ namespace Solution.Logic.Managers {
             UpdateValue(page, id, dic, content, isCache, isAddUseLog);
         }
         #endregion
+		
+		#region 更新TAX_TYPE字段值
+		/// <summary>
+		/// 更新TAX_TYPE字段值
+		/// </summary>
+		/// <param name="page">当前页面指针</param>
+		/// <param name="pkValue">主键Id，当等于0时，则更新所有记录</param>
+		/// <param name="updateValue">更新值</param>
+        /// <param name="isCache">是否同步更新缓存</param>
+		/// <param name="isAddUseLog">是否添加用户操作日志</param>
+		public void UpdateTAX_TYPE(Page page, int pkValue, int updateValue, bool isCache = true, bool isAddUseLog = true) {
+			//设置更新值
+			var setValue = new Dictionary<string, object>();
+			setValue[V_IN01_PRODUCT01Table.TAX_TYPE] = updateValue;
+
+			//更新
+			UpdateValue(page, pkValue, setValue, "{0}更新了V_IN01_PRODUCT01表id为【" + pkValue + "】的记录，更新内容为将TAX_TYPE字段值修改为" + updateValue, isCache, isAddUseLog);
+		}
+		#endregion
 		
     
 		#endregion 模版生成函数
