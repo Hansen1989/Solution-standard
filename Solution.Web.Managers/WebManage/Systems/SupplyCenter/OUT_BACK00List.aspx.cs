@@ -673,7 +673,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         }
 
         /// <summary>
-        /// 添加商品，采购单位未完成，价格取值未完成，税额未完成
+        /// 添加商品
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
