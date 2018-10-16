@@ -14,38 +14,38 @@ using SubSonic.SqlGeneration.Schema;
 namespace Solution.DataAccess.DataModel
 {    
     /// <summary>
-    /// A class which represents the IN_BACK01 table in the SolutionDataBase_standard Database.
+    /// A class which represents the V_ORDER01_PRODUCT01 table in the SolutionDataBase_standard Database.
     /// </summary>
-    public partial class IN_BACK01: IActiveRecord
+    public partial class V_ORDER01_PRODUCT01: IActiveRecord
     {
     
         #region Built-in testing
-        static TestRepository<IN_BACK01> _testRepo;
+        static TestRepository<V_ORDER01_PRODUCT01> _testRepo;
         
 
         
         static void SetTestRepo(){
-            _testRepo = _testRepo ?? new TestRepository<IN_BACK01>(new Solution.DataAccess.DataModel.SolutionDataBase_standardDB());
+            _testRepo = _testRepo ?? new TestRepository<V_ORDER01_PRODUCT01>(new Solution.DataAccess.DataModel.SolutionDataBase_standardDB());
         }
         public static void ResetTestRepo(){
             _testRepo = null;
             SetTestRepo();
         }
-        public static void Setup(List<IN_BACK01> testlist){
+        public static void Setup(List<V_ORDER01_PRODUCT01> testlist){
             SetTestRepo();
             foreach (var item in testlist)
             {
                 _testRepo._items.Add(item);
             }
         }
-        public static void Setup(IN_BACK01 item) {
+        public static void Setup(V_ORDER01_PRODUCT01 item) {
             SetTestRepo();
             _testRepo._items.Add(item);
         }
         public static void Setup(int testItems) {
             SetTestRepo();
             for(int i=0;i<testItems;i++){
-                IN_BACK01 item=new IN_BACK01();
+                V_ORDER01_PRODUCT01 item=new V_ORDER01_PRODUCT01();
                 _testRepo._items.Add(item);
             }
         }
@@ -55,7 +55,7 @@ namespace Solution.DataAccess.DataModel
 
         #endregion
 
-        IRepository<IN_BACK01> _repo;
+        IRepository<V_ORDER01_PRODUCT01> _repo;
         ITable tbl;
         bool _isNew;
         public bool IsNew(){
@@ -86,7 +86,7 @@ namespace Solution.DataAccess.DataModel
         }
 
         Solution.DataAccess.DataModel.SolutionDataBase_standardDB _db;
-        public IN_BACK01(string connectionString, string providerName) {
+        public V_ORDER01_PRODUCT01(string connectionString, string providerName) {
 
             _db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB(connectionString, providerName);
             Init();            
@@ -95,10 +95,10 @@ namespace Solution.DataAccess.DataModel
             TestMode=this._db.DataProvider.ConnectionString.Equals("test", StringComparison.InvariantCultureIgnoreCase);
             _dirtyColumns=new List<IColumn>();
             if(TestMode){
-                IN_BACK01.SetTestRepo();
+                V_ORDER01_PRODUCT01.SetTestRepo();
                 _repo=_testRepo;
             }else{
-                _repo = new SubSonicRepository<IN_BACK01>(_db);
+                _repo = new SubSonicRepository<V_ORDER01_PRODUCT01>(_db);
             }
             tbl=_repo.GetTable();
             SetIsNew(true);
@@ -106,7 +106,7 @@ namespace Solution.DataAccess.DataModel
 
         }
         
-        public IN_BACK01(){
+        public V_ORDER01_PRODUCT01(){
 			_db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB();
             Init();            
         }
@@ -120,7 +120,7 @@ namespace Solution.DataAccess.DataModel
                
             SHOP_ID = readRecord.get_string("SHOP_ID",null);
                
-            IB_ID = readRecord.get_string("IB_ID",null);
+            ORDER_ID = readRecord.get_string("ORDER_ID",null);
                
             SNo = readRecord.get_int("SNo",null);
                
@@ -128,7 +128,13 @@ namespace Solution.DataAccess.DataModel
                
             QUANTITY = readRecord.get_decimal("QUANTITY",null);
                
-            STD_TYPE = readRecord.get_string("STD_TYPE",null);
+            ON_QUAN = readRecord.get_decimal("ON_QUAN",null);
+               
+            QUAN1 = readRecord.get_decimal("QUAN1",null);
+               
+            QUAN2 = readRecord.get_decimal("QUAN2",null);
+               
+            COST_PRICE = readRecord.get_decimal("COST_PRICE",null);
                
             STD_UNIT = readRecord.get_string("STD_UNIT",null);
                
@@ -138,19 +144,21 @@ namespace Solution.DataAccess.DataModel
                
             STD_PRICE = readRecord.get_decimal("STD_PRICE",null);
                
-            COST = readRecord.get_decimal("COST",null);
+            Memo = readRecord.get_string("Memo",null);
                
-            QUAN1 = readRecord.get_decimal("QUAN1",null);
+            CRT_DATETIME = readRecord.get_datetime("CRT_DATETIME",null);
                
-            QUAN2 = readRecord.get_decimal("QUAN2",null);
+            CRT_USER_ID = readRecord.get_string("CRT_USER_ID",null);
                
-            REASON_ID = readRecord.get_string("REASON_ID",null);
+            MOD_DATETIME = readRecord.get_datetime("MOD_DATETIME",null);
                
-            MEMO = readRecord.get_string("MEMO",null);
+            MOD_USER_ID = readRecord.get_string("MOD_USER_ID",null);
                
-            BAT_NO = readRecord.get_string("BAT_NO",null);
+            STD_TYPE = readRecord.get_string("STD_TYPE",null);
                
-            Exp_DateTime = readRecord.get_datetime("Exp_DateTime",null);
+            PROD_NAME1 = readRecord.get_string("PROD_NAME1",null);
+               
+            SHOP_NAME1 = readRecord.get_string("SHOP_NAME1",null);
                 }   
 
         partial void OnCreated();
@@ -167,40 +175,40 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        public IN_BACK01(Expression<Func<IN_BACK01, bool>> expression):this() {
+        public V_ORDER01_PRODUCT01(Expression<Func<V_ORDER01_PRODUCT01, bool>> expression):this() {
 
             SetIsLoaded(_repo.Load(this,expression));
         }
         
        
         
-        internal static IRepository<IN_BACK01> GetRepo(string connectionString, string providerName){
+        internal static IRepository<V_ORDER01_PRODUCT01> GetRepo(string connectionString, string providerName){
             Solution.DataAccess.DataModel.SolutionDataBase_standardDB db;
             if(String.IsNullOrEmpty(connectionString)){
                 db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB();
             }else{
                 db=new Solution.DataAccess.DataModel.SolutionDataBase_standardDB(connectionString, providerName);
             }
-            IRepository<IN_BACK01> _repo;
+            IRepository<V_ORDER01_PRODUCT01> _repo;
             
             if(db.TestMode){
-                IN_BACK01.SetTestRepo();
+                V_ORDER01_PRODUCT01.SetTestRepo();
                 _repo=_testRepo;
             }else{
-                _repo = new SubSonicRepository<IN_BACK01>(db);
+                _repo = new SubSonicRepository<V_ORDER01_PRODUCT01>(db);
             }
             return _repo;        
         }       
         
-        internal static IRepository<IN_BACK01> GetRepo(){
+        internal static IRepository<V_ORDER01_PRODUCT01> GetRepo(){
             return GetRepo("","");
         }
         
-        public static IN_BACK01 SingleOrDefault(Expression<Func<IN_BACK01, bool>> expression) {
+        public static V_ORDER01_PRODUCT01 SingleOrDefault(Expression<Func<V_ORDER01_PRODUCT01, bool>> expression) {
 
             var repo = GetRepo();
             var results=repo.Find(expression);
-            IN_BACK01 single=null;
+            V_ORDER01_PRODUCT01 single=null;
             if(results.Count() > 0){
                 single=results.ToList()[0];
                 single.OnLoaded();
@@ -211,10 +219,10 @@ namespace Solution.DataAccess.DataModel
             return single;
         }      
         
-        public static IN_BACK01 SingleOrDefault(Expression<Func<IN_BACK01, bool>> expression,string connectionString, string providerName) {
+        public static V_ORDER01_PRODUCT01 SingleOrDefault(Expression<Func<V_ORDER01_PRODUCT01, bool>> expression,string connectionString, string providerName) {
             var repo = GetRepo(connectionString,providerName);
             var results=repo.Find(expression);
-            IN_BACK01 single=null;
+            V_ORDER01_PRODUCT01 single=null;
             if(results.Count() > 0){
                 single=results.ToList()[0];
             }
@@ -225,49 +233,49 @@ namespace Solution.DataAccess.DataModel
         }
         
         
-        public static bool Exists(Expression<Func<IN_BACK01, bool>> expression,string connectionString, string providerName) {
+        public static bool Exists(Expression<Func<V_ORDER01_PRODUCT01, bool>> expression,string connectionString, string providerName) {
            
             return All(connectionString,providerName).Any(expression);
         }        
-        public static bool Exists(Expression<Func<IN_BACK01, bool>> expression) {
+        public static bool Exists(Expression<Func<V_ORDER01_PRODUCT01, bool>> expression) {
            
             return All().Any(expression);
         }        
 
-        public static IList<IN_BACK01> Find(Expression<Func<IN_BACK01, bool>> expression) {
+        public static IList<V_ORDER01_PRODUCT01> Find(Expression<Func<V_ORDER01_PRODUCT01, bool>> expression) {
             
             var repo = GetRepo();
             return repo.Find(expression).ToList();
         }
         
-        public static IList<IN_BACK01> Find(Expression<Func<IN_BACK01, bool>> expression,string connectionString, string providerName) {
+        public static IList<V_ORDER01_PRODUCT01> Find(Expression<Func<V_ORDER01_PRODUCT01, bool>> expression,string connectionString, string providerName) {
 
             var repo = GetRepo(connectionString,providerName);
             return repo.Find(expression).ToList();
 
         }
-        public static IQueryable<IN_BACK01> All(string connectionString, string providerName) {
+        public static IQueryable<V_ORDER01_PRODUCT01> All(string connectionString, string providerName) {
             return GetRepo(connectionString,providerName).GetAll();
         }
-        public static IQueryable<IN_BACK01> All() {
+        public static IQueryable<V_ORDER01_PRODUCT01> All() {
             return GetRepo().GetAll();
         }
         
-        public static PagedList<IN_BACK01> GetPaged(string sortBy, int pageIndex, int pageSize,string connectionString, string providerName) {
+        public static PagedList<V_ORDER01_PRODUCT01> GetPaged(string sortBy, int pageIndex, int pageSize,string connectionString, string providerName) {
             return GetRepo(connectionString,providerName).GetPaged(sortBy, pageIndex, pageSize);
         }
       
-        public static PagedList<IN_BACK01> GetPaged(string sortBy, int pageIndex, int pageSize) {
+        public static PagedList<V_ORDER01_PRODUCT01> GetPaged(string sortBy, int pageIndex, int pageSize) {
             return GetRepo().GetPaged(sortBy, pageIndex, pageSize);
         }
 
-        public static PagedList<IN_BACK01> GetPaged(int pageIndex, int pageSize,string connectionString, string providerName) {
+        public static PagedList<V_ORDER01_PRODUCT01> GetPaged(int pageIndex, int pageSize,string connectionString, string providerName) {
             return GetRepo(connectionString,providerName).GetPaged(pageIndex, pageSize);
             
         }
 
 
-        public static PagedList<IN_BACK01> GetPaged(int pageIndex, int pageSize) {
+        public static PagedList<V_ORDER01_PRODUCT01> GetPaged(int pageIndex, int pageSize) {
             return GetRepo().GetPaged(pageIndex, pageSize);
             
         }
@@ -294,8 +302,8 @@ namespace Solution.DataAccess.DataModel
                     }
 
         public override bool Equals(object obj){
-            if(obj.GetType()==typeof(IN_BACK01)){
-                IN_BACK01 compare=(IN_BACK01)obj;
+            if(obj.GetType()==typeof(V_ORDER01_PRODUCT01)){
+                V_ORDER01_PRODUCT01 compare=(V_ORDER01_PRODUCT01)obj;
                 return compare.KeyValue()==this.KeyValue();
             }else{
                 return base.Equals(obj);
@@ -332,7 +340,6 @@ namespace Solution.DataAccess.DataModel
 		/// <summary>
 		/// 
 		/// </summary>
-		[SubSonicPrimaryKey]
         public int Id
         {
             get { return _Id; }
@@ -373,18 +380,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _IB_ID;
+        string _ORDER_ID;
 		/// <summary>
 		/// 
 		/// </summary>
-        public string IB_ID
+        public string ORDER_ID
         {
-            get { return _IB_ID; }
+            get { return _ORDER_ID; }
             set
             {
-                if(_IB_ID!=value || _isLoaded){
-                    _IB_ID=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="IB_ID");
+                if(_ORDER_ID!=value || _isLoaded){
+                    _ORDER_ID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="ORDER_ID");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -461,18 +468,84 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _STD_TYPE;
+        decimal _ON_QUAN;
 		/// <summary>
 		/// 
 		/// </summary>
-        public string STD_TYPE
+        public decimal ON_QUAN
         {
-            get { return _STD_TYPE; }
+            get { return _ON_QUAN; }
             set
             {
-                if(_STD_TYPE!=value || _isLoaded){
-                    _STD_TYPE=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="STD_TYPE");
+                if(_ON_QUAN!=value || _isLoaded){
+                    _ON_QUAN=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="ON_QUAN");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        decimal _QUAN1;
+		/// <summary>
+		/// 
+		/// </summary>
+        public decimal QUAN1
+        {
+            get { return _QUAN1; }
+            set
+            {
+                if(_QUAN1!=value || _isLoaded){
+                    _QUAN1=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="QUAN1");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        decimal _QUAN2;
+		/// <summary>
+		/// 
+		/// </summary>
+        public decimal QUAN2
+        {
+            get { return _QUAN2; }
+            set
+            {
+                if(_QUAN2!=value || _isLoaded){
+                    _QUAN2=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="QUAN2");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        decimal _COST_PRICE;
+		/// <summary>
+		/// 
+		/// </summary>
+        public decimal COST_PRICE
+        {
+            get { return _COST_PRICE; }
+            set
+            {
+                if(_COST_PRICE!=value || _isLoaded){
+                    _COST_PRICE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="COST_PRICE");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -571,18 +644,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        decimal _COST;
+        string _Memo;
 		/// <summary>
 		/// 
 		/// </summary>
-        public decimal COST
+        public string Memo
         {
-            get { return _COST; }
+            get { return _Memo; }
             set
             {
-                if(_COST!=value || _isLoaded){
-                    _COST=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="COST");
+                if(_Memo!=value || _isLoaded){
+                    _Memo=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Memo");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -593,18 +666,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        decimal _QUAN1;
+        DateTime _CRT_DATETIME;
 		/// <summary>
 		/// 
 		/// </summary>
-        public decimal QUAN1
+        public DateTime CRT_DATETIME
         {
-            get { return _QUAN1; }
+            get { return _CRT_DATETIME; }
             set
             {
-                if(_QUAN1!=value || _isLoaded){
-                    _QUAN1=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="QUAN1");
+                if(_CRT_DATETIME!=value || _isLoaded){
+                    _CRT_DATETIME=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="CRT_DATETIME");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -615,18 +688,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        decimal _QUAN2;
+        string _CRT_USER_ID;
 		/// <summary>
 		/// 
 		/// </summary>
-        public decimal QUAN2
+        public string CRT_USER_ID
         {
-            get { return _QUAN2; }
+            get { return _CRT_USER_ID; }
             set
             {
-                if(_QUAN2!=value || _isLoaded){
-                    _QUAN2=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="QUAN2");
+                if(_CRT_USER_ID!=value || _isLoaded){
+                    _CRT_USER_ID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="CRT_USER_ID");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -637,18 +710,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _REASON_ID;
+        DateTime _MOD_DATETIME;
 		/// <summary>
 		/// 
 		/// </summary>
-        public string REASON_ID
+        public DateTime MOD_DATETIME
         {
-            get { return _REASON_ID; }
+            get { return _MOD_DATETIME; }
             set
             {
-                if(_REASON_ID!=value || _isLoaded){
-                    _REASON_ID=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="REASON_ID");
+                if(_MOD_DATETIME!=value || _isLoaded){
+                    _MOD_DATETIME=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MOD_DATETIME");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -659,18 +732,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _MEMO;
+        string _MOD_USER_ID;
 		/// <summary>
 		/// 
 		/// </summary>
-        public string MEMO
+        public string MOD_USER_ID
         {
-            get { return _MEMO; }
+            get { return _MOD_USER_ID; }
             set
             {
-                if(_MEMO!=value || _isLoaded){
-                    _MEMO=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MEMO");
+                if(_MOD_USER_ID!=value || _isLoaded){
+                    _MOD_USER_ID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MOD_USER_ID");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -681,18 +754,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _BAT_NO;
+        string _STD_TYPE;
 		/// <summary>
 		/// 
 		/// </summary>
-        public string BAT_NO
+        public string STD_TYPE
         {
-            get { return _BAT_NO; }
+            get { return _STD_TYPE; }
             set
             {
-                if(_BAT_NO!=value || _isLoaded){
-                    _BAT_NO=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="BAT_NO");
+                if(_STD_TYPE!=value || _isLoaded){
+                    _STD_TYPE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="STD_TYPE");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -703,18 +776,40 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        DateTime _Exp_DateTime;
+        string _PROD_NAME1;
 		/// <summary>
 		/// 
 		/// </summary>
-        public DateTime Exp_DateTime
+        public string PROD_NAME1
         {
-            get { return _Exp_DateTime; }
+            get { return _PROD_NAME1; }
             set
             {
-                if(_Exp_DateTime!=value || _isLoaded){
-                    _Exp_DateTime=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Exp_DateTime");
+                if(_PROD_NAME1!=value || _isLoaded){
+                    _PROD_NAME1=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PROD_NAME1");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        string _SHOP_NAME1;
+		/// <summary>
+		/// 
+		/// </summary>
+        public string SHOP_NAME1
+        {
+            get { return _SHOP_NAME1; }
+            set
+            {
+                if(_SHOP_NAME1!=value || _isLoaded){
+                    _SHOP_NAME1=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="SHOP_NAME1");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -816,7 +911,7 @@ namespace Solution.DataAccess.DataModel
         }
 
 
-        public static void Delete(Expression<Func<IN_BACK01, bool>> expression) {
+        public static void Delete(Expression<Func<V_ORDER01_PRODUCT01, bool>> expression) {
             var repo = GetRepo();
             
        

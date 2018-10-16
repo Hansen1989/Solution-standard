@@ -6,23 +6,23 @@ using System.Data;
 
 namespace Solution.DataAccess.DataModel {
         /// <summary>
-        /// Table: IN_BACK01
-        /// Primary Key: Id
+        /// Table: V_ORDER01_PRODUCT01
+        /// Primary Key: 
         /// </summary>
 
-        public class IN_BACK01Structs: DatabaseTable {
+        public class V_ORDER01_PRODUCT01Structs: DatabaseTable {
             
-            public IN_BACK01Structs(IDataProvider provider):base("IN_BACK01",provider){
-                ClassName = "IN_BACK01";
+            public V_ORDER01_PRODUCT01Structs(IDataProvider provider):base("V_ORDER01_PRODUCT01",provider){
+                ClassName = "V_ORDER01_PRODUCT01";
                 SchemaName = "dbo";
                 
 
                 Columns.Add(new DatabaseColumn("Id", this)
                 {
-	                IsPrimaryKey = true,
+	                IsPrimaryKey = false,
 	                DataType = DbType.Int32,
 	                IsNullable = false,
-	                AutoIncrement = true,
+	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 0,
 					PropertyName = "Id"
@@ -39,7 +39,7 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "SHOP_ID"
                 });
 
-                Columns.Add(new DatabaseColumn("IB_ID", this)
+                Columns.Add(new DatabaseColumn("ORDER_ID", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
@@ -47,7 +47,7 @@ namespace Solution.DataAccess.DataModel {
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 30,
-					PropertyName = "IB_ID"
+					PropertyName = "ORDER_ID"
                 });
 
                 Columns.Add(new DatabaseColumn("SNo", this)
@@ -83,15 +83,48 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "QUANTITY"
                 });
 
-                Columns.Add(new DatabaseColumn("STD_TYPE", this)
+                Columns.Add(new DatabaseColumn("ON_QUAN", this)
                 {
 	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
+	                DataType = DbType.Decimal,
 	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
-	                MaxLength = 6,
-					PropertyName = "STD_TYPE"
+	                MaxLength = 0,
+					PropertyName = "ON_QUAN"
+                });
+
+                Columns.Add(new DatabaseColumn("QUAN1", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "QUAN1"
+                });
+
+                Columns.Add(new DatabaseColumn("QUAN2", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "QUAN2"
+                });
+
+                Columns.Add(new DatabaseColumn("COST_PRICE", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "COST_PRICE"
                 });
 
                 Columns.Add(new DatabaseColumn("STD_UNIT", this)
@@ -138,73 +171,40 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "STD_PRICE"
                 });
 
-                Columns.Add(new DatabaseColumn("COST", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Decimal,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "COST"
-                });
-
-                Columns.Add(new DatabaseColumn("QUAN1", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Decimal,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "QUAN1"
-                });
-
-                Columns.Add(new DatabaseColumn("QUAN2", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Decimal,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "QUAN2"
-                });
-
-                Columns.Add(new DatabaseColumn("REASON_ID", this)
+                Columns.Add(new DatabaseColumn("Memo", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
 	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
-	                MaxLength = 6,
-					PropertyName = "REASON_ID"
+	                MaxLength = 100,
+					PropertyName = "Memo"
                 });
 
-                Columns.Add(new DatabaseColumn("MEMO", this)
+                Columns.Add(new DatabaseColumn("CRT_DATETIME", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.DateTime,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "CRT_DATETIME"
+                });
+
+                Columns.Add(new DatabaseColumn("CRT_USER_ID", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
-	                IsNullable = true,
+	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
-	                MaxLength = 200,
-					PropertyName = "MEMO"
+	                MaxLength = 10,
+					PropertyName = "CRT_USER_ID"
                 });
 
-                Columns.Add(new DatabaseColumn("BAT_NO", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 40,
-					PropertyName = "BAT_NO"
-                });
-
-                Columns.Add(new DatabaseColumn("Exp_DateTime", this)
+                Columns.Add(new DatabaseColumn("MOD_DATETIME", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.DateTime,
@@ -212,7 +212,51 @@ namespace Solution.DataAccess.DataModel {
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 0,
-					PropertyName = "Exp_DateTime"
+					PropertyName = "MOD_DATETIME"
+                });
+
+                Columns.Add(new DatabaseColumn("MOD_USER_ID", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10,
+					PropertyName = "MOD_USER_ID"
+                });
+
+                Columns.Add(new DatabaseColumn("STD_TYPE", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 50,
+					PropertyName = "STD_TYPE"
+                });
+
+                Columns.Add(new DatabaseColumn("PROD_NAME1", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 40,
+					PropertyName = "PROD_NAME1"
+                });
+
+                Columns.Add(new DatabaseColumn("SHOP_NAME1", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.AnsiString,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 40,
+					PropertyName = "SHOP_NAME1"
                 });
                     
                 
@@ -233,9 +277,9 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn IB_ID{
+            public IColumn ORDER_ID{
                 get{
-                    return this.GetColumn("IB_ID");
+                    return this.GetColumn("ORDER_ID");
                 }
             }
 				
@@ -261,9 +305,30 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn STD_TYPE{
+            public IColumn ON_QUAN{
                 get{
-                    return this.GetColumn("STD_TYPE");
+                    return this.GetColumn("ON_QUAN");
+                }
+            }
+				
+            
+            public IColumn QUAN1{
+                get{
+                    return this.GetColumn("QUAN1");
+                }
+            }
+				
+            
+            public IColumn QUAN2{
+                get{
+                    return this.GetColumn("QUAN2");
+                }
+            }
+				
+            
+            public IColumn COST_PRICE{
+                get{
+                    return this.GetColumn("COST_PRICE");
                 }
             }
 				
@@ -296,51 +361,58 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn COST{
+            public IColumn Memo{
                 get{
-                    return this.GetColumn("COST");
+                    return this.GetColumn("Memo");
                 }
             }
 				
             
-            public IColumn QUAN1{
+            public IColumn CRT_DATETIME{
                 get{
-                    return this.GetColumn("QUAN1");
+                    return this.GetColumn("CRT_DATETIME");
                 }
             }
 				
             
-            public IColumn QUAN2{
+            public IColumn CRT_USER_ID{
                 get{
-                    return this.GetColumn("QUAN2");
+                    return this.GetColumn("CRT_USER_ID");
                 }
             }
 				
             
-            public IColumn REASON_ID{
+            public IColumn MOD_DATETIME{
                 get{
-                    return this.GetColumn("REASON_ID");
+                    return this.GetColumn("MOD_DATETIME");
                 }
             }
 				
             
-            public IColumn MEMO{
+            public IColumn MOD_USER_ID{
                 get{
-                    return this.GetColumn("MEMO");
+                    return this.GetColumn("MOD_USER_ID");
                 }
             }
 				
             
-            public IColumn BAT_NO{
+            public IColumn STD_TYPE{
                 get{
-                    return this.GetColumn("BAT_NO");
+                    return this.GetColumn("STD_TYPE");
                 }
             }
 				
             
-            public IColumn Exp_DateTime{
+            public IColumn PROD_NAME1{
                 get{
-                    return this.GetColumn("Exp_DateTime");
+                    return this.GetColumn("PROD_NAME1");
+                }
+            }
+				
+            
+            public IColumn SHOP_NAME1{
+                get{
+                    return this.GetColumn("SHOP_NAME1");
                 }
             }
 				

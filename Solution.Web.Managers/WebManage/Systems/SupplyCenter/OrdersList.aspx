@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server"> <%-- id="Head1" --%>
     <title>菜单编辑</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style type="text/css">
         .photo
         {
@@ -159,7 +160,7 @@
                
              <f:Grid ID="Grid1" Title="表格" ShowBorder="false" ShowHeader="false" EnableCollapse="true" Width="900px"
             runat="server" DataKeyNames="ID,PROD_NAME1" AllowCellEditing="true" ClicksToEdit="1" OnPreDataBound="Grid1_PreDataBound" 
-            DataIDField="ID" EnableCheckBoxSelect="true" EnableColumnLines="true"> 
+            DataIDField="ID" EnableCheckBoxSelect="true" EnableColumnLines="true" MaxHeight="300px" AutoScroll="true"> 
             <Toolbars>
                 <f:Toolbar ID="Toolbar1" runat="server" >
                     <Items>
@@ -491,7 +492,9 @@
                     }
                 }
 
+                xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8"); 
                 xmlhttp.open("GET", "OrdersListHandler.ashx?value=" + strvalue + "&value1=" + shop_id + "&value2=" + ordep_id, true);
+                
                 xmlhttp.send();
 
 

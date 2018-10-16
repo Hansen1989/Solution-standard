@@ -241,12 +241,10 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
 
         }
+         
+        #region 列表属性绑定
 
-
-
-            #region 列表属性绑定
-
-            #region 列表按键绑定——修改列表控件属性
+        #region 列表按键绑定——修改列表控件属性
             /// <summary>
             /// 列表按键绑定——修改列表控件属性
             /// </summary>

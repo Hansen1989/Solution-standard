@@ -4,9 +4,9 @@ using System;
 namespace Solution.DataAccess.Model
 {
     /// <summary>
-    /// IN_BACK01表实体类
+    /// V_ORDER01_PRODUCT01表实体类
     /// </summary>
-    public partial class IN_BACK01
+    public partial class V_ORDER01_PRODUCT01
     {
 
 		int _Id = 0;
@@ -29,14 +29,14 @@ namespace Solution.DataAccess.Model
 			set { _SHOP_ID = value; }
 		}
 
-		string _IB_ID = "";
+		string _ORDER_ID = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public string IB_ID
+		public string ORDER_ID
 		{
-			get { return _IB_ID; }
-			set { _IB_ID = value; }
+			get { return _ORDER_ID; }
+			set { _ORDER_ID = value; }
 		}
 
 		int _SNo = 0;
@@ -69,14 +69,44 @@ namespace Solution.DataAccess.Model
 			set { _QUANTITY = value; }
 		}
 
-		string _STD_TYPE = "";
+		decimal _ON_QUAN = 0;
 		/// <summary>
 		/// 
 		/// </summary>
-		public string STD_TYPE
+		public decimal ON_QUAN
 		{
-			get { return _STD_TYPE; }
-			set { _STD_TYPE = value; }
+			get { return _ON_QUAN; }
+			set { _ON_QUAN = value; }
+		}
+
+		decimal _QUAN1 = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal QUAN1
+		{
+			get { return _QUAN1; }
+			set { _QUAN1 = value; }
+		}
+
+		decimal _QUAN2 = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal QUAN2
+		{
+			get { return _QUAN2; }
+			set { _QUAN2 = value; }
+		}
+
+		decimal _COST_PRICE = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal COST_PRICE
+		{
+			get { return _COST_PRICE; }
+			set { _COST_PRICE = value; }
 		}
 
 		string _STD_UNIT = "";
@@ -119,74 +149,84 @@ namespace Solution.DataAccess.Model
 			set { _STD_PRICE = value; }
 		}
 
-		decimal _COST = 0;
+		string _Memo = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public decimal COST
+		public string Memo
 		{
-			get { return _COST; }
-			set { _COST = value; }
+			get { return _Memo; }
+			set { _Memo = value; }
 		}
 
-		decimal _QUAN1 = 0;
+		DateTime _CRT_DATETIME = new DateTime(1900,1,1);
 		/// <summary>
 		/// 
 		/// </summary>
-		public decimal QUAN1
+		public DateTime CRT_DATETIME
 		{
-			get { return _QUAN1; }
-			set { _QUAN1 = value; }
+			get { return _CRT_DATETIME; }
+			set { _CRT_DATETIME = value; }
 		}
 
-		decimal _QUAN2 = 0;
+		string _CRT_USER_ID = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public decimal QUAN2
+		public string CRT_USER_ID
 		{
-			get { return _QUAN2; }
-			set { _QUAN2 = value; }
+			get { return _CRT_USER_ID; }
+			set { _CRT_USER_ID = value; }
 		}
 
-		string _REASON_ID = "";
+		DateTime _MOD_DATETIME = new DateTime(1900,1,1);
 		/// <summary>
 		/// 
 		/// </summary>
-		public string REASON_ID
+		public DateTime MOD_DATETIME
 		{
-			get { return _REASON_ID; }
-			set { _REASON_ID = value; }
+			get { return _MOD_DATETIME; }
+			set { _MOD_DATETIME = value; }
 		}
 
-		string _MEMO = "";
+		string _MOD_USER_ID = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public string MEMO
+		public string MOD_USER_ID
 		{
-			get { return _MEMO; }
-			set { _MEMO = value; }
+			get { return _MOD_USER_ID; }
+			set { _MOD_USER_ID = value; }
 		}
 
-		string _BAT_NO = "";
+		string _STD_TYPE = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public string BAT_NO
+		public string STD_TYPE
 		{
-			get { return _BAT_NO; }
-			set { _BAT_NO = value; }
+			get { return _STD_TYPE; }
+			set { _STD_TYPE = value; }
 		}
 
-		DateTime _Exp_DateTime = new DateTime(1900,1,1);
+		string _PROD_NAME1 = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public DateTime Exp_DateTime
+		public string PROD_NAME1
 		{
-			get { return _Exp_DateTime; }
-			set { _Exp_DateTime = value; }
+			get { return _PROD_NAME1; }
+			set { _PROD_NAME1 = value; }
+		}
+
+		string _SHOP_NAME1 = "";
+		/// <summary>
+		/// 
+		/// </summary>
+		public string SHOP_NAME1
+		{
+			get { return _SHOP_NAME1; }
+			set { _SHOP_NAME1 = value; }
 		}
     } 
 
