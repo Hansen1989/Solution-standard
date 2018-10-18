@@ -40,7 +40,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             var model = GetOnlineUserShop();
             
-            SHOP00Bll.GetInstence().BindOnlineUser(this,model.SHOP_ID, ddlSHOP_NAME);
+            //SHOP00Bll.GetInstence().BindOnlineUser(this,model.SHOP_ID, ddlSHOP_NAME);
+            SHOP00Bll.GetInstence().GetShopList(this, model.SHOP_ID, ddlSHOP_NAME);
             SHOP00Bll.GetInstence().GetShopList(this,model.SHOP_ID, ddlIN_SHOP);
             SHOP00Bll.GetInstence().GetShopList(this,model.SHOP_ID, ddlSHOP_NAME1);
             STOCKBll.GetInstence().BandDropDownListStock(this, ddlSTOCK_ID);
