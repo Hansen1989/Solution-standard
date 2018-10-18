@@ -50,7 +50,7 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "HEAD_SHOP_ID"
                 });
 
-                Columns.Add(new DatabaseColumn("AMOUNT", this)
+                Columns.Add(new DatabaseColumn("USED_AMOUNT", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.Decimal,
@@ -58,7 +58,7 @@ namespace Solution.DataAccess.DataModel {
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 0,
-					PropertyName = "AMOUNT"
+					PropertyName = "USED_AMOUNT"
                 });
 
                 Columns.Add(new DatabaseColumn("Memo", this)
@@ -104,6 +104,17 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 0,
 					PropertyName = "MOD_DATETIME"
                 });
+
+                Columns.Add(new DatabaseColumn("CREDIT_AMOUNT", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "CREDIT_AMOUNT"
+                });
                     
                 
                 
@@ -130,9 +141,9 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn AMOUNT{
+            public IColumn USED_AMOUNT{
                 get{
-                    return this.GetColumn("AMOUNT");
+                    return this.GetColumn("USED_AMOUNT");
                 }
             }
 				
@@ -161,6 +172,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn MOD_DATETIME{
                 get{
                     return this.GetColumn("MOD_DATETIME");
+                }
+            }
+				
+            
+            public IColumn CREDIT_AMOUNT{
+                get{
+                    return this.GetColumn("CREDIT_AMOUNT");
                 }
             }
 				
