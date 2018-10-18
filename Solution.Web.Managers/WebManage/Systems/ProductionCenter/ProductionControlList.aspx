@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+     
 <head id="Head1" runat="server">
     <title></title>
 
@@ -10,7 +11,6 @@
 <body>
    <form id="form1" runat="server">
     <f:pagemanager id="PageManager1" runat="server" AutoSizePanelID="Grid1" />
-
             <f:Grid ID="Grid1" Title="生产计划" EnableFrame="false" EnableCollapse="true" AllowSorting="true"  
             ShowBorder="false" ShowHeader="false" AllowPaging="true" runat="server" EnableCheckBoxSelect="True" DataKeyNames="Id" EnableColumnLines="true"
            OnRowCommand="Grid1_RowCommand" OnPreRowDataBound="Grid1_PreRowDataBound" OnPageIndexChange="Grid1_PageIndexChange">  <%--PageSize="15"    --%>  
