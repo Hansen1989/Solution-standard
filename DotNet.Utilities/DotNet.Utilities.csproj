@@ -223,9 +223,8 @@
       <HintPath>..\Dll\Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="FineUI, Version=6.0.3.0, Culture=neutral, PublicKeyToken=0ff1835d01c384a9, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\供应链管理系统 - 副本\Dll\FineUI.dll</HintPath>
+    <Reference Include="FineUI">
+      <HintPath>..\Dll\FineUI.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\Dll\ICSharpCode.SharpZipLib.dll</HintPath>

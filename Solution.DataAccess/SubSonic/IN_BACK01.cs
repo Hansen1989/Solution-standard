@@ -128,8 +128,6 @@ namespace Solution.DataAccess.DataModel
                
             QUANTITY = readRecord.get_decimal("QUANTITY",null);
                
-            STD_TYPE = readRecord.get_string("STD_TYPE",null);
-               
             STD_UNIT = readRecord.get_string("STD_UNIT",null);
                
             STD_CONVERT = readRecord.get_int("STD_CONVERT",null);
@@ -451,28 +449,6 @@ namespace Solution.DataAccess.DataModel
                 if(_QUANTITY!=value || _isLoaded){
                     _QUANTITY=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="QUANTITY");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        string _STD_TYPE;
-		/// <summary>
-		/// 
-		/// </summary>
-        public string STD_TYPE
-        {
-            get { return _STD_TYPE; }
-            set
-            {
-                if(_STD_TYPE!=value || _isLoaded){
-                    _STD_TYPE=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="STD_TYPE");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

@@ -244,9 +244,9 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.HEAD_SHOP_ID == (string)value);
                         expression = x => x.HEAD_SHOP_ID == (string)value;
                         break;
-					case "AMOUNT" :
-						model = list.SingleOrDefault(x => x.AMOUNT == (decimal)value);
-                        expression = x => x.AMOUNT == (decimal)value;
+					case "USED_AMOUNT" :
+						model = list.SingleOrDefault(x => x.USED_AMOUNT == (decimal)value);
+                        expression = x => x.USED_AMOUNT == (decimal)value;
                         break;
 					case "Memo" :
 						model = list.SingleOrDefault(x => x.Memo == (string)value);
@@ -435,7 +435,7 @@ namespace Solution.Logic.Managers {
                 Id = model.Id,
                 SHOP_ID = model.SHOP_ID,
                 HEAD_SHOP_ID = model.HEAD_SHOP_ID,
-                AMOUNT = model.AMOUNT,
+                USED_AMOUNT = model.USED_AMOUNT,
                 Memo = model.Memo,
                 CRT_DATETIME = model.CRT_DATETIME,
                 CRT_USER_ID = model.CRT_USER_ID,
@@ -472,7 +472,7 @@ namespace Solution.Logic.Managers {
                 Id = model.Id,
                 SHOP_ID = model.SHOP_ID,
                 HEAD_SHOP_ID = model.HEAD_SHOP_ID,
-                AMOUNT = model.AMOUNT,
+                USED_AMOUNT = model.USED_AMOUNT,
                 Memo = model.Memo,
                 CRT_DATETIME = model.CRT_DATETIME,
                 CRT_USER_ID = model.CRT_USER_ID,
@@ -534,8 +534,8 @@ namespace Solution.Logic.Managers {
 				case "HEAD_SHOP_ID" :
 					model.HEAD_SHOP_ID = (string)value;
                     break;
-				case "AMOUNT" :
-					model.AMOUNT = (decimal)value;
+				case "USED_AMOUNT" :
+					model.USED_AMOUNT = (decimal)value;
                     break;
 				case "Memo" :
 					model.Memo = (string)value;
@@ -1111,8 +1111,8 @@ namespace Solution.Logic.Managers {
 					return model.SHOP_ID;
 				case "HEAD_SHOP_ID" :
 					return model.HEAD_SHOP_ID;
-				case "AMOUNT" :
-					return model.AMOUNT;
+				case "USED_AMOUNT" :
+					return model.USED_AMOUNT;
 				case "Memo" :
 					return model.Memo;
 				case "CRT_DATETIME" :

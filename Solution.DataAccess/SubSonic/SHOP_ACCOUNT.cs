@@ -122,7 +122,7 @@ namespace Solution.DataAccess.DataModel
                
             HEAD_SHOP_ID = readRecord.get_string("HEAD_SHOP_ID",null);
                
-            AMOUNT = readRecord.get_decimal("AMOUNT",null);
+            USED_AMOUNT = readRecord.get_decimal("USED_AMOUNT",null);
                
             Memo = readRecord.get_string("Memo",null);
                
@@ -377,18 +377,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        decimal _AMOUNT;
+        decimal _USED_AMOUNT;
 		/// <summary>
-		/// 
+		/// 已使用额度
 		/// </summary>
-        public decimal AMOUNT
+        public decimal USED_AMOUNT
         {
-            get { return _AMOUNT; }
+            get { return _USED_AMOUNT; }
             set
             {
-                if(_AMOUNT!=value || _isLoaded){
-                    _AMOUNT=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="AMOUNT");
+                if(_USED_AMOUNT!=value || _isLoaded){
+                    _USED_AMOUNT=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="USED_AMOUNT");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

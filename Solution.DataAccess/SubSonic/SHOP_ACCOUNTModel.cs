@@ -39,14 +39,14 @@ namespace Solution.DataAccess.Model
 			set { _HEAD_SHOP_ID = value; }
 		}
 
-		decimal _AMOUNT = 0;
+		decimal _USED_AMOUNT = 0;
 		/// <summary>
-		/// 
+		/// 已使用额度
 		/// </summary>
-		public decimal AMOUNT
+		public decimal USED_AMOUNT
 		{
-			get { return _AMOUNT; }
-			set { _AMOUNT = value; }
+			get { return _USED_AMOUNT; }
+			set { _USED_AMOUNT = value; }
 		}
 
 		string _Memo = "";

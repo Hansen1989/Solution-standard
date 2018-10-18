@@ -41,11 +41,11 @@ namespace Solution.DataAccess.DataModel {
       			}
 		    }
 			/// <summary>
-			/// 
+			/// 已使用额度
 			/// </summary>
-   			public static string AMOUNT{
+   			public static string USED_AMOUNT{
 			      get{
-        			return "AMOUNT";
+        			return "USED_AMOUNT";
       			}
 		    }
 			/// <summary>
