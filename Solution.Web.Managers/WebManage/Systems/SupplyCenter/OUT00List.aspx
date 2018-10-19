@@ -12,7 +12,7 @@
         <f:PageManager ID="PageManager1" AutoSizePanelID="Panel1" runat="server" />
         <f:Panel ID="Panel1" runat="server" ShowBorder="false" ShowHeader="false" Layout="Region">
             <Items>
-                <f:Panel runat="server" ID="panelCenterRegion" RegionPosition="Center"
+                <f:Panel runat="server" ID="panelCenterRegion" RegionPosition="Center" AutoScroll="true"
                     Title="总部出货" ShowBorder="true" ShowHeader="true" BodyPadding="5px">
                     <Toolbars>
                     <f:Toolbar ID="Toolbar1_1" runat="server">
