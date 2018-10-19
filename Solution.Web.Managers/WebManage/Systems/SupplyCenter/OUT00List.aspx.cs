@@ -44,7 +44,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             SHOP00Bll.GetInstence().GetShopList(this, model.SHOP_ID, ddlSHOP_NAME);
             SHOP00Bll.GetInstence().GetShopList(this,model.SHOP_ID, ddlIN_SHOP);
             SHOP00Bll.GetInstence().GetShopList(this,model.SHOP_ID, ddlSHOP_NAME1);
-            STOCKBll.GetInstence().BandDropDownListStock(this, ddlSTOCK_ID);
+            STOCKBll.GetInstence().BandOnlineUserStock(this,model.SHOP_ID,ddlSTOCK_ID);
             FineUI.DropDownList _ddlShopName = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("w4_ddlSHOP_NAME") as FineUI.DropDownList;
             SHOP00Bll.GetInstence().GetShopList(this, model.SHOP_ID, _ddlShopName);
 
@@ -855,17 +855,22 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     deObject.Add("PROD_NAME01", model.PROD_NAME1);
                     deObject.Add("QUANTITY01", model.ORDER_QUAN);
                     deObject.Add("STD_UNIT01", model.ORDER_UNIT);
-                    deObject.Add("STD_CONVERT01", model.PROD_CONVERT1);
+                    
                     string STD_PRICE01 = "";
+                    string PROD_CONVERT = "";
                     //根据门店类型取进价
                     if (m_Shop.SHOP_KIND == 2)
                     {
                         switch (model.ORDER_UNIT)
                         {
-                            case 1: STD_PRICE01 = model.T_COST.ToString(); break;
-                            case 2: STD_PRICE01 = model.T_COST1.ToString(); break;
-                            case 3: STD_PRICE01 = model.T_COST2.ToString(); break;
-                            default: STD_PRICE01 = model.T_COST.ToString(); ; break;
+                            case 1: STD_PRICE01 = model.T_COST.ToString();
+                                PROD_CONVERT = "1"; break;
+                            case 2: STD_PRICE01 = model.T_COST1.ToString();
+                                PROD_CONVERT = model.PROD_CONVERT1.ToString(); break;
+                            case 3: STD_PRICE01 = model.T_COST2.ToString();
+                                PROD_CONVERT = model.PROD_CONVERT2.ToString(); break;
+                            default: STD_PRICE01 = model.T_COST.ToString();
+                                PROD_CONVERT = "1"; ; break;
                         }
                         deObject.Add("STD_PRICE101", model.T_COST);
                         deObject.Add("STD_PRICE201", model.T_COST1);
@@ -875,15 +880,20 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     {
                         switch (model.ORDER_UNIT)
                         {
-                            case 1: STD_PRICE01 = model.U_Cost.ToString(); break;
-                            case 2: STD_PRICE01 = model.U_Cost1.ToString(); break;
-                            case 3: STD_PRICE01 = model.U_Cost2.ToString(); break;
-                            default: STD_PRICE01 = model.U_Cost.ToString(); ; break;
+                            case 1: STD_PRICE01 = model.U_Cost.ToString();
+                                PROD_CONVERT = "1"; break;
+                            case 2: STD_PRICE01 = model.U_Cost1.ToString();
+                                PROD_CONVERT = model.PROD_CONVERT1.ToString(); break;
+                            case 3: STD_PRICE01 = model.U_Cost2.ToString();
+                                PROD_CONVERT = model.PROD_CONVERT1.ToString(); break;
+                            default: STD_PRICE01 = model.U_Cost.ToString();
+                                PROD_CONVERT = "1"; break;
                         }
                         deObject.Add("STD_PRICE101", model.U_Cost);
                         deObject.Add("STD_PRICE201", model.U_Cost1);
                         deObject.Add("STD_PRICE301", model.U_Cost2);
                     }
+                    deObject.Add("STD_CONVERT01", PROD_CONVERT);
                     deObject.Add("STD_UNIT_NAME01", model.ORDER_NAME);
                     deObject.Add("STD_QUAN01", model.ORDER_UNIT);
                     deObject.Add("STD_PRICE01", STD_PRICE01);

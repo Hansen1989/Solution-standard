@@ -232,10 +232,10 @@
                                                     <f:NumberBox runat="server" ID="NumberBox6" NoNegative="true"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
-                                         <f:RenderField Width="130px" ColumnID="STD_PRICE01" DataField="STD_PRICE" FieldType="String" Enabled="false"
+                                         <f:RenderField Width="130px" ColumnID="STD_PRICE01" DataField="STD_PRICE" FieldType="String" Enabled="true"
                                                 HeaderText="出货单价">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" Enabled="true"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
 

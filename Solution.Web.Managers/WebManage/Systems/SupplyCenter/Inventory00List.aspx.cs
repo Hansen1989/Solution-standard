@@ -39,10 +39,25 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// </summary>
         public void LoadList()
         {
-            SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
-            STOCKBll.GetInstence().BandDropDownListStock(this, ddlSTOCK_ID);
-            STOCKBll.GetInstence().BandDropDownListStock(this, ddlSTOCK_NAME1);
+            var model = GetOnlineUserShop();
+
+            SHOP00Bll.GetInstence().BindOnlineUser(this, model.SHOP_ID,ddlSHOP_NAME);
+            STOCKBll.GetInstence().BandOnlineUserStock(this,model.SHOP_ID, ddlSTOCK_ID);
+            STOCKBll.GetInstence().BandOnlineUserStock(this, model.SHOP_ID, ddlSTOCK_NAME1);
         }
+        /// <summary>
+        /// 根据当前账户，获取所属门店信息
+        /// </summary>
+        /// <returns></returns>
+        public SHOP00 GetOnlineUserShop()
+        {
+            var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
+            var shop_id = OlUser.SHOP_ID;
+            var model = new SHOP00(x => x.SHOP_ID == shop_id);
+            return model;
+        }
+
+
         /// <summary>
         /// 按时间范围检索
         /// </summary>
