@@ -575,11 +575,24 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
 
             if (IsButtonEnadble == 2)//核准
-            {
+            { 
                 ButtonAdd.Enabled = true;
                 ButtonSave.Enabled = false;
-                ButtonApproval.Enabled = true;
+                ButtonApproval.Enabled = false;
                 ButtonBackApproval.Enabled = true;
+
+                //设置不可更改
+                txtINPUT_DATE.Enabled = false;
+                ddlEXPECT_DATE.Enabled = false;
+                ddlORDER_DEP.Enabled = false;
+                ddlORD_TYPE.Enabled = false;
+                ddlEXPECT_DATE.Enabled = false;
+                ddlOUT_SHOP.Enabled = false;
+                txtMemo.Enabled = false;
+
+                btnNew.Enabled = false;
+                btnDelete.Enabled = false;
+                Grid1.Enabled = false;
             }
 
             if (IsButtonEnadble == 3)//作废
