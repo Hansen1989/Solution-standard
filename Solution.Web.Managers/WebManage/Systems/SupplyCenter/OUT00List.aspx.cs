@@ -75,7 +75,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         public void SearchOrder()
         {
             //int type = ConvertHelper.Cint(FilterDateRadio.SelectedValue);
-            OUT00Bll.GetInstence().BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
+            V_OUT_BACK00_DETAILNAMEBll.GetInstence().BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
             //TAKEIN10Bll.GetInstence().BindOrderGrid(st, et, type, Grid1);
         }
 

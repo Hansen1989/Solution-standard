@@ -183,8 +183,8 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         /// </summary>
         public override void Add()
         {
-            Window1.IFrameUrl = "ProductionWarehousingEdit.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
-            Window1.Hidden = false;
+           // Window1.IFrameUrl = "ProductionWarehousingEdit.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+          //  Window1.Hidden = false;
         }
         #endregion
 
@@ -196,8 +196,8 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         {
             string id = GridViewHelper.GetSelectedKey(Grid1, true);
 
-            Window1.IFrameUrl = "ProductionWarehousingEdit.aspx?Id=" + id + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(id);
-            Window1.Hidden = false;
+            //Window1.IFrameUrl = "ProductionWarehousingEdit.aspx?Id=" + id + "&" + MenuInfoBll.GetInstence().PageUrlEncryptStringNoKey(id);
+            //Window1.Hidden = false;
         }
         #endregion
 
