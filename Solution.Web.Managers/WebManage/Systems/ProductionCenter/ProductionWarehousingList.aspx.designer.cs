@@ -13,31 +13,49 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter {
     public partial class ProductionWarehousingList {
         
         /// <summary>
-        /// Head1 控件。
+        /// Head2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head2;
         
         /// <summary>
-        /// form1 控件。
+        /// form2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form2;
         
         /// <summary>
-        /// PageManager1 控件。
+        /// PageManager2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.PageManager PageManager1;
+        protected global::FineUI.PageManager PageManager2;
+        
+        /// <summary>
+        /// Panel1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Panel Panel1;
+        
+        /// <summary>
+        /// panelTopRegion 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Panel panelTopRegion;
         
         /// <summary>
         /// Grid1 控件。
@@ -49,165 +67,129 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter {
         protected global::FineUI.Grid Grid1;
         
         /// <summary>
-        /// toolBar1 控件。
+        /// Toolbar2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Toolbar toolBar1;
+        protected global::FineUI.Toolbar Toolbar2;
         
         /// <summary>
-        /// panl1 控件。
+        /// Panel2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Panel panl1;
+        protected global::FineUI.Panel Panel2;
         
         /// <summary>
-        /// toolBar 控件。
+        /// toolBar3 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Toolbar toolBar;
+        protected global::FineUI.Toolbar toolBar3;
         
         /// <summary>
-        /// ButtonRefresh 控件。
+        /// Button1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Button ButtonRefresh;
+        protected global::FineUI.Button Button1;
         
         /// <summary>
-        /// ButtonAdd 控件。
+        /// Button2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Button ButtonAdd;
+        protected global::FineUI.Button Button2;
         
         /// <summary>
-        /// ButtonSearch 控件。
+        /// ButtonApproval 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Button ButtonSearch;
+        protected global::FineUI.Button ButtonApproval;
         
         /// <summary>
-        /// ButtonEdit 控件。
+        /// ButtonBackApproval 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Button ButtonEdit;
+        protected global::FineUI.Button ButtonBackApproval;
         
         /// <summary>
-        /// ButtonSaveAutoSort 控件。
+        /// ButtonPrint 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Button ButtonSaveAutoSort;
+        protected global::FineUI.Button ButtonPrint;
         
         /// <summary>
-        /// ButtonSaveSort 控件。
+        /// Button3 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Button ButtonSaveSort;
+        protected global::FineUI.Button Button3;
         
         /// <summary>
-        /// ButtonDelete 控件。
+        /// Button4 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Button ButtonDelete;
+        protected global::FineUI.Button Button4;
         
         /// <summary>
-        /// Form5 控件。
+        /// Button5 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Form Form5;
+        protected global::FineUI.Button Button5;
         
         /// <summary>
-        /// cPROD_ID 控件。
+        /// PPhidId 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox cPROD_ID;
+        protected global::FineUI.HiddenField PPhidId;
         
         /// <summary>
-        /// cPROD_NAME 控件。
+        /// panelLeftRegion 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox cPROD_NAME;
+        protected global::FineUI.Panel panelLeftRegion;
         
         /// <summary>
-        /// cPROD_CATE 控件。
+        /// Grid3 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.DropDownList cPROD_CATE;
-        
-        /// <summary>
-        /// cPROD_TYPE 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DropDownList cPROD_TYPE;
-        
-        /// <summary>
-        /// cPROD_DEP 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DropDownList cPROD_DEP;
-        
-        /// <summary>
-        /// DropDownList1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DropDownList DropDownList1;
-        
-        /// <summary>
-        /// Window1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.Window Window1;
+        protected global::FineUI.Grid Grid3;
     }
 }

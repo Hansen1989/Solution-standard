@@ -492,7 +492,7 @@
                     }
                 }
 
-                xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8"); 
+               // xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8"); 
                 xmlhttp.open("GET", "OrdersListHandler.ashx?value=" + strvalue + "&value1=" + shop_id + "&value2=" + ordep_id, true);
                 
                 xmlhttp.send();
