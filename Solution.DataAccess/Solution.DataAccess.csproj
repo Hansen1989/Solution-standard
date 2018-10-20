@@ -1237,6 +1237,18 @@
     <Compile Include="SubSonic\V_OUT01_PRODUCT00Table.cs">
       <DependentUpon>EntityTable.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubSonic\V_OUT_BACK00_DETAILNAME.cs">
+      <DependentUpon>ActiveRecord.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_OUT_BACK00_DETAILNAMEModel.cs">
+      <DependentUpon>CreateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_OUT_BACK00_DETAILNAMEStructs.cs">
+      <DependentUpon>Structs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_OUT_BACK00_DETAILNAMETable.cs">
+      <DependentUpon>EntityTable.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\V_OUT_BACK01_PRODUCT00.cs">
       <DependentUpon>ActiveRecord.tt</DependentUpon>
     </Compile>

@@ -332,6 +332,9 @@
     <Compile Include="SubSonic\V_OUT01_PRODUCT00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubSonic\V_OUT_BACK00_DETAILNAMEBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\V_OUT_BACK01_PRODUCT00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>

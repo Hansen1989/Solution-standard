@@ -223,11 +223,12 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("IB_ID",IB_ID,DbType.AnsiString);
             return sp;
         }
-        public static StoredProcedure SplitOrders(string col_id){
+        public static StoredProcedure SplitOrders(string col_id,string ORD_USER){
             StoredProcedure sp=new StoredProcedure("SplitOrders");
 			
 
             sp.Command.AddParameter("col_id",col_id,DbType.AnsiString);
+            sp.Command.AddParameter("ORD_USER",ORD_USER,DbType.AnsiString);
             return sp;
         }
         public static StoredProcedure Tran_PRICE_UNIT(string PROD_ID,decimal P_PRICE,int UNIT_TYPE){

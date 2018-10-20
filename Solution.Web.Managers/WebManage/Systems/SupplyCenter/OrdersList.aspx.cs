@@ -111,17 +111,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             DataTable table = GetSourceData("", "");
             Grid1.DataSource = table;
             Grid1.DataBind();
-
-                ///grid2
-                // string shop_id = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
-           // conditionList = new List<ConditionFun.SqlqueryCondition>();
-           // conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
-
-               //  ORDER00Bll.GetInstence().BindGrid(Grid2, 0, sortList);
-               // bll.BindGrid(Grid2, 0, sortList);
-          //  ORDER00Bll.GetInstence().BindGrid(Grid2, 0, 0, conditionList, sortList);
-               //------------------
-
+ 
 
         }
 
@@ -385,7 +375,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
                 JArray mergedData1 = Grid1.GetMergedData();
                 int f = mergedData.Count;
-
+                 
                 int k = 0;
                 foreach (JObject mergedRow in mergedData1)
                 {
@@ -409,7 +399,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     model_1.QUAN1 = ConvertHelper.StringToDecimal(values.Value<string>("QUAN1"));//小计
                     model_1.QUAN2 = 0;
                     model_1.COST_PRICE = ConvertHelper.StringToDecimal(values.Value<string>("STD_PRICE"));
-                    model_1.STD_UNIT = values.Value<string>("PROD_UNIT");
+
+                   // string prod_name = values.Value<string>("PROD_UNIT").ToString();
+                   // var Prod_UnitList =  new PROD_UNIT(x=>x.UNIT_NAME == prod_name);
+
+                    model_1.STD_UNIT = "1";//最小订货单位  Prod_UnitList.UNIT_ID;
                     model_1.STD_CONVERT = 0;
                     model_1.STD_QUAN = ConvertHelper.StringToDecimal(values.Value<string>("ON_QUAN"));
                     model_1.STD_PRICE = ConvertHelper.StringToDecimal(values.Value<string>("STD_PRICE"));

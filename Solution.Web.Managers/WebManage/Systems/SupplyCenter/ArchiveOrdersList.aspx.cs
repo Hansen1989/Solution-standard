@@ -229,8 +229,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string[] col_id_shop_id = str.Split(',');
             string shop_id = col_id_shop_id[1];
             string col_id = col_id_shop_id[0];
+            string user_id = OnlineUsersBll.GetInstence().GetManagerId().ToString();
 
-            int ex_int = OUT00Bll.GetInstence().SplitOrders(col_id);
+            int ex_int = OUT00Bll.GetInstence().SplitOrders(col_id,user_id);
 
             if (ex_int == 1)
             {

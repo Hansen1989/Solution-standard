@@ -298,22 +298,9 @@
                 </toolbars>
      
                 <Columns>
-                  
-                   <%-- <f:TemplateField HeaderText="排序" Width="100px">
-                        <ItemTemplate>
-                            <asp:TextBox ID="tbSort" runat="server" Width="50px" Text='<%# Eval("Sort") %>' AutoPostBack="false"></asp:TextBox>
-                        </ItemTemplate>
-                    </f:TemplateField>--%>
+                   
                      <f:BoundField Width="100px" DataField="ORDER_ID" DataFormatString="{0}" HeaderText="订单编号" />
-                    <%--<f:BoundField Width="60px" ColumnID="SHOP_Name1" DataFormatString="{0}" HeaderText="" />--%>
-                     <%--<f:BoundField Width="100px" DataFormatString="{0}" HeaderText="分店名称" ColumnID="SHOP_Name1" />--%>
-                     <%--<f:TemplateField Width="100px" HeaderText="分店名称" ColumnID="SHOP_Name1" >
-                         <ItemTemplate>
-                             <f:Label ID="lbSHOP_Name1" runat="server"></f:Label>
-                         </ItemTemplate>
-                     </f:TemplateField>--%>
-                    <%--<f:BoundField Width="160px" DataField="INPUT_DATE" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" HeaderText="单据日期" />--%>
-                    <%--<f:BoundField Width="50px" DataField="ORD_USER" DataFormatString="{0}" HeaderText="制单人员" />--%>
+                   
                     <f:LinkButtonField runat="server" ID="LIK_SHOP" ColumnID="SHOP_LINK" HeaderText="分店名称" Width="130px"></f:LinkButtonField>
                     <f:BoundField Width="160px" DataField="EXPECT_DATE" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" HeaderText="期望日期" />
                 
@@ -331,24 +318,7 @@
                         </Editor>
 
                     </f:RenderField>
-                    <%--<f:TemplateField runat="server" ID="STATUS_ORD" ColumnID="ORD_STATUS" HeaderText="单据状态">
-                        <ItemTemplate>
-                             <f:DropDownList runat="server" Enabled="false" ID="DropDownList2" Width="100px" DataValueField="STATUS">
-                                <f:ListItem  Text="无" Value="0"/>
-                                <f:ListItem  Text="存档" Value="1"/>
-                                <f:ListItem  Text="核准" Value="2"/>
-                                <f:ListItem  Text="作废" Value="3"/>
-                                <f:ListItem  Text="已汇整" Value="4"/>
-                            </f:DropDownList>
-
-                        </ItemTemplate>
-
-                    </f:TemplateField>--%>
-
-                   <%-- <f:LinkButtonField HeaderText="是否显示" Icon="BulletCross" TextAlign="Center" ToolTip="点击修改是否显示" ColumnID="IsDisplay" CommandName="IsDisplay" />
-                    <f:LinkButtonField HeaderText="是否页面" Icon="BulletCross" TextAlign="Center" ToolTip="点击修改是否页面" ColumnID="IsMenu" CommandName="IsMenu" />
-                    <f:BoundField DataField="Depth" HeaderText="级别层次" TextAlign="Center" />
-                    <f:LinkButtonField HeaderText="操作" TextAlign="Center" ToolTip="点击修改当前记录" ColumnID="ButtonEdit" CommandName="ButtonEdit" />--%>
+             
                 </Columns>
             </f:Grid>
                         </Items>
