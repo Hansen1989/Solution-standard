@@ -53,11 +53,10 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("COL_ID",COL_ID,DbType.AnsiString);
             return sp;
         }
-        public static StoredProcedure GET_ARCHIVEORDERS_RIGHT_LIST(string SHOP_ID,string PROD_ID,string COL_ID){
+        public static StoredProcedure GET_ARCHIVEORDERS_RIGHT_LIST(string PROD_ID,string COL_ID){
             StoredProcedure sp=new StoredProcedure("GET_ARCHIVEORDERS_RIGHT_LIST");
 			
 
-            sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
             sp.Command.AddParameter("PROD_ID",PROD_ID,DbType.AnsiString);
             sp.Command.AddParameter("COL_ID",COL_ID,DbType.AnsiString);
             return sp;

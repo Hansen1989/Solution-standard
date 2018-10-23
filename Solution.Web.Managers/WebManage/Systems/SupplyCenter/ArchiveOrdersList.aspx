@@ -147,7 +147,7 @@
                           <f:Grid ID="Grid2" EnableFrame="false" EnableCollapse="true" ShowBorder="false" ShowHeader="false" runat="server" 
                               EnableCheckBoxSelect="false" DataKeyNames="PROD_ID" EnableColumnLines="true"
                               EnableMultiSelect="false" EnableRowSelectEvent="true" OnRowSelect="Grid2_RowSelect">
-                              <Columns>
+                              <Columns> 
                                   <f:RowNumberField />
                                   <%--<f:BoundField Width="50px" DataField="SNo" DataFormatString="{0}" HeaderText="序号" />--%>
                                   <f:BoundField Width="80px" DataField="PROD_ID" DataFormatString="{0}" HeaderText="商品编码" />

@@ -668,7 +668,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     return;
 
                 //txtSHOP_ID.Text = model.SHOP_ID;
-                ddlShop.SelectedValue = model.SHOP_ID + "";
+               // ddlShop.SelectedValue = model.SHOP_ID + "";
+                SHOP00Bll.GetInstence().GetShopList(this, model.SHOP_ID, ddlShop);   //.BandDropDownListShowShop(this, ddlShop, shop_id); //分店名称
+
                 txtORDER_ID.Text = model.ORDER_ID;
 
                 txtINPUT_DATE.SelectedDate = ConvertHelper.StringToDatetime(model.INPUT_DATE.ToString());

@@ -368,6 +368,9 @@
     <Compile Include="SubSonic\V_STOCK_SHOP00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubSonic\V_TAKEIN11_PRODUCT00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\WebConfigBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
