@@ -418,6 +418,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
+        /// txtPROD_ID 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Label txtPROD_ID;
+        
+        /// <summary>
         /// DropDownList1 控件。
         /// </summary>
         /// <remarks>
@@ -425,15 +434,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.DropDownList DropDownList1;
-        
-        /// <summary>
-        /// txtPROD_ID 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox txtPROD_ID;
         
         /// <summary>
         /// txtPROD_SPEC 控件。

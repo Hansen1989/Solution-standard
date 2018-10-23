@@ -58,11 +58,11 @@
                         AutoScroll="true" BodyPadding="5px" runat="server" EnableCollapse="True">
                         <Items>
                             
-                            <f:Form ID="Form5" runat="server" Width="780px" LabelWidth="100px" BodyPadding="5px" LabelAlign="Right" Title="表单" ShowBorder="false" ShowHeader="false"  >
+                            <f:Form ID="Form5" runat="server" Width="930px" LabelWidth="100px" BodyPadding="5px" LabelAlign="Right" Title="表单" ShowBorder="false" ShowHeader="false"  >
                                     <Rows>
                                     <f:FormRow ColumnWidths="300px">
                                         <Items><%-- --%>
-                                            <f:DropDownList runat="server" AutoPostBack="true" Enabled="false" Required="true" CssClass="textbackcolor1" OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" Label="分店名称" ID="ddlShop" Width="250px"></f:DropDownList>
+                                            <f:DropDownList runat="server" AutoPostBack="true" Required="true" CssClass="textbackcolor1" OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" Label="分店名称" ID="ddlShop" Width="250px"></f:DropDownList>
                                             <f:TextBox runat="server" Label="订单编号" ID="txtORDER_ID" Enabled="false" Width="250px"></f:TextBox>
                                             
                                             <f:DropDownList runat="server" Enabled="false" Label="状态" ID="ddlStatus" Width="250px">
@@ -158,7 +158,7 @@
             <f:Panel ID="Panel3" runat="server" EnableFrame="false" BodyPadding="5px" EnableCollapse="True" ShowHeader="False" ShowBorder="False">
                 <Items>
                
-             <f:Grid ID="Grid1" Title="表格" ShowBorder="false" ShowHeader="false" EnableCollapse="true" Width="900px"
+             <f:Grid ID="Grid1" Title="表格" ShowBorder="false" ShowHeader="false" EnableCollapse="true" Width="930px"
             runat="server" DataKeyNames="ID,PROD_NAME1" AllowCellEditing="true" ClicksToEdit="1" OnPreDataBound="Grid1_PreDataBound" 
             DataIDField="ID" EnableCheckBoxSelect="true" EnableColumnLines="true" MaxHeight="300px" AutoScroll="true"> 
             <Toolbars>
@@ -167,44 +167,40 @@
                         <f:Button ID="btnNew" Text="新增" Icon="Add" OnClick="btnNew_Click" runat="server"> <%--EnablePostBack="false"--%> 
                         </f:Button>
                         <f:Button ID="btnDelete" Text="删除" Icon="Delete" EnablePostBack="false" runat="server"> </f:Button>
-                        
-                       <%-- <f:ToolbarFill ID="ToolbarFill1" runat="server">
-                        </f:ToolbarFill>--%>
-                     <%--   <f:Button ID="btnReset" Text="重置表格数据" EnablePostBack="false" runat="server">
-                        </f:Button>--%>
+                         
                     </Items>
                 </f:Toolbar>
             </Toolbars>
             <Columns>
-                <f:TemplateField ColumnID="Number" Width="60px" HeaderText="序号">
+                <f:TemplateField ColumnID="Number" Width="50px" HeaderText="序号">
                     <ItemTemplate>
                         <asp:Label ID="Label1" runat="server" Text='<%# Container.DataItemIndex + 1 %>'></asp:Label>
                     </ItemTemplate>
                 </f:TemplateField>
-               
-                <f:RenderField Width="100px" ColumnID="PROD_NAME1" DataField="PROD_NAME1" FieldType="String"
+               <f:RenderField Width="100px" ColumnID="PROD_ID" DataField="PROD_ID" TextAlign="Center"  FieldType="String"
+                    HeaderText="商品编号" >
+                        
+                      <Editor>
+                          <f:Label ID="txtPROD_ID" runat="server" />
+                          
+                      </Editor>
+                </f:RenderField>
+                <f:RenderField Width="200px" ColumnID="PROD_NAME1" DataField="PROD_NAME1" FieldType="String"
                     HeaderText="商品名称">
+                     
                     <Editor>
                         <f:DropDownList ID="DropDownList1"  runat="server">                         
                         </f:DropDownList>
                     </Editor>
                 </f:RenderField>
-
-                <f:RenderField Width="100px" ColumnID="PROD_ID" DataField="PROD_ID" TextAlign="Center"  FieldType="String"
-                    HeaderText="商品编号" >
-                      <Editor>
-                          <f:TextBox ID="txtPROD_ID" runat="server" />
-                          
-                      </Editor>
-                </f:RenderField>
-                
+                 
                 <f:RenderField  Width="100px" ColumnID="PROD_SPEC" DataField="PROD_SPEC" TextAlign="Center"  FieldType="String"
                     HeaderText="产品规格">
                       <Editor>
                         <f:Label ID="txtPROD_SPEC" runat="server" />
                       </Editor>
                 </f:RenderField>
-                <f:RenderField  Width="100px" ColumnID="PROD_UNIT" DataField="PROD_UNIT" TextAlign="Center"  FieldType="String"
+                <f:RenderField  Width="50px" ColumnID="PROD_UNIT" DataField="PROD_UNIT" TextAlign="Center"  FieldType="String"
                     HeaderText="单位">
                       <Editor>
                         <f:Label ID="txtPROD_UNIT" runat="server" />
@@ -218,7 +214,7 @@
                         </f:NumberBox>
                     </Editor>
                 </f:RenderField>
-                <f:RenderField Width="100px" ColumnID="STD_PRICE" DataField="STD_PRICE"
+                <f:RenderField Width="80px" ColumnID="STD_PRICE" DataField="STD_PRICE"
                     HeaderText="单价"> <%--FieldType="Int"--%>
                     <Editor>
                         <f:NumberBox ID="txtCOST" Required="true" runat="server" DecimalPrecision="2"> <%--NoDecimal="false" NoNegative="true" --%>
@@ -444,9 +440,9 @@
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         var strResult = xmlhttp.responseText;
                         var obj = JSON.parse(strResult);
-
-                        me.f_updateCellValue(rowId, 'PROD_NAME1', obj[0].PROD_NAME1);
+                         
                         me.f_updateCellValue(rowId, 'PROD_ID', obj[0].PROD_ID);
+                        me.f_updateCellValue(rowId, 'PROD_NAME1', obj[0].PROD_NAME1);
                         me.f_updateCellValue(rowId, 'PROD_SPEC', obj[0].PROD_SPEC);
                         me.f_updateCellValue(rowId, 'PROD_UNIT', obj[0].PROD_UNIT);
                         me.f_updateCellValue(rowId, 'ON_QUAN', obj[0].Order_QUAN);
