@@ -157,13 +157,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.DropDownList ddlStatus;
         
         /// <summary>
-        /// ddlOUT_SHOP 控件。
+        /// ddlSUP_ID 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.DropDownList ddlOUT_SHOP;
+        protected global::FineUI.DropDownList ddlSUP_ID;
         
         /// <summary>
         /// ddlSTOCK_ID 控件。
@@ -308,15 +308,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Toolbar Toolbar21111;
-        
-        /// <summary>
-        /// ButtonDetailAdd 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.Button ButtonDetailAdd;
         
         /// <summary>
         /// Grid2 控件。

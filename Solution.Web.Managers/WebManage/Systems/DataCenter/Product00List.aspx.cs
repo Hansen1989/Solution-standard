@@ -512,6 +512,7 @@ namespace Solution.Web.Managers.WebManage.Systems.DataCenter
                 model.PROD_DEP = sPROD_DEP;
                 model.PROD_CATE = PROD_CATE.SelectedValue;
                 model.DIV_ID = DIV_ID.SelectedValue;
+                model.PROD_TYPE = ConvertHelper.StringToByte(PROD_TYPE.SelectedValue);
                 model.INV_TYPE = ConvertHelper.Cint(sINV_TYPE);
                 model.STOCK_TYPE = ConvertHelper.Cint(sSTOCK_TYPE);
                 model.BOM_TYPE = ConvertHelper.Cint(sBOM_TYPE);
@@ -746,6 +747,7 @@ namespace Solution.Web.Managers.WebManage.Systems.DataCenter
                 model.PROD_KIND = sPROD_KIND;
                 model.PROD_DEP = sPROD_DEP;
                 model.PROD_CATE = PROD_CATE.SelectedValue;
+                model.PROD_TYPE =ConvertHelper.StringToByte(PROD_TYPE.SelectedValue);
                 model.DIV_ID = DIV_ID.SelectedValue;
                 model.INV_TYPE = ConvertHelper.Cint(sINV_TYPE);
                 model.STOCK_TYPE = ConvertHelper.Cint(sSTOCK_TYPE);

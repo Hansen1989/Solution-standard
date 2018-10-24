@@ -50,7 +50,7 @@
 
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
-                                    <f:DropDownList runat="server" Label="厂商编码" ID="ddlOUT_SHOP" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList>
+                                    <f:DropDownList runat="server" Label="厂商编码" ID="ddlSUP_ID" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList>
                                     <f:DropDownList runat="server" Label="仓库名称" ID="ddlSTOCK_ID" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList> 
                                     <f:TextBox runat="server" Label="制单人" ID="tbxUSER_ID" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
                                     <f:TextBox runat="server" Label="审核人" ID="tbxAPP_USER" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
@@ -90,9 +90,9 @@
                     <Items>
                        <f:Panel ID="Panel12" runat="server" Title="总部进货子表">
                            <Toolbars>
-                             <f:Toolbar ID="Toolbar21111" runat="server">
+                             <f:Toolbar ID="Toolbar21111" runat="server" Hidden="true">
                                <Items>
-                                  <f:Button ID="ButtonDetailAdd" runat="server" Text="添加" Icon="Add" OnClick="btn_DetailAdd"></f:Button>
+                                  <%-- <f:Button ID="ButtonDetailAdd" runat="server" Text="添加" Icon="Add" OnClick="btn_DetailAdd"></f:Button>--%>
                                   <%--<f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add"></f:Button>--%>
                                </Items>
                              </f:Toolbar>
