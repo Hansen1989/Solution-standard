@@ -220,25 +220,26 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
              
         }
 
-        protected void ButtonApproval_Click(object sender, EventArgs e)
-        {
-            string str = GridViewHelper.GetSelectedKey(Grid1, true);
-            string[] col_id_shop_id = str.Split(',');
-            string shop_id = col_id_shop_id[1];
-            string col_id = col_id_shop_id[0];
+        //protected void ButtonApproval_Click(object sender, EventArgs e)
+        //{
+        //    string str = GridViewHelper.GetSelectedKey(Grid1, true);
+        //    string[] col_id_shop_id = str.Split(',');
+        //    string shop_id = col_id_shop_id[1];
+        //    string col_id = col_id_shop_id[0];
+        //    string 
 
-            int ex_int = OUT00Bll.GetInstence().SplitOrders(col_id);
+        //    int ex_int = OUT00Bll.GetInstence().SplitOrders(col_id,);
 
-            if (ex_int == 1)
-            {
-                Alert.Show("核准失败，请重新核准！");
-            }
-            else
-            {
-                Alert.Show("核准成功！");
-            }
+        //    if (ex_int == 1)
+        //    {
+        //        Alert.Show("核准失败，请重新核准！");
+        //    }
+        //    else
+        //    {
+        //        Alert.Show("核准成功！");
+        //    }
 
-        }
+        //}
 
 
 
@@ -403,7 +404,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             string prod_id = GridViewHelper.GetSelectedKey(Grid2, true);
 
             DataTable dt_right = null;
-            dt_right = Col_Order00Bll.GetInstence().GET_ARCHIVEORDERS_RIGHT_LIST(shop_id, prod_id, col_id);
+            dt_right = Col_Order00Bll.GetInstence().GET_ARCHIVEORDERS_RIGHT_LIST(prod_id, col_id);
 
             Grid3.DataSource = dt_right;
             Grid3.DataBind();

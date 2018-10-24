@@ -309,10 +309,12 @@ namespace Solution.Logic.Managers
         {
             try
             {
-                List<ConditionFun.SqlqueryCondition> shopCondit = new List<ConditionFun.SqlqueryCondition>();
-                shopCondit.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, SHOP00Table.SHOP_Area_ID, Comparison.Equals, shop_id, false, false));
-                shopCondit.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Or, SHOP00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
-                var dt = DataTableHelper.GetFilterData(GetDataTable(false, 0, null, 0, 0, shopCondit, null), "1", "1", SHOP00Table.Id, " desc");
+                List<ConditionFun.SqlqueryCondition> shopCondit1 = new List<ConditionFun.SqlqueryCondition>();
+                shopCondit1.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, SHOP00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
+                var area_ID = SHOP00Bll.GetInstence().GetFieldValue("SHOP_Area_ID", shopCondit1);
+                 
+                var dt = DataTableHelper.GetFilterData(GetDataTable(), string.Format("{0} = '{1}'", SHOP00Table.SHOP_Area_ID, area_ID), SHOP00Table.Id);
+
                 //显示值
                 ddl.DataTextField = SHOP00Table.SHOP_NAME1;
                 //显示key

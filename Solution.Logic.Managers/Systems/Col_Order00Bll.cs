@@ -61,13 +61,13 @@ namespace Solution.Logic.Managers
         /// <param name="prod_id"></param>
         /// <param name="col_id"></param>
         /// <returns></returns>
-        public DataTable GET_ARCHIVEORDERS_RIGHT_LIST(string shop_id,string prod_id,string col_id)
+        public DataTable GET_ARCHIVEORDERS_RIGHT_LIST(string prod_id,string col_id)
         {
             DataTable dt = null;
 
             try
             {
-                dt = SPs.GET_ARCHIVEORDERS_RIGHT_LIST(shop_id,prod_id,col_id).ExecuteDataTable();
+                dt = SPs.GET_ARCHIVEORDERS_RIGHT_LIST(prod_id,col_id).ExecuteDataTable();
             }
             catch (Exception)
             {

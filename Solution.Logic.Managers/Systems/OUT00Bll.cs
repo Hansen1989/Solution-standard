@@ -8,12 +8,12 @@ namespace Solution.Logic.Managers
 {
     public partial class OUT00Bll:LogicBase
     {
-        public int SplitOrders(string col_id)
+        public int SplitOrders(string col_id,string user_Id)
         {
             int error = 0;
             try
             {
-                SPs.SplitOrders(col_id).Execute();
+                SPs.SplitOrders(col_id,user_Id).Execute();
 
             }
             catch (Exception)

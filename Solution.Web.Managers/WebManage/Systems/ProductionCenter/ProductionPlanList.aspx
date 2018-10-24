@@ -126,8 +126,8 @@
                               EnableMultiSelect="false" EnableRowSelectEvent="true" >
                               <Columns>
                                   <f:RowNumberField />
-                                  <f:BoundField Width="50px" DataField="SNo" DataFormatString="{0}" HeaderText="序号" />
-                                  <f:BoundField Width="80px" DataField="SHOP_ID" DataFormatString="{0}" HeaderText="店铺编号" />
+                                  <%--<f:BoundField Width="50px" DataField="SNo" DataFormatString="{0}" HeaderText="序号" />--%>
+                                  <%--<f:BoundField Width="80px" DataField="SHOP_ID" DataFormatString="{0}" HeaderText="店铺编号" />--%>
                                   <f:BoundField Width="100px" DataField="QUANTITY" DataFormatString="{0}" HeaderText="最小单位数量" />
                                   <f:BoundField Width="50px" DataField="STD_UNIT" DataFormatString="{0}" HeaderText="生产单位" />
                                   <f:BoundField Width="100px" DataField="STD_CONVERT" DataFormatString="{0}" HeaderText="标准转换量" />
@@ -144,7 +144,7 @@
                         <f:Grid ID="Grid3" EnableFrame="false" EnableCollapse="true" ShowBorder="false" ShowHeader="false" 
                             runat="server"  DataKeyNames="Id" EnableColumnLines="true">
                               <Columns>
-                                  <f:BoundField runat="server" DataField="SHOP_ID" DataFormatString="{0}" HeaderText="申请分店" />
+                                  <f:BoundField runat="server" DataField="SHOP_NAME1" DataFormatString="{0}" HeaderText="申请分店" />
                                   <f:BoundField runat="server" DataField="BATCH_SNo" DataFormatString="{0}" HeaderText="生产批次" />
                                   <f:BoundField runat="server" DataField="QUANTITY" DataFormatString="{0}" HeaderText="最小单位数量"/>          
                                   <f:BoundField runat="server" DataField="STD_UNIT"  DataFormatString="{0}" HeaderText="生产单位" />

@@ -36,7 +36,18 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     //获取ID值
                     hidId.Text = RequestHelper.GetInt0("Id") + "";
                     SHOP_hidId.Text = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
- 
+
+                    string user = OnlineUsersBll.GetInstence().GetPosition_Name(this,OnlineUsersBll.GetInstence().GetManagerId(),false);
+
+                    if (user.Contains("区域管理员"))
+                    {
+                        ddlShop.Enabled = true;
+                    }
+                    else {
+                       
+                        ddlShop.Enabled = false;
+                    }
+
                     //加载数据
                     LoadData();
 
@@ -73,23 +84,35 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <summary>读取数据</summary>
         public override void LoadData()
         {
+            
+            DataTable table = GetSourceData("", "");
+            Grid1.DataSource = table;
+            Grid1.DataBind();
+ 
+
+        }
+
+        #endregion
+
+        public override void Add()
+        {
             string shop_id = SHOP_hidId.Text.Trim();
             int managerId = OnlineUsersBll.GetInstence().GetManagerId();//获取登录名
 
             //表头
-            SHOP00Bll.GetInstence().BandDropDownListShowShop(this, ddlShop, shop_id); //分店名称
-
+            SHOP00Bll.GetInstence().GetShopList(this,shop_id,ddlShop);   //.BandDropDownListShowShop(this, ddlShop, shop_id); //分店名称
+            
             SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlOUT_SHOP); //供货分店
-           // ORDER_DEP00Bll.GetInstence().BandDropDownList(this, ddlORDER_DEP, shop_id);//订货部门
-            BranchBll.GetInstence().BandDropDownList(this,ddlORDER_DEP);
+                                                                                  // ORDER_DEP00Bll.GetInstence().BandDropDownList(this, ddlORDER_DEP, shop_id);//订货部门
+            BranchBll.GetInstence().BandDropDownList(this, ddlORDER_DEP);
 
             HiddenDep_Id.Text = ddlORDER_DEP.SelectedValue;
 
             string manager_LoginName = OnlineUsersBll.GetInstence().GetUserOnlineInfo("Manager_LoginName").ToString();//登录名
             txtCRT_USER_ID.Text = manager_LoginName;
             txtORD_USER.Text = manager_LoginName;
-            txtAPP_USER.Text = manager_LoginName;
-            txtMOD_USER_ID.Text = manager_LoginName;
+            txtAPP_USER.Text = "";// manager_LoginName;
+            txtMOD_USER_ID.Text = "";// manager_LoginName;
 
             txtINPUT_DATE.SelectedDate = DateTime.Now; //单据时间
             txtManage.Text = manager_LoginName;
@@ -103,35 +126,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
 
             txtEXPORTED_ID.Text = "";
-           
+
             txtMemo.Text = "";
-           
+
             cbTrans_STATUS.Checked = false;
-
-            DataTable table = GetSourceData("", "");
-            Grid1.DataSource = table;
-            Grid1.DataBind();
-
-                ///grid2
-                // string shop_id = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
-           // conditionList = new List<ConditionFun.SqlqueryCondition>();
-           // conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
-
-               //  ORDER00Bll.GetInstence().BindGrid(Grid2, 0, sortList);
-               // bll.BindGrid(Grid2, 0, sortList);
-          //  ORDER00Bll.GetInstence().BindGrid(Grid2, 0, 0, conditionList, sortList);
-               //------------------
-
-
-        }
-
-        #endregion
-
-        public override void Add()
-        {
+             
             ddlShop.SelectedValue = SHOP_hidId.Text.Trim();
-
-            txtORDER_ID.Text = "";
+            Random ran = new Random();
+            txtORDER_ID.Text = ddlShop.SelectedValue + "OR" + DateTime.Now.ToString("yyyy-MM-dd").Replace("-", "") + ran.Next(1000, 9999);
             ddlStatus.SelectedIndex = 0;
 
             txtEXPORTED_ID.Text = "";
@@ -150,13 +152,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             ddlEXPECT_DATE.Enabled = true;
             ddlOUT_SHOP.Enabled = true;
             txtMemo.Enabled = true;
+            ButtonApproval.Enabled = true;
 
             btnNew.Enabled = true;
             btnDelete.Enabled = true;
             Grid1.Enabled = true;
             Grid1.Rows.Clear();
 
-            ButtonPowers();
+           
+
+           
 
             //  txtManage.Text = OnlineUsersBll.GetInstence().GetManager_LoginName(this, managerId, true);
         }
@@ -385,7 +390,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
                 JArray mergedData1 = Grid1.GetMergedData();
                 int f = mergedData.Count;
-
+                 
                 int k = 0;
                 foreach (JObject mergedRow in mergedData1)
                 {
@@ -409,7 +414,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     model_1.QUAN1 = ConvertHelper.StringToDecimal(values.Value<string>("QUAN1"));//小计
                     model_1.QUAN2 = 0;
                     model_1.COST_PRICE = ConvertHelper.StringToDecimal(values.Value<string>("STD_PRICE"));
-                    model_1.STD_UNIT = values.Value<string>("PROD_UNIT");
+
+                   // string prod_name = values.Value<string>("PROD_UNIT").ToString();
+                   // var Prod_UnitList =  new PROD_UNIT(x=>x.UNIT_NAME == prod_name);
+
+                    model_1.STD_UNIT = "1";//最小订货单位  Prod_UnitList.UNIT_ID;
                     model_1.STD_CONVERT = 0;
                     model_1.STD_QUAN = ConvertHelper.StringToDecimal(values.Value<string>("ON_QUAN"));
                     model_1.STD_PRICE = ConvertHelper.StringToDecimal(values.Value<string>("STD_PRICE"));
@@ -453,6 +462,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 //出现异常，保存出错日志信息
                 CommonBll.WriteLog(result, e);
             }
+
+            ButtonPowers();
 
             return result;
         }
@@ -657,7 +668,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     return;
 
                 //txtSHOP_ID.Text = model.SHOP_ID;
-                ddlShop.SelectedValue = model.SHOP_ID + "";
+               // ddlShop.SelectedValue = model.SHOP_ID + "";
+                SHOP00Bll.GetInstence().GetShopList(this, model.SHOP_ID, ddlShop);   //.BandDropDownListShowShop(this, ddlShop, shop_id); //分店名称
+
                 txtORDER_ID.Text = model.ORDER_ID;
 
                 txtINPUT_DATE.SelectedDate = ConvertHelper.StringToDatetime(model.INPUT_DATE.ToString());
@@ -864,8 +877,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string shop_id = SHOP_hidId.Text.Trim();
             string shop_name = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_NAME1").ToString();
             string shop_idStr = ORDER00Table.SHOP_ID;
+            string user = OnlineUsersBll.GetInstence().GetPosition_Name(this, OnlineUsersBll.GetInstence().GetManagerId(), false);
 
-            if (shop_name.Contains("区域中心"))
+            if (user.Contains("区域管理员"))
             {
                 IsTime = -1;
             }
