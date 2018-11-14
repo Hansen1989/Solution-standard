@@ -114,10 +114,10 @@ namespace Solution.Logic.Managers
                ddl.DataBind();
                ddl.SelectedIndex = 0;
 
-               ddl.Items.Insert(0, new FineUI.ListItem("请选择", "0"));
-               ddl.SelectedValue = "0";
+                ddl.Items.Insert(0, new FineUI.ListItem("请选择", "0"));
+                ddl.SelectedValue = "0";
 
-           }
+            }
            catch (Exception e)
            {
                // 记录日志

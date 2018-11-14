@@ -62,7 +62,11 @@
                                     <Rows>
                                     <f:FormRow ColumnWidths="300px">
                                         <Items><%-- --%>
-                                            <f:DropDownList runat="server" AutoPostBack="true" Required="true" CssClass="textbackcolor1" OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" Label="分店名称" ID="ddlShop" Width="250px"></f:DropDownList>
+                                            <f:DropDownList runat="server" AutoPostBack="true" Required="true" CssClass="textbackcolor1" OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" 
+                                                Label="分店名称" ID="ddlShop" Width="250px"
+                                               ></f:DropDownList>
+                                            <%--  OnClientClick="if (F('Grid1').getStrore().getCount() >= 0) { F.alert('只能选择一条记录进行删除！');return false; }"--%>
+                                            
                                             <f:TextBox runat="server" Label="订单编号" ID="txtORDER_ID" Enabled="false" Width="250px"></f:TextBox>
                                             
                                             <f:DropDownList runat="server" Enabled="false" Label="状态" ID="ddlStatus" Width="250px">
@@ -147,7 +151,7 @@
                          
                             <f:HiddenField runat="server" ID="hidId" Text="0"></f:HiddenField>
                             <f:HiddenField runat="server" ID="SHOP_hidId" Text="0" ></f:HiddenField>
-                            <f:HiddenField runat="server" ID="HiddenDep_Id" Text="0" ></f:HiddenField>
+                            <f:HiddenField runat="server" ID="HiddenShop_Id" Text="0" ></f:HiddenField>
                             
                         </Items>
                     </f:SimpleForm>
@@ -323,7 +327,7 @@
          </f:Panel>
 
         <f:Window ID="Window1" Width="500px" Height="200px" Icon="TagBlue" Hidden="true" BodyPadding="20px"
-            EnableMaximize="true" EnableCollapse="true" runat="server" EnableResize="true"
+            EnableMaximize="true" EnableCollapse="true" runat="server" EnableResize="true" Target="Parent" 
             IsModal="false" CloseAction="HidePostBack" OnClose="Window1_Close" Layout="Fit">   <%--OnInit="Windows_Init"--%>
             <Toolbars>
                 <f:Toolbar ID="toolbar4" runat="server">
@@ -337,7 +341,7 @@
                 <f:Panel ID="A" ShowHeader="false" ShowBorder="false" Layout="Column" CssClass="formitem" 
                     runat="server">
                     <Items>
-                          <f:Label runat="server" Text="订货部门更改？注：更改订货部门将清空订货明细！" />
+                          <f:Label runat="server" Text="订货门店更改？注：更改订货部门将清空订货明细！" />
                     </Items>
                 </f:Panel>
                  
