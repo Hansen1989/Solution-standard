@@ -62,9 +62,11 @@
                                     <Rows>
                                     <f:FormRow ColumnWidths="300px">
                                         <Items><%-- --%>
-                                            <f:DropDownList runat="server" AutoPostBack="true" Required="true" CssClass="textbackcolor1" OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" 
-                                                Label="分店名称" ID="ddlShop" Width="250px"
-                                               ></f:DropDownList>
+                                            <f:DropDownList runat="server" AutoPostBack="true" Required="true" OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" CssClass="textbackcolor1" 
+                                                Label="分店名称" ID="ddlShop" Width="250px">
+                                            </f:DropDownList>
+                                            <%--OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" --%>
+
                                             <%--  OnClientClick="if (F('Grid1').getStrore().getCount() >= 0) { F.alert('只能选择一条记录进行删除！');return false; }"--%>
                                             
                                             <f:TextBox runat="server" Label="订单编号" ID="txtORDER_ID" Enabled="false" Width="250px"></f:TextBox>
@@ -394,7 +396,31 @@
 
          
     </form>
+
     <script type="text/javascript">
+   
+        function onOperation1Click() {
+ 
+            Ext.MessageBox.show({
+                msg: '切换部门，请先保存！',
+                title: '确认切换？',
+                buttons: Ext.Msg.YESNO,
+                buttonText:
+                {
+                    yes: '确认',
+                    no: '取消'
+                },
+                fn: function (btnId) {
+                    if (btnId === 'yes') {
+                        __doPostBack('', 'ConfirmOK');
+                    } else {
+                        __doPostBack('', 'ConfirmCancel');
+                    }
+                }
+            });
+        }
+ 
+    
         function renderSTATUS(value) {
             if(value == 0){return '无';}  
             if (value == 1) { return '存档' }

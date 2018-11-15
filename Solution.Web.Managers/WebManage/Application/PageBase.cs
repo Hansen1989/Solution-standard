@@ -80,6 +80,14 @@ namespace Solution.Web.Managers.WebManage.Application
             Init();
         }
 
+        /// <summary>
+        /// 获取回发的参数
+        /// </summary>
+        /// <returns></returns>
+        public string GetRequestEventArgument()
+        {
+            return Request.Form["__EVENTARGUMENT"];
+        }
 
         /// <summary>
         /// 分页

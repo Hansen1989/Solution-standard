@@ -50,6 +50,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                         ddlShop.Enabled = false;
                     }
 
+                  
                     //加载数据
                     LoadData();
 
@@ -71,6 +72,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 //  LoadData();
 
             }
+            
+
         }
         #endregion
 
@@ -161,6 +164,20 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             //  txtManage.Text = OnlineUsersBll.GetInstence().GetManager_LoginName(this, managerId, true);
         }
 
+        public void doX(object sender, EventArgs e)
+        {
+            //
+            if (GetRequestEventArgument() == "Cancel")
+            {
+                Alert.Show("取消执行操作三！");
+            }
+            else
+            {
+                Alert.Show("执行了操作三！");
+            }
+        }
+
+
         #region 页面控件绑定  分店
         /// <summary>下拉列表改变事件
         /// </summary>
@@ -170,13 +187,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             JArray mergedData = Grid1.GetMergedData();
             int gridrowsCount = mergedData.Count;
+            HiddenShop_Id.Text = ddlShop.SelectedValue;
 
             if (gridrowsCount > 0)
             {
                 Window1.Hidden = false;
-            }
 
-          
+                //string confirmStr = Confirm.GetShowReference("是否清空数据继续下单？", String.Empty, MessageBoxIcon.Question, ddlShop.GetPostBackEventReference(), ddlShop.GetPostBackEventReference("Cancel"));
+                //PageContext.RegisterStartupScript(confirmStr);
+            }
+             
             //if (!ddlShop.SelectedValue.Equals("0"))
             //{
             //    try
@@ -201,6 +221,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
         protected void btnNew_Click(object sender, EventArgs e)
         {
+            //if (GetRequestEventArgument() == "Cancel")
+            //{
+            //    Alert.Show("取消执行操作三！");
+            //}
+            //else
+            //{
+            //    Alert.Show("执行了操作三！");
+            //}
             //判断
 
             if (ddlShop.SelectedValue == "0")
@@ -917,7 +945,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
         protected void btnCancel1_Click(object sender, EventArgs e)
         { 
-            Window1.Hidden = true;
+           // Window1.Hidden = true;
 
 
         }
