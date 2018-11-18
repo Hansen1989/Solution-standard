@@ -62,7 +62,7 @@
                                     <Rows>
                                     <f:FormRow ColumnWidths="300px">
                                         <Items><%-- --%>
-                                            <f:DropDownList runat="server" AutoPostBack="true" Required="true" OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" CssClass="textbackcolor1" 
+                                            <f:DropDownList runat="server"  Required="true" AutoPostBack="true" OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" CssClass="textbackcolor1" 
                                                 Label="分店名称" ID="ddlShop" Width="250px">
                                             </f:DropDownList>
                                             <%--OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" --%>
@@ -154,6 +154,7 @@
                             <f:HiddenField runat="server" ID="hidId" Text="0"></f:HiddenField>
                             <f:HiddenField runat="server" ID="SHOP_hidId" Text="0" ></f:HiddenField>
                             <f:HiddenField runat="server" ID="HiddenShop_Id" Text="0" ></f:HiddenField>
+                            <f:HiddenField runat="server" ID="HiddenLastShop_Id" Text="0"></f:HiddenField>
                             
                         </Items>
                     </f:SimpleForm>
@@ -195,7 +196,8 @@
                     HeaderText="商品名称">
                      
                     <Editor>
-                        <f:DropDownList ID="DropDownList1"  runat="server">                         
+                        <f:DropDownList ID="DropDownList1"  runat="server">
+                            
                         </f:DropDownList>
                     </Editor>
                 </f:RenderField>

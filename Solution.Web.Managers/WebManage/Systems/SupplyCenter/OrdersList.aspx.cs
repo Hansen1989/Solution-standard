@@ -26,7 +26,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
     {
         private bool AppendToEnd = false;
         string user = "";
-        string last_shop_id = "0";
+  
         #region Page_Load
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,8 +36,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 {
                     //获取ID值
                     hidId.Text = RequestHelper.GetInt0("Id") + "";
-                    SHOP_hidId.Text =  OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
-                    last_shop_id = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
+                    // SHOP_hidId.Text =  OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
+                    HiddenLastShop_Id.Text = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
 
                     user = OnlineUsersBll.GetInstence().GetPosition_Name(this, OnlineUsersBll.GetInstence().GetManagerId(), false);
 
@@ -101,7 +101,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
         public override void Add()
         {
-            string shop_id = SHOP_hidId.Text.Trim();
+            string shop_id = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();// SHOP_hidId.Text.Trim();
             int managerId = OnlineUsersBll.GetInstence().GetManagerId();//获取登录名
 
             //表头
@@ -110,9 +110,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlOUT_SHOP); //供货分店
                                                                                   // ORDER_DEP00Bll.GetInstence().BandDropDownList(this, ddlORDER_DEP, shop_id);//订货部门
             BranchBll.GetInstence().BandDropDownList(this, ddlORDER_DEP);
-
-            HiddenShop_Id.Text = ddlORDER_DEP.SelectedValue;
-
+             
             string manager_LoginName = OnlineUsersBll.GetInstence().GetUserOnlineInfo("Manager_LoginName").ToString();//登录名
             txtCRT_USER_ID.Text = manager_LoginName;
             txtORD_USER.Text = manager_LoginName;
@@ -133,7 +131,10 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             cbTrans_STATUS.Checked = false;
              
-            ddlShop.SelectedValue = SHOP_hidId.Text.Trim();
+            ddlShop.SelectedValue = shop_id;
+
+            HiddenShop_Id.Text = ddlShop.SelectedValue;// ddlORDER_DEP.SelectedValue;
+
             Random ran = new Random();
             txtORDER_ID.Text = ddlShop.SelectedValue + "OR" + DateTime.Now.ToString("yyyy-MM-dd").Replace("-", "") + ran.Next(1000, 9999);
             ddlStatus.SelectedIndex = 0;
@@ -187,7 +188,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             JArray mergedData = Grid1.GetMergedData();
             int gridrowsCount = mergedData.Count;
+            HiddenLastShop_Id.Text = HiddenShop_Id.Text;
             HiddenShop_Id.Text = ddlShop.SelectedValue;
+            
 
             if (gridrowsCount > 0)
             {
@@ -254,9 +257,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             // 新增数据初始值
             JObject defaultObj = new JObject();
-
+            defaultObj.Add("PROD_ID", "0");
             defaultObj.Add("PROD_NAME1", "0");
-            defaultObj.Add("PROD_ID", "");
             defaultObj.Add("PROD_SPEC", "");
             defaultObj.Add("PROD_UNIT", "");
 
@@ -487,11 +489,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 else {
                     conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
                 }
-
-               
-
-                //  ORDER00Bll.GetInstence().BindGrid(Grid2, 0, sortList);
-                // bll.BindGrid(Grid2, 0, sortList);
+                 
                 ORDER00Bll.GetInstence().BindGrid(Grid2, 0, 0, conditionList, sortList);
 
                 #endregion
@@ -544,7 +542,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             // LinkButtonField deleteField = Grid1.FindColumn("Delete") as LinkButtonField;
             //  deleteField.OnClientClick = GetDeleteScript(Grid1);
 
-            string SHOP_ID = last_shop_id;// OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
+            string SHOP_ID = HiddenShop_Id.Text == "0" ? OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString() : HiddenShop_Id.Text;
           //  string ORDER_DEP_VALUE = ddlORDER_DEP.SelectedValue;
 
             if (SHOP_ID != "0")
@@ -841,6 +839,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             //清空列表
             // Grid1.RejectChanges();
             HiddenShop_Id.Text = ddlShop.SelectedValue;// ddlORDER_DEP.SelectedValue;
+            HiddenLastShop_Id.Text = ddlShop.SelectedValue;
 
             Session[KEY_FOR_DATASOURCE_SESSION] = null;
             // }
@@ -860,7 +859,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            ddlShop.SelectedValue = HiddenShop_Id.Text.Trim();
+            ddlShop.SelectedValue = HiddenLastShop_Id.Text;
+            HiddenShop_Id.Text = ddlShop.SelectedValue;
            // ddlORDER_DEP.SelectedValue = HiddenShop_Id.Text.Trim();
 
             Window1.Hidden = true;
@@ -1012,6 +1012,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
         }
 
-
+        protected override void Window1_Close(object sender, WindowCloseEventArgs e)
+        {
+            ddlShop.SelectedValue = HiddenShop_Id.Text;
+        }
     }
 }
