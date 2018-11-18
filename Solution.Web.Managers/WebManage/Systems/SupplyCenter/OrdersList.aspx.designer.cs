@@ -478,7 +478,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.NumberBox txtCOST;
+        protected global::FineUI.TextBox txtCOST;
         
         /// <summary>
         /// txtQUAN1 控件。

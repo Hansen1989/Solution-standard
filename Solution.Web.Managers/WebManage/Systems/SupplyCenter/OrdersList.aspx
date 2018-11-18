@@ -208,7 +208,7 @@
                         <f:Label ID="txtPROD_SPEC" runat="server" />
                       </Editor>
                 </f:RenderField>
-                <f:RenderField  Width="50px" ColumnID="PROD_UNIT" DataField="PROD_UNIT" TextAlign="Center"  FieldType="String"
+                <f:RenderField  Width="60px" ColumnID="PROD_UNIT" DataField="PROD_UNIT" TextAlign="Center"  FieldType="String"
                     HeaderText="单位">
                       <Editor>
                         <f:Label ID="txtPROD_UNIT" runat="server" />
@@ -222,12 +222,12 @@
                         </f:NumberBox>
                     </Editor>
                 </f:RenderField>
-                <f:RenderField Width="80px" ColumnID="STD_PRICE" DataField="STD_PRICE"
+                <f:RenderField Width="80px" ColumnID="STD_PRICE" DataField="STD_PRICE" FieldType="Float"
                     HeaderText="单价"> <%--FieldType="Int"--%>
                     <Editor>
-                        <f:NumberBox ID="txtCOST" Required="true" runat="server" DecimalPrecision="6" NoDecimal="false"> <%--NoDecimal="false" NoNegative="true" --%>
-                        </f:NumberBox>
-                       
+                        <%--<f:NumberBox ID="txtCOST" Required="true" runat="server" NoDecimal="false" NoNegative="true" ></f:NumberBox>--%>
+                       <f:TextBox ID="txtCOST" Required="true" runat="server"></f:TextBox>
+                    
                     </Editor>
                 </f:RenderField>
 
@@ -473,17 +473,20 @@
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         var strResult = xmlhttp.responseText;
                         var obj = JSON.parse(strResult);
-                         
+                        alert(strResult);
+
                         me.f_updateCellValue(rowId, 'PROD_ID', obj[0].PROD_ID);
                         me.f_updateCellValue(rowId, 'PROD_NAME1', obj[0].PROD_NAME1);
                         me.f_updateCellValue(rowId, 'PROD_SPEC', obj[0].PROD_SPEC);
                         me.f_updateCellValue(rowId, 'PROD_UNIT', obj[0].PROD_UNIT);
                         me.f_updateCellValue(rowId, 'ON_QUAN', obj[0].Order_QUAN);
                         me.f_updateCellValue(rowId, 'STD_PRICE', obj[0].STD_PRICE);
-
+                       
                         me.f_updateCellValue(rowId, 'QUAN1', obj[0].STD_PRICE * obj[0].Order_QUAN);
                         //me.f_updateCellValue(rowId, 'Order_QUAN', obj[0].Order_QUAN);
                         me.f_updateCellValue(rowId, 'PROD_MEMO', '');
+
+                        alert(obj[0].STD_PRICE);
                     }
                     else {
                         me.f_updateCellValue(rowId, 'PROD_NAME1', xmlhttp.responseText);
