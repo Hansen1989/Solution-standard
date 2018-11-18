@@ -10,13 +10,13 @@ using SubSonic.DataProviders;
 namespace Solution.DataAccess.DataModel{
 	public partial class SPs{
 
-        public static StoredProcedure ADD_ARCHIVEORDERS(string ORD_USER_C,string ORD_DEP_ID_C,string Import_Shop_C,string COL_BeginDate,string COL_EndDate,int IsTime){
+        public static StoredProcedure ADD_ARCHIVEORDERS(string ORD_USER_C,string ORD_DEP_ID_C,string ARCH_SHOP_C,string COL_BeginDate,string COL_EndDate,int IsTime){
             StoredProcedure sp=new StoredProcedure("ADD_ARCHIVEORDERS");
 			
 
             sp.Command.AddParameter("ORD_USER_C",ORD_USER_C,DbType.AnsiString);
             sp.Command.AddParameter("ORD_DEP_ID_C",ORD_DEP_ID_C,DbType.AnsiString);
-            sp.Command.AddParameter("Import_Shop_C",Import_Shop_C,DbType.AnsiString);
+            sp.Command.AddParameter("ARCH_SHOP_C",ARCH_SHOP_C,DbType.AnsiString);
             sp.Command.AddParameter("COL_BeginDate",COL_BeginDate,DbType.AnsiString);
             sp.Command.AddParameter("COL_EndDate",COL_EndDate,DbType.AnsiString);
             sp.Command.AddParameter("IsTime",IsTime,DbType.Int32);

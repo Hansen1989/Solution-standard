@@ -40,10 +40,21 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 Sort();
             }
 
-       
+            string user = OnlineUsersBll.GetInstence().GetPosition_Name(this, OnlineUsersBll.GetInstence().GetManagerId(), false);
+            string shop_id = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
+
             conditionList = new List<ConditionFun.SqlqueryCondition>();
-            conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "1", Comparison.Equals, "1", false, false));
-   
+            
+
+            if (user.Contains("区域管理员"))
+            {
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "1", Comparison.Equals, "1", false, false));
+            }
+            else {
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, Col_Order00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
+            }
+
+
             bll.BindGrid(Grid1, 0, 0, conditionList, sortList);
 
             //绑定Grid表格
@@ -187,7 +198,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             //参数
             Random ran = new Random();
-            string SHOP_ID = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString(); ;
+            string SHOP_ID = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString(); 
             string COL_ID = SHOP_ID + "CL" + DateTime.Now.ToString("yyyy-MM-dd") + +ran.Next(1000, 9999);
             string manager_LoginName = OnlineUsersBll.GetInstence().GetUserOnlineInfo("Manager_LoginName").ToString();//登录名
 

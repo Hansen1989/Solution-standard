@@ -200,25 +200,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 //PageContext.RegisterStartupScript(confirmStr);
             }
              
-            //if (!ddlShop.SelectedValue.Equals("0"))
-            //{
-            //    try
-            //    {
-            //        // txtSHOP_ID.Text = ddlShop.SelectedValue;
-
-            //        Random ran = new Random();
-            //        txtORDER_ID.Text = ddlShop.SelectedValue + "OR" + DateTime.Now.ToString("yyyy-MM-dd").Replace("-", "") + ran.Next(1000, 9999);
-            //        last_shop_id = ddlShop.SelectedValue;
-
-            //        Grid1_PreDataBound(sender, e);
-
-            //        /////获取当前节点的父节点url
-            //        //  txtUrl.Text = MenuInfoBll.GetInstence().GetFieldValue(ConvertHelper.Cint0(ddlParentId.SelectedValue), MenuInfoTable.Url) + "";
-            //    }
-            //    catch
-            //    {
-            //    }
-            //}
+         
         }
         #endregion
 
@@ -349,8 +331,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     i = i + 1;
                     newRow = newTable.NewRow();
                     newRow[0] = rowIndex;//i;////j;// rowIndex; // 将行标识符设置为行索引号
-                    newRow[1] = values.Value<string>("PROD_NAME1");
-                    newRow[2] = values.Value<string>("PROD_ID");
+                    newRow[1] = values.Value<string>("PROD_ID");
+                    newRow[2] = values.Value<string>("PROD_NAME1");
                     newRow[3] = values.Value<string>("PROD_SPEC");
                     newRow[4] = values.Value<string>("PROD_UNIT");
                     newRow[5] = values.Value<string>("ON_QUAN");
@@ -443,17 +425,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
                     model_1.SHOP_ID = ddlShop.SelectedValue;
                     model_1.ORDER_ID = txtORDER_ID.Text.Trim();
-
+                     
                     model_1.PROD_ID = values.Value<string>("PROD_ID");
                     model_1.QUANTITY = 0;
                     model_1.ON_QUAN = ConvertHelper.StringToDecimal(values.Value<string>("ON_QUAN"));
                     model_1.QUAN1 = ConvertHelper.StringToDecimal(values.Value<string>("QUAN1"));//小计
                     model_1.QUAN2 = 0;
                     model_1.COST_PRICE = ConvertHelper.StringToDecimal(values.Value<string>("STD_PRICE"));
-
-                   // string prod_name = values.Value<string>("PROD_UNIT").ToString();
-                   // var Prod_UnitList =  new PROD_UNIT(x=>x.UNIT_NAME == prod_name);
-
+ 
                     model_1.STD_UNIT = "1";//最小订货单位  Prod_UnitList.UNIT_ID;
                     model_1.STD_CONVERT = 0;
                     model_1.STD_QUAN = ConvertHelper.StringToDecimal(values.Value<string>("ON_QUAN"));
@@ -729,7 +708,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 SHOP00Bll.GetInstence().GetShopList(this, model.SHOP_ID, ddlShop);   //.BandDropDownListShowShop(this, ddlShop, shop_id); //分店名称
 
                 txtORDER_ID.Text = model.ORDER_ID;
-
+                ddlShop.SelectedValue = model.SHOP_ID;
                 txtINPUT_DATE.SelectedDate = ConvertHelper.StringToDatetime(model.INPUT_DATE.ToString());
 
                 txtORD_USER.Text = model.ORD_USER;
@@ -849,7 +828,10 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             Window1.Hidden = true;
 
             string SHOP_ID = HiddenShop_Id.Text;
-            
+
+            Random ran = new Random();
+            txtORDER_ID.Text = ddlShop.SelectedValue + "OR" + DateTime.Now.ToString("yyyy-MM-dd").Replace("-", "") + ran.Next(1000, 9999);
+
             if (SHOP_ID != "0")
             {
                 PRODUCT00Bll.GetInstence().BandDropDownListShowProductName_1(this, DropDownList1, SHOP_ID);  // (System.Web.UI.WebControls.DropDownList)
