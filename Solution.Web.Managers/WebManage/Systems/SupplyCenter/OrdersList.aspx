@@ -225,8 +225,9 @@
                 <f:RenderField Width="80px" ColumnID="STD_PRICE" DataField="STD_PRICE"
                     HeaderText="单价"> <%--FieldType="Int"--%>
                     <Editor>
-                        <f:NumberBox ID="txtCOST" Required="true" runat="server" DecimalPrecision="2"> <%--NoDecimal="false" NoNegative="true" --%>
+                        <f:NumberBox ID="txtCOST" Required="true" runat="server" DecimalPrecision="6" NoDecimal="false"> <%--NoDecimal="false" NoNegative="true" --%>
                         </f:NumberBox>
+                       
                     </Editor>
                 </f:RenderField>
 

@@ -245,7 +245,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             defaultObj.Add("PROD_UNIT", "");
 
             defaultObj.Add("ON_QUAN", "");
-            defaultObj.Add("STD_PRICE", "0.00");
+            defaultObj.Add("STD_PRICE", "0.000000");
 
             defaultObj.Add("QUAN1", 0);
             defaultObj.Add("Order_QUAN", 1);
