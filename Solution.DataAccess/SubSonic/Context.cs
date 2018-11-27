@@ -233,11 +233,13 @@ namespace Solution.DataAccess.DataModel
         public Query<DataAccess.Model.V_PROD_DEP> V_PROD_DEP { get; set; }
         public Query<DataAccess.Model.V_PRODUCT_COMPONENT00> V_PRODUCT_COMPONENT00 { get; set; }
         public Query<DataAccess.Model.V_Product01_PRCAREA> V_Product01_PRCAREA { get; set; }
+        public Query<DataAccess.Model.V_Purchase00_SHOP00> V_Purchase00_SHOP00 { get; set; }
         public Query<DataAccess.Model.V_Purchase01_PRODUCT00> V_Purchase01_PRODUCT00 { get; set; }
         public Query<DataAccess.Model.V_STOCK_SHOP00> V_STOCK_SHOP00 { get; set; }
         public Query<DataAccess.Model.V_STOCK01_PRODUCT00> V_STOCK01_PRODUCT00 { get; set; }
         public Query<DataAccess.Model.V_STOCK01_PRODUCT01> V_STOCK01_PRODUCT01 { get; set; }
         public Query<DataAccess.Model.V_STOCK02_PRODUCT00> V_STOCK02_PRODUCT00 { get; set; }
+        public Query<DataAccess.Model.V_TAKEIN10_SHOP00> V_TAKEIN10_SHOP00 { get; set; }
         public Query<DataAccess.Model.V_TAKEIN11_PRODUCT00> V_TAKEIN11_PRODUCT00 { get; set; }
         public Query<DataAccess.Model.WebConfig> WebConfig { get; set; }
 
@@ -441,11 +443,13 @@ namespace Solution.DataAccess.DataModel
             V_PROD_DEP = new Query<DataAccess.Model.V_PROD_DEP>(provider);
             V_PRODUCT_COMPONENT00 = new Query<DataAccess.Model.V_PRODUCT_COMPONENT00>(provider);
             V_Product01_PRCAREA = new Query<DataAccess.Model.V_Product01_PRCAREA>(provider);
+            V_Purchase00_SHOP00 = new Query<DataAccess.Model.V_Purchase00_SHOP00>(provider);
             V_Purchase01_PRODUCT00 = new Query<DataAccess.Model.V_Purchase01_PRODUCT00>(provider);
             V_STOCK_SHOP00 = new Query<DataAccess.Model.V_STOCK_SHOP00>(provider);
             V_STOCK01_PRODUCT00 = new Query<DataAccess.Model.V_STOCK01_PRODUCT00>(provider);
             V_STOCK01_PRODUCT01 = new Query<DataAccess.Model.V_STOCK01_PRODUCT01>(provider);
             V_STOCK02_PRODUCT00 = new Query<DataAccess.Model.V_STOCK02_PRODUCT00>(provider);
+            V_TAKEIN10_SHOP00 = new Query<DataAccess.Model.V_TAKEIN10_SHOP00>(provider);
             V_TAKEIN11_PRODUCT00 = new Query<DataAccess.Model.V_TAKEIN11_PRODUCT00>(provider);
             WebConfig = new Query<DataAccess.Model.WebConfig>(provider);
             #endregion
@@ -552,11 +556,13 @@ namespace Solution.DataAccess.DataModel
             	DataProvider.Schema.Tables.Add(new V_PROD_DEPStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_PRODUCT_COMPONENT00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_Product01_PRCAREAStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new V_Purchase00_SHOP00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_Purchase01_PRODUCT00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_STOCK_SHOP00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_STOCK01_PRODUCT00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_STOCK01_PRODUCT01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_STOCK02_PRODUCT00Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new V_TAKEIN10_SHOP00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_TAKEIN11_PRODUCT00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new WebConfigStructs(DataProvider));
             }

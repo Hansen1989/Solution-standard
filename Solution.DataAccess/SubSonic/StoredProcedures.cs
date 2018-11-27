@@ -314,6 +314,14 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("PURCHASE_ID",PURCHASE_ID,DbType.AnsiString);
             return sp;
         }
+        public static StoredProcedure Update_TAKEIN10_TOT(string SHOP_ID,string TAKEIN_ID){
+            StoredProcedure sp=new StoredProcedure("Update_TAKEIN10_TOT");
+			
+
+            sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
+            sp.Command.AddParameter("TAKEIN_ID",TAKEIN_ID,DbType.AnsiString);
+            return sp;
+        }
 	
 	}
 	

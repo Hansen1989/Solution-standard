@@ -19,11 +19,11 @@ namespace Solution.DataAccess.Model
 			set { _Id = value; }
 		}
 
-		int _AREA_ID = 0;
+		string _AREA_ID = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public int AREA_ID
+		public string AREA_ID
 		{
 			get { return _AREA_ID; }
 			set { _AREA_ID = value; }

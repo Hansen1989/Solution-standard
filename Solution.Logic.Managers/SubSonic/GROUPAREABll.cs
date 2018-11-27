@@ -237,8 +237,8 @@ namespace Solution.Logic.Managers {
                         expression = x => x.Id == (int)value;
                         break;
 					case "AREA_ID" :
-						model = list.SingleOrDefault(x => x.AREA_ID == (int)value);
-                        expression = x => x.AREA_ID == (int)value;
+						model = list.SingleOrDefault(x => x.AREA_ID == (string)value);
+                        expression = x => x.AREA_ID == (string)value;
                         break;
 					case "AREA_NAME" :
 						model = list.SingleOrDefault(x => x.AREA_NAME == (string)value);
@@ -565,7 +565,7 @@ namespace Solution.Logic.Managers {
 					model.Id = (int)value;
                     break;
 				case "AREA_ID" :
-					model.AREA_ID = (int)value;
+					model.AREA_ID = (string)value;
                     break;
 				case "AREA_NAME" :
 					model.AREA_NAME = (string)value;

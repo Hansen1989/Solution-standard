@@ -52,7 +52,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SystemParameter
             //绑定Grid表格
             conditionList = new List<ConditionFun.SqlqueryCondition>();
             conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "1", Comparison.Equals, "1", false, false));
-            SYS_PARAMATERSBll.GetInstence().BindGrid(Grid1, 0, 0, conditionList, sortList);
+            PARAMETERBll.GetInstence().BindGrid(Grid1, 0, 0, conditionList, sortList);
             // bll.BindGrid(Grid1, InquiryCondition(), sortList);
         }
         #endregion
@@ -103,12 +103,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SystemParameter
             DataRowView row = e.DataItem as DataRowView;
 
             
-            int AREA_ID = ConvertHelper.Cint0(((System.Data.DataRowView)(row)).Row.Table.Rows[e.RowIndex][GROUPAREATable.AREA_ID].ToString());
+            string AREA_ID = ((System.Data.DataRowView)(row)).Row.Table.Rows[e.RowIndex][GROUPAREATable.AREA_ID].ToString();
             var model = new GROUPAREA(x => x.AREA_ID == AREA_ID);
             if (model != null)
             {
                 // ((System.Data.DataRowView)(gr.DataItem)).Row[e.RowIndex]
-                var tf = Grid1.FindColumn("AREA_ID_LINK") as FineUI.LinkButtonField;
+                var tf = Grid1.FindColumn("Area_Id") as FineUI.LinkButtonField;
                 tf.Text = model.AREA_NAME;
 
             }

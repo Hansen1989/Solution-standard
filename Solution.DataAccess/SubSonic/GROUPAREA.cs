@@ -118,7 +118,7 @@ namespace Solution.DataAccess.DataModel
                
             Id = readRecord.get_int("Id",null);
                
-            AREA_ID = readRecord.get_int("AREA_ID",null);
+            AREA_ID = readRecord.get_string("AREA_ID",null);
                
             AREA_NAME = readRecord.get_string("AREA_NAME",null);
                
@@ -284,7 +284,7 @@ namespace Solution.DataAccess.DataModel
         }
         
         public override string ToString(){
-                            return this.AREA_NAME.ToString();
+                            return this.AREA_ID.ToString();
                     }
 
         public override bool Equals(object obj){
@@ -303,11 +303,11 @@ namespace Solution.DataAccess.DataModel
         
         public string DescriptorValue()
         {
-                            return this.AREA_NAME.ToString();
+                            return this.AREA_ID.ToString();
                     }
 
         public string DescriptorColumn() {
-            return "AREA_NAME";
+            return "AREA_ID";
         }
         public static string GetKeyColumn()
         {
@@ -315,7 +315,7 @@ namespace Solution.DataAccess.DataModel
         }        
         public static string GetDescriptorColumn()
         {
-            return "AREA_NAME";
+            return "AREA_ID";
         }
         
         #region ' Foreign Keys '
@@ -345,11 +345,11 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        int _AREA_ID;
+        string _AREA_ID;
 		/// <summary>
 		/// 
 		/// </summary>
-        public int AREA_ID
+        public string AREA_ID
         {
             get { return _AREA_ID; }
             set

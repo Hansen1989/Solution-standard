@@ -353,6 +353,9 @@
     <Compile Include="SubSonic\V_PROD_DEPBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubSonic\V_Purchase00_SHOP00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\V_Purchase01_PRODUCT00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
@@ -366,6 +369,9 @@
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_STOCK_SHOP00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_TAKEIN10_SHOP00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_TAKEIN11_PRODUCT00Bll.cs">

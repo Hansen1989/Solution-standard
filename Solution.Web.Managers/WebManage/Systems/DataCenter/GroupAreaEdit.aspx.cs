@@ -133,7 +133,7 @@ namespace Solution.Web.Managers.WebManage.Systems.DataCenter
                     return txtAREA_ID.Label + "不能为空！";
                 }
 
-                int area_id = ConvertHelper.Cint0(txtAREA_ID.Text.Trim());
+                string area_id = txtAREA_ID.Text.Trim();
                 Expression<Func<DataAccess.Model.GROUPAREA, bool>> list = null;
                 list = x => x.AREA_ID == area_id;
 
@@ -156,7 +156,7 @@ namespace Solution.Web.Managers.WebManage.Systems.DataCenter
                 //读取资料
                 var model = new GROUPAREA(x => x.Id == id);
 
-                model.AREA_ID = ConvertHelper.Cint0(txtAREA_ID.Text);
+                model.AREA_ID = txtAREA_ID.Text;
                 model.AREA_NAME = txtAREA_NAME.Text;
                 model.AREA_ADD = txtAREA_ADD.Text;
                 model.AREA_TEL = txtAREA_TEL.Text;

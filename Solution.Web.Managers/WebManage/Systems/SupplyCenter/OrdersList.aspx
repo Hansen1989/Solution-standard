@@ -218,11 +218,13 @@
                 <f:RenderField Width="100px" ColumnID="ON_QUAN" DataField="ON_QUAN"  FieldType="String"
                     HeaderText="订货量"> <%--FieldType="Int"--%>
                     <Editor>
-                        <f:NumberBox ID="txtON_QUAN" Required="true" runat="server" DecimalPrecision="2"> <%--NoDecimal="true" NoNegative="true" --%>
-                        </f:NumberBox>
+                        <%--<f:NumberBox ID="txtON_QUAN" Required="true" runat="server" DecimalPrecision="2"> <%--NoDecimal="true" NoNegative="true" --%>
+                       <%-- </f:NumberBox>--%>
+                        <f:TextBox ID="txtON_QUAN" Required="true" runat="server"></f:TextBox>
+
                     </Editor>
                 </f:RenderField>
-                <f:RenderField Width="80px" ColumnID="STD_PRICE" DataField="STD_PRICE" FieldType="Float"
+                <f:RenderField Width="80px" ColumnID="STD_PRICE" DataField="STD_PRICE" FieldType="String"
                     HeaderText="单价"> <%--FieldType="Int"--%>
                     <Editor>
                         <%--<f:NumberBox ID="txtCOST" Required="true" runat="server" NoDecimal="false" NoNegative="true" ></f:NumberBox>--%>
@@ -473,7 +475,7 @@
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         var strResult = xmlhttp.responseText;
                         var obj = JSON.parse(strResult);
-                        alert(strResult);
+                       // alert(strResult);
 
                         me.f_updateCellValue(rowId, 'PROD_ID', obj[0].PROD_ID);
                         me.f_updateCellValue(rowId, 'PROD_NAME1', obj[0].PROD_NAME1);
@@ -486,7 +488,7 @@
                         //me.f_updateCellValue(rowId, 'Order_QUAN', obj[0].Order_QUAN);
                         me.f_updateCellValue(rowId, 'PROD_MEMO', '');
 
-                        alert(obj[0].STD_PRICE);
+                   
                     }
                     else {
                         me.f_updateCellValue(rowId, 'PROD_NAME1', xmlhttp.responseText);

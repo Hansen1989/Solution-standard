@@ -252,6 +252,10 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.MEMO == (string)value);
                         expression = x => x.MEMO == (string)value;
                         break;
+					case "Area_Id" :
+						model = list.SingleOrDefault(x => x.Area_Id == (string)value);
+                        expression = x => x.Area_Id == (string)value;
+                        break;
 
                     default :
                         return null;
@@ -421,6 +425,7 @@ namespace Solution.Logic.Managers {
                 VALUE = model.VALUE,
                 KEY_CN = model.KEY_CN,
                 MEMO = model.MEMO,
+                Area_Id = model.Area_Id,
             };
         }
 
@@ -454,6 +459,7 @@ namespace Solution.Logic.Managers {
                 VALUE = model.VALUE,
                 KEY_CN = model.KEY_CN,
                 MEMO = model.MEMO,
+                Area_Id = model.Area_Id,
             };
         }
 
@@ -515,6 +521,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "MEMO" :
 					model.MEMO = (string)value;
+                    break;
+				case "Area_Id" :
+					model.Area_Id = (string)value;
                     break;
             }
 		}
@@ -1079,6 +1088,8 @@ namespace Solution.Logic.Managers {
 					return model.KEY_CN;
 				case "MEMO" :
 					return model.MEMO;
+				case "Area_Id" :
+					return model.Area_Id;
 			}
 
 			return null;
