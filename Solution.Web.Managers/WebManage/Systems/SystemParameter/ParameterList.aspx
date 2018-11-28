@@ -40,18 +40,16 @@
            OnPageIndexChange="Grid1_PageIndexChange"  OnRowCommand="Grid1_RowCommand" OnPreRowDataBound="Grid1_PreRowDataBound">  
                 <Columns>
                    
-                    <f:LinkButtonField runat="server" ID="AREA_ID_LINK" ColumnID="AREA_ID_LINK" Width="120px" HeaderText="区域"></f:LinkButtonField>
-                    <f:BoundField Width="180px" DataField="COL_ORDER_TYPE" DataFormatString="{0}" HeaderText="汇整类型" />
-                    <f:BoundField Width="180px" DataField="ORDER_PRICE_TYPE" DataFormatString="{0}" HeaderText="售价单价参数" />
-                    <f:BoundField Width="180px" DataField="QUANTITY_TYPE" DataFormatString="{0}" HeaderText="订货量参数" />
-                    <f:BoundField Width="180px" DataField="EXPECT_DATE_TYPE" DataFormatString="{0}" HeaderText="期望日期参数" />
-                    <f:BoundField Width="180px" DataField="PRD_BOM_TYPE" DataFormatString="{0}" HeaderText="配方层次拆解" />
-                    <f:BoundField Width="180px" DataField="PLAN_TYPE" DataFormatString="{0}" HeaderText="生产计划参数" />
-                    <f:BoundField Width="180px" DataField="CRT_DATETIME" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" HeaderText="建档时间" />
+                    <f:LinkButtonField runat="server" ID="AREA_ID_LINK" ColumnID="Area_Id" Width="120px" HeaderText="区域"></f:LinkButtonField>
+                    <f:BoundField Width="180px" DataField="KEY" DataFormatString="{0}" HeaderText="编码" />
+                    <f:BoundField Width="180px" DataField="VALUE" DataFormatString="{0}" HeaderText="值" />
+                    <f:BoundField Width="180px" DataField="MEMO" DataFormatString="{0}" HeaderText="备注" />
+                    
+                    <%--<f:BoundField Width="180px" DataField="CRT_DATETIME" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" HeaderText="建档时间" />
                     <f:BoundField Width="180px" DataField="CRT_USER_ID" DataFormatString="{0}" HeaderText="创建人" />
                     <f:BoundField Width="180px" DataField="MOD_DATETIME" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" HeaderText="修改时间" />
                     <f:BoundField Width="180px" DataField="MOD_USER_ID" DataFormatString="{0}" HeaderText="修改人" />
-                    <f:BoundField Width="180px" DataField="LAST_UPDATE" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" HeaderText="最后异动时间" />
+                    <f:BoundField Width="180px" DataField="LAST_UPDATE" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" HeaderText="最后异动时间" />--%>
                   
                 </Columns>
             </f:Grid>

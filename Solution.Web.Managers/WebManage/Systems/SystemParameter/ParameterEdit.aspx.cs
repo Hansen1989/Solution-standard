@@ -54,16 +54,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SystemParameter
             {
                 //获取指定ID的菜单内容，如果不存在，则创建一个菜单实体
                 
-                var model = SYS_PARAMATERSBll.GetInstence().GetModelForCache(x => x.Id == id);
+                var model = PARAMETERBll.GetInstence().GetModelForCache(x => x.Id == id);
                 if (model == null)
                     return;
 
-                ddlAREA.SelectedValue = model.AREA_ID + "";
-                ddlCOL_ORDER_TYPE.SelectedValue = model.COL_ORDER_TYPE + "";
-                ddlORDER_PRICE_TYPE.SelectedValue = model.ORDER_PRICE_TYPE + "";
-                ddlQUANTITY_TYPE.SelectedValue = model.QUANTITY_TYPE + "";
-                ddlEXPECT_DATE_TYPE.SelectedValue = model.EXPECT_DATE_TYPE + "";
-                ddlPALN_TYPE.SelectedValue = model.PALN_TYPE + "";
+                ddlAREA.SelectedValue = model.Area_Id + "";
+                txt_key.Text = model.KEY;
+                value_droplist.SelectedValue = model.VALUE;
+                key_cn.Text = model.KEY_CN;
+                txt_memo.Text = model.MEMO;
+
 
             }
         }
@@ -95,27 +95,26 @@ namespace Solution.Web.Managers.WebManage.Systems.SystemParameter
                 #region 赋值
                 //读取指定部门资料
                 
-                var model = new SYS_PARAMATERS(x => x.Id == id);
+                var model = new PARAMETER(x => x.Id == id);
 
-                model.AREA_ID = ddlAREA.SelectedValue + "";
-                model.COL_ORDER_TYPE = ConvertHelper.Cint0(ddlCOL_ORDER_TYPE.SelectedValue.ToString());
-                model.ORDER_PRICE_TYPE = ConvertHelper.Cint0(ddlORDER_PRICE_TYPE.SelectedValue);
-                model.QUANTITY_TYPE = ConvertHelper.Cint0(ddlQUANTITY_TYPE.SelectedValue);
-                model.EXPECT_DATE_TYPE = ConvertHelper.Cint0(ddlEXPECT_DATE_TYPE.SelectedValue);
-                model.PRD_BOM_TYPE = ConvertHelper.Cint0(ddlPRD_BOM_TYPE.SelectedValue);
-                model.PALN_TYPE = ConvertHelper.Cint0(ddlPALN_TYPE.SelectedValue);
-                model.CRT_DATETIME = DateTime.Now;
-                model.CRT_USER_ID = "";
-                model.MOD_DATETIME = DateTime.Now;
-                model.MOD_USER_ID = "";
-                model.LAST_UPDATE = DateTime.Now;
-                model.MEMO = "";
-               
+                model.Area_Id = ddlAREA.SelectedValue + "";
+
+                model.KEY = txt_key.Text;
+                model.VALUE = value_droplist.SelectedValue;
+                model.KEY_CN = key_cn.Text;
+                model.MEMO = txt_memo.Text;
+                //model.CRT_DATETIME = DateTime.Now;
+                //model.CRT_USER_ID = "";
+                //model.MOD_DATETIME = DateTime.Now;
+                //model.MOD_USER_ID = "";
+                //model.LAST_UPDATE = DateTime.Now;
+                //model.MEMO = "";
+
                 #endregion
 
                 //----------------------------------------------------------
                 //存储到数据库
-                SYS_PARAMATERSBll.GetInstence().Save(this, model);
+                PARAMETERBll.GetInstence().Save(this, model);
             }
             catch (Exception e)
             {

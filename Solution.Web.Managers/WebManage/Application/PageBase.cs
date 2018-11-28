@@ -80,6 +80,14 @@ namespace Solution.Web.Managers.WebManage.Application
             Init();
         }
 
+        /// <summary>
+        /// 获取回发的参数
+        /// </summary>
+        /// <returns></returns>
+        public string GetRequestEventArgument()
+        {
+            return Request.Form["__EVENTARGUMENT"];
+        }
 
         /// <summary>
         /// 分页
@@ -96,28 +104,28 @@ namespace Solution.Web.Managers.WebManage.Application
             }
         }
 
-        /// <summary>
-        /// 对页面或其控件的内容进行最后更改
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnPreRender(EventArgs e)
-        {
-            //利用反射的方式给页面控件赋值
-            //查找指定名称控件
-            var control = MenuInfoBll.GetInstence().FindControl(this.Controls, "lblSpendingTime");
-            if (control != null)
-            {
-                //判断是否是FineUI.HiddenField类型
-                var type = control.GetType();
-                if (type.FullName == "FineUI.Label")
-                {
-                    //存储排序列字段名称
-                    ((FineUI.Label)control).Text = "执行耗时：" + Session["SpendingTime"] + "秒";
-                }
-            }
+        ///// <summary>
+        ///// 对页面或其控件的内容进行最后更改
+        ///// </summary>
+        ///// <param name="e"></param>
+        //protected override void OnPreRender(EventArgs e)
+        //{
+        //    //利用反射的方式给页面控件赋值
+        //    //查找指定名称控件
+        //    var control = MenuInfoBll.GetInstence().FindControl(this.Controls, "lblSpendingTime");
+        //    if (control != null)
+        //    {
+        //        //判断是否是FineUI.HiddenField类型
+        //        var type = control.GetType();
+        //        if (type.FullName == "FineUI.Label")
+        //        {
+        //            //存储排序列字段名称
+        //            ((FineUI.Label)control).Text = "执行耗时：" + Session["SpendingTime"] + "秒";
+        //        }
+        //    }
             
-            base.OnPreRender(e);
-        }
+        //    base.OnPreRender(e);
+        //}
         #endregion
 
         #region 接口函数，用于UI页面初始化，给逻辑层对象、列表等对象赋值

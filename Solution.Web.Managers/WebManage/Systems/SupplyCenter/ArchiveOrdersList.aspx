@@ -170,16 +170,16 @@
                               <Columns>
                                   <f:BoundField Width="120px" DataField="SHOP_NAME1" DataFormatString="{0}" HeaderText="申请分店" />
                                   <f:BoundField Width="80px" DataField="STD_QUAN" DataFormatString="{0}" HeaderText="申请量" />
-                                  <f:RenderField runat="server" ColumnID="SUP_QUAN0" DataField="SUP_QUAN" Width="80px" HeaderText="生产量">
+                                  <f:RenderField runat="server" ColumnID="SUP_QUAN0" DataField="SUP_QUAN" Width="110px" HeaderText="生产量/采购量">
                                       <Editor>
                                           <f:TextBox ID="txtSTD_QUAN" runat="server" />
                                       </Editor>
                                   </f:RenderField>
-                                  <f:RenderField runat="server" ColumnID="SUP_QUAN1" DataField="SUP_QUAN" Width="80px" HeaderText="采购量" >
+                                  <%--<f:RenderField runat="server" ColumnID="SUP_QUAN1" DataField="SUP_QUAN" Width="80px" HeaderText="采购量" >
                                       <Editor>
                                           <f:TextBox ID="txtSUP_QUAN" runat="server" />
                                       </Editor>
-                                  </f:RenderField>
+                                  </f:RenderField>--%>
                                   <f:RenderField runat="server" ColumnID="OUT_QUAN" DataField="OUT_QUAN" Width="80px" HeaderText="调拨量">
                                       <Editor>
                                           <f:TextBox ID="txtOUT_QUAN" runat="server" />

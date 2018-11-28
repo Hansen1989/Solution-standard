@@ -31,11 +31,11 @@ namespace Solution.DataAccess.DataModel {
                 Columns.Add(new DatabaseColumn("AREA_ID", this)
                 {
 	                IsPrimaryKey = false,
-	                DataType = DbType.Int32,
+	                DataType = DbType.AnsiString,
 	                IsNullable = false,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
-	                MaxLength = 0,
+	                MaxLength = 10,
 					PropertyName = "AREA_ID"
                 });
 

@@ -62,7 +62,13 @@
                                     <Rows>
                                     <f:FormRow ColumnWidths="300px">
                                         <Items><%-- --%>
-                                            <f:DropDownList runat="server" AutoPostBack="true" Required="true" CssClass="textbackcolor1" OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" Label="分店名称" ID="ddlShop" Width="250px"></f:DropDownList>
+                                            <f:DropDownList runat="server"  Required="true" AutoPostBack="true" OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" CssClass="textbackcolor1" 
+                                                Label="分店名称" ID="ddlShop" Width="250px">
+                                            </f:DropDownList>
+                                            <%--OnSelectedIndexChanged="ddlShop_SelectedIndexChanged" --%>
+
+                                            <%--  OnClientClick="if (F('Grid1').getStrore().getCount() >= 0) { F.alert('只能选择一条记录进行删除！');return false; }"--%>
+                                            
                                             <f:TextBox runat="server" Label="订单编号" ID="txtORDER_ID" Enabled="false" Width="250px"></f:TextBox>
                                             
                                             <f:DropDownList runat="server" Enabled="false" Label="状态" ID="ddlStatus" Width="250px">
@@ -147,7 +153,8 @@
                          
                             <f:HiddenField runat="server" ID="hidId" Text="0"></f:HiddenField>
                             <f:HiddenField runat="server" ID="SHOP_hidId" Text="0" ></f:HiddenField>
-                            <f:HiddenField runat="server" ID="HiddenDep_Id" Text="0" ></f:HiddenField>
+                            <f:HiddenField runat="server" ID="HiddenShop_Id" Text="0" ></f:HiddenField>
+                            <f:HiddenField runat="server" ID="HiddenLastShop_Id" Text="0"></f:HiddenField>
                             
                         </Items>
                     </f:SimpleForm>
@@ -189,7 +196,8 @@
                     HeaderText="商品名称">
                      
                     <Editor>
-                        <f:DropDownList ID="DropDownList1"  runat="server">                         
+                        <f:DropDownList ID="DropDownList1"  runat="server">
+                            
                         </f:DropDownList>
                     </Editor>
                 </f:RenderField>
@@ -200,7 +208,7 @@
                         <f:Label ID="txtPROD_SPEC" runat="server" />
                       </Editor>
                 </f:RenderField>
-                <f:RenderField  Width="50px" ColumnID="PROD_UNIT" DataField="PROD_UNIT" TextAlign="Center"  FieldType="String"
+                <f:RenderField  Width="60px" ColumnID="PROD_UNIT" DataField="PROD_UNIT" TextAlign="Center"  FieldType="String"
                     HeaderText="单位">
                       <Editor>
                         <f:Label ID="txtPROD_UNIT" runat="server" />
@@ -210,15 +218,18 @@
                 <f:RenderField Width="100px" ColumnID="ON_QUAN" DataField="ON_QUAN"  FieldType="String"
                     HeaderText="订货量"> <%--FieldType="Int"--%>
                     <Editor>
-                        <f:NumberBox ID="txtON_QUAN" Required="true" runat="server" DecimalPrecision="2"> <%--NoDecimal="true" NoNegative="true" --%>
-                        </f:NumberBox>
+                        <%--<f:NumberBox ID="txtON_QUAN" Required="true" runat="server" DecimalPrecision="2"> <%--NoDecimal="true" NoNegative="true" --%>
+                       <%-- </f:NumberBox>--%>
+                        <f:TextBox ID="txtON_QUAN" Required="true" runat="server"></f:TextBox>
+
                     </Editor>
                 </f:RenderField>
-                <f:RenderField Width="80px" ColumnID="STD_PRICE" DataField="STD_PRICE"
+                <f:RenderField Width="80px" ColumnID="STD_PRICE" DataField="STD_PRICE" FieldType="String"
                     HeaderText="单价"> <%--FieldType="Int"--%>
                     <Editor>
-                        <f:NumberBox ID="txtCOST" Required="true" runat="server" DecimalPrecision="2"> <%--NoDecimal="false" NoNegative="true" --%>
-                        </f:NumberBox>
+                        <%--<f:NumberBox ID="txtCOST" Required="true" runat="server" NoDecimal="false" NoNegative="true" ></f:NumberBox>--%>
+                       <f:TextBox ID="txtCOST" Required="true" runat="server"></f:TextBox>
+                    
                     </Editor>
                 </f:RenderField>
 
@@ -323,7 +334,7 @@
          </f:Panel>
 
         <f:Window ID="Window1" Width="500px" Height="200px" Icon="TagBlue" Hidden="true" BodyPadding="20px"
-            EnableMaximize="true" EnableCollapse="true" runat="server" EnableResize="true"
+            EnableMaximize="true" EnableCollapse="true" runat="server" EnableResize="true" Target="Parent" 
             IsModal="false" CloseAction="HidePostBack" OnClose="Window1_Close" Layout="Fit">   <%--OnInit="Windows_Init"--%>
             <Toolbars>
                 <f:Toolbar ID="toolbar4" runat="server">
@@ -337,7 +348,7 @@
                 <f:Panel ID="A" ShowHeader="false" ShowBorder="false" Layout="Column" CssClass="formitem" 
                     runat="server">
                     <Items>
-                          <f:Label runat="server" Text="订货部门更改？注：更改订货部门将清空订货明细！" />
+                          <f:Label runat="server" Text="订货门店更改？注：更改订货部门将清空订货明细！" />
                     </Items>
                 </f:Panel>
                  
@@ -390,7 +401,31 @@
 
          
     </form>
+
     <script type="text/javascript">
+   
+        function onOperation1Click() {
+ 
+            Ext.MessageBox.show({
+                msg: '切换部门，请先保存！',
+                title: '确认切换？',
+                buttons: Ext.Msg.YESNO,
+                buttonText:
+                {
+                    yes: '确认',
+                    no: '取消'
+                },
+                fn: function (btnId) {
+                    if (btnId === 'yes') {
+                        __doPostBack('', 'ConfirmOK');
+                    } else {
+                        __doPostBack('', 'ConfirmCancel');
+                    }
+                }
+            });
+        }
+ 
+    
         function renderSTATUS(value) {
             if(value == 0){return '无';}  
             if (value == 1) { return '存档' }
@@ -440,17 +475,20 @@
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         var strResult = xmlhttp.responseText;
                         var obj = JSON.parse(strResult);
-                         
+                       // alert(strResult);
+
                         me.f_updateCellValue(rowId, 'PROD_ID', obj[0].PROD_ID);
                         me.f_updateCellValue(rowId, 'PROD_NAME1', obj[0].PROD_NAME1);
                         me.f_updateCellValue(rowId, 'PROD_SPEC', obj[0].PROD_SPEC);
                         me.f_updateCellValue(rowId, 'PROD_UNIT', obj[0].PROD_UNIT);
                         me.f_updateCellValue(rowId, 'ON_QUAN', obj[0].Order_QUAN);
                         me.f_updateCellValue(rowId, 'STD_PRICE', obj[0].STD_PRICE);
-
+                       
                         me.f_updateCellValue(rowId, 'QUAN1', obj[0].STD_PRICE * obj[0].Order_QUAN);
                         //me.f_updateCellValue(rowId, 'Order_QUAN', obj[0].Order_QUAN);
                         me.f_updateCellValue(rowId, 'PROD_MEMO', '');
+
+                   
                     }
                     else {
                         me.f_updateCellValue(rowId, 'PROD_NAME1', xmlhttp.responseText);

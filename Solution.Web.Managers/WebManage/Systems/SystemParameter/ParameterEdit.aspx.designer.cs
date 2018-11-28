@@ -103,58 +103,40 @@ namespace Solution.Web.Managers.WebManage.Systems.SystemParameter {
         protected global::FineUI.DropDownList ddlAREA;
         
         /// <summary>
-        /// ddlCOL_ORDER_TYPE 控件。
+        /// txt_key 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.DropDownList ddlCOL_ORDER_TYPE;
+        protected global::FineUI.TextBox txt_key;
         
         /// <summary>
-        /// ddlORDER_PRICE_TYPE 控件。
+        /// value_droplist 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.DropDownList ddlORDER_PRICE_TYPE;
+        protected global::FineUI.DropDownList value_droplist;
         
         /// <summary>
-        /// ddlQUANTITY_TYPE 控件。
+        /// key_cn 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.DropDownList ddlQUANTITY_TYPE;
+        protected global::FineUI.TextBox key_cn;
         
         /// <summary>
-        /// ddlEXPECT_DATE_TYPE 控件。
+        /// txt_memo 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.DropDownList ddlEXPECT_DATE_TYPE;
-        
-        /// <summary>
-        /// ddlPRD_BOM_TYPE 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DropDownList ddlPRD_BOM_TYPE;
-        
-        /// <summary>
-        /// ddlPALN_TYPE 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DropDownList ddlPALN_TYPE;
+        protected global::FineUI.TextBox txt_memo;
         
         /// <summary>
         /// hidId 控件。

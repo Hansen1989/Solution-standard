@@ -36,7 +36,21 @@
                         <Items>
                              
                             <f:DropDownList runat="server" ID="ddlAREA" Label="区域" Width="250px"></f:DropDownList>
-                            <f:DropDownList runat="server" ID="ddlCOL_ORDER_TYPE" Label="汇整类型" Width="250px">
+                            <f:Label runat="server" Text="KEY"></f:Label>
+                            <f:TextBox runat="server" ID ="txt_key"></f:TextBox>
+                            <f:Label runat="server" Text="VALUE"></f:Label>
+                            <f:DropDownList runat="server" ID="value_droplist">
+                                <f:ListItem Value="0"/>
+                                <f:ListItem Value="1"/>
+                                <f:ListItem Value="2"/>
+                                <f:ListItem Value="3"/>
+                            </f:DropDownList>
+                             <f:Label runat="server" Text="KEY_CN"></f:Label>
+                            <f:TextBox runat="server" ID ="key_cn"></f:TextBox>
+                              <f:Label runat="server" Text="MEMO"></f:Label>
+                            <f:TextBox runat="server" ID ="txt_memo"></f:TextBox>
+
+                            <%--<f:DropDownList runat="server" ID="ddlCOL_ORDER_TYPE" Label="汇整类型" Width="250px">
                                 <f:ListItem Text="产品类型" Value="0"/>
                                 <f:ListItem Text="订单类别" Value="1"/>
                             </f:DropDownList>
@@ -63,7 +77,7 @@
                             <f:DropDownList runat="server" ID="ddlPALN_TYPE" Label="生产计划参数" Width="250px">
                                 <f:ListItem Text="部门" Value="0" />
                                 <f:ListItem Text="商品" Value="1" />
-                            </f:DropDownList>
+                            </f:DropDownList>--%>
 
                    <%-- <f:BoundField Width="250px" DataField="CRT_DATETIME" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" HeaderText="建档时间" />
                     <f:BoundField Width="250px" DataField="CRT_USER_ID" DataFormatString="{0}" HeaderText="创建人" />

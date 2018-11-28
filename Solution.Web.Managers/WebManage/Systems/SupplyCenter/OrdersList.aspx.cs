@@ -25,7 +25,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
     public partial class OrdersList : PageBase
     {
         private bool AppendToEnd = false;
-        // protected string shop_id = "0";
+        string user = "";
+  
         #region Page_Load
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,9 +36,10 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 {
                     //获取ID值
                     hidId.Text = RequestHelper.GetInt0("Id") + "";
-                    SHOP_hidId.Text = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
+                    // SHOP_hidId.Text =  OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
+                    HiddenLastShop_Id.Text = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
 
-                    string user = OnlineUsersBll.GetInstence().GetPosition_Name(this,OnlineUsersBll.GetInstence().GetManagerId(),false);
+                    user = OnlineUsersBll.GetInstence().GetPosition_Name(this, OnlineUsersBll.GetInstence().GetManagerId(), false);
 
                     if (user.Contains("区域管理员"))
                     {
@@ -48,6 +50,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                         ddlShop.Enabled = false;
                     }
 
+                  
                     //加载数据
                     LoadData();
 
@@ -69,6 +72,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 //  LoadData();
 
             }
+            
+
         }
         #endregion
 
@@ -96,7 +101,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
         public override void Add()
         {
-            string shop_id = SHOP_hidId.Text.Trim();
+            string shop_id = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();// SHOP_hidId.Text.Trim();
             int managerId = OnlineUsersBll.GetInstence().GetManagerId();//获取登录名
 
             //表头
@@ -105,9 +110,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlOUT_SHOP); //供货分店
                                                                                   // ORDER_DEP00Bll.GetInstence().BandDropDownList(this, ddlORDER_DEP, shop_id);//订货部门
             BranchBll.GetInstence().BandDropDownList(this, ddlORDER_DEP);
-
-            HiddenDep_Id.Text = ddlORDER_DEP.SelectedValue;
-
+             
             string manager_LoginName = OnlineUsersBll.GetInstence().GetUserOnlineInfo("Manager_LoginName").ToString();//登录名
             txtCRT_USER_ID.Text = manager_LoginName;
             txtORD_USER.Text = manager_LoginName;
@@ -116,22 +119,22 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             txtINPUT_DATE.SelectedDate = DateTime.Now; //单据时间
             txtManage.Text = manager_LoginName;
-
-
+            
             ddlStatus.SelectedValue = "0";//状态
-
             ddlEXPECT_DATE.SelectedDate = DateTime.Now.AddDays(1);
             txtCRT_DATETIME.SelectedDate = DateTime.Now;
             txtMOD_DATETIME.SelectedDate = DateTime.Now;
-
-
+            
             txtEXPORTED_ID.Text = "";
 
             txtMemo.Text = "";
 
             cbTrans_STATUS.Checked = false;
              
-            ddlShop.SelectedValue = SHOP_hidId.Text.Trim();
+            ddlShop.SelectedValue = shop_id;
+
+            HiddenShop_Id.Text = ddlShop.SelectedValue;// ddlORDER_DEP.SelectedValue;
+
             Random ran = new Random();
             txtORDER_ID.Text = ddlShop.SelectedValue + "OR" + DateTime.Now.ToString("yyyy-MM-dd").Replace("-", "") + ran.Next(1000, 9999);
             ddlStatus.SelectedIndex = 0;
@@ -158,13 +161,23 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             btnDelete.Enabled = true;
             Grid1.Enabled = true;
             Grid1.Rows.Clear();
-
-           
-
-           
-
+             
             //  txtManage.Text = OnlineUsersBll.GetInstence().GetManager_LoginName(this, managerId, true);
         }
+
+        public void doX(object sender, EventArgs e)
+        {
+            //
+            if (GetRequestEventArgument() == "Cancel")
+            {
+                Alert.Show("取消执行操作三！");
+            }
+            else
+            {
+                Alert.Show("执行了操作三！");
+            }
+        }
+
 
         #region 页面控件绑定  分店
         /// <summary>下拉列表改变事件
@@ -173,28 +186,34 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="e"></param>
         protected void ddlShop_SelectedIndexChanged(object sender, EventArgs e)
         {
+            JArray mergedData = Grid1.GetMergedData();
+            int gridrowsCount = mergedData.Count;
+            HiddenLastShop_Id.Text = HiddenShop_Id.Text;
+            HiddenShop_Id.Text = ddlShop.SelectedValue;
+            
 
-            if (!ddlShop.SelectedValue.Equals("0"))
+            if (gridrowsCount > 0)
             {
-                try
-                {
-                    // txtSHOP_ID.Text = ddlShop.SelectedValue;
+                Window1.Hidden = false;
 
-                    Random ran = new Random();
-                    txtORDER_ID.Text = ddlShop.SelectedValue + "OR" + DateTime.Now.ToString("yyyy-MM-dd").Replace("-", "") + ran.Next(1000, 9999);
-
-                    /////获取当前节点的父节点url
-                    //  txtUrl.Text = MenuInfoBll.GetInstence().GetFieldValue(ConvertHelper.Cint0(ddlParentId.SelectedValue), MenuInfoTable.Url) + "";
-                }
-                catch
-                {
-                }
+                //string confirmStr = Confirm.GetShowReference("是否清空数据继续下单？", String.Empty, MessageBoxIcon.Question, ddlShop.GetPostBackEventReference(), ddlShop.GetPostBackEventReference("Cancel"));
+                //PageContext.RegisterStartupScript(confirmStr);
             }
+             
+         
         }
         #endregion
 
         protected void btnNew_Click(object sender, EventArgs e)
         {
+            //if (GetRequestEventArgument() == "Cancel")
+            //{
+            //    Alert.Show("取消执行操作三！");
+            //}
+            //else
+            //{
+            //    Alert.Show("执行了操作三！");
+            //}
             //判断
 
             if (ddlShop.SelectedValue == "0")
@@ -220,14 +239,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             // 新增数据初始值
             JObject defaultObj = new JObject();
-
-            defaultObj.Add("PROD_NAME1", "0");
             defaultObj.Add("PROD_ID", "0");
+            defaultObj.Add("PROD_NAME1", "0");
             defaultObj.Add("PROD_SPEC", "");
             defaultObj.Add("PROD_UNIT", "");
 
             defaultObj.Add("ON_QUAN", "");
-            defaultObj.Add("STD_PRICE", "0.00");
+            defaultObj.Add("STD_PRICE", "0.000000");
 
             defaultObj.Add("QUAN1", 0);
             defaultObj.Add("Order_QUAN", 1);
@@ -291,7 +309,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 string ORDER_ID = txtORDER_ID.Text; // GridViewHelper.GetSelectedKey(Grid2, true);
 
                 //获取价格区域
-                string shop_id = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
+                string shop_id = ddlShop.SelectedValue;// OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
                 var model_SHOP = new SHOP00(x => x.SHOP_ID == shop_id);
 
                 string prcarea_id = model_SHOP.SHOP_Price_Area;
@@ -313,8 +331,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     i = i + 1;
                     newRow = newTable.NewRow();
                     newRow[0] = rowIndex;//i;////j;// rowIndex; // 将行标识符设置为行索引号
-                    newRow[1] = values.Value<string>("PROD_NAME1");
-                    newRow[2] = values.Value<string>("PROD_ID");
+                    newRow[1] = values.Value<string>("PROD_ID");
+                    newRow[2] = values.Value<string>("PROD_NAME1");
                     newRow[3] = values.Value<string>("PROD_SPEC");
                     newRow[4] = values.Value<string>("PROD_UNIT");
                     newRow[5] = values.Value<string>("ON_QUAN");
@@ -407,17 +425,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
                     model_1.SHOP_ID = ddlShop.SelectedValue;
                     model_1.ORDER_ID = txtORDER_ID.Text.Trim();
-
+                     
                     model_1.PROD_ID = values.Value<string>("PROD_ID");
                     model_1.QUANTITY = 0;
                     model_1.ON_QUAN = ConvertHelper.StringToDecimal(values.Value<string>("ON_QUAN"));
                     model_1.QUAN1 = ConvertHelper.StringToDecimal(values.Value<string>("QUAN1"));//小计
                     model_1.QUAN2 = 0;
                     model_1.COST_PRICE = ConvertHelper.StringToDecimal(values.Value<string>("STD_PRICE"));
-
-                   // string prod_name = values.Value<string>("PROD_UNIT").ToString();
-                   // var Prod_UnitList =  new PROD_UNIT(x=>x.UNIT_NAME == prod_name);
-
+ 
                     model_1.STD_UNIT = "1";//最小订货单位  Prod_UnitList.UNIT_ID;
                     model_1.STD_CONVERT = 0;
                     model_1.STD_QUAN = ConvertHelper.StringToDecimal(values.Value<string>("ON_QUAN"));
@@ -444,10 +459,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 ///grid2
 
                 conditionList = new List<ConditionFun.SqlqueryCondition>();
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
+                user = OnlineUsersBll.GetInstence().GetPosition_Name(this, OnlineUsersBll.GetInstence().GetManagerId(), false);
 
-                //  ORDER00Bll.GetInstence().BindGrid(Grid2, 0, sortList);
-                // bll.BindGrid(Grid2, 0, sortList);
+                if (user.Contains("管理员"))
+                {
+                    conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "1", Comparison.Equals, "1", false, false));
+                }
+                else {
+                    conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
+                }
+                 
                 ORDER00Bll.GetInstence().BindGrid(Grid2, 0, 0, conditionList, sortList);
 
                 #endregion
@@ -462,8 +483,23 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 //出现异常，保存出错日志信息
                 CommonBll.WriteLog(result, e);
             }
+             
+            //设置不可更改
+            txtINPUT_DATE.Enabled = true;
+            ddlEXPECT_DATE.Enabled = true;
+            ddlORDER_DEP.Enabled = true;
+            ddlORD_TYPE.Enabled = true;
+            ddlEXPECT_DATE.Enabled = true;
+            ddlOUT_SHOP.Enabled = true;
+            txtMemo.Enabled = true;
+            ButtonApproval.Enabled = true;
+            
+            btnNew.Enabled = true;
+            btnDelete.Enabled = true;
+            Grid1.Enabled = true;
+           // Grid1.Rows.Clear();
 
-            ButtonPowers();
+            // ButtonPowers();
 
             return result;
         }
@@ -485,7 +521,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             // LinkButtonField deleteField = Grid1.FindColumn("Delete") as LinkButtonField;
             //  deleteField.OnClientClick = GetDeleteScript(Grid1);
 
-            string SHOP_ID = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
+            string SHOP_ID = HiddenShop_Id.Text == "0" ? OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString() : HiddenShop_Id.Text;
           //  string ORDER_DEP_VALUE = ddlORDER_DEP.SelectedValue;
 
             if (SHOP_ID != "0")
@@ -672,7 +708,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 SHOP00Bll.GetInstence().GetShopList(this, model.SHOP_ID, ddlShop);   //.BandDropDownListShowShop(this, ddlShop, shop_id); //分店名称
 
                 txtORDER_ID.Text = model.ORDER_ID;
-
+                ddlShop.SelectedValue = model.SHOP_ID;
                 txtINPUT_DATE.SelectedDate = ConvertHelper.StringToDatetime(model.INPUT_DATE.ToString());
 
                 txtORD_USER.Text = model.ORD_USER;
@@ -728,8 +764,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             DataTable table = new DataTable();
             // table.Columns.Add(new DataColumn("SNo", typeof(int)));
             table.Columns.Add(new DataColumn("ID", typeof(int)));
-            table.Columns.Add(new DataColumn("PROD_NAME1", typeof(String)));
             table.Columns.Add(new DataColumn("PROD_ID", typeof(String)));
+            table.Columns.Add(new DataColumn("PROD_NAME1", typeof(String)));
             table.Columns.Add(new DataColumn("PROD_SPEC", typeof(String)));
             table.Columns.Add(new DataColumn("PROD_UNIT", typeof(String)));
             table.Columns.Add(new DataColumn("ON_QUAN", typeof(String)));
@@ -747,8 +783,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     i = i + 1;
                     row = table.NewRow();
                     row[0] = i;//int.Parse(item["SNo"].ToString()); //
-                    row[1] = item["PROD_NAME1"].ToString();
-                    row[2] = item["PROD_ID"].ToString();
+                    row[1] = item["PROD_ID"].ToString();
+                    row[2] = item["PROD_NAME1"].ToString();
                     row[3] = item["PROD_SPEC"].ToString();
                     row[4] = item["PROD_UNIT"].ToString();
                     row[5] = item["ON_QUAN"].ToString();
@@ -773,21 +809,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         protected void ddlORDER_DEP_SelectedIndexChanged(object sender, EventArgs e)
         {
  
-            JArray mergedData = Grid1.GetMergedData();
-            int gridrowsCount = mergedData.Count;
-
-            if (gridrowsCount > 0)
-            {
-                Window1.Hidden = false;
-            }
-
-            string SHOP_ID = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
-            string ORDER_DEP_VALUE = ddlORDER_DEP.SelectedValue;
-
-            if (SHOP_ID != "0")
-            {
-                PRODUCT00Bll.GetInstence().BandDropDownListShowProductName_1(this, DropDownList1, SHOP_ID);  // (System.Web.UI.WebControls.DropDownList)
-            }
+          
 
         }
 
@@ -795,7 +817,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             //清空列表
             // Grid1.RejectChanges();
-            HiddenDep_Id.Text = ddlORDER_DEP.SelectedValue;
+            HiddenShop_Id.Text = ddlShop.SelectedValue;// ddlORDER_DEP.SelectedValue;
+            HiddenLastShop_Id.Text = ddlShop.SelectedValue;
 
             Session[KEY_FOR_DATASOURCE_SESSION] = null;
             // }
@@ -804,13 +827,23 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             Window1.Hidden = true;
 
+            string SHOP_ID = HiddenShop_Id.Text;
 
+            Random ran = new Random();
+            txtORDER_ID.Text = ddlShop.SelectedValue + "OR" + DateTime.Now.ToString("yyyy-MM-dd").Replace("-", "") + ran.Next(1000, 9999);
+
+            if (SHOP_ID != "0")
+            {
+                PRODUCT00Bll.GetInstence().BandDropDownListShowProductName_1(this, DropDownList1, SHOP_ID);  // (System.Web.UI.WebControls.DropDownList)
+            }
+             
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-
-            ddlORDER_DEP.SelectedValue = HiddenDep_Id.Text.Trim();
+            ddlShop.SelectedValue = HiddenLastShop_Id.Text;
+            HiddenShop_Id.Text = ddlShop.SelectedValue;
+           // ddlORDER_DEP.SelectedValue = HiddenShop_Id.Text.Trim();
 
             Window1.Hidden = true;
  
@@ -819,7 +852,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         protected void ButtonSearch1_Click(object sender, EventArgs e)
         {
 
-            // ddlORDER_DEP.SelectedValue = HiddenDep_Id.Text.Trim();
+            // ddlORDER_DEP.SelectedValue = HiddenShop_Id.Text.Trim();
             LoadDate();
 
             Window2.Hidden = false;
@@ -877,8 +910,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string shop_id = SHOP_hidId.Text.Trim();
             string shop_name = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_NAME1").ToString();
             string shop_idStr = ORDER00Table.SHOP_ID;
-            string user = OnlineUsersBll.GetInstence().GetPosition_Name(this, OnlineUsersBll.GetInstence().GetManagerId(), false);
-
+            // string user = OnlineUsersBll.GetInstence().GetPosition_Name(this, OnlineUsersBll.GetInstence().GetManagerId(), false);
+            user = OnlineUsersBll.GetInstence().GetPosition_Name(this, OnlineUsersBll.GetInstence().GetManagerId(), false);
             if (user.Contains("区域管理员"))
             {
                 IsTime = -1;
@@ -894,7 +927,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
         protected void btnCancel1_Click(object sender, EventArgs e)
         { 
-            Window1.Hidden = true;
+           // Window1.Hidden = true;
 
 
         }
@@ -920,23 +953,38 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             conditionList = new List<ConditionFun.SqlqueryCondition>();
 
-            if (chooseSign == 0)
-            {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.INPUT_DATE, Comparison.BetweenAnd, begTime, false, false));
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.INPUT_DATE, Comparison.BetweenAnd, endTime, false, false));
-            }
-            else if (chooseSign == 1)
-            {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.EXPECT_DATE, Comparison.BetweenAnd, begTime, false, false));
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.EXPECT_DATE, Comparison.BetweenAnd, endTime, false, false));
-            }
-            else if (chooseSign == -1)
+            if (chooseSign == -1)
             {
                 conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "1", Comparison.Equals, "1", false, false));
-            }
+                if (chooseSign == 0)
+                {
+                    
+                    conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.INPUT_DATE, Comparison.BetweenAnd, begTime, false, false));
+                    conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.INPUT_DATE, Comparison.BetweenAnd, endTime, false, false));
+                }
+                else if (chooseSign == 1)
+                {
+                   
+                    conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.EXPECT_DATE, Comparison.BetweenAnd, begTime, false, false));
+                    conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.EXPECT_DATE, Comparison.BetweenAnd, endTime, false, false));
+                }
 
+            }
+            else {
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.SHOP_ID, Comparison.Equals, shop_id, false, false));
+                if (chooseSign == 0)
+                {
+                   
+                    conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.INPUT_DATE, Comparison.BetweenAnd, begTime, false, false));
+                    conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.INPUT_DATE, Comparison.BetweenAnd, endTime, false, false));
+                }
+                else if (chooseSign == 1)
+                {
+                    
+                    conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.EXPECT_DATE, Comparison.BetweenAnd, begTime, false, false));
+                    conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.EXPECT_DATE, Comparison.BetweenAnd, endTime, false, false));
+                }
+            }
 
             //  ORDER00Bll.GetInstence().BindGrid(Grid2, 0, sortList);
             // bll.BindGrid(Grid2, 0, sortList);
@@ -946,6 +994,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
         }
 
-
+        protected override void Window1_Close(object sender, WindowCloseEventArgs e)
+        {
+            ddlShop.SelectedValue = HiddenShop_Id.Text;
+        }
     }
 }

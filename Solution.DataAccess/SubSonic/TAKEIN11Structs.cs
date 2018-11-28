@@ -203,17 +203,6 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 0,
 					PropertyName = "Exp_DateTime"
                 });
-
-                Columns.Add(new DatabaseColumn("STD_TYPE", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50,
-					PropertyName = "STD_TYPE"
-                });
                     
                 
                 
@@ -334,13 +323,6 @@ namespace Solution.DataAccess.DataModel {
             public IColumn Exp_DateTime{
                 get{
                     return this.GetColumn("Exp_DateTime");
-                }
-            }
-				
-            
-            public IColumn STD_TYPE{
-                get{
-                    return this.GetColumn("STD_TYPE");
                 }
             }
 				

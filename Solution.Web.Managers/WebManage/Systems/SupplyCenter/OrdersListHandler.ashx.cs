@@ -43,7 +43,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                   System.Collections.Generic.Dictionary<string, object> drow = new System.Collections.Generic.Dictionary<string, object>();
                   foreach (DataColumn dc in dtb.Columns)
                   {
-                    drow.Add(dc.ColumnName, dr[dc.ColumnName]);
+                    drow.Add(dc.ColumnName, dr[dc.ColumnName].ToString());
                   }
                  dic.Add(drow);
  

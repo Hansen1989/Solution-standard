@@ -355,13 +355,22 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.HiddenField SHOP_hidId;
         
         /// <summary>
-        /// HiddenDep_Id 控件。
+        /// HiddenShop_Id 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.HiddenField HiddenDep_Id;
+        protected global::FineUI.HiddenField HiddenShop_Id;
+        
+        /// <summary>
+        /// HiddenLastShop_Id 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.HiddenField HiddenLastShop_Id;
         
         /// <summary>
         /// Panel3 控件。
@@ -460,7 +469,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.NumberBox txtON_QUAN;
+        protected global::FineUI.TextBox txtON_QUAN;
         
         /// <summary>
         /// txtCOST 控件。
@@ -469,7 +478,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.NumberBox txtCOST;
+        protected global::FineUI.TextBox txtCOST;
         
         /// <summary>
         /// txtQUAN1 控件。
