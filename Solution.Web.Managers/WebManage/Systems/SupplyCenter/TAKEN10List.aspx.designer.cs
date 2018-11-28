@@ -157,15 +157,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.DropDownList ddlStatus;
         
         /// <summary>
-        /// ddlSUP_ID 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.DropDownList ddlSUP_ID;
-        
-        /// <summary>
         /// ddlSTOCK_ID 控件。
         /// </summary>
         /// <remarks>
@@ -220,6 +211,42 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.TextBox tbxTOT_TAX;
         
         /// <summary>
+        /// tbxTOT_QTY 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox tbxTOT_QTY;
+        
+        /// <summary>
+        /// tbxPRE_PAY 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox tbxPRE_PAY;
+        
+        /// <summary>
+        /// ddlSUP_ID 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList ddlSUP_ID;
+        
+        /// <summary>
+        /// tbxPRE_PAY_ID 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox tbxPRE_PAY_ID;
+        
+        /// <summary>
         /// tbxRELATE_ID 控件。
         /// </summary>
         /// <remarks>
@@ -227,6 +254,24 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox tbxRELATE_ID;
+        
+        /// <summary>
+        /// TAKEIN_TYPE 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox TAKEIN_TYPE;
+        
+        /// <summary>
+        /// ddlTAKEIN_TYPE 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList ddlTAKEIN_TYPE;
         
         /// <summary>
         /// tbxMemo 控件。
@@ -245,6 +290,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.CheckBox ckLOCKED;
+        
+        /// <summary>
+        /// tbxLAST_UPDATE 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox tbxLAST_UPDATE;
         
         /// <summary>
         /// tbxCRT_DATETIME 控件。
@@ -283,15 +337,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.TextBox tbxMOD_USER_ID;
         
         /// <summary>
-        /// tbxLAST_UPDATE 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.TextBox tbxLAST_UPDATE;
-        
-        /// <summary>
         /// Panel12 控件。
         /// </summary>
         /// <remarks>
@@ -308,6 +353,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Toolbar Toolbar21111;
+        
+        /// <summary>
+        /// ButtonDetailAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonDetailAdd;
         
         /// <summary>
         /// Grid2 控件。
@@ -391,13 +445,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.NumberBox numQUANTITY;
         
         /// <summary>
-        /// tbxSTD_TYPE01 控件。
+        /// ddlSTD_TYPE01 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxSTD_TYPE01;
+        protected global::FineUI.DropDownList ddlSTD_TYPE01;
         
         /// <summary>
         /// tbxSTD_UNIT01 控件。
@@ -409,6 +463,33 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.TextBox tbxSTD_UNIT01;
         
         /// <summary>
+        /// TextBox3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox TextBox3;
+        
+        /// <summary>
+        /// TextBox4 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox TextBox4;
+        
+        /// <summary>
+        /// TextBox5 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.TextBox TextBox5;
+        
+        /// <summary>
         /// numSTD_CONVERT 控件。
         /// </summary>
         /// <remarks>
@@ -416,6 +497,24 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.NumberBox numSTD_CONVERT;
+        
+        /// <summary>
+        /// NumberBox2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.NumberBox NumberBox2;
+        
+        /// <summary>
+        /// NumberBox3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.NumberBox NumberBox3;
         
         /// <summary>
         /// numSTD_QUAN 控件。
@@ -436,6 +535,33 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.NumberBox numSTD_PRICE;
         
         /// <summary>
+        /// NumberBox4 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.NumberBox NumberBox4;
+        
+        /// <summary>
+        /// NumberBox5 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.NumberBox NumberBox5;
+        
+        /// <summary>
+        /// NumberBox6 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.NumberBox NumberBox6;
+        
+        /// <summary>
         /// numCOST 控件。
         /// </summary>
         /// <remarks>
@@ -443,6 +569,24 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.NumberBox numCOST;
+        
+        /// <summary>
+        /// NumberBox7 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.NumberBox NumberBox7;
+        
+        /// <summary>
+        /// NumberBox8 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.NumberBox NumberBox8;
         
         /// <summary>
         /// numQUAN1 控件。
@@ -461,6 +605,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.NumberBox numQUAN2;
+        
+        /// <summary>
+        /// NumberBox1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.NumberBox NumberBox1;
         
         /// <summary>
         /// tbxMEMO01 控件。

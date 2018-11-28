@@ -51,11 +51,16 @@
                      <f:Form ID="Form5" LabelAlign="Right"  BodyPadding="5px" LabelWidth="100px" EnableCollapse="true"
                             runat="server" Title="表单" ShowBorder="false" ShowHeader="false">
                         <Rows>
+                            <f:FormRow>
+                                <Items>
+                                    
+                                </Items>
+                            </f:FormRow>
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
-                                    <f:HiddenField runat="server" Label="采购单号" ID="hidPurchase_ID" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:HiddenField>
-                                    <f:HiddenField runat="server" Label="采购编码" ID="hidId" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:HiddenField>
-                                    <f:TextBox runat="server" Label="采购单号" ID="tbxPurchase_ID" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
+                                    <f:HiddenField runat="server" Label="采购单号" ID="hidPurchase_ID" Required="true" ShowRedStar="true" Enabled="false"></f:HiddenField>
+                                    <f:HiddenField runat="server" Label="采购编码" ID="hidId" Required="true" ShowRedStar="true" Enabled="false"></f:HiddenField>
+                                    <f:TextBox runat="server" Label="采购单号" ID="tbxPurchase_ID" Required="true" ShowRedStar="true" Enabled="false"></f:TextBox>
                                     <f:DropDownList runat="server" Label="分店名称" ID="ddlSHOP_NAME" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList> 
                                     <f:CheckBox runat="server" ID="chxLOCKED" Enabled="false" Label="月结锁定"></f:CheckBox>
                                 </Items>
@@ -63,7 +68,7 @@
 
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
-                                    <f:DropDownList runat="server" ID="ddlStatus" Required="true" ShowRedStar="true" Label="单据状态" Enabled="false">
+                                    <f:DropDownList runat="server" ID="ddlStatus" Required="true" Width="100px" ShowRedStar="true" Label="单据状态" Enabled="false">
                                         <f:ListItem Text="存档" Value="1" Selected="true" />
                                         <f:ListItem Text="核准" Value="2" />
                                         <f:ListItem Text="作废" Value="3" />

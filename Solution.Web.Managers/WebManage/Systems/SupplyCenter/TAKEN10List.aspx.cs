@@ -72,7 +72,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         public void SearchOrder()
         {
             //int type = ConvertHelper.Cint(FilterDateRadio.SelectedValue);
-            TAKEIN10Bll.GetInstence().BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
+            V_TAKEIN10_SHOP00Bll.GetInstence().BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
             
             //TAKEIN10Bll.GetInstence().BindOrderGrid(st, et, type, Grid1);
         }
@@ -153,6 +153,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonYR.Enabled = false;
                 }
 
+                tbxTOT_AMOUNT.Text = model.TOT_AMOUNT.ToString();
+                tbxTOT_QTY.Text = model.TOT_QTY.ToString();
+                tbxTOT_TAX.Text = model.TOT_TAX.ToString();
 
                 tbxCRT_DATETIME.Text = model.CRT_DATETIME.ToString();
                 tbxCRT_USER_ID.Text = model.CRT_USER_ID;
@@ -260,6 +263,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             ddlSHOP_NAME.SelectedIndex = 0;
             ddlStatus.SelectedIndex = 0;
             dpINPUT_DATE.SelectedDate = DateTime.Now;
+            dpINPUT_DATE.Enabled = true;
 
             ddlSUP_ID.Enabled = true;
             ddlSUP_ID.SelectedIndex = 0;
@@ -381,13 +385,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             if (String.IsNullOrEmpty(result))
             {
                 //dsCom = (DataSet)SPs.Get_Purchase00(st, et, type).ExecuteDataSet();
+                //更新库存，厂商验收入库是否需要更新库存，待定
                 if (in_status == 2)
                 {
-                    SPs.Update_in_back00_stock01(_TAKEIN_ID).Execute();
+                    //SPs.Update_in_back00_stock01(_TAKEIN_ID).Execute();
                 }
                 else
                 {
-                    SPs.Update_in_back00_stock01_cancel(_TAKEIN_ID).Execute();
+                    //SPs.Update_in_back00_stock01_cancel(_TAKEIN_ID).Execute();
                 }
             }
 
@@ -476,8 +481,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 model.TAKEIN_ID = _TAKEIN_ID.ToString();
                 model.STATUS = ConvertHelper.Cint(ddlStatus.SelectedValue);
                 model.INPUT_DATE = ConvertHelper.StringToDatetime(dpINPUT_DATE.SelectedDate.ToString());
-
-                model.SUP_ID = ddlSUP_ID.SelectedValue;
+                if (String.IsNullOrEmpty(ddlSUP_ID.SelectedValue))
+                {
+                    model.SUP_ID = "";
+                }
+                else
+                {
+                    model.SUP_ID = ddlSUP_ID.SelectedValue;
+                }
+                
                 model.STOCK_ID = ddlSTOCK_ID.SelectedValue;
                 model.USER_ID = OlUser.Manager_LoginName;
                 model.APP_USER = OlUser.Manager_LoginName;
@@ -561,9 +573,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     model2.STD_CONVERT = ConvertHelper.Cint(jarr[i]["values"]["STD_CONVERT01"].ToString());
                     model2.STD_QUAN = ConvertHelper.StringToDecimal(jarr[i]["values"]["STD_QUAN01"].ToString());
                     model2.STD_PRICE = ConvertHelper.StringToDecimal(jarr[i]["values"]["STD_PRICE01"].ToString());
+                    model2.Tax = ConvertHelper.StringToDecimal(jarr[i]["values"]["Tax01"].ToString());
                     //model2.COST = ConvertHelper.StringToDecimal(jarr[i]["values"]["COST01"].ToString());
                     model2.QUAN1 = ConvertHelper.StringToDecimal(jarr[i]["values"]["QUAN101"].ToString());
                     model2.QUAN2 = ConvertHelper.StringToDecimal(jarr[i]["values"]["QUAN201"].ToString());
+                    model2.Item_DISC_Amt = 0;
                     model2.MEMO = jarr[i]["values"]["MEMO01"].ToString();
                     model2.BAT_NO = jarr[i]["values"]["BAT_NO"].ToString();
                     model2.Exp_DateTime = DateTime.Now;
@@ -621,7 +635,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             //conditionList = new List<ConditionFun.SqlqueryCondition>();
             //绑定Grid表格
             FineUI.Grid Grid4 = Window3.FindControl("PanelGrid4").FindControl("Grid4") as FineUI.Grid;
-            V_STOCK01_PRODUCT01Bll.GetInstence().BindGrid(Grid4, 0, 0, InquiryConditionProduct(), sortList);
+            V_Product01_PRCAREABll.GetInstence().BindGrid(Grid4, 0, 0, InquiryConditionProduct(), sortList);
         }
 
         /// <summary>
@@ -630,63 +644,50 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <returns></returns>
         private List<ConditionFun.SqlqueryCondition> InquiryConditionProduct()
         {
-            //这里要改
-            //string _shop_id = ddlOUT_SHOP.SelectedValue;
-            string _shop_id = "";
+            string _SHOP_ID = ddlSHOP_NAME.SelectedValue;
+            var modelShop = new SHOP00(x => x.SHOP_ID == _SHOP_ID);
             List<ConditionFun.SqlqueryCondition> conditionProdduct00List = new List<ConditionFun.SqlqueryCondition>();
-            bool sFlag = true;
-            conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_STOCK01_PRODUCT01Table.SHOP_ID, Comparison.Equals, _shop_id, false, false));
-            sFlag = false;
-            //conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "1", Comparison.Equals, "1", false, false));
+
+            //取价格区域
+            conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_Product01_PRCAREATable.PRCAREA_ID, Comparison.Equals, modelShop.SHOP_Price_Area, false, false));
 
             FineUI.TextBox cPROD_ID = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_ID") as FineUI.TextBox;
             var _PROD_ID = cPROD_ID.Text;
             if (!String.IsNullOrEmpty(cPROD_ID.Text))
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_STOCK01_PRODUCT01Table.PROD_ID, Comparison.Like, "%" + _PROD_ID + "%", false, false));
-                sFlag = false;
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Product01_PRCAREATable.PROD_ID, Comparison.Like, "%" + _PROD_ID + "%", false, false));
             }
 
             FineUI.TextBox cPROD_NAME = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_NAME") as FineUI.TextBox;
             var _PROD_NAME = cPROD_NAME.Text;
             if (!String.IsNullOrEmpty(_PROD_NAME))
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_STOCK01_PRODUCT01Table.PROD_NAME1, Comparison.Like, "%" + _PROD_NAME + "%", false, false));
-                sFlag = false;
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Product01_PRCAREATable.PROD_NAME1, Comparison.Like, "%" + _PROD_NAME + "%", false, false));
             }
             FineUI.TextBox cPROD_NAME_SPELLING = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_NAME_SPELLING") as FineUI.TextBox;
             var _PROD_NAME_SPELLING = cPROD_NAME_SPELLING.Text;
             if (!String.IsNullOrEmpty(_PROD_NAME_SPELLING))
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_STOCK01_PRODUCT01Table.PROD_NAME1_SPELLING, Comparison.Like, "%" + _PROD_NAME_SPELLING + "%", false, false));
-                sFlag = false;
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Product01_PRCAREATable.PROD_NAME1_SPELLING, Comparison.Like, "%" + _PROD_NAME_SPELLING + "%", false, false));
             }
             FineUI.DropDownList cPROD_KIND = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_KIND") as FineUI.DropDownList;
             var _cPROD_KIND = cPROD_KIND.SelectedValue;
             if (!String.IsNullOrEmpty(_cPROD_KIND) && _cPROD_KIND != "0")
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_STOCK01_PRODUCT01Table.PROD_KIND, Comparison.Equals, _cPROD_KIND, false, false));
-                sFlag = false;
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Product01_PRCAREATable.PROD_KIND, Comparison.Equals, _cPROD_KIND, false, false));
             }
 
             FineUI.DropDownList cPROD_DEP = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_DEP") as FineUI.DropDownList;
             var _PROD_DEP = cPROD_DEP.SelectedValue;
             if (!String.IsNullOrEmpty(_PROD_NAME) && _PROD_DEP != "0")
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_STOCK01_PRODUCT01Table.PROD_DEP, Comparison.Equals, _PROD_DEP, false, false));
-                sFlag = false;
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Product01_PRCAREATable.PROD_DEP, Comparison.Equals, _PROD_DEP, false, false));
             }
             FineUI.DropDownList cPROD_CATE = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_CATE") as FineUI.DropDownList;
             var _PROD_CATE = cPROD_CATE.SelectedValue;
             if (!String.IsNullOrEmpty(_PROD_CATE) && _PROD_CATE != "0")
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_STOCK01_PRODUCT01Table.PROD_CATE, Comparison.Equals, _PROD_CATE, false, false));
-                sFlag = false;
-            }
-
-            if (sFlag)
-            {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), "1", Comparison.Equals, "1", false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Product01_PRCAREATable.PROD_CATE, Comparison.Equals, _PROD_CATE, false, false));
             }
 
             return conditionProdduct00List;
@@ -720,20 +721,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             int[] selections = Grid4.SelectedRowIndexArray;
             //这里要改
-            string _IB_ID = tbxTAKEIN_ID.Text;
-            //string _Shop_ID = ddlOUT_SHOP.SelectedValue;
-            string _Shop_ID = "";
+            string _TAKENIN_ID = tbxTAKEIN_ID.Text;
             string result = "";
-            //var m_Shop = new SHOP00(x => x.SHOP_ID == _Shop_ID);
-            //string _priceArea_id = m_Shop.SHOP_Price_Area;
-            if (!String.IsNullOrEmpty(_IB_ID))
+            if (!String.IsNullOrEmpty(_TAKENIN_ID))
             {
                 int rowCount = Grid2.Rows.Count;
                 foreach (int i in selections)
                 {
                     string _Prod_ID = Grid4.DataKeys[i][0].ToString();
                     string _prod_name = Grid4.DataKeys[i][1].ToString();
-                    string _shop_id = ddlSHOP_NAME.SelectedValue;
+                    string _PRCAREA_ID= Grid4.DataKeys[i][2].ToString();
                     string checkresult = ProdAddCheck(_Prod_ID, _prod_name);
                     if (!String.IsNullOrEmpty(checkresult))
                     {
@@ -741,49 +738,53 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                         continue;
                     }
 
-                    var model = new V_STOCK01_PRODUCT01(x => x.PROD_ID == _Prod_ID && x.SHOP_ID == _Shop_ID);
+                    var model = new V_Product01_PRCAREA(x => x.PROD_ID == _Prod_ID && x.PRCAREA_ID == _PRCAREA_ID);
                     JObject deObject = new JObject();
                     deObject.Add("Id01", "0");
-                    deObject.Add("SHOP_ID01", _Shop_ID);
-                    deObject.Add("SHOP_NAME101", model.SHOP_NAME1);
-                    deObject.Add("IB_ID01", _IB_ID);
+                    deObject.Add("SHOP_ID01", ddlSHOP_NAME.SelectedValue);
+                    deObject.Add("SHOP_NAME101", ddlSHOP_NAME.SelectedText);
+                    deObject.Add("TAKEIN_ID01", _TAKENIN_ID);
                     deObject.Add("SNo01", rowCount + 1);
                     deObject.Add("PROD_ID01", _Prod_ID);
                     deObject.Add("PROD_NAME101", model.PROD_NAME1);
-                    deObject.Add("QUANTITY01", model.ORDER_QUAN);
-                    deObject.Add("STD_UNIT01", model.ORDER_UNIT);
-                    deObject.Add("STD_QUAN01", model.ORDER_QUAN);
-                    switch (model.ORDER_UNIT)
+                    deObject.Add("QUANTITY01", model.Purchase_QUAN);
+                    deObject.Add("STD_UNIT01", model.Purchase_UNIT);
+                    deObject.Add("STD_QUAN01", model.Purchase_QUAN);
+                    switch (model.Purchase_UNIT)
                     {
                         case 1:
-                            deObject.Add("STD_PRICE01", model.S_Cost);
-                            deObject.Add("COST01", model.COST);
+                            deObject.Add("STD_PRICE01", model.SUP_COST);
                             deObject.Add("STD_CONVERT01", 1);
                             break;
                         case 2:
-                            deObject.Add("STD_PRICE01", model.S_Cost1);
-                            deObject.Add("COST01", model.COST1);
+                            deObject.Add("STD_PRICE01", model.SUP_COST1);
                             deObject.Add("STD_CONVERT01", model.PROD_CONVERT1);
                             break;
                         case 3:
-                            deObject.Add("STD_PRICE01", model.S_Cost2);
-                            deObject.Add("COST01", model.COST2);
+                            deObject.Add("STD_PRICE01", model.SUP_COST2);
                             deObject.Add("STD_CONVERT01", model.PROD_CONVERT2);
                             break;
                         default:
                             deObject.Add("STD_PRICE01", 0);
-                            deObject.Add("COST01", 0);
                             deObject.Add("STD_CONVERT01", 1);
                             break;
                     }
+                    if (model.TAX_TYPE == '0')
+                    {
+                        deObject.Add("Tax01", 0);
+                    }
+                    else
+                    {
+                        deObject.Add("Tax01", model.Tax * model.TAX_TYPE*0.01);
+                    }
+
 
                     deObject.Add("QUAN101", 0);
                     deObject.Add("QUAN201", 0);
-                    deObject.Add("REASON_ID01", "");
                     deObject.Add("MEMO01", "");
                     deObject.Add("BAT_NO", "");
 
-                    deObject.Add("STD_UNIT_NAME01", model.ORDER_NAME);
+                    deObject.Add("STD_UNIT_NAME01", model.Purchase_UNIT_NAME);
                     deObject.Add("UNIT_NAME01", model.UNIT_NAME);
                     deObject.Add("UNIT_NAME101", model.UNIT_NAME1);
                     deObject.Add("UNIT_NAME201", model.UNIT_NAME2);
@@ -791,14 +792,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     deObject.Add("PROD_CONVERT101", model.PROD_CONVERT1);
                     deObject.Add("PROD_CONVERT201", model.PROD_CONVERT2);
 
-
-                    deObject.Add("S_RET_COST01", model.S_Ret_Cost);
-                    deObject.Add("S_RET_COST101", model.S_Ret_Cost1);
-                    deObject.Add("S_RET_COST201", model.S_Ret_Cost2);
-
-                    deObject.Add("R_COST01", model.COST);
-                    deObject.Add("R_COST101", model.COST1);
-                    deObject.Add("R_COST201", model.COST2);
+                    deObject.Add("SUP_COST01", model.SUP_COST);
+                    deObject.Add("SUP_COST101", model.SUP_COST1);
+                    deObject.Add("SUP_COST201", model.SUP_COST2);
+                    deObject.Add("Tax_Num01", model.Tax);
+                    deObject.Add("Tax_Type01", model.TAX_TYPE);
                     rowCount++;
                     Grid2.AddNewRecord(deObject, true);
                 }
@@ -818,7 +816,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         protected void ButtonOrderSearch_Click(Object sender, EventArgs e)
         {
             FineUI.Grid grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
-            OUT_BACK00Bll.GetInstence().BindGrid(grid4, 0, 0, OrderCondition(), null);
+            V_Purchase00_SHOP00Bll.GetInstence().BindGrid(grid4, 0, 0, OrderCondition(), null);
         }
         /// <summary>
         /// 检索条件
@@ -834,15 +832,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string starttime = wst.Text;
             string endtime = wet.Text;
             //这里要改
-            //string _shop_id = ddlOUT_SHOP.SelectedValue;s
-            string _shop_id = "";
-            orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT_BACK00Table.SHOP_ID, Comparison.Equals, _shop_id, false, false));
+            string _shop_id = ddlSHOP_NAME.SelectedValue;
+            orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_Purchase00_SHOP00Table.SHOP_ID, Comparison.Equals, _shop_id, false, false));
 
             if (rValue == "1")
             {
-                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT_BACK00Table.INPUT_DATE, Comparison.LessOrEquals, endtime, false, false));
-                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT_BACK00Table.INPUT_DATE, Comparison.GreaterOrEquals, starttime, false, false));
+                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Purchase00_SHOP00Table.INPUT_DATE, Comparison.LessOrEquals, endtime, false, false));
+                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Purchase00_SHOP00Table.INPUT_DATE, Comparison.GreaterOrEquals, starttime, false, false));
             }
+
+            orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Purchase00_SHOP00Table.STATUS, Comparison.GreaterOrEquals, 2, false, false));
             //FineUI.DropDownList _ddlShopName = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("w4_ddlSHOP_NAME") as FineUI.DropDownList;
             //string _shopid = _ddlShopName.SelectedValue;
             //if (!String.IsNullOrEmpty(_shopid))
@@ -859,61 +858,10 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             FineUI.Grid Grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
             int[] selections = Grid4.SelectedRowIndexArray;
             //tbxRELATE_ID.Text = Grid4.DataKeys[0][0].ToString();
-            DataTable Inda = SPs.IN_OUTBACK01_INBACK01(Grid4.DataKeys[selections[0]][0].ToString(), tbxTAKEIN_ID.Text, ddlSHOP_NAME.SelectedValue).ExecuteDataTable();
+            DataTable Inda = SPs.IN_Purchase00_TAKEIN11(Grid4.DataKeys[selections[0]][0].ToString(), tbxTAKEIN_ID.Text, ddlSHOP_NAME.SelectedValue).ExecuteDataTable();
             Grid2.DataSource = Inda;
             Grid2.DataBind();
             Toolbar21111.Enabled = false;
-
-            //FineUI.Grid Grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
-            //int[] selections = Grid4.SelectedRowIndexArray;
-            //tbxRELATE_ID.Text = Grid4.DataKeys[0][0].ToString();
-            //foreach (int i in selections)
-            //{
-            //    List<ConditionFun.SqlqueryCondition> order00con = new List<ConditionFun.SqlqueryCondition>();
-            //    order00con.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT_BACK01Table.BK_ID, Comparison.Equals, Grid4.DataKeys[i][0].ToString(), false, false));
-            //    List<string> colList = new List<string>();
-            //    colList.Add("SHOP_ID");
-            //    colList.Add("PROD_ID");
-            //    colList.Add("QUANTITY");
-            //    colList.Add("STD_UNIT");
-            //    colList.Add("STD_CONVERT");
-            //    colList.Add("STD_QUAN");
-            //    colList.Add("STD_PRICE");
-            //    //colList.Add("COST_PRICE");
-            //    //colList.Add("");预留采购单位类别
-            //    DataTable da = OUT_BACK01Bll.GetInstence().GetDataTable(false, 0, colList, 0, 0, order00con, null);
-
-            //    foreach (DataRow dr in da.Rows)
-            //    {
-            //        string _shopid = dr["SHOP_ID"].ToString();
-            //        string _PROD_ID = dr["PROD_ID"].ToString();
-            //        var model = new SHOP00(x => x.SHOP_ID == _shopid);
-            //        var model2 = new PRODUCT00(x => x.PROD_ID == _PROD_ID);
-            //        int rowCount = Grid2.Rows.Count;
-            //        JObject deObject = new JObject();
-            //        deObject.Add("Id01", "0");
-            //        deObject.Add("SHOP_ID01", dr["SHOP_ID"].ToString());
-            //        deObject.Add("SHOP_NAME01", model.SHOP_NAME1);
-            //        deObject.Add("IB_ID01", tbxIB_ID.Text);
-            //        deObject.Add("SNo01", rowCount + 1);
-            //        deObject.Add("PROD_ID01", dr["PROD_ID"].ToString());
-            //        deObject.Add("PROD_NAME01", model2.PROD_NAME1);
-            //        deObject.Add("QUANTITY01", dr["QUANTITY"].ToString());
-            //        deObject.Add("STD_TYPE01", dr["STD_UNIT"].ToString());
-            //        deObject.Add("STD_UNIT01", dr["STD_UNIT"].ToString());
-            //        deObject.Add("STD_CONVERT01", dr["STD_CONVERT"].ToString());
-            //        deObject.Add("STD_QUAN01", dr["STD_QUAN"].ToString());
-            //        deObject.Add("STD_PRICE01", dr["STD_PRICE"].ToString());
-            //        deObject.Add("COST01", dr["STD_PRICE"].ToString());
-            //        deObject.Add("QUAN101", dr["STD_QUAN"].ToString());
-            //        deObject.Add("QUAN201", dr["STD_QUAN"].ToString());
-            //        deObject.Add("MEMO01", "");
-            //        deObject.Add("BAT_NO", "");
-            //        Grid2.AddNewRecord(deObject, true);
-            //    }
-
-
-            //}
         }
 
         private string ProdAddCheck(string prod_id, string prod_name)

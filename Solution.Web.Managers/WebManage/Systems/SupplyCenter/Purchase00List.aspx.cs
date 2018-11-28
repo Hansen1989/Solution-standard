@@ -63,8 +63,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             tbxPurchase_ID.Enabled = false;
             if (_id != 0)
             {
-                LoadPur();
-                LoadDataPur01();
+                LoadMain();
+                LoadDetail();
             }
         }
 
@@ -141,7 +141,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// 加载采购订单界面
         /// </summary>
         /// <param name="id"></param>
-        public void LoadPur()
+        public void LoadMain()
         {
             int id = ConvertHelper.Cint(hidId.Text);
             if (id == 0)
@@ -153,11 +153,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 tbxPurchase_ID.Text = model.Purchase_ID;
                 hidPurchase_ID.Text = model.Purchase_ID;
-                string _shop_id = model.SHOP_ID;
-                var shopModel = new SHOP00(x => x.SHOP_ID == model.SHOP_ID);
+                //string _shop_id = model.SHOP_ID;
+                //var shopModel = new SHOP00(x => x.SHOP_ID == model.SHOP_ID);
                 //tbxSHOP_ID.Text = model.SHOP_ID;
                 //tbxSHOP_NAME1.Text = shopModel.SHOP_NAME1;
-                ddlSHOP_NAME.SelectedValue = shopModel.SHOP_ID;
+                ddlSHOP_NAME.SelectedValue = model.SHOP_ID;
                 ddlStatus.SelectedValue = model.STATUS.ToString();
                 dpINPUT_DATE.Text = model.INPUT_DATE.ToString("yyyy-MM-dd");
                 dpEXPECT_DATE.Text = model.EXPECT_DATE.ToString("yyyy-MM-dd");
@@ -220,7 +220,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <summary>
         /// 订单明细加载
         /// </summary>
-        public void LoadDataPur01()
+        public void LoadDetail()
         {
             Grid2.DataSource = null;
             Grid2.DataBind();
@@ -260,6 +260,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             ddlSHOP_NAME.SelectedIndex = 0;
             ddlStatus.SelectedIndex = 0;
             dpINPUT_DATE.SelectedDate = DateTime.Now;
+            dpINPUT_DATE.Enabled = true;
             dpEXPECT_DATE.Enabled = true;
             dpEXPECT_DATE.SelectedDate = DateTime.Now;
             ddlSUP_NAME.Enabled = true;
@@ -431,8 +432,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 result = Pur_Edit();
             }
-            LoadPur();
-            LoadDataPur01();
+            LoadMain();
+            LoadDetail();
             FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
@@ -478,8 +479,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 result = Pur_Edit();
             }
-            LoadPur();
-            LoadDataPur01();
+            LoadMain();
+            LoadDetail();
             FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
@@ -680,21 +681,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     return result;
                 }
             }
-            //if (!String.IsNullOrEmpty(result))
-            //{
-            //    FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Information);
-            //}
-            //else
-            //{
-            //    string _shop_id = ddlSHOP_NAME.SelectedValue;
-            //    string _Pur_id = tbxPurchase_ID.Text;
-
-            //    DataSet ds = (DataSet)SPs.Update_Purchase00_TOT(_shop_id, _Pur_id).ExecuteDataSet();
-            //    //int _id = ConvertHelper.Cint0(GridViewHelper.GetSelectedKey(Grid1, true));
-            //    LoadPur();
-            //    FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Information);
-
-            //}
             if (String.IsNullOrEmpty(result))
             {
                 string _shop_id = ddlSHOP_NAME.SelectedValue;
@@ -702,7 +688,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
                 DataSet ds = (DataSet)SPs.Update_Purchase00_TOT(_shop_id, _Pur_id).ExecuteDataSet();
                 //int _id = ConvertHelper.Cint0(GridViewHelper.GetSelectedKey(Grid1, true));
-                LoadPur();
+                LoadMain();
                 result = "保存成功";
                 //FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Information);
             }
@@ -939,7 +925,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     }
                     else
                     {
-                        deObject.Add("Tax01", model.Tax*model.TAX_TYPE);
+                        deObject.Add("Tax01", model.Tax*model.TAX_TYPE*0.01);
                     }
                     deObject.Add("QUAN101", 0);
                     deObject.Add("QUAN201", 0);
