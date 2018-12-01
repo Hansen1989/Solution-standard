@@ -335,8 +335,8 @@
                             CompareOperator="GreaterThan" CompareMessage="结束日期应该大于开始日期" Label="结束日期"
                             runat="server" ShowRedStar="True">
                         </f:DatePicker>
-                        <f:DropDownList runat="server" ID="ddlSHOP_NAME1" Required="true" ShowRedStar="true" Label="分店名称" Enabled="false">
-                        </f:DropDownList>
+                        <%--<f:DropDownList runat="server" ID="ddlSHOP_NAME1" Required="true" ShowRedStar="true" Label="分店名称" Enabled="false">
+                        </f:DropDownList>--%>
                         <f:Button ID="ButtonSearch" runat="server" Text="查询" Icon="Magnifier" OnClick="BtnSearchOrder_click"></f:Button>
                     </Items>
                     <Items>

@@ -27,6 +27,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 LoadList();
                 LoadData();
                 OrderStatus(new IN_BACK00());
+                TextBox3.Enabled = false;
             }
         }
 
@@ -128,9 +129,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <summary>
         /// 加载主表明细数据
         /// </summary>
-        public void LoadMAIN()
+        public void LoadMAIN(string _tbxIB_ID="")
         {
-            string _tbxIB_ID = tbxIB_ID.Text;
+            if (String.IsNullOrEmpty(_tbxIB_ID))
+            {
+                _tbxIB_ID = tbxIB_ID.Text;
+            }
             if (!String.IsNullOrEmpty(_tbxIB_ID))
             {
                 var model = new IN_BACK00(x => x.IB_ID == _tbxIB_ID);
@@ -161,9 +165,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
         }
 
-        public void LoadDETAIL()
+        public void LoadDETAIL(string _tbxIB_ID="")
         {
-            string _tbxIB_ID = tbxIB_ID.Text;
+            //先判断是否为空，为空则赋值
+            if (String.IsNullOrEmpty(_tbxIB_ID))
+            {
+                _tbxIB_ID = tbxIB_ID.Text;
+            }
+            //再次判断tbxID的值是否为空
             if (!String.IsNullOrEmpty(_tbxIB_ID))
             {
                 List<ConditionFun.SqlqueryCondition> conditiondetail = new List<ConditionFun.SqlqueryCondition>();
@@ -468,7 +477,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     dt = (DataTable)SPs.Get_ORDER_SEED(_SHOP_ID, "IN_BACK00").ExecuteDataTable();
                     _IB_ID = dt.Rows[0]["PLANE_ID"].ToString();
                     //var model = Purchase00.SingleOrDefault(x => x.Purchase_ID == _Pur00_id);
-
+                    tbxIB_ID.Text = _IB_ID;
                 }
                 model.SHOP_ID = _SHOP_ID;
                 model.IB_ID = _IB_ID.ToString();
@@ -504,6 +513,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 return err.Message;
             }
+            LoadMAIN(_IB_ID);
             return "";
         }
 
@@ -573,6 +583,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     result = "明细保存失败" + n + "条";
                 }
             }
+            LoadDETAIL("");
             return result;
         }
 
@@ -812,7 +823,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         protected void ButtonOrderSearch_Click(Object sender, EventArgs e)
         {
             FineUI.Grid grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
-            OUT_BACK00Bll.GetInstence().BindGrid(grid4, 0, 0, OrderCondition(), null);
+            V_OUT_BACK00_DETAILNAMEBll.GetInstence().BindGrid(grid4, 0, 0, OrderCondition(), null);
         }
         /// <summary>
         /// 检索条件

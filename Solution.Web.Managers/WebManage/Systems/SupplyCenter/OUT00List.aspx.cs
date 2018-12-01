@@ -41,9 +41,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             var model = GetOnlineUserShop();
             
             //SHOP00Bll.GetInstence().BindOnlineUser(this,model.SHOP_ID, ddlSHOP_NAME);
-            SHOP00Bll.GetInstence().GetShopList(this, model.SHOP_ID, ddlSHOP_NAME);
+            SHOP00Bll.GetInstence().BindOnlineUser(this, model.SHOP_ID, ddlSHOP_NAME);
             SHOP00Bll.GetInstence().GetShopList(this,model.SHOP_ID, ddlIN_SHOP);
-            SHOP00Bll.GetInstence().GetShopList(this,model.SHOP_ID, ddlSHOP_NAME1);
+            //SHOP00Bll.GetInstence().GetShopList(this,model.SHOP_ID, ddlSHOP_NAME1);
             STOCKBll.GetInstence().BandOnlineUserStock(this,model.SHOP_ID,ddlSTOCK_ID);
             FineUI.DropDownList _ddlShopName = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("w4_ddlSHOP_NAME") as FineUI.DropDownList;
             SHOP00Bll.GetInstence().GetShopList(this, model.SHOP_ID, _ddlShopName);
@@ -86,18 +86,21 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         private List<ConditionFun.SqlqueryCondition> InquiryCondition()
         {
             List<ConditionFun.SqlqueryCondition> conditionList = new List<ConditionFun.SqlqueryCondition>();
+            var model = GetOnlineUserShop();
             string st = DatePicker1.Text;
             string et = DatePicker2.Text;
-            string sn = ddlSHOP_NAME1.SelectedValue;
+            //string sn = ddlSHOP_NAME1.SelectedValue;
             string DateType = ddrDataType.SelectedValue;
+
+            conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT00Table.SHOP_ID, Comparison.Equals, model.SHOP_ID, false, false));
             if (DateType.Equals("1"))
             {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT00Table.INPUT_DATE, Comparison.LessOrEquals, et, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT00Table.INPUT_DATE, Comparison.LessOrEquals, et, false, false));
                 conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT00Table.INPUT_DATE, Comparison.GreaterOrEquals, st, false, false));
             }
             else
             {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT00Table.APP_DATETIME, Comparison.LessOrEquals, et, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT00Table.APP_DATETIME, Comparison.LessOrEquals, et, false, false));
                 conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT00Table.APP_DATETIME, Comparison.GreaterOrEquals, st, false, false));
             }
 
