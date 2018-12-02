@@ -19,114 +19,34 @@ namespace Solution.DataAccess.Model
 			set { _Id = value; }
 		}
 
-		string _AREA_ID = "";
+		string _Code = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public string AREA_ID
+		public string Code
 		{
-			get { return _AREA_ID; }
-			set { _AREA_ID = value; }
+			get { return _Code; }
+			set { _Code = value; }
 		}
 
-		int _COL_ORDER_TYPE = 0;
+		string _VALUE = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public int COL_ORDER_TYPE
+		public string VALUE
 		{
-			get { return _COL_ORDER_TYPE; }
-			set { _COL_ORDER_TYPE = value; }
+			get { return _VALUE; }
+			set { _VALUE = value; }
 		}
 
-		int _ORDER_PRICE_TYPE = 0;
+		string _KEY_CN = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public int ORDER_PRICE_TYPE
+		public string KEY_CN
 		{
-			get { return _ORDER_PRICE_TYPE; }
-			set { _ORDER_PRICE_TYPE = value; }
-		}
-
-		int _QUANTITY_TYPE = 0;
-		/// <summary>
-		/// 
-		/// </summary>
-		public int QUANTITY_TYPE
-		{
-			get { return _QUANTITY_TYPE; }
-			set { _QUANTITY_TYPE = value; }
-		}
-
-		int _EXPECT_DATE_TYPE = 0;
-		/// <summary>
-		/// 
-		/// </summary>
-		public int EXPECT_DATE_TYPE
-		{
-			get { return _EXPECT_DATE_TYPE; }
-			set { _EXPECT_DATE_TYPE = value; }
-		}
-
-		int _PRD_BOM_TYPE = 0;
-		/// <summary>
-		/// 
-		/// </summary>
-		public int PRD_BOM_TYPE
-		{
-			get { return _PRD_BOM_TYPE; }
-			set { _PRD_BOM_TYPE = value; }
-		}
-
-		DateTime _CRT_DATETIME = new DateTime(1900,1,1);
-		/// <summary>
-		/// 
-		/// </summary>
-		public DateTime CRT_DATETIME
-		{
-			get { return _CRT_DATETIME; }
-			set { _CRT_DATETIME = value; }
-		}
-
-		string _CRT_USER_ID = "";
-		/// <summary>
-		/// 
-		/// </summary>
-		public string CRT_USER_ID
-		{
-			get { return _CRT_USER_ID; }
-			set { _CRT_USER_ID = value; }
-		}
-
-		DateTime _MOD_DATETIME = new DateTime(1900,1,1);
-		/// <summary>
-		/// 
-		/// </summary>
-		public DateTime MOD_DATETIME
-		{
-			get { return _MOD_DATETIME; }
-			set { _MOD_DATETIME = value; }
-		}
-
-		string _MOD_USER_ID = "";
-		/// <summary>
-		/// 
-		/// </summary>
-		public string MOD_USER_ID
-		{
-			get { return _MOD_USER_ID; }
-			set { _MOD_USER_ID = value; }
-		}
-
-		DateTime _LAST_UPDATE = new DateTime(1900,1,1);
-		/// <summary>
-		/// 
-		/// </summary>
-		public DateTime LAST_UPDATE
-		{
-			get { return _LAST_UPDATE; }
-			set { _LAST_UPDATE = value; }
+			get { return _KEY_CN; }
+			set { _KEY_CN = value; }
 		}
 
 		string _MEMO = "";
@@ -139,14 +59,14 @@ namespace Solution.DataAccess.Model
 			set { _MEMO = value; }
 		}
 
-		int _PALN_TYPE = 0;
+		string _Area_Id = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public int PALN_TYPE
+		public string Area_Id
 		{
-			get { return _PALN_TYPE; }
-			set { _PALN_TYPE = value; }
+			get { return _Area_Id; }
+			set { _Area_Id = value; }
 		}
     } 
 

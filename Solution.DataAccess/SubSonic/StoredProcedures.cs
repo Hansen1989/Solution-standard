@@ -207,6 +207,15 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
             return sp;
         }
+        public static StoredProcedure IN_Purchase00_TAKEIN11(string Purchase_ID,string TAKEIN_ID,string SHOP_ID){
+            StoredProcedure sp=new StoredProcedure("IN_Purchase00_TAKEIN11");
+			
+
+            sp.Command.AddParameter("Purchase_ID",Purchase_ID,DbType.AnsiString);
+            sp.Command.AddParameter("TAKEIN_ID",TAKEIN_ID,DbType.AnsiString);
+            sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure Insert_PRODUCT01(string PROD_ID,string CRT_USER_ID){
             StoredProcedure sp=new StoredProcedure("Insert_PRODUCT01");
 			

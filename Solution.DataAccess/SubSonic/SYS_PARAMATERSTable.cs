@@ -27,89 +27,25 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string AREA_ID{
+   			public static string Code{
 			      get{
-        			return "AREA_ID";
+        			return "Code";
       			}
 		    }
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string COL_ORDER_TYPE{
+   			public static string VALUE{
 			      get{
-        			return "COL_ORDER_TYPE";
+        			return "VALUE";
       			}
 		    }
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string ORDER_PRICE_TYPE{
+   			public static string KEY_CN{
 			      get{
-        			return "ORDER_PRICE_TYPE";
-      			}
-		    }
-			/// <summary>
-			/// 
-			/// </summary>
-   			public static string QUANTITY_TYPE{
-			      get{
-        			return "QUANTITY_TYPE";
-      			}
-		    }
-			/// <summary>
-			/// 
-			/// </summary>
-   			public static string EXPECT_DATE_TYPE{
-			      get{
-        			return "EXPECT_DATE_TYPE";
-      			}
-		    }
-			/// <summary>
-			/// 
-			/// </summary>
-   			public static string PRD_BOM_TYPE{
-			      get{
-        			return "PRD_BOM_TYPE";
-      			}
-		    }
-			/// <summary>
-			/// 
-			/// </summary>
-   			public static string CRT_DATETIME{
-			      get{
-        			return "CRT_DATETIME";
-      			}
-		    }
-			/// <summary>
-			/// 
-			/// </summary>
-   			public static string CRT_USER_ID{
-			      get{
-        			return "CRT_USER_ID";
-      			}
-		    }
-			/// <summary>
-			/// 
-			/// </summary>
-   			public static string MOD_DATETIME{
-			      get{
-        			return "MOD_DATETIME";
-      			}
-		    }
-			/// <summary>
-			/// 
-			/// </summary>
-   			public static string MOD_USER_ID{
-			      get{
-        			return "MOD_USER_ID";
-      			}
-		    }
-			/// <summary>
-			/// 
-			/// </summary>
-   			public static string LAST_UPDATE{
-			      get{
-        			return "LAST_UPDATE";
+        			return "KEY_CN";
       			}
 		    }
 			/// <summary>
@@ -123,9 +59,9 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string PALN_TYPE{
+   			public static string Area_Id{
 			      get{
-        			return "PALN_TYPE";
+        			return "Area_Id";
       			}
 		    }
                     

@@ -118,31 +118,15 @@ namespace Solution.DataAccess.DataModel
                
             Id = readRecord.get_int("Id",null);
                
-            AREA_ID = readRecord.get_string("AREA_ID",null);
+            Code = readRecord.get_string("Code",null);
                
-            COL_ORDER_TYPE = readRecord.get_int("COL_ORDER_TYPE",null);
+            VALUE = readRecord.get_string("VALUE",null);
                
-            ORDER_PRICE_TYPE = readRecord.get_int("ORDER_PRICE_TYPE",null);
-               
-            QUANTITY_TYPE = readRecord.get_int("QUANTITY_TYPE",null);
-               
-            EXPECT_DATE_TYPE = readRecord.get_int("EXPECT_DATE_TYPE",null);
-               
-            PRD_BOM_TYPE = readRecord.get_int("PRD_BOM_TYPE",null);
-               
-            CRT_DATETIME = readRecord.get_datetime("CRT_DATETIME",null);
-               
-            CRT_USER_ID = readRecord.get_string("CRT_USER_ID",null);
-               
-            MOD_DATETIME = readRecord.get_datetime("MOD_DATETIME",null);
-               
-            MOD_USER_ID = readRecord.get_string("MOD_USER_ID",null);
-               
-            LAST_UPDATE = readRecord.get_datetime("LAST_UPDATE",null);
+            KEY_CN = readRecord.get_string("KEY_CN",null);
                
             MEMO = readRecord.get_string("MEMO",null);
                
-            PALN_TYPE = readRecord.get_int("PALN_TYPE",null);
+            Area_Id = readRecord.get_string("Area_Id",null);
                 }   
 
         partial void OnCreated();
@@ -282,7 +266,7 @@ namespace Solution.DataAccess.DataModel
         }
         
         public override string ToString(){
-                            return this.AREA_ID.ToString();
+                            return this.Code.ToString();
                     }
 
         public override bool Equals(object obj){
@@ -301,11 +285,11 @@ namespace Solution.DataAccess.DataModel
         
         public string DescriptorValue()
         {
-                            return this.AREA_ID.ToString();
+                            return this.Code.ToString();
                     }
 
         public string DescriptorColumn() {
-            return "AREA_ID";
+            return "Code";
         }
         public static string GetKeyColumn()
         {
@@ -313,7 +297,7 @@ namespace Solution.DataAccess.DataModel
         }        
         public static string GetDescriptorColumn()
         {
-            return "AREA_ID";
+            return "Code";
         }
         
         #region ' Foreign Keys '
@@ -343,18 +327,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _AREA_ID;
+        string _Code;
 		/// <summary>
 		/// 
 		/// </summary>
-        public string AREA_ID
+        public string Code
         {
-            get { return _AREA_ID; }
+            get { return _Code; }
             set
             {
-                if(_AREA_ID!=value || _isLoaded){
-                    _AREA_ID=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="AREA_ID");
+                if(_Code!=value || _isLoaded){
+                    _Code=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Code");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -365,18 +349,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        int _COL_ORDER_TYPE;
+        string _VALUE;
 		/// <summary>
 		/// 
 		/// </summary>
-        public int COL_ORDER_TYPE
+        public string VALUE
         {
-            get { return _COL_ORDER_TYPE; }
+            get { return _VALUE; }
             set
             {
-                if(_COL_ORDER_TYPE!=value || _isLoaded){
-                    _COL_ORDER_TYPE=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="COL_ORDER_TYPE");
+                if(_VALUE!=value || _isLoaded){
+                    _VALUE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="VALUE");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -387,194 +371,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        int _ORDER_PRICE_TYPE;
+        string _KEY_CN;
 		/// <summary>
 		/// 
 		/// </summary>
-        public int ORDER_PRICE_TYPE
+        public string KEY_CN
         {
-            get { return _ORDER_PRICE_TYPE; }
+            get { return _KEY_CN; }
             set
             {
-                if(_ORDER_PRICE_TYPE!=value || _isLoaded){
-                    _ORDER_PRICE_TYPE=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="ORDER_PRICE_TYPE");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        int _QUANTITY_TYPE;
-		/// <summary>
-		/// 
-		/// </summary>
-        public int QUANTITY_TYPE
-        {
-            get { return _QUANTITY_TYPE; }
-            set
-            {
-                if(_QUANTITY_TYPE!=value || _isLoaded){
-                    _QUANTITY_TYPE=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="QUANTITY_TYPE");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        int _EXPECT_DATE_TYPE;
-		/// <summary>
-		/// 
-		/// </summary>
-        public int EXPECT_DATE_TYPE
-        {
-            get { return _EXPECT_DATE_TYPE; }
-            set
-            {
-                if(_EXPECT_DATE_TYPE!=value || _isLoaded){
-                    _EXPECT_DATE_TYPE=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="EXPECT_DATE_TYPE");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        int _PRD_BOM_TYPE;
-		/// <summary>
-		/// 
-		/// </summary>
-        public int PRD_BOM_TYPE
-        {
-            get { return _PRD_BOM_TYPE; }
-            set
-            {
-                if(_PRD_BOM_TYPE!=value || _isLoaded){
-                    _PRD_BOM_TYPE=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PRD_BOM_TYPE");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        DateTime _CRT_DATETIME;
-		/// <summary>
-		/// 
-		/// </summary>
-        public DateTime CRT_DATETIME
-        {
-            get { return _CRT_DATETIME; }
-            set
-            {
-                if(_CRT_DATETIME!=value || _isLoaded){
-                    _CRT_DATETIME=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="CRT_DATETIME");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        string _CRT_USER_ID;
-		/// <summary>
-		/// 
-		/// </summary>
-        public string CRT_USER_ID
-        {
-            get { return _CRT_USER_ID; }
-            set
-            {
-                if(_CRT_USER_ID!=value || _isLoaded){
-                    _CRT_USER_ID=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="CRT_USER_ID");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        DateTime _MOD_DATETIME;
-		/// <summary>
-		/// 
-		/// </summary>
-        public DateTime MOD_DATETIME
-        {
-            get { return _MOD_DATETIME; }
-            set
-            {
-                if(_MOD_DATETIME!=value || _isLoaded){
-                    _MOD_DATETIME=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MOD_DATETIME");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        string _MOD_USER_ID;
-		/// <summary>
-		/// 
-		/// </summary>
-        public string MOD_USER_ID
-        {
-            get { return _MOD_USER_ID; }
-            set
-            {
-                if(_MOD_USER_ID!=value || _isLoaded){
-                    _MOD_USER_ID=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MOD_USER_ID");
-                    if(col!=null){
-                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
-                            _dirtyColumns.Add(col);
-                        }
-                    }
-                    OnChanged();
-                }
-            }
-        }
-
-        DateTime _LAST_UPDATE;
-		/// <summary>
-		/// 
-		/// </summary>
-        public DateTime LAST_UPDATE
-        {
-            get { return _LAST_UPDATE; }
-            set
-            {
-                if(_LAST_UPDATE!=value || _isLoaded){
-                    _LAST_UPDATE=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="LAST_UPDATE");
+                if(_KEY_CN!=value || _isLoaded){
+                    _KEY_CN=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="KEY_CN");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -607,18 +415,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        int _PALN_TYPE;
+        string _Area_Id;
 		/// <summary>
 		/// 
 		/// </summary>
-        public int PALN_TYPE
+        public string Area_Id
         {
-            get { return _PALN_TYPE; }
+            get { return _Area_Id; }
             set
             {
-                if(_PALN_TYPE!=value || _isLoaded){
-                    _PALN_TYPE=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="PALN_TYPE");
+                if(_Area_Id!=value || _isLoaded){
+                    _Area_Id=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Area_Id");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

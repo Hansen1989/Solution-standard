@@ -54,12 +54,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SystemParameter
             {
                 //获取指定ID的菜单内容，如果不存在，则创建一个菜单实体
                 
-                var model = PARAMETERBll.GetInstence().GetModelForCache(x => x.Id == id);
+                var model = SYS_PARAMATERSBll.GetInstence().GetModelForCache(x => x.Id == id);
                 if (model == null)
                     return;
 
                 ddlAREA.SelectedValue = model.Area_Id + "";
-                txt_key.Text = model.KEY;
+                txt_key.Text = model.Code;
                 value_droplist.SelectedValue = model.VALUE;
                 key_cn.Text = model.KEY_CN;
                 txt_memo.Text = model.MEMO;
@@ -95,11 +95,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SystemParameter
                 #region 赋值
                 //读取指定部门资料
                 
-                var model = new PARAMETER(x => x.Id == id);
+                var model = new SYS_PARAMATERS(x => x.Id == id);
 
                 model.Area_Id = ddlAREA.SelectedValue + "";
 
-                model.KEY = txt_key.Text;
+                model.Code = txt_key.Text;
                 model.VALUE = value_droplist.SelectedValue;
                 model.KEY_CN = key_cn.Text;
                 model.MEMO = txt_memo.Text;
@@ -114,7 +114,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SystemParameter
 
                 //----------------------------------------------------------
                 //存储到数据库
-                PARAMETERBll.GetInstence().Save(this, model);
+                SYS_PARAMATERSBll.GetInstence().Save(this, model);
             }
             catch (Exception e)
             {

@@ -28,7 +28,7 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "Id"
                 });
 
-                Columns.Add(new DatabaseColumn("AREA_ID", this)
+                Columns.Add(new DatabaseColumn("Code", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
@@ -36,76 +36,10 @@ namespace Solution.DataAccess.DataModel {
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 10,
-					PropertyName = "AREA_ID"
+					PropertyName = "Code"
                 });
 
-                Columns.Add(new DatabaseColumn("COL_ORDER_TYPE", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Int32,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "COL_ORDER_TYPE"
-                });
-
-                Columns.Add(new DatabaseColumn("ORDER_PRICE_TYPE", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Int32,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "ORDER_PRICE_TYPE"
-                });
-
-                Columns.Add(new DatabaseColumn("QUANTITY_TYPE", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Int32,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "QUANTITY_TYPE"
-                });
-
-                Columns.Add(new DatabaseColumn("EXPECT_DATE_TYPE", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Int32,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "EXPECT_DATE_TYPE"
-                });
-
-                Columns.Add(new DatabaseColumn("PRD_BOM_TYPE", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Int32,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "PRD_BOM_TYPE"
-                });
-
-                Columns.Add(new DatabaseColumn("CRT_DATETIME", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "CRT_DATETIME"
-                });
-
-                Columns.Add(new DatabaseColumn("CRT_USER_ID", this)
+                Columns.Add(new DatabaseColumn("VALUE", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
@@ -113,40 +47,18 @@ namespace Solution.DataAccess.DataModel {
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 10,
-					PropertyName = "CRT_USER_ID"
+					PropertyName = "VALUE"
                 });
 
-                Columns.Add(new DatabaseColumn("MOD_DATETIME", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "MOD_DATETIME"
-                });
-
-                Columns.Add(new DatabaseColumn("MOD_USER_ID", this)
+                Columns.Add(new DatabaseColumn("KEY_CN", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
 	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
-	                MaxLength = 10,
-					PropertyName = "MOD_USER_ID"
-                });
-
-                Columns.Add(new DatabaseColumn("LAST_UPDATE", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.DateTime,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "LAST_UPDATE"
+	                MaxLength = 30,
+					PropertyName = "KEY_CN"
                 });
 
                 Columns.Add(new DatabaseColumn("MEMO", this)
@@ -156,19 +68,19 @@ namespace Solution.DataAccess.DataModel {
 	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
-	                MaxLength = 50,
+	                MaxLength = 30,
 					PropertyName = "MEMO"
                 });
 
-                Columns.Add(new DatabaseColumn("PALN_TYPE", this)
+                Columns.Add(new DatabaseColumn("Area_Id", this)
                 {
 	                IsPrimaryKey = false,
-	                DataType = DbType.Int32,
+	                DataType = DbType.String,
 	                IsNullable = true,
 	                AutoIncrement = false,
 	                IsForeignKey = false,
-	                MaxLength = 0,
-					PropertyName = "PALN_TYPE"
+	                MaxLength = 30,
+					PropertyName = "Area_Id"
                 });
                     
                 
@@ -182,79 +94,23 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn AREA_ID{
+            public IColumn Code{
                 get{
-                    return this.GetColumn("AREA_ID");
+                    return this.GetColumn("Code");
                 }
             }
 				
             
-            public IColumn COL_ORDER_TYPE{
+            public IColumn VALUE{
                 get{
-                    return this.GetColumn("COL_ORDER_TYPE");
+                    return this.GetColumn("VALUE");
                 }
             }
 				
             
-            public IColumn ORDER_PRICE_TYPE{
+            public IColumn KEY_CN{
                 get{
-                    return this.GetColumn("ORDER_PRICE_TYPE");
-                }
-            }
-				
-            
-            public IColumn QUANTITY_TYPE{
-                get{
-                    return this.GetColumn("QUANTITY_TYPE");
-                }
-            }
-				
-            
-            public IColumn EXPECT_DATE_TYPE{
-                get{
-                    return this.GetColumn("EXPECT_DATE_TYPE");
-                }
-            }
-				
-            
-            public IColumn PRD_BOM_TYPE{
-                get{
-                    return this.GetColumn("PRD_BOM_TYPE");
-                }
-            }
-				
-            
-            public IColumn CRT_DATETIME{
-                get{
-                    return this.GetColumn("CRT_DATETIME");
-                }
-            }
-				
-            
-            public IColumn CRT_USER_ID{
-                get{
-                    return this.GetColumn("CRT_USER_ID");
-                }
-            }
-				
-            
-            public IColumn MOD_DATETIME{
-                get{
-                    return this.GetColumn("MOD_DATETIME");
-                }
-            }
-				
-            
-            public IColumn MOD_USER_ID{
-                get{
-                    return this.GetColumn("MOD_USER_ID");
-                }
-            }
-				
-            
-            public IColumn LAST_UPDATE{
-                get{
-                    return this.GetColumn("LAST_UPDATE");
+                    return this.GetColumn("KEY_CN");
                 }
             }
 				
@@ -266,9 +122,9 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn PALN_TYPE{
+            public IColumn Area_Id{
                 get{
-                    return this.GetColumn("PALN_TYPE");
+                    return this.GetColumn("Area_Id");
                 }
             }
 				

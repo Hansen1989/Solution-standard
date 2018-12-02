@@ -273,7 +273,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             var model_SHOP = new SHOP00(x => x.SHOP_ID == shop_id);
             string area_id = model_SHOP.SHOP_Area_ID.ToString();
 
-            var model_SYS_PARAMATERS = new SYS_PARAMATERS(x => x.AREA_ID == area_id);
+            var model_SYS_PARAMATERS = new SYS_PARAMATERS(x => x.Area_Id == area_id);
             string type = "";
 
 
@@ -281,19 +281,19 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             {
                 var a_type = Grid1.FindColumn("ARCHIVEORDERS_TYPE") as FineUI.LinkButtonField;
 
-                if (model_SYS_PARAMATERS.COL_ORDER_TYPE == 0) //产品类型汇整
-                {
-                    if (model_ARCHIVEORDERS.PROD_TYPE == 0) { type = "自产型"; }
-                    if (model_ARCHIVEORDERS.PROD_TYPE == 1) { type = "供应型"; }
-                    if (model_ARCHIVEORDERS.PROD_TYPE == 2) { type = "委托加工型"; }
-                }
+                //if (model_SYS_PARAMATERS.COL_ORDER_TYPE == 0) //产品类型汇整
+                //{
+                //    if (model_ARCHIVEORDERS.PROD_TYPE == 0) { type = "自产型"; }
+                //    if (model_ARCHIVEORDERS.PROD_TYPE == 1) { type = "供应型"; }
+                //    if (model_ARCHIVEORDERS.PROD_TYPE == 2) { type = "委托加工型"; }
+                //}
 
-                if (model_SYS_PARAMATERS.COL_ORDER_TYPE == 1) //产品类型汇整
-                {
-                    if (model_ARCHIVEORDERS.PROD_TYPE == 1) { type = "普通订货"; }
-                    if (model_ARCHIVEORDERS.PROD_TYPE == 2) { type = "客户订货"; }
+                //if (model_SYS_PARAMATERS.COL_ORDER_TYPE == 1) //产品类型汇整
+                //{
+                //    if (model_ARCHIVEORDERS.PROD_TYPE == 1) { type = "普通订货"; }
+                //    if (model_ARCHIVEORDERS.PROD_TYPE == 2) { type = "客户订货"; }
 
-                }
+                //}
 
                 a_type.Text = type;
 

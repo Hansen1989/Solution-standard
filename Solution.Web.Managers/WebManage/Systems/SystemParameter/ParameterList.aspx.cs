@@ -52,7 +52,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SystemParameter
             //绑定Grid表格
             conditionList = new List<ConditionFun.SqlqueryCondition>();
             conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "1", Comparison.Equals, "1", false, false));
-            PARAMETERBll.GetInstence().BindGrid(Grid1, 0, 0, conditionList, sortList);
+            SYS_PARAMATERSBll.GetInstence().BindGrid(Grid1, 0, 0, conditionList, sortList);
             // bll.BindGrid(Grid1, InquiryCondition(), sortList);
         }
         #endregion

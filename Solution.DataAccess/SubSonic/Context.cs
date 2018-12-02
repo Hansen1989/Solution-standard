@@ -181,7 +181,6 @@ namespace Solution.DataAccess.DataModel
         public Query<DataAccess.Model.OUT01> OUT01 { get; set; }
         public Query<DataAccess.Model.PagePowerSign> PagePowerSign { get; set; }
         public Query<DataAccess.Model.PagePowerSignPublic> PagePowerSignPublic { get; set; }
-        public Query<DataAccess.Model.PARAMETER> PARAMETER { get; set; }
         public Query<DataAccess.Model.PLAN00> PLAN00 { get; set; }
         public Query<DataAccess.Model.PLAN01> PLAN01 { get; set; }
         public Query<DataAccess.Model.PLAN02> PLAN02 { get; set; }
@@ -222,6 +221,7 @@ namespace Solution.DataAccess.DataModel
         public Query<DataAccess.Model.UseLog> UseLog { get; set; }
         public Query<DataAccess.Model.V_COMPONENT01_PRODUCT00> V_COMPONENT01_PRODUCT00 { get; set; }
         public Query<DataAccess.Model.V_IN_BACK01_PRODUCT00> V_IN_BACK01_PRODUCT00 { get; set; }
+        public Query<DataAccess.Model.V_IN_BAKCK00_SHOP00> V_IN_BAKCK00_SHOP00 { get; set; }
         public Query<DataAccess.Model.V_IN01_PRODUCT01> V_IN01_PRODUCT01 { get; set; }
         public Query<DataAccess.Model.V_ORDER01_PRODUCT01> V_ORDER01_PRODUCT01 { get; set; }
         public Query<DataAccess.Model.V_ORDERDEP02_PRODDEP> V_ORDERDEP02_PRODDEP { get; set; }
@@ -391,7 +391,6 @@ namespace Solution.DataAccess.DataModel
             OUT01 = new Query<DataAccess.Model.OUT01>(provider);
             PagePowerSign = new Query<DataAccess.Model.PagePowerSign>(provider);
             PagePowerSignPublic = new Query<DataAccess.Model.PagePowerSignPublic>(provider);
-            PARAMETER = new Query<DataAccess.Model.PARAMETER>(provider);
             PLAN00 = new Query<DataAccess.Model.PLAN00>(provider);
             PLAN01 = new Query<DataAccess.Model.PLAN01>(provider);
             PLAN02 = new Query<DataAccess.Model.PLAN02>(provider);
@@ -432,6 +431,7 @@ namespace Solution.DataAccess.DataModel
             UseLog = new Query<DataAccess.Model.UseLog>(provider);
             V_COMPONENT01_PRODUCT00 = new Query<DataAccess.Model.V_COMPONENT01_PRODUCT00>(provider);
             V_IN_BACK01_PRODUCT00 = new Query<DataAccess.Model.V_IN_BACK01_PRODUCT00>(provider);
+            V_IN_BAKCK00_SHOP00 = new Query<DataAccess.Model.V_IN_BAKCK00_SHOP00>(provider);
             V_IN01_PRODUCT01 = new Query<DataAccess.Model.V_IN01_PRODUCT01>(provider);
             V_ORDER01_PRODUCT01 = new Query<DataAccess.Model.V_ORDER01_PRODUCT01>(provider);
             V_ORDERDEP02_PRODDEP = new Query<DataAccess.Model.V_ORDERDEP02_PRODDEP>(provider);
@@ -504,7 +504,6 @@ namespace Solution.DataAccess.DataModel
             	DataProvider.Schema.Tables.Add(new OUT01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new PagePowerSignStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new PagePowerSignPublicStructs(DataProvider));
-            	DataProvider.Schema.Tables.Add(new PARAMETERStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new PLAN00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new PLAN01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new PLAN02Structs(DataProvider));
@@ -545,6 +544,7 @@ namespace Solution.DataAccess.DataModel
             	DataProvider.Schema.Tables.Add(new UseLogStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_COMPONENT01_PRODUCT00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_IN_BACK01_PRODUCT00Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new V_IN_BAKCK00_SHOP00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_IN01_PRODUCT01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_ORDER01_PRODUCT01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_ORDERDEP02_PRODDEPStructs(DataProvider));
