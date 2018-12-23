@@ -157,7 +157,7 @@
                                           <f:RenderField Width="130px" ColumnID="STD_UNIT01" DataField="STD_UNIT" FieldType="String" Enabled="false"
                                                 HeaderText="退货单位类型" RendererFunction="renderSTD_UNIT0101">
                                                 <Editor>
-                                                    <f:DropDownList ID="ddlSTD_UNIT01" runat="server">
+                                                    <f:DropDownList ID="ddlSTD_TYPE01" runat="server">
                                                         <f:ListItem Text="最小单位" Value="1" />
                                                         <f:ListItem Text="包装单位" Value="2" />
                                                         <f:ListItem Text="外箱单位" Value="3" />
@@ -195,7 +195,7 @@
                                          <f:RenderField Width="130px" ColumnID="STD_CONVERT01" DataField="STD_CONVERT" FieldType="Int" Enabled="false" Hidden="false"
                                                 HeaderText="标准转换量">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numSTD_CONVERT"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numSTD_CONVERT" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="PROD_CONVERT101" DataField="PROD_CONVERT1" FieldType="Int" Enabled="true" Hidden="true"
@@ -219,7 +219,7 @@
                                          <f:RenderField Width="130px" ColumnID="STD_PRICE01" DataField="STD_PRICE" FieldType="Float" Enabled="false"
                                                 HeaderText="退货单价">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                         <f:RenderField Width="130px" ColumnID="S_RET_COST01" DataField="S_RET_COST" FieldType="Float" Enabled="true" Hidden="true"
@@ -243,7 +243,7 @@
                                          <f:RenderField Width="130px" ColumnID="COST01" DataField="COST" FieldType="Float" Enabled="false"
                                                 HeaderText="退货成本">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numCOST" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numCOST" NoNegative="true" Enabled="false" DecimalPrecision="6"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                           <f:RenderField Width="130px" ColumnID="R_COST01" DataField="COST" FieldType="Float" Enabled="true" Hidden="true"
@@ -280,7 +280,7 @@
                                           <f:RenderField Width="130px" ColumnID="REASON_ID01" DataField="REASON_ID" FieldType="String" Enabled="True"
                                                 HeaderText="退货理由">
                                                 <Editor>
-                                                    <f:TextBox ID="TextBox3" runat="server" Required="true" ShowRedStar="true">
+                                                    <f:TextBox ID="tbxREASON_ID" runat="server" Required="true" ShowRedStar="true">
                                                     </f:TextBox>
                                                 </Editor>
                                          </f:RenderField>

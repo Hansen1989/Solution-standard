@@ -80,6 +80,15 @@
 
                     <Items>
                        <f:Panel ID="Panel12" runat="server" Title="盘点作业子表">
+                           <Toolbars>
+                             <f:Toolbar ID="Toolbar21111" runat="server" Hidden="false">
+                               <Items>
+                                   <f:Button ID="ButtonDetailAdd" runat="server" Text="添加" Icon="Add" OnClick="btn_DetailAdd"></f:Button>
+                                   <f:Button ID="ButtonDetailDelete" runat="server" Text="添加" Icon="Delete"></f:Button>
+                                  <%--<f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add"></f:Button>--%>
+                               </Items>
+                             </f:Toolbar>
+                           </Toolbars>
                            <Items>
                               <f:Grid ID="Grid2" Title="盘点作业子表" EnableFrame="false" EnableCollapse="true" ShowHeader="false" runat="server" Height="600px"
                                    DataKeyNames="Id" EnableColumnLines="true" AllowPaging="true"
@@ -100,7 +109,7 @@
                                                     </f:TextBox>
                                                 </Editor>
                                         </f:RenderField>
-                                        <f:RenderField Width="130px" ColumnID="SHOP_NAME01" DataField="SHOP_ID" FieldType="String" Enabled="false"
+                                        <f:RenderField Width="130px" ColumnID="SHOP_NAME101" DataField="SHOP_ID" FieldType="String" Enabled="false"
                                                 HeaderText="分店名称">
                                                 <Editor>
                                                     <f:TextBox ID="TextBox2" runat="server" Required="true" ShowRedStar="true" Enabled="false">
@@ -128,7 +137,7 @@
                                                     </f:TextBox>
                                                 </Editor>
                                          </f:RenderField>
-                                          <f:RenderField Width="130px" ColumnID="PROD_NAME01" DataField="PROD_NAME" FieldType="String" Enabled="false"
+                                          <f:RenderField Width="130px" ColumnID="PROD_NAME101" DataField="PROD_NAME1" FieldType="String" Enabled="false"
                                                 HeaderText="商品名称">
                                                 <Editor>
                                                     <f:TextBox ID="TextBox1" runat="server" Required="true" ShowRedStar="true" Enabled="false">
@@ -144,8 +153,8 @@
                                          <f:RenderField Width="130px" ColumnID="QUAN01" DataField="QUAN" FieldType="String" Enabled="false"
                                                 HeaderText="外箱单位数量">
                                                 <Editor>
-                                                    <f:TextBox ID="tbxQUAN01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
-                                                    </f:TextBox>
+                                                    <f:NumberBox ID="numQUAN01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
+                                                    </f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="QUAN101" DataField="QUAN1" FieldType="Int" Enabled="false" Hidden="false"
@@ -213,7 +222,7 @@
                 </f:Panel>
             </Items>
         </f:Panel>
-        <f:Window ID="Window3" Width="400px" Height="200px" Icon="TagBlue" Hidden="true" BodyPadding="10px"
+        <f:Window ID="Window4" Width="400px" Height="200px" Icon="TagBlue" Hidden="true" BodyPadding="10px"
             EnableMaximize="true" EnableCollapse="true" runat="server" EnableResize="true" Title="选择"
             IsModal="false" CloseAction="HidePostBack" OnClose="Window3_Close" Layout="Fit">
             <Content>
@@ -237,13 +246,60 @@
                     <Items>
                         <f:Toolbar runat="server" ID="tool_btn">
                             <Items>
-                                <f:Button ID="B_BtnAddCon" runat="server" Text="确定" Icon="Add" Hidden="false" OnClick="ButtonPRODAdd_Click"></f:Button>
+                                <f:Button ID="B_BtnAddCon" runat="server" Text="确定" Icon="Add" Hidden="false" OnClick="ButtonStockAdd_Click"></f:Button>
                             </Items>
                         </f:Toolbar>
                     </Items>
                  </f:Panel>
             </Content>
         </f:Window>  
+    <f:Window ID="Window3" Width="1000px" Height="800px" Icon="TagBlue" Hidden="true" BodyPadding="10px"
+            EnableMaximize="true" EnableCollapse="true" runat="server" EnableResize="true"
+            IsModal="false" CloseAction="HidePostBack" OnClose="Window3_Close" Layout="Fit">
+            <Content>
+                <f:Panel runat="server" ID="PanelGrid4" RegionPosition="Right" RegionSplit="true" EnableCollapse="true" Expanded="true"
+                    Width="900px" Title="商品资料" ShowBorder="true" ShowHeader="true"
+                    BodyPadding="5px">
+                    <Items>
+                        <f:Panel runat="server" ID="Panel_Search" Hidden="true">
+                            <Items>
+                                <f:TextBox runat="server" Label="商品编码" ID="ccPROD_ID" Width="240px"  ></f:TextBox>
+                                <f:TextBox runat="server" Label="商品名称1" ID="ccPROD_NAME" Width="240px"></f:TextBox>
+                                <f:TextBox runat="server" Label="商品首拼" ID="ccPROD_NAME_SPELLING" Width="240px"></f:TextBox>
+                                <f:DropDownList Label="商品性质" runat="server" ID="ccPROD_KIND" Width="240px"></f:DropDownList>
+                                <f:DropDownList Label="商品类别" runat="server" ID="ccPROD_DEP" Width="240px" ></f:DropDownList>
+                                <f:DropDownList Label="商品小类" runat="server" ID="ccPROD_CATE" Width="240px" ></f:DropDownList>
+                            </Items>
+                        </f:Panel>
+                    </Items>
+                    <Items>
+                        <f:Toolbar runat="server" ID="tool_btn">
+                            <Items>
+                                <f:Button ID="BtnSearchCon" runat="server" Text="查询" Icon="Add" Hidden="true" OnClick="ButtonPRODSearch_Click"></f:Button>
+                                <f:Button ID="BtnAddCon" runat="server" Text="添加" Icon="Add" Hidden="true" OnClick="ButtonPRODAdd_Click"></f:Button>
+                                <f:Button ID="BtnEditCon" runat="server" Text="确定" Icon="accept" Hidden="true" ></f:Button>
+                            </Items>
+                        </f:Toolbar>
+                    </Items>
+                    <Items>
+                       <f:Grid ID="Grid4" Title="商品资料" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="PROD_ID,PROD_NAME1"
+                         EnableCheckBoxSelect="true" KeepCurrentSelection="true" PageSize="1000"
+                         ><%--EnableRowClickEvent="true" OnRowClick="Grid1_RowClick" --%>
+                         <Columns>
+                           <f:RowNumberField />
+                           <f:BoundField Width="125px" DataField="PROD_ID" HeaderText="厂商编码" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="PROD_NAME1" HeaderText="厂商名称" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="PROD_ID" HeaderText="商品编号" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="PROD_NAME1" HeaderText="商品名称" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="COST" HeaderText="价格1" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="COST1" HeaderText="价格2" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="COST2" HeaderText="价格3" ExpandUnusedSpace="true"  />
+                         </Columns>
+                       </f:Grid>
+                    </Items>
+                 </f:Panel>
+            </Content>
+        </f:Window>
     </form>
 </body>
 </html>

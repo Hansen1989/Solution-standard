@@ -23,7 +23,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 //123
                 DatePicker1.SelectedDate = DateTime.Now.AddDays(-100);
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
-                SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
+                //SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
                 //SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlOUT_SHOP);
                 LoadList();
                 LoadData();
@@ -187,11 +187,61 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
             OrderStatus2(model);
         }
+
+        /// <summary>
+        /// Grid2编辑字段判断
+        /// </summary>
+        /// <param name="status"></param>
+        public void Grid2ColumnEdit(int status)
+        {
+            if (status == 1)
+            {
+                ddlSTD_TYPE01.Enabled = true;
+                numQUAN1.Enabled = true;
+                numQUAN2.Enabled = true;
+                tbxMEMO01.Enabled = true;
+                numSTD_QUAN.Enabled = true;
+                tbxBAT_NO.Enabled = true;
+            }
+            else
+            {
+                ddlSTD_TYPE01.Enabled = false;
+                numQUAN1.Enabled = false;
+                numQUAN2.Enabled = false;
+                tbxMEMO01.Enabled = false;
+                numSTD_QUAN.Enabled = false;
+                tbxBAT_NO.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// 订单未引入出货单的情况
+        /// </summary>
+        /// <param name="model"></param>
+        public void OrderStatus1(TAKEIN10 model)
+        {
+            var _TAKEIN_ID = model.TAKEIN_ID;
+            var model2 = new Purchase00(x => x.EXPORTED_ID == _TAKEIN_ID);
+            if (model2.Id > 0)
+            {
+                Grid2ColumnEdit(2);
+                Toolbar21111.Enabled = false;
+                return;
+            }
+            else
+            {
+                Grid2ColumnEdit(1);
+                Toolbar21111.Enabled = true;
+                return;
+            }
+        }
+
         public void OrderStatus2(TAKEIN10 model)
         {
             //1:存档 2：核准 3：作废 4：已引入
             //新增：ButtonAdd 保存：ButtonSave 更新：ButtonUpdate 核准：ButtonCheck 作废：ButtonCancel
             //Pur02新增：ButtonPur02Add
+            Grid2ColumnEdit(model.STATUS);
             switch (model.STATUS)
             {
                 case 1:
@@ -203,8 +253,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCheck.Text = "核准";
                     ButtonCancel.Text = "作废";
                     //ButtonDetailAdd.Enabled = true;
-                    Grid2.Enabled = true;
-                    Grid2.AllowCellEditing = true; break;
+                    break;
                 case 2:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
@@ -214,7 +263,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = true;
                     //ButtonDetailAdd.Enabled = false;
-                    Grid2.Enabled = false; break;
+                    break;
                 case 3:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
@@ -224,7 +273,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "取消作废";
                     ButtonCancel.Enabled = true;
                     //ButtonDetailAdd.Enabled = false;
-                    Grid2.Enabled = false;
                     //Grid2.AllowCellEditing = false;
                     break;
                 case 4:
@@ -236,8 +284,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
                     //ButtonDetailAdd.Enabled = false;
-                    Grid2.Enabled = false;
-                    Grid2.AllowCellEditing = false; break;
+                    break;
                 default:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
@@ -247,7 +294,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
                     //ButtonDetailAdd.Enabled = false;
-                    Grid2.AllowCellEditing = true; break;
+                    break;
             }
         }
 
@@ -333,7 +380,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             else
             {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                FineUI.Alert.ShowInParent("修改成功", FineUI.MessageBoxIcon.Error);
             }
         }
 
@@ -402,13 +449,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             else
             {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                string alterMssage = ButtonCheck.Text;
+                if (alterMssage == "反核准")
+                {
+                    FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    FineUI.Alert.ShowInParent("取消核准成功", FineUI.MessageBoxIcon.Error);
+                }
             }
-
-            LoadMAIN();
-            LoadDETAIL();
-            //FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
-            //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
 
         /// <summary>
@@ -446,11 +496,17 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             else
             {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                string alterMssage = ButtonCancel.Text;
+                if (alterMssage == "取消作废")
+                {
+                    FineUI.Alert.ShowInParent("作废成功", FineUI.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    FineUI.Alert.ShowInParent("取消作废成功", FineUI.MessageBoxIcon.Error);
+                }
             }
 
-            LoadMAIN();
-            LoadDETAIL();
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
 
@@ -474,6 +530,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     DataTable dt = new DataTable();
                     dt = (DataTable)SPs.Get_ORDER_SEED(_SHOP_ID, "TAKEIN10").ExecuteDataTable();
                     _TAKEIN_ID = dt.Rows[0]["PLANE_ID"].ToString();
+                    tbxTAKEIN_ID.Text = _TAKEIN_ID;
                     //var model = Purchase00.SingleOrDefault(x => x.Purchase_ID == _Pur00_id);
 
                 }
@@ -513,6 +570,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 model.LAST_UPDATE = DateTime.Now;
                 model.Trans_STATUS = 0;
                 TAKEIN10Bll.GetInstence().Save(this, model);
+                LoadMAIN();
             }
             catch (Exception err)
             {
@@ -589,6 +647,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     result = "明细保存失败" + n + "条";
                 }
             }
+            LoadDETAIL();
             return result;
         }
 
@@ -602,7 +661,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     result = pJson[i]["values"]["PROD_NAME101"].ToString() + "商品，入库量量不能为空并且数量大于0";
                 }
             }
-            return "";
+            return result;
         }
 
         #region window事件
@@ -834,20 +893,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             //这里要改
             string _shop_id = ddlSHOP_NAME.SelectedValue;
             orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_Purchase00_SHOP00Table.SHOP_ID, Comparison.Equals, _shop_id, false, false));
+            orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_Purchase00_SHOP00Table.STATUS, Comparison.Equals, "2", false, false));
 
             if (rValue == "1")
             {
                 orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Purchase00_SHOP00Table.INPUT_DATE, Comparison.LessOrEquals, endtime, false, false));
                 orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Purchase00_SHOP00Table.INPUT_DATE, Comparison.GreaterOrEquals, starttime, false, false));
             }
-
-            orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_Purchase00_SHOP00Table.STATUS, Comparison.GreaterOrEquals, 2, false, false));
-            //FineUI.DropDownList _ddlShopName = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("w4_ddlSHOP_NAME") as FineUI.DropDownList;
-            //string _shopid = _ddlShopName.SelectedValue;
-            //if (!String.IsNullOrEmpty(_shopid))
-            //{
-            //    orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.SHOP_ID, Comparison.Equals, _shopid, false, false));
-            //}
             return orderCon;
         }
 

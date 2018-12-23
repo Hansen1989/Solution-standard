@@ -256,6 +256,33 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Panel Panel12;
         
         /// <summary>
+        /// Toolbar21111 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Toolbar Toolbar21111;
+        
+        /// <summary>
+        /// ButtonDetailAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonDetailAdd;
+        
+        /// <summary>
+        /// ButtonDetailDelete 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonDetailDelete;
+        
+        /// <summary>
         /// Grid2 控件。
         /// </summary>
         /// <remarks>
@@ -337,13 +364,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.NumberBox numQUANTITY;
         
         /// <summary>
-        /// tbxQUAN01 控件。
+        /// numQUAN01 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox tbxQUAN01;
+        protected global::FineUI.NumberBox numQUAN01;
         
         /// <summary>
         /// numQUAN1 控件。
@@ -443,6 +470,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Grid Grid1;
+        
+        /// <summary>
+        /// Window4 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Window Window4;
         
         /// <summary>
         /// Window3 控件。

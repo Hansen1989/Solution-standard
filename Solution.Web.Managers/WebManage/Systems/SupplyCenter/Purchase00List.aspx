@@ -216,7 +216,7 @@
                                          <f:RenderField Width="130px" ColumnID="STD_UNIT01" DataField="STD_UNIT" FieldType="String" Enabled="false"
                                                 HeaderText="采购单位类别" RendererFunction="renderSTD_UNIT0101">
                                                 <Editor>
-                                                    <f:DropDownList ID="ddlSTD_TYPE01" runat="server">
+                                                    <f:DropDownList ID="ddlSTD_TYPE01" runat="server" Enabled="true">
                                                         <f:ListItem Text="最小单位" Value="1" />
                                                         <f:ListItem Text="包装单位" Value="2" />
                                                         <f:ListItem Text="外箱单位" Value="3" />
@@ -307,7 +307,7 @@
 <%--                                                    <f:NumberBox runat="server" ID="numTax" DecimalPrecision="6" Enabled="false"></f:NumberBox>--%>
                                                 </Editor>
                                          </f:RenderField>
-                                         <f:RenderField Width="130px" ColumnID="Tax_Num01" DataField="Tax_Num" FieldType="Float" Enabled="false" Hidden="true"
+                                         <f:RenderField Width="130px" ColumnID="Tax_Num01" DataField="Tax_Num" FieldType="Float" Enabled="false" Hidden="false"
                                                 HeaderText="税率">
                                                 <Editor>
                                                     <f:NumberBox runat="server" ID="NumberBox7" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
@@ -335,7 +335,7 @@
                                          <f:RenderField Width="130px" ColumnID="Item_DISC_Amt01" DataField="Item_DISC_Amt" FieldType="Float" Enabled="false"
                                                 HeaderText="折价金额">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numItem_DISC_Amt" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numItem_DISC_Amt" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="MEMO" DataField="MEMO" FieldType="String" Enabled="True"
@@ -372,7 +372,7 @@
                         <f:Button ID="ButtonSearch" runat="server" Text="查询" Icon="Magnifier" OnClick="BtnSearchOrderDep_click"></f:Button>
                     </Items>
                     <Items>
-                       <f:Grid ID="Grid1" Title="采购作业列表" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="Id"
+                       <f:Grid ID="Grid1" Title="采购作业列表" ShowHeader="false" ShowBorder="false" runat="server" DataKeyNames="Purchase_ID"
                          EnableCheckBoxSelect="true" KeepCurrentSelection="false" EnableMultiSelect="false" PageSize="15"
                          EnableRowClickEvent="true" OnRowClick="Grid1_RowClick" ><%-- --%>
                          <Columns>
@@ -480,30 +480,34 @@
                     case '1': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit);
                         me.f_updateCellValue(rowId, 'STD_CONVERT01', 0);
                         me.f_updateCellValue(rowId, 'STD_PRICE01', cost.toFixed(4));
-                        me.f_updateCellValue(rowId, 'Tax01', cost.toFixed(4) * tax.toFixed(4));
+                        me.f_updateCellValue(rowId, 'Tax01', cost.toFixed(4) * tax.toFixed(4) * 0.01);
                         return;
                     case '2': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit1);
                         me.f_updateCellValue(rowId, 'STD_CONVERT01', convert1);
                         me.f_updateCellValue(rowId, 'STD_PRICE01', cost1.toFixed(4));
-                        me.f_updateCellValue(rowId, 'Tax01', cost1.toFixed(4) * tax.toFixed(4));
+                        me.f_updateCellValue(rowId, 'Tax01', cost1.toFixed(4) * tax.toFixed(4) * 0.01);
                         return;
                     case '3': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit2);
                         me.f_updateCellValue(rowId, 'STD_CONVERT01', convert2);
                         me.f_updateCellValue(rowId, 'STD_PRICE01', cost2.toFixed(4));
-                        me.f_updateCellValue(rowId, 'Tax01', cost2.toFixed(4) * tax.toFixed(4));
+                        me.f_updateCellValue(rowId, 'Tax01', cost2.toFixed(4) * tax.toFixed(4) * 0.01);
                         return;
                 }
             }
 
             if (columnId == 'STD_QUAN01')
             {
+                if (std_quan == "0")
+                {
+                    //return false;
+                }
                 var std_price = me.f_getCellValue(rowId, 'STD_PRICE01');
-                var sum_tax = std_price.toFixed(4) * tax.toFixed(4);
-                alert(std_price);
-                alert(sum_tax);
-                me.f_updateCellValue(rowId, 'Tax01', sum_tax);
+                var sum_tax = std_price.toFixed(4) * tax.toFixed(4)*0.01;
+                me.f_updateCellValue(rowId, 'Tax01', sum_tax.toFixed(4));
             }
         }
+
+        
 
     </script>
 </body>
