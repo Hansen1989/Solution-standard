@@ -302,7 +302,7 @@ namespace Solution.Logic.Managers
         #endregion
 
         /// <summary>
-        /// 根据门店区域编码，获取该区域下所有的门店，包括自己,并绑定到DropList
+        /// 根据门店编码，获取该区域下所有的门店，包括自己,并绑定到DropList
         /// </summary>
         /// <returns></returns>
         public void GetShopList(Page page, string shop_id, FineUI.DropDownList ddl)
@@ -336,7 +336,7 @@ namespace Solution.Logic.Managers
         }
 
         /// <summary>
-        /// 下拉列表只绑定当前的用户,如果传入的是隶属区域则绑定到区域
+        /// 下拉列表只绑定当前的用户，如果传入门店所属区域编码，则绑定到区域
         /// </summary>
         /// <param name="page"></param>
         /// <param name="shop_id"></param>
