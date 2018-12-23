@@ -40,10 +40,10 @@
                             <f:TextBox runat="server" ID ="txt_key"></f:TextBox>
                             <f:Label runat="server" Text="VALUE"></f:Label>
                             <f:DropDownList runat="server" ID="value_droplist">
-                                <f:ListItem Value="0"/>
-                                <f:ListItem Value="1"/>
-                                <f:ListItem Value="2"/>
-                                <f:ListItem Value="3"/>
+                                <f:ListItem Value="0" Text="0"/>
+                                <f:ListItem Value="1" Text="1"/>
+                                <f:ListItem Value="2" Text="2"/>
+                                <f:ListItem Value="3" Text="3"/>
                             </f:DropDownList>
                              <f:Label runat="server" Text="KEY_CN"></f:Label>
                             <f:TextBox runat="server" ID ="key_cn"></f:TextBox>

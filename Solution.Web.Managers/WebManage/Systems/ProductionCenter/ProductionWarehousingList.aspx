@@ -62,7 +62,7 @@
                                        <f:Button ID="ButtonBackArchiveOrders" runat="server" Text="反汇整" Icon="Delete" OnClick="ButtonBackArchiveOrders_Click" CssClass="inline btnf"></f:Button> --%>
                                        <f:Button ID="Button2" runat="server" Text="刷新" Icon="ArrowRefresh" CssClass="inline btnf"></f:Button>
                                         <%--<f:Button ID="ButtonAdd" runat="server" Text="添加" Icon="Add" OnClick="ButtonAdd_Click" CssClass="btnf"></f:Button>--%>
-                                        
+                                        <f:Button ID="ButtonImport" runat="server" Text="引入" Icon="Add" OnClick="ButtonAdd_Click" CssClass="btnf"></f:Button>
                                        <f:Button ID="ButtonApproval" runat="server" Text="核准" Icon="Disk" ConfirmTitle="核准提示" ConfirmText="是否核准此订单？" ></f:Button>
                                        <f:Button ID="ButtonBackApproval" runat="server" Text="反核准" Icon="Delete"  ></f:Button> 
                                      

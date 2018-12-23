@@ -41,7 +41,7 @@
                 <Columns>
                    
                     <f:LinkButtonField runat="server" ID="AREA_ID_LINK" ColumnID="Area_Id" Width="120px" HeaderText="区域"></f:LinkButtonField>
-                    <f:BoundField Width="180px" DataField="KEY" DataFormatString="{0}" HeaderText="编码" />
+                    <f:BoundField Width="180px" DataField="Code" DataFormatString="{0}" HeaderText="编码" />
                     <f:BoundField Width="180px" DataField="VALUE" DataFormatString="{0}" HeaderText="值" />
                     <f:BoundField Width="180px" DataField="MEMO" DataFormatString="{0}" HeaderText="备注" />
                     
