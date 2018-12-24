@@ -247,7 +247,84 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         }
         #endregion
 
-       
+        protected void ButtonImport_Click(object sender, EventArgs e)
+        {
+            Window2.Hidden = false;
+        }
+
+        protected void btnCancel_Click(object sender,EventArgs e)
+        {
+            Window2.Hidden = true;
+        }
+
+        protected void btnImport_Click(object sender, EventArgs e)
+        {
+
+            //判断
+            FineUI.RadioButton RaddpUp_Date = Window2.FindControl("A").FindControl("RaddpUp_Date") as FineUI.RadioButton;
+            FineUI.RadioButton RadEXPECT_DATE = Window2.FindControl("B").FindControl("RadEXPECT_DATE") as FineUI.RadioButton;
+
+            if (RaddpUp_Date.Checked == false && RadEXPECT_DATE.Checked == false)
+            {
+                Alert.Show("请选择时间");
+                return;
+
+            }
+
+            string Start_Time = "";
+            string End_Time = "";
+             
+            //参数
+            Random ran = new Random();
+            string SHOP_ID = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
+            string COL_ID = SHOP_ID + "CL" + DateTime.Now.ToString("yyyy-MM-dd") + +ran.Next(1000, 9999);
+            string manager_LoginName = OnlineUsersBll.GetInstence().GetUserOnlineInfo("Manager_LoginName").ToString();//登录名
+
+            int IsTime = 1;
+            if (RaddpUp_Date.Checked)
+            {
+                //获取时间
+                DatePicker dpUp_DateBeg = Window2.FindControl("A").FindControl("dpUp_DateBeg") as DatePicker;
+                DateTime dt_up_date_bg = ConvertHelper.StringToDatetime(dpUp_DateBeg.SelectedDate.ToString());
+
+                DatePicker dpUp_DateEnd = Window2.FindControl("A").FindControl("dpUp_DateEnd") as DatePicker;
+                DateTime dt_up_date_end = ConvertHelper.StringToDatetime(dpUp_DateEnd.SelectedDate.ToString());
+
+                IsTime = 0;
+                Start_Time = dt_up_date_bg.ToString();
+                End_Time = dt_up_date_end.ToString();
+            }
+
+            if (RadEXPECT_DATE.Checked)
+            {
+                DatePicker dpEXPECT_DATEBeg = Window2.FindControl("B").FindControl("dpEXPECT_DATEBeg") as DatePicker;
+                DateTime dt_expect_date_bg = ConvertHelper.StringToDatetime(dpEXPECT_DATEBeg.SelectedDate.ToString());
+
+                DatePicker dpEXPECT_DATEEnd = Window2.FindControl("B").FindControl("dpEXPECT_DATEEnd") as DatePicker;
+                DateTime dt_expect_date_end = ConvertHelper.StringToDatetime(dpEXPECT_DATEEnd.SelectedDate.ToString());
+
+                IsTime = 1;
+                Start_Time = dt_expect_date_bg.ToString();
+                End_Time = dt_expect_date_end.ToString();
+            }
+ 
+            int ex_int = TAKEIN00Bll.GetInstence().LeadIntoProductPlanList(Start_Time,End_Time,IsTime.ToString(), SHOP_ID, manager_LoginName);
+            
+            if (ex_int == 0)
+            {
+                Alert.Show("引入成功！");
+
+            }
+            else
+            {
+                Alert.Show("引入失败！请重新引入！");
+            }
+
+            LoadData();
+
+            
+
+        }
 
 
     }

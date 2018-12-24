@@ -19,7 +19,7 @@ namespace Solution.Logic.Managers
             try
             {
                 DataSet dsCom = null;
-                dsCom = (DataSet)SPs.Get_Purchase00(st, et, type).ExecuteDataSet();
+                dsCom = (DataSet)SPs.Get_Purchase00(st, et,"", type).ExecuteDataSet();
                 if (dsCom.Tables.Count > 0)
                 {
                     da = dsCom.Tables[0].Copy();

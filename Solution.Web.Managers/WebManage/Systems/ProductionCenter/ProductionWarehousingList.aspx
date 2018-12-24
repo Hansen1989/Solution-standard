@@ -62,7 +62,7 @@
                                        <f:Button ID="ButtonBackArchiveOrders" runat="server" Text="反汇整" Icon="Delete" OnClick="ButtonBackArchiveOrders_Click" CssClass="inline btnf"></f:Button> --%>
                                        <f:Button ID="Button2" runat="server" Text="刷新" Icon="ArrowRefresh" CssClass="inline btnf"></f:Button>
                                         <%--<f:Button ID="ButtonAdd" runat="server" Text="添加" Icon="Add" OnClick="ButtonAdd_Click" CssClass="btnf"></f:Button>--%>
-                                        <f:Button ID="ButtonImport" runat="server" Text="引入" Icon="Add" OnClick="ButtonAdd_Click" CssClass="btnf"></f:Button>
+                                        <f:Button ID="ButtonImport" runat="server" Text="引入" Icon="Add" OnClick="ButtonImport_Click" CssClass="btnf"></f:Button>
                                        <f:Button ID="ButtonApproval" runat="server" Text="核准" Icon="Disk" ConfirmTitle="核准提示" ConfirmText="是否核准此订单？" ></f:Button>
                                        <f:Button ID="ButtonBackApproval" runat="server" Text="反核准" Icon="Delete"  ></f:Button> 
                                      
@@ -167,7 +167,48 @@
             </Items>
         </f:Panel>
 
+ <f:Window ID="Window2" Width="500px" Height="200px" Icon="TagBlue" Hidden="true" BodyPadding="20px"
+            EnableMaximize="true" EnableCollapse="true" runat="server" EnableResize="true"
+            IsModal="false" CloseAction="HidePostBack" OnClose="Window2_Close" Layout="Fit">   <%--OnInit="Windows_Init"--%>
+            <Toolbars>
+                <f:Toolbar ID="toolbar4" runat="server">
+                      <Items>
+                         <f:Button ID="btnArchive" runat="server" Text="引入" Icon="Disk" OnClick="btnImport_Click" ></f:Button>
+                         <f:Button ID="btnCancel" runat="server" Text="取消" Icon="Cancel" OnClick="btnCancel_Click" ></f:Button>
+                      </Items>
+                </f:Toolbar>
+            </Toolbars>
+            <Content>
+                <f:Panel ID="A" ShowHeader="false" ShowBorder="false" Layout="Column" CssClass="formitem" 
+                    runat="server">
+                    <Items>
+                        <%--<f:Label ID="Label1" runat="server" Width="80px" CssClass="marginr" ShowLabel="false"
+                            Text="提交时间：">
+                        </f:Label> --%>
+                        <f:RadioButton ID="RaddpUp_Date" runat="server" Text="提交时间：" GroupName="Rad_Time"></f:RadioButton>
+                        <f:DatePicker runat="server" ShowLabel="false" Label="提交时间" ID="dpUp_DateBeg" Width="150px" ></f:DatePicker>
+                        <f:Label ID="lab3" runat="server" Width="20px" ShowLabel="false" Text="至"/>
+                        <f:DatePicker runat="server" Required="true" DateFormatString="yyyy-MM-dd" ID="dpUp_DateEnd" CompareControl="dpUp_DateBeg" CompareOperator="GreaterThan"
+                            CompareMessage="结束日期应该大于开始日期！" Width="150px" ShowLabel="false" ></f:DatePicker>
  
+                    </Items>
+                </f:Panel>
+                <f:Panel ID="B" ShowHeader="false" ShowBorder="false" Layout="Column" CssClass="formitem"
+                    runat="server">
+                    <Items>
+                       <%-- <f:Label ID="Label2" runat="server" Width="80px" CssClass="marginr" ShowLabel="false"
+                            Text="期望日期："></f:Label> --%> 
+                        <f:RadioButton ID="RadEXPECT_DATE" runat="server" Text="期望日期：" GroupName="Rad_Time"></f:RadioButton>
+                        <f:DatePicker runat="server" ShowLabel="false" Label="期望开始日期"  ID="dpEXPECT_DATEBeg" Width="150px" ></f:DatePicker>
+                        <f:Label ID="lb4" runat="server" Width="20px" ShowLabel="false" Text="至" />
+                        
+                        <f:DatePicker runat="server" Required="true" DateFormatString="yyyy-MM-dd" ID="dpEXPECT_DATEEnd" CompareControl="dpEXPECT_DATEBeg" CompareOperator="GreaterThan"
+                            CompareMessage="结束日期应该大于开始日期！"  Width="150px" ShowLabel="false" ></f:DatePicker>
+                    </Items>
+               </f:Panel>
+             
+            </Content>
+        </f:Window>
     </form>
 
 

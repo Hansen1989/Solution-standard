@@ -155,12 +155,13 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
             return sp;
         }
-        public static StoredProcedure Get_Purchase00(string st,string et,int date_type){
+        public static StoredProcedure Get_Purchase00(string st,string et,string SHOP_ID,int date_type){
             StoredProcedure sp=new StoredProcedure("Get_Purchase00");
 			
 
             sp.Command.AddParameter("st",st,DbType.AnsiString);
             sp.Command.AddParameter("et",et,DbType.AnsiString);
+            sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
             sp.Command.AddParameter("date_type",date_type,DbType.Int32);
             return sp;
         }
@@ -187,6 +188,14 @@ namespace Solution.DataAccess.DataModel{
 
             sp.Command.AddParameter("TABLE_NAME",TABLE_NAME,DbType.AnsiString);
             sp.Command.AddParameter("SEED_DATETIME",SEED_DATETIME,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure ImportProductPlanOrders(DateTime beginTime,DateTime endTime){
+            StoredProcedure sp=new StoredProcedure("ImportProductPlanOrders");
+			
+
+            sp.Command.AddParameter("beginTime",beginTime,DbType.DateTime);
+            sp.Command.AddParameter("endTime",endTime,DbType.DateTime);
             return sp;
         }
         public static StoredProcedure IN_OUT01_IN01(string OUT_ID,string IN_ID,string SHOP_ID){
@@ -229,6 +238,17 @@ namespace Solution.DataAccess.DataModel{
 			
 
             sp.Command.AddParameter("IB_ID",IB_ID,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure LeadIntoProductPlanList(string beginTime,string endTime,string isChoseTime,string shopId,string userId){
+            StoredProcedure sp=new StoredProcedure("LeadIntoProductPlanList");
+			
+
+            sp.Command.AddParameter("beginTime",beginTime,DbType.AnsiString);
+            sp.Command.AddParameter("endTime",endTime,DbType.AnsiString);
+            sp.Command.AddParameter("isChoseTime",isChoseTime,DbType.AnsiString);
+            sp.Command.AddParameter("shopId",shopId,DbType.AnsiString);
+            sp.Command.AddParameter("userId",userId,DbType.AnsiString);
             return sp;
         }
         public static StoredProcedure SplitOrders(string col_id,string ORD_USER){
@@ -274,6 +294,22 @@ namespace Solution.DataAccess.DataModel{
 			
 
             sp.Command.AddParameter("IN_id",IN_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_Inventory_Tpye(string INV_ID,string INV_TYPE){
+            StoredProcedure sp=new StoredProcedure("Update_Inventory_Tpye");
+			
+
+            sp.Command.AddParameter("INV_ID",INV_ID,DbType.AnsiString);
+            sp.Command.AddParameter("INV_TYPE",INV_TYPE,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_Inventory_Tpye4(string INV_ID,string INV_TYPE){
+            StoredProcedure sp=new StoredProcedure("Update_Inventory_Tpye4");
+			
+
+            sp.Command.AddParameter("INV_ID",INV_ID,DbType.AnsiString);
+            sp.Command.AddParameter("INV_TYPE",INV_TYPE,DbType.AnsiString);
             return sp;
         }
         public static StoredProcedure Update_out_back00_stock01(string BK_id){
