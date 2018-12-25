@@ -238,7 +238,7 @@
                                          <f:RenderField Width="130px" ColumnID="STD_PRICE01" DataField="STD_PRICE" FieldType="Float" Enabled="false"
                                                 HeaderText="标准单价">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numSTD_PRICE" Enabled="false" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                           <f:RenderField Width="130px" ColumnID="SUP_COST01" DataField="SUP_COST" FieldType="Float" Enabled="true" Hidden="true"
@@ -262,7 +262,7 @@
                                          <f:RenderField Width="130px" ColumnID="Tax01" DataField="Tax" FieldType="Float" Enabled="false"
                                                 HeaderText="税额">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numCOST" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numCOST" Enabled="false" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="Tax_Num01" DataField="Tax_Num" FieldType="Float" Enabled="false" Hidden="true"

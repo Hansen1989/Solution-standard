@@ -39,14 +39,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         public void LoadList()
         {
             var model = GetOnlineUserShop();
-            
-            //SHOP00Bll.GetInstence().BindOnlineUser(this,model.SHOP_ID, ddlSHOP_NAME);
             SHOP00Bll.GetInstence().BindOnlineUser(this, model.SHOP_ID, ddlSHOP_NAME);
             SHOP00Bll.GetInstence().GetShopList(this,model.SHOP_ID, ddlIN_SHOP);
-            //SHOP00Bll.GetInstence().GetShopList(this,model.SHOP_ID, ddlSHOP_NAME1);
             STOCKBll.GetInstence().BandOnlineUserStock(this,model.SHOP_ID,ddlSTOCK_ID);
-            FineUI.DropDownList _ddlShopName = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("w4_ddlSHOP_NAME") as FineUI.DropDownList;
-            SHOP00Bll.GetInstence().GetShopList(this, model.SHOP_ID, _ddlShopName);
 
         }
 
@@ -75,7 +70,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         public void SearchOrder()
         {
             //int type = ConvertHelper.Cint(FilterDateRadio.SelectedValue);
-            V_OUT_BACK00_DETAILNAMEBll.GetInstence().BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
+            V_OUT00_SHOP00Bll.GetInstence().BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
             //TAKEIN10Bll.GetInstence().BindOrderGrid(st, et, type, Grid1);
         }
 
@@ -207,7 +202,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             OrderStatus2(model);
         }
         /// <summary>
-        /// 订单未引入出货单的情况
+        /// 判断出货订单是否已经引入要货单，如果已经引入，则子表按钮禁用
         /// </summary>
         /// <param name="model"></param>
         public void OrderStatus1(OUT00 model)
@@ -216,21 +211,36 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             var model2 = new ORDER00(x => x.EXPORTED_ID == _OUT_ID);
             if (model2.Id > 0)
             {
-                Grid2.Enabled = false;
-                //Grid2.AllowCellEditing = false;
-                //Grid2.EnableCheckBoxSelect = false;
-                //Grid2.AllowCellEditing = false;
                 Toolbar21111.Enabled = false;
                 return;
             }
             else
             {
-                Grid2.Enabled = true;
-                //Grid2.AllowCellEditing = true;
-                //Grid2.EnableCheckBoxSelect = true;
-                //Grid2.AllowCellEditing = true;
                 Toolbar21111.Enabled = true;
                 return;
+            }
+        }
+
+        /// <summary>
+        /// Grid2字段可编辑权限判定
+        /// </summary>
+        /// <param name="status"></param>
+        public void Grid2ColumnEdit(int status)
+        {
+            //Grid2控件权限判定
+            if (status == 1)
+            {
+                ddlSTD_TYPE01.Enabled = true;
+                numSTD_QUAN.Enabled = true;
+                numQUAN1.Enabled = true;
+                numQUAN2.Enabled = true;
+            }
+            else
+            {
+                ddlSTD_TYPE01.Enabled = false;
+                numSTD_QUAN.Enabled = false;
+                numQUAN1.Enabled = false;
+                numQUAN2.Enabled = false;
             }
         }
         /// <summary>
@@ -239,7 +249,23 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="model"></param>
         public void OrderStatus2(OUT00 model)
         {
-            
+            //如果该订单已被其他订单引入，则无法进行任何操作
+            if (model.Exported == 1)
+            {
+                Grid2ColumnEdit(0);
+                ButtonSave.Enabled = false;
+                ButtonEdit.Enabled = false;
+                ButtonCheck.Text = "反核准";
+                ButtonYR.Enabled = false;
+                ButtonCancel.Text = "作废";
+                ButtonCancel.Enabled = false;
+                ButtonCheck.Enabled = false;
+                Toolbar21111.Enabled = false;
+                return;
+            }
+
+            Grid2ColumnEdit(model.STATUS);
+
             //1:存档 2：核准 3：作废 4：已引入
             //新增：ButtonAdd 保存：ButtonSave 更新：ButtonUpdate 核准：ButtonCheck 作废：ButtonCancel
             //Pur02新增：ButtonPur02Add
@@ -253,7 +279,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCheck.Enabled = true;
                     ButtonYR.Enabled = true;
                     ButtonCheck.Text = "核准";
-                    ButtonCancel.Text = "作废";break;
+                    ButtonCancel.Text = "作废"; break;
                 case 2:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
@@ -263,8 +289,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = true;
                     Toolbar21111.Enabled = false;
-                    Grid2.Enabled = false;
-                    //Grid2.EnableCheckBoxSelect = false;
                     break;
                 case 3:
                     ButtonSave.Enabled = false;
@@ -275,8 +299,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "取消作废";
                     ButtonCancel.Enabled = true;
                     Toolbar21111.Enabled = false;
-                    Grid2.Enabled = false;
-                    Grid2.AllowCellEditing = false;
                     break;
                 case 4:
                     ButtonSave.Enabled = false;
@@ -286,9 +308,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    Toolbar21111.Enabled = false;
-                    Grid2.Enabled = false;
-                    Grid2.AllowCellEditing = false; break;
+                    Toolbar21111.Enabled = false; break;
                 case 5:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
@@ -297,7 +317,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonYR.Enabled = false;
                     Grid2.Enabled = false;
                     Grid2.AllowCellEditing = false;
-                    Toolbar21111.Enabled = false;break;
+                    Toolbar21111.Enabled = false; break;
                 default:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
@@ -306,10 +326,10 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    Toolbar21111.Enabled = false;
-                    Grid2.AllowCellEditing = true; break;
+                    Toolbar21111.Enabled = false; break;
             }
 
+            //判断子表是否已经产生数据，数据已经产生，则无法引入
             var model2 = new OUT01(x => x.OUT_ID == model.OUT_ID);
             
             if (!(model2 == null || String.IsNullOrEmpty(model2.OUT_ID)))
@@ -369,6 +389,19 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="e"></param>
         public void BtnYR_Click(Object sender, EventArgs e)
         {
+            string _shopid = ddlIN_SHOP.SelectedValue;
+            string _stock_id = ddlSTOCK_ID.SelectedValue;
+            if (string.IsNullOrEmpty(_shopid))
+            {
+                FineUI.Alert.ShowInParent("到货分店不能为空", FineUI.MessageBoxIcon.Information);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(_stock_id))
+            {
+                FineUI.Alert.ShowInParent("到货分店不能为空", FineUI.MessageBoxIcon.Information);
+                return;
+            }
             FineUI.DatePicker wst = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpSt") as FineUI.DatePicker;
             FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpEt") as FineUI.DatePicker;
             wst.SelectedDate = DateTime.Now.Date.AddDays(-1);
@@ -386,9 +419,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string result = MAINEdit();
             if (String.IsNullOrEmpty(result))
             {
-                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
+                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
             }
-            ClearConten();
+            //ClearConten();
         }
 
         /// <summary>
@@ -409,7 +442,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
             }
-            ClearConten();
+            //ClearConten();
+            //LoadMAIN();
+            //LoadDETAIL();
         }
 
         /// <summary>
@@ -467,6 +502,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             if (String.IsNullOrEmpty(result))
             {
                 //dsCom = (DataSet)SPs.Get_Purchase00(st, et, type).ExecuteDataSet();
+                //计算库存
                 if (out_status == 2)
                 {
                     SPs.Update_out00_stock01(_OUT_ID).Execute();
@@ -483,13 +519,21 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             else
             {
-                FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Error);
+                string alterMssage = ButtonCheck.Text;
+                if (alterMssage == "反核准")
+                {
+                    FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    FineUI.Alert.ShowInParent("取消核准成功", FineUI.MessageBoxIcon.Error);
+                }
             }
 
 
 
-            LoadMAIN();
-            LoadDETAIL();
+            //LoadMAIN();
+            //LoadDETAIL();
             //FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
@@ -529,11 +573,19 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             else
             {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                string alterMssage = ButtonCancel.Text;
+                if (alterMssage == "取消作废")
+                {
+                    FineUI.Alert.ShowInParent("作废成功", FineUI.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    FineUI.Alert.ShowInParent("取消作废成功", FineUI.MessageBoxIcon.Error);
+                }
             }
 
-            LoadMAIN();
-            LoadDETAIL();
+            //LoadMAIN();
+            //LoadDETAIL();
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
 
@@ -557,6 +609,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     DataTable dt = new DataTable();
                     dt = (DataTable)SPs.Get_ORDER_SEED(_SHOP_ID, "OUT00").ExecuteDataTable();
                     _OUT_ID = dt.Rows[0]["PLANE_ID"].ToString();
+                    tbxOUT_ID.Text = _OUT_ID;
                     //var model = Purchase00.SingleOrDefault(x => x.Purchase_ID == _Pur00_id);
 
                 }
@@ -590,6 +643,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 model.LAST_UPDATE = DateTime.Now;
                 model.Trans_STATUS = 0;
                 OUT00Bll.GetInstence().Save(this, model);
+                LoadMAIN();
             }
             catch (Exception err)
             {
@@ -656,6 +710,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     result = "明细保存失败" + n + "条";
                 }
             }
+            LoadDETAIL();
             return result;
         }
 
@@ -722,12 +777,25 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="e"></param>
         protected void ButtonPRODSearch_Click(object sender, EventArgs e)
         {
+            string _shop_id = ddlSHOP_NAME.SelectedValue;
+            string _stock_id = ddlSTOCK_ID.SelectedValue;
+            if (String.IsNullOrEmpty(_shop_id))
+            {
+                FineUI.Alert.ShowInParent("到货商店未选择", FineUI.MessageBoxIcon.Information);
+                return;
+            }
+
+            if (String.IsNullOrEmpty(_stock_id))
+            {
+                FineUI.Alert.ShowInParent("仓库未选择", FineUI.MessageBoxIcon.Information);
+                return;
+            }
 
             conditionList = null;
             //conditionList = new List<ConditionFun.SqlqueryCondition>();
             //绑定Grid表格
             FineUI.Grid Grid4 = Window3.FindControl("PanelGrid4").FindControl("Grid4") as FineUI.Grid;
-            V_Product01_PRCAREABll.GetInstence().BindGrid(Grid4, 0, 0, InquiryConditionProduct(), sortList);
+            V_STOCK01_PRODUCT01Bll.GetInstence().BindGrid(Grid4, 0, 0, InquiryConditionProduct(), sortList);
         }
 
         /// <summary>
@@ -737,21 +805,19 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         private List<ConditionFun.SqlqueryCondition> InquiryConditionProduct()
         {
             string _shop_id = ddlSHOP_NAME.SelectedValue;
+            string _stock_id = ddlSTOCK_ID.SelectedValue;
             var model = new SHOP00(x => x.SHOP_ID == _shop_id);
             List<ConditionFun.SqlqueryCondition> conditionProdduct00List = new List<ConditionFun.SqlqueryCondition>();
             bool sFlag = true;
-            if (!String.IsNullOrEmpty(model.SHOP_Price_Area))
-            {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PRCAREA_ID, Comparison.Like, model.SHOP_Price_Area, false, false));
-                sFlag = false;
-            }
-            //conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "1", Comparison.Equals, "1", false, false));
+            conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_STOCK01_PRODUCT01Table.PRCAREA_ID, Comparison.Like, model.SHOP_Price_Area, false, false));
+            conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_STOCK01_PRODUCT01Table.STOCK_ID, Comparison.Like, _stock_id, false, false));
+
 
             FineUI.TextBox cPROD_ID = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_ID") as FineUI.TextBox;
             var _PROD_ID = cPROD_ID.Text;
             if (!String.IsNullOrEmpty(cPROD_ID.Text))
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_ID, Comparison.Like, "%" + _PROD_ID + "%", false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_STOCK01_PRODUCT01Table.PROD_ID, Comparison.Like, "%" + _PROD_ID + "%", false, false));
                 sFlag = false;
             }
 
@@ -759,21 +825,21 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             var _PROD_NAME = cPROD_NAME.Text;
             if (!String.IsNullOrEmpty(_PROD_NAME))
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_NAME1, Comparison.Like, "%" + _PROD_NAME + "%", false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_STOCK01_PRODUCT01Table.PROD_NAME1, Comparison.Like, "%" + _PROD_NAME + "%", false, false));
                 sFlag = false;
             }
             FineUI.TextBox cPROD_NAME_SPELLING = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_NAME_SPELLING") as FineUI.TextBox;
             var _PROD_NAME_SPELLING = cPROD_NAME_SPELLING.Text;
             if (!String.IsNullOrEmpty(_PROD_NAME_SPELLING))
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_NAME1_SPELLING, Comparison.Like, "%" + _PROD_NAME_SPELLING + "%", false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_STOCK01_PRODUCT01Table.PROD_NAME1_SPELLING, Comparison.Like, "%" + _PROD_NAME_SPELLING + "%", false, false));
                 sFlag = false;
             }
             FineUI.DropDownList cPROD_KIND = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_KIND") as FineUI.DropDownList;
             var _cPROD_KIND = cPROD_KIND.SelectedValue;
             if (!String.IsNullOrEmpty(_cPROD_KIND) && _cPROD_KIND != "0")
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_KIND, Comparison.Equals, _cPROD_KIND, false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_STOCK01_PRODUCT01Table.PROD_KIND, Comparison.Equals, _cPROD_KIND, false, false));
                 sFlag = false;
             }
 
@@ -781,20 +847,20 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             var _PROD_DEP = cPROD_DEP.SelectedValue;
             if (!String.IsNullOrEmpty(_PROD_NAME) && _PROD_DEP != "0")
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_DEP, Comparison.Equals, _PROD_DEP, false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_STOCK01_PRODUCT01Table.PROD_DEP, Comparison.Equals, _PROD_DEP, false, false));
                 sFlag = false;
             }
             FineUI.DropDownList cPROD_CATE = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_CATE") as FineUI.DropDownList;
             var _PROD_CATE = cPROD_CATE.SelectedValue;
             if (!String.IsNullOrEmpty(_PROD_CATE) && _PROD_CATE != "0")
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_CATE, Comparison.Equals, _PROD_CATE, false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_STOCK01_PRODUCT01Table.PROD_CATE, Comparison.Equals, _PROD_CATE, false, false));
                 sFlag = false;
             }
 
             if (sFlag)
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), "1", Comparison.Equals, "1", false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, "1", Comparison.Equals, "1", false, false));
             }
 
             return conditionProdduct00List;
@@ -955,7 +1021,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         protected void ButtonOrderSearch_Click(Object sender, EventArgs e)
         {
             FineUI.Grid grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
-            ORDER00Bll.GetInstence().BindGrid(grid4, 0, 0, OrderCondition(), null);
+            V_ORDER00_SHOP00Bll.GetInstence().BindGrid(grid4, 0, 0, OrderCondition(), null);
         }
         /// <summary>
         /// 检索条件
@@ -970,23 +1036,24 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpEt") as FineUI.DatePicker;
             string starttime = wst.Text;
             string endtime = wet.Text;
+
+            string _shopid = ddlIN_SHOP.SelectedValue;
+            orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.SHOP_ID, Comparison.Equals, _shopid, false, false));
+            orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.STATUS, Comparison.GreaterOrEquals, "2", false, false));
+            orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.EXPORTED, Comparison.GreaterOrEquals, "0", false, false));
             if (rValue == "1")
             {
-                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.INPUT_DATE, Comparison.LessOrEquals, endtime, false, false));
+                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.INPUT_DATE, Comparison.LessOrEquals, endtime, false, false));
                 orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.INPUT_DATE, Comparison.GreaterOrEquals, starttime, false, false));
             }
             else
             {
-                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER00Table.EXPECT_DATE, Comparison.LessOrEquals, endtime, false, false));
+                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.EXPECT_DATE, Comparison.LessOrEquals, endtime, false, false));
                 orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.EXPECT_DATE, Comparison.GreaterOrEquals, starttime, false, false));
             }
-            orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.STATUS, Comparison.GreaterOrEquals, "2", false, false));
-            FineUI.DropDownList _ddlShopName = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("w4_ddlSHOP_NAME") as FineUI.DropDownList;
-            string _shopid = _ddlShopName.SelectedValue;
-            if (!String.IsNullOrEmpty(_shopid))
-            {
-                orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.SHOP_ID, Comparison.Equals, _shopid, false, false));
-            }
+            
+
+
             return orderCon;
         }
 

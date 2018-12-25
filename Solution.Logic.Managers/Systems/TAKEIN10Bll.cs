@@ -13,13 +13,13 @@ namespace Solution.Logic.Managers
 {
     public partial class TAKEIN10Bll: LogicBase
     {
-        public void BindOrderGrid(string st, string et, int type,string shop_name, FineUI.Grid grid)
+        public void BindOrderGrid(string st, string et, int type,string shop_name,string shop_id, FineUI.Grid grid)
         {
             DataTable da;
             try
             {
                 DataSet dsCom = null;
-                dsCom = (DataSet)SPs.Get_Purchase00(st, et,"", type).ExecuteDataSet();
+                dsCom = (DataSet)SPs.Get_Purchase00(st, et, shop_id, type).ExecuteDataSet();
                 if (dsCom.Tables.Count > 0)
                 {
                     da = dsCom.Tables[0].Copy();

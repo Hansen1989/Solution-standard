@@ -22,12 +22,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 //123更改
                 DatePicker1.SelectedDate = DateTime.Now.AddDays(-100);
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
-                SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
-                SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlOUT_SHOP);
+                //SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
+                //SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlOUT_SHOP);
                 LoadList();
                 LoadData();
                 OrderStatus(new IN_BACK00());
-                TextBox3.Enabled = false;
             }
         }
 
@@ -43,7 +42,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             var model = GetOnlineUserShop();
             SHOP00Bll.GetInstence().BindOnlineUser(this, model.SHOP_ID, ddlSHOP_NAME);
-            STOCKBll.GetInstence().BandDropDownListStock(this, ddlSTOCK_ID);
+            STOCKBll.GetInstence().BandOnlineUserStock(this,model.SHOP_ID, ddlSTOCK_ID);
             SHOP00Bll.GetInstence().GetShopList(this, model.SHOP_ID, ddlOUT_SHOP);
             //SHOP00Bll.GetInstence().BindOnlineUser(this, model.SHOP_ID, ddlSHOP_NAME1);
         }
@@ -72,7 +71,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         public void SearchOrder()
         {
             //int type = ConvertHelper.Cint(FilterDateRadio.SelectedValue);
-            IN_BACK00Bll.GetInstence().BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
+
+            V_IN_BACK00_SHOP00Bll.GetInstence().BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
             //TAKEIN10Bll.GetInstence().BindOrderGrid(st, et, type, Grid1);
         }
 
@@ -192,10 +192,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             OrderStatus2(model);
         }
         public void OrderStatus2(IN_BACK00 model)
-        { 
+        {
             //1:存档 2：核准 3：作废 4：已引入
             //新增：ButtonAdd 保存：ButtonSave 更新：ButtonUpdate 核准：ButtonCheck 作废：ButtonCancel
             //Pur02新增：ButtonPur02Add
+            Grid2ColumnEdit(model.STATUS);
             switch (model.STATUS)
             {
                 case 1:
@@ -207,8 +208,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCheck.Text = "核准";
                     ButtonCancel.Text = "作废";
                     ButtonDetailAdd.Enabled = true;
-                    Grid2.Enabled = true;
-                    Grid2.AllowCellEditing = true; break;
+                    break;
                 case 2:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
@@ -218,7 +218,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = true;
                     ButtonDetailAdd.Enabled = false;
-                    Grid2.Enabled = false; break;
+                    break;
                 case 3:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
@@ -228,8 +228,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "取消作废";
                     ButtonCancel.Enabled = true;
                     ButtonDetailAdd.Enabled = false;
-                    Grid2.Enabled = false;
-                    //Grid2.AllowCellEditing = false;
                     break;
                 case 4:
                     ButtonSave.Enabled = false;
@@ -240,8 +238,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
                     ButtonDetailAdd.Enabled = false;
-                    Grid2.Enabled = false;
-                    Grid2.AllowCellEditing = false; break;
+                    break;
                 default:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
@@ -251,10 +248,36 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
                     ButtonDetailAdd.Enabled = false;
-                    Grid2.AllowCellEditing = true; break;
+                    break;
             }
         }
 
+        /// <summary>
+        /// Grid2字段可编辑权限判定
+        /// </summary>
+        /// <param name="status"></param>
+        public void Grid2ColumnEdit(int status)
+        {
+            //Grid2控件权限判定
+            if (status == 1)
+            {
+                ddlSTD_UNIT01.Enabled = true;
+                numSTD_QUAN.Enabled = true;
+                numQUAN1.Enabled = true;
+                numQUAN2.Enabled = true;
+                tbxREASON_ID01.Enabled = true;
+                tbxMEMO01.Enabled = true;
+            }
+            else
+            {
+                ddlSTD_UNIT01.Enabled = false;
+                numSTD_QUAN.Enabled = false;
+                numQUAN1.Enabled = false;
+                numQUAN2.Enabled = false;
+                tbxREASON_ID01.Enabled = false;
+                tbxMEMO01.Enabled = false;
+            }
+        }
         /// <summary>
         /// 新增数据，将数据清空，并可编辑
         /// </summary>
@@ -336,8 +359,10 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             else
             {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                FineUI.Alert.ShowInParent("修改成功", FineUI.MessageBoxIcon.Error);
             }
+            //LoadMAIN();
+            //LoadDETAIL();
         }
 
         /// <summary>
@@ -404,14 +429,18 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             else
             {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                string alterMssage = ButtonCheck.Text;
+                if (alterMssage == "反核准")
+                {
+                    FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    FineUI.Alert.ShowInParent("取消核准成功", FineUI.MessageBoxIcon.Error);
+                }
             }
-
-            LoadMAIN();
-            LoadDETAIL();
-            //FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
-            //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
+
 
         /// <summary>
         /// 作废按钮
@@ -448,11 +477,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             else
             {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                string alterMssage = ButtonCancel.Text;
+                if (alterMssage == "取消作废")
+                {
+                    FineUI.Alert.ShowInParent("作废成功", FineUI.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    FineUI.Alert.ShowInParent("取消作废成功", FineUI.MessageBoxIcon.Error);
+                }
             }
-
-            LoadMAIN();
-            LoadDETAIL();
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
 
@@ -583,7 +617,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     result = "明细保存失败" + n + "条";
                 }
             }
-            LoadDETAIL("");
+            LoadDETAIL();
             return result;
         }
 
@@ -639,7 +673,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <returns></returns>
         private List<ConditionFun.SqlqueryCondition> InquiryConditionProduct()
         {
-            string _shop_id = ddlOUT_SHOP.SelectedValue;
+            string _shop_id = ddlSHOP_NAME.SelectedValue;
             List<ConditionFun.SqlqueryCondition> conditionProdduct00List = new List<ConditionFun.SqlqueryCondition>();
             bool sFlag = true;
             conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_STOCK01_PRODUCT01Table.SHOP_ID, Comparison.Equals, _shop_id, false, false));
@@ -840,18 +874,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string endtime = wet.Text;
             string _shop_id = ddlOUT_SHOP.SelectedValue;
             orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT_BACK00Table.SHOP_ID, Comparison.Equals, _shop_id, false, false));
+            orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT_BACK00Table.STATUS, Comparison.Equals, "2", false, false));
 
             if (rValue == "1")
             {
                 orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT_BACK00Table.INPUT_DATE, Comparison.LessOrEquals, endtime, false, false));
                 orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT_BACK00Table.INPUT_DATE, Comparison.GreaterOrEquals, starttime, false, false));
             }
-            //FineUI.DropDownList _ddlShopName = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("w4_ddlSHOP_NAME") as FineUI.DropDownList;
-            //string _shopid = _ddlShopName.SelectedValue;
-            //if (!String.IsNullOrEmpty(_shopid))
-            //{
-            //    orderCon.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, ORDER00Table.SHOP_ID, Comparison.Equals, _shopid, false, false));
-            //}
             return orderCon;
         }
 
@@ -866,57 +895,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             Grid2.DataSource = Inda;
             Grid2.DataBind();
             Toolbar21111.Enabled = false;
-
-            //FineUI.Grid Grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
-            //int[] selections = Grid4.SelectedRowIndexArray;
-            //tbxRELATE_ID.Text = Grid4.DataKeys[0][0].ToString();
-            //foreach (int i in selections)
-            //{
-            //    List<ConditionFun.SqlqueryCondition> order00con = new List<ConditionFun.SqlqueryCondition>();
-            //    order00con.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT_BACK01Table.BK_ID, Comparison.Equals, Grid4.DataKeys[i][0].ToString(), false, false));
-            //    List<string> colList = new List<string>();
-            //    colList.Add("SHOP_ID");
-            //    colList.Add("PROD_ID");
-            //    colList.Add("QUANTITY");
-            //    colList.Add("STD_UNIT");
-            //    colList.Add("STD_CONVERT");
-            //    colList.Add("STD_QUAN");
-            //    colList.Add("STD_PRICE");
-            //    //colList.Add("COST_PRICE");
-            //    //colList.Add("");预留采购单位类别
-            //    DataTable da = OUT_BACK01Bll.GetInstence().GetDataTable(false, 0, colList, 0, 0, order00con, null);
-
-            //    foreach (DataRow dr in da.Rows)
-            //    {
-            //        string _shopid = dr["SHOP_ID"].ToString();
-            //        string _PROD_ID = dr["PROD_ID"].ToString();
-            //        var model = new SHOP00(x => x.SHOP_ID == _shopid);
-            //        var model2 = new PRODUCT00(x => x.PROD_ID == _PROD_ID);
-            //        int rowCount = Grid2.Rows.Count;
-            //        JObject deObject = new JObject();
-            //        deObject.Add("Id01", "0");
-            //        deObject.Add("SHOP_ID01", dr["SHOP_ID"].ToString());
-            //        deObject.Add("SHOP_NAME01", model.SHOP_NAME1);
-            //        deObject.Add("IB_ID01", tbxIB_ID.Text);
-            //        deObject.Add("SNo01", rowCount + 1);
-            //        deObject.Add("PROD_ID01", dr["PROD_ID"].ToString());
-            //        deObject.Add("PROD_NAME01", model2.PROD_NAME1);
-            //        deObject.Add("QUANTITY01", dr["QUANTITY"].ToString());
-            //        deObject.Add("STD_TYPE01", dr["STD_UNIT"].ToString());
-            //        deObject.Add("STD_UNIT01", dr["STD_UNIT"].ToString());
-            //        deObject.Add("STD_CONVERT01", dr["STD_CONVERT"].ToString());
-            //        deObject.Add("STD_QUAN01", dr["STD_QUAN"].ToString());
-            //        deObject.Add("STD_PRICE01", dr["STD_PRICE"].ToString());
-            //        deObject.Add("COST01", dr["STD_PRICE"].ToString());
-            //        deObject.Add("QUAN101", dr["STD_QUAN"].ToString());
-            //        deObject.Add("QUAN201", dr["STD_QUAN"].ToString());
-            //        deObject.Add("MEMO01", "");
-            //        deObject.Add("BAT_NO", "");
-            //        Grid2.AddNewRecord(deObject, true);
-            //    }
-
-
-            //}
         }
 
         private string ProdAddCheck(string prod_id, string prod_name)
