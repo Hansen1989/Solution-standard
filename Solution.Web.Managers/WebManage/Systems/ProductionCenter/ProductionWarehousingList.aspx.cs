@@ -326,6 +326,31 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
 
         }
 
+        /// <summary>
+        /// 入库核准
+        /// </summary>
+        public override void Approval()
+        {
 
+            string takeinId = GridViewHelper.GetSelectedKey(Grid1, true);
+            string SHOP_ID = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
+            string manager_LoginName = OnlineUsersBll.GetInstence().GetUserOnlineInfo("Manager_LoginName").ToString();//登录名
+
+            int result = TAKEIN00Bll.GetInstence().ApprovalProductToStock(SHOP_ID,takeinId,manager_LoginName);
+
+            if (result == 0)
+            {
+                Alert.Show("核准成功！");
+            }
+            else
+            {
+                Alert.Show("核准失败！请重新汇整");
+            }
+             
+        }
+        //protected void ButtonApproval_Click(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }

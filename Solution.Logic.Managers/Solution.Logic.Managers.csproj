@@ -140,6 +140,9 @@
     <Compile Include="SubSonic\Inventory01Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubSonic\Inventory_STOCKBAKBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\IN_BACK00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
@@ -314,13 +317,25 @@
     <Compile Include="SubSonic\V_COMPONENT01_PRODUCT00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubSonic\V_IN00_SHOP00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\V_IN01_PRODUCT01Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_Inventory00_SHOP00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_Inventory01_PRODUCT00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_IN_BACK00_SHOP00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_IN_BACK01_PRODUCT00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
-    <Compile Include="SubSonic\V_IN_BAKCK00_SHOP00Bll.cs">
+    <Compile Include="SubSonic\V_ORDER00_SHOP00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_ORDER01_PRODUCT01Bll.cs">
@@ -329,10 +344,16 @@
     <Compile Include="SubSonic\V_ORDERDEP02_PRODDEPBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubSonic\V_OUT00_SHOP00Bll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubSonic\V_OUT01_PRODUCT00Bll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_OUT_BACK00_DETAILNAMEBll.cs">
+      <DependentUpon>CreateBll.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubSonic\V_OUT_BACK00_DETAILNAME_bakBll.cs">
       <DependentUpon>CreateBll.tt</DependentUpon>
     </Compile>
     <Compile Include="SubSonic\V_OUT_BACK01_PRODUCT00Bll.cs">
@@ -387,6 +408,7 @@
     <Compile Include="Systems\DIVISIONBll.cs" />
     <Compile Include="Systems\GROUPAREABll.cs" />
     <Compile Include="Systems\LoginLogBll.cs" />
+    <Compile Include="Systems\Material00Bll.cs" />
     <Compile Include="Systems\MenuInfoBll.cs" />
     <Compile Include="Systems\OnlineUsersBll.cs" />
     <Compile Include="Systems\ORDER00Bll.cs" />

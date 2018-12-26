@@ -240,9 +240,9 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.SHOP_ID == (string)value);
                         expression = x => x.SHOP_ID == (string)value;
                         break;
-					case "OUT_ID" :
-						model = list.SingleOrDefault(x => x.OUT_ID == (string)value);
-                        expression = x => x.OUT_ID == (string)value;
+					case "BK_ID" :
+						model = list.SingleOrDefault(x => x.BK_ID == (string)value);
+                        expression = x => x.BK_ID == (string)value;
                         break;
 					case "STATUS" :
 						model = list.SingleOrDefault(x => x.STATUS == (int)value);
@@ -271,10 +271,6 @@ namespace Solution.Logic.Managers {
 					case "APP_DATETIME" :
 						model = list.SingleOrDefault(x => x.APP_DATETIME == (DateTime)value);
                         expression = x => x.APP_DATETIME == (DateTime)value;
-                        break;
-					case "EXPECT_DATE" :
-						model = list.SingleOrDefault(x => x.EXPECT_DATE == (DateTime)value);
-                        expression = x => x.EXPECT_DATE == (DateTime)value;
                         break;
 					case "Exported" :
 						model = list.SingleOrDefault(x => x.Exported == (byte)value);
@@ -486,7 +482,7 @@ namespace Solution.Logic.Managers {
             {
                 Id = model.Id,
                 SHOP_ID = model.SHOP_ID,
-                OUT_ID = model.OUT_ID,
+                BK_ID = model.BK_ID,
                 STATUS = model.STATUS,
                 INPUT_DATE = model.INPUT_DATE,
                 IN_SHOP = model.IN_SHOP,
@@ -494,7 +490,6 @@ namespace Solution.Logic.Managers {
                 USER_ID = model.USER_ID,
                 APP_USER = model.APP_USER,
                 APP_DATETIME = model.APP_DATETIME,
-                EXPECT_DATE = model.EXPECT_DATE,
                 Exported = model.Exported,
                 Exported_ID = model.Exported_ID,
                 RELATE_ID = model.RELATE_ID,
@@ -536,7 +531,7 @@ namespace Solution.Logic.Managers {
             {
                 Id = model.Id,
                 SHOP_ID = model.SHOP_ID,
-                OUT_ID = model.OUT_ID,
+                BK_ID = model.BK_ID,
                 STATUS = model.STATUS,
                 INPUT_DATE = model.INPUT_DATE,
                 IN_SHOP = model.IN_SHOP,
@@ -544,7 +539,6 @@ namespace Solution.Logic.Managers {
                 USER_ID = model.USER_ID,
                 APP_USER = model.APP_USER,
                 APP_DATETIME = model.APP_DATETIME,
-                EXPECT_DATE = model.EXPECT_DATE,
                 Exported = model.Exported,
                 Exported_ID = model.Exported_ID,
                 RELATE_ID = model.RELATE_ID,
@@ -609,8 +603,8 @@ namespace Solution.Logic.Managers {
 				case "SHOP_ID" :
 					model.SHOP_ID = (string)value;
                     break;
-				case "OUT_ID" :
-					model.OUT_ID = (string)value;
+				case "BK_ID" :
+					model.BK_ID = (string)value;
                     break;
 				case "STATUS" :
 					model.STATUS = (int)value;
@@ -632,9 +626,6 @@ namespace Solution.Logic.Managers {
                     break;
 				case "APP_DATETIME" :
 					model.APP_DATETIME = (DateTime)value;
-                    break;
-				case "EXPECT_DATE" :
-					model.EXPECT_DATE = (DateTime)value;
                     break;
 				case "Exported" :
 					model.Exported = ConvertHelper.Ctinyint(value);
@@ -1226,8 +1217,8 @@ namespace Solution.Logic.Managers {
 					return model.Id;
 				case "SHOP_ID" :
 					return model.SHOP_ID;
-				case "OUT_ID" :
-					return model.OUT_ID;
+				case "BK_ID" :
+					return model.BK_ID;
 				case "STATUS" :
 					return model.STATUS;
 				case "INPUT_DATE" :
@@ -1242,8 +1233,6 @@ namespace Solution.Logic.Managers {
 					return model.APP_USER;
 				case "APP_DATETIME" :
 					return model.APP_DATETIME;
-				case "EXPECT_DATE" :
-					return model.EXPECT_DATE;
 				case "Exported" :
 					return model.Exported;
 				case "Exported_ID" :

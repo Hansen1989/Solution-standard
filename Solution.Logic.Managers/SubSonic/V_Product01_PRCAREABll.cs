@@ -424,6 +424,14 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.Purchase_UNIT_NAME == (string)value);
                         expression = x => x.Purchase_UNIT_NAME == (string)value;
                         break;
+					case "Purchase_PRICE" :
+						model = list.SingleOrDefault(x => x.Purchase_PRICE == (decimal)value);
+                        expression = x => x.Purchase_PRICE == (decimal)value;
+                        break;
+					case "Purchase_CONVERT" :
+						model = list.SingleOrDefault(x => x.Purchase_CONVERT == (int)value);
+                        expression = x => x.Purchase_CONVERT == (int)value;
+                        break;
 					case "Purchase_QUAN" :
 						model = list.SingleOrDefault(x => x.Purchase_QUAN == (int)value);
                         expression = x => x.Purchase_QUAN == (int)value;
@@ -680,6 +688,8 @@ namespace Solution.Logic.Managers {
                 ORDER_QUAN = model.ORDER_QUAN,
                 Purchase_UNIT = model.Purchase_UNIT,
                 Purchase_UNIT_NAME = model.Purchase_UNIT_NAME,
+                Purchase_PRICE = model.Purchase_PRICE,
+                Purchase_CONVERT = model.Purchase_CONVERT,
                 Purchase_QUAN = model.Purchase_QUAN,
                 SAFE_QUAN = model.SAFE_QUAN,
                 PROD_PRICE = model.PROD_PRICE,
@@ -767,6 +777,8 @@ namespace Solution.Logic.Managers {
                 ORDER_QUAN = model.ORDER_QUAN,
                 Purchase_UNIT = model.Purchase_UNIT,
                 Purchase_UNIT_NAME = model.Purchase_UNIT_NAME,
+                Purchase_PRICE = model.Purchase_PRICE,
+                Purchase_CONVERT = model.Purchase_CONVERT,
                 Purchase_QUAN = model.Purchase_QUAN,
                 SAFE_QUAN = model.SAFE_QUAN,
                 PROD_PRICE = model.PROD_PRICE,
@@ -968,6 +980,12 @@ namespace Solution.Logic.Managers {
                     break;
 				case "Purchase_UNIT_NAME" :
 					model.Purchase_UNIT_NAME = (string)value;
+                    break;
+				case "Purchase_PRICE" :
+					model.Purchase_PRICE = (decimal)value;
+                    break;
+				case "Purchase_CONVERT" :
+					model.Purchase_CONVERT = (int)value;
                     break;
 				case "Purchase_QUAN" :
 					model.Purchase_QUAN = (int)value;
@@ -1651,6 +1669,10 @@ namespace Solution.Logic.Managers {
 					return model.Purchase_UNIT;
 				case "Purchase_UNIT_NAME" :
 					return model.Purchase_UNIT_NAME;
+				case "Purchase_PRICE" :
+					return model.Purchase_PRICE;
+				case "Purchase_CONVERT" :
+					return model.Purchase_CONVERT;
 				case "Purchase_QUAN" :
 					return model.Purchase_QUAN;
 				case "SAFE_QUAN" :

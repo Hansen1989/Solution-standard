@@ -32,6 +32,24 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("ISPP",ISPP,DbType.Int32);
             return sp;
         }
+        public static StoredProcedure ApprovalProductToStock(string shopId,string takeinId,string userId){
+            StoredProcedure sp=new StoredProcedure("ApprovalProductToStock");
+			
+
+            sp.Command.AddParameter("shopId",shopId,DbType.AnsiString);
+            sp.Command.AddParameter("takeinId",takeinId,DbType.AnsiString);
+            sp.Command.AddParameter("userId",userId,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure ApprovalReduceMaterial(string shopId,string maId,string userId){
+            StoredProcedure sp=new StoredProcedure("ApprovalReduceMaterial");
+			
+
+            sp.Command.AddParameter("shopId",shopId,DbType.AnsiString);
+            sp.Command.AddParameter("maId",maId,DbType.AnsiString);
+            sp.Command.AddParameter("userId",userId,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure Delete_COMPONENT00_01(string COM_ID){
             StoredProcedure sp=new StoredProcedure("Delete_COMPONENT00_01");
 			

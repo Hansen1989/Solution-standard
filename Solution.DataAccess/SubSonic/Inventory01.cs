@@ -137,6 +137,8 @@ namespace Solution.DataAccess.DataModel
             QUAN_B = readRecord.get_double("QUAN_B",null);
                
             MEMO = readRecord.get_string("MEMO",null);
+               
+            Hidden = readRecord.get_int("Hidden",null);
                 }   
 
         partial void OnCreated();
@@ -547,6 +549,28 @@ namespace Solution.DataAccess.DataModel
                 if(_MEMO!=value || _isLoaded){
                     _MEMO=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="MEMO");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _Hidden;
+		/// <summary>
+		/// 
+		/// </summary>
+        public int Hidden
+        {
+            get { return _Hidden; }
+            set
+            {
+                if(_Hidden!=value || _isLoaded){
+                    _Hidden=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Hidden");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

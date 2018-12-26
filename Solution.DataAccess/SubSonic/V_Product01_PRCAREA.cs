@@ -212,6 +212,10 @@ namespace Solution.DataAccess.DataModel
                
             Purchase_UNIT_NAME = readRecord.get_string("Purchase_UNIT_NAME",null);
                
+            Purchase_PRICE = readRecord.get_decimal("Purchase_PRICE",null);
+               
+            Purchase_CONVERT = readRecord.get_int("Purchase_CONVERT",null);
+               
             Purchase_QUAN = readRecord.get_int("Purchase_QUAN",null);
                
             SAFE_QUAN = readRecord.get_int("SAFE_QUAN",null);
@@ -1456,6 +1460,50 @@ namespace Solution.DataAccess.DataModel
                 if(_Purchase_UNIT_NAME!=value || _isLoaded){
                     _Purchase_UNIT_NAME=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Purchase_UNIT_NAME");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        decimal _Purchase_PRICE;
+		/// <summary>
+		/// 
+		/// </summary>
+        public decimal Purchase_PRICE
+        {
+            get { return _Purchase_PRICE; }
+            set
+            {
+                if(_Purchase_PRICE!=value || _isLoaded){
+                    _Purchase_PRICE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Purchase_PRICE");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _Purchase_CONVERT;
+		/// <summary>
+		/// 
+		/// </summary>
+        public int Purchase_CONVERT
+        {
+            get { return _Purchase_CONVERT; }
+            set
+            {
+                if(_Purchase_CONVERT!=value || _isLoaded){
+                    _Purchase_CONVERT=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="Purchase_CONVERT");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

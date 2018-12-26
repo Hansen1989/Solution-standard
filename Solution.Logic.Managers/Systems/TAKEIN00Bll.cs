@@ -25,6 +25,22 @@ namespace Solution.Logic.Managers
 
         }
 
+        public int ApprovalProductToStock(string shopId,string takeinId,string userId)
+        {
+            int error = 0;
+            try
+            {
+                SPs.ApprovalProductToStock(shopId,takeinId,userId).Execute();
+
+            }
+            catch (Exception)
+            {
+                error = 1;
+            }
+
+            return error;
+        }
+
 
     }
 }

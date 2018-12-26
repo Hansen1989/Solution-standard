@@ -44,7 +44,7 @@
                     <Items>
              <f:Grid ID="Grid1" Title="生产计划入库" EnableFrame="false" EnableCollapse="true" 
                  ShowBorder="false" ShowHeader="false" runat="server" EnableCheckBoxSelect="True" EnableColumnLines="true"
-                 
+                 DataKeyNames="TAKEIN_ID"
                  EnableMultiSelect="false" EnableRowSelectEvent="true"  >  
                  <%--OnRowCommand="Grid1_RowCommand" OnPreRowDataBound="Grid1_PreRowDataBound" OnPageIndexChange="Grid1_PageIndexChange"--%>
                  <%--OnRowSelect="Grid1_RowSelect"--%>
@@ -63,7 +63,7 @@
                                        <f:Button ID="Button2" runat="server" Text="刷新" Icon="ArrowRefresh" CssClass="inline btnf"></f:Button>
                                         <%--<f:Button ID="ButtonAdd" runat="server" Text="添加" Icon="Add" OnClick="ButtonAdd_Click" CssClass="btnf"></f:Button>--%>
                                         <f:Button ID="ButtonImport" runat="server" Text="引入" Icon="Add" OnClick="ButtonImport_Click" CssClass="btnf"></f:Button>
-                                       <f:Button ID="ButtonApproval" runat="server" Text="核准" Icon="Disk" ConfirmTitle="核准提示" ConfirmText="是否核准此订单？" ></f:Button>
+                                       <f:Button ID="ButtonApproval" runat="server" Text="核准" Icon="Disk" ConfirmTitle="核准提示" ConfirmText="是否核准此订单？" OnClick="ButtonApproval_Click" ></f:Button>
                                        <f:Button ID="ButtonBackApproval" runat="server" Text="反核准" Icon="Delete"  ></f:Button> 
                                      
                                         <f:Button ID="ButtonPrint" runat="server" Text="打印"  CssClass="btnf" Icon="Printer"
@@ -92,7 +92,7 @@
                   
                    
                     <f:BoundField Width="180px" DataField="SHOP_ID" DataFormatString="{0}" HeaderText="分店编号" />
-                    <f:BoundField Width="180px" DataField="PLAN_ID" DataFormatString="{0}" HeaderText="计划单号" />
+                    <f:BoundField Width="180px" DataField="TAKEIN_ID" DataFormatString="{0}" HeaderText="计划单号" />
                     <f:BoundField Width="180px" DataField="STATUS" DataFormatString="{0}" HeaderText="单据状态" />
                     <f:BoundField Width="180px" DataField="INPUT_DATE" DataFormatString="{0}" HeaderText="单据日期" />
                     <f:BoundField Width="180px" DataField="USER_ID" DataFormatString="{0}" HeaderText="制单人" />
