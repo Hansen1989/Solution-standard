@@ -104,6 +104,14 @@ namespace Solution.DataAccess.DataModel {
         			return "MEMO";
       			}
 		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string Hidden{
+			      get{
+        			return "Hidden";
+      			}
+		    }
                     
         }
 }

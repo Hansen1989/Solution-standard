@@ -1,21 +1,21 @@
-﻿using System;
+﻿using DotNet.Utilities;
+using FineUI;
+using Solution.DataAccess.DataModel;
+using Solution.DataAccess.DbHelper;
+using Solution.Logic.Managers;
+using Solution.Web.Managers.WebManage.Application;
+using SubSonic.Query;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Solution.Web.Managers.WebManage.Application;
-using Solution.DataAccess.DbHelper;
-using SubSonic.Query;
-using Solution.DataAccess.DataModel;
-using Solution.Logic.Managers;
-using FineUI;
-using DotNet.Utilities;
 
-namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
+namespace Solution.Web.Managers.WebManage.Systems.StockCenter
 {
-   
-      public partial class ProductionWarehousingList : PageBase
+ 
+    public partial class StoresRequisition : PageBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +23,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             {
                 //绑定下拉列表
 
-               // BranchBll.GetInstence().BandDropDownListShowMenu(this, ddlParentId);
+                // BranchBll.GetInstence().BandDropDownListShowMenu(this, ddlParentId);
 
                 LoadData();
             }
@@ -49,7 +49,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             bll.BindGrid(Grid1, 0, 0, conditionList, sortList);
 
             //绑定Grid表格
-           //  bll.BindGrid(Grid1, InquiryCondition(), sortList);
+            //  bll.BindGrid(Grid1, InquiryCondition(), sortList);
         }
         #endregion
 
@@ -60,7 +60,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         private int InquiryCondition()
         {
             int value = 0;
- 
+
             return value;
         }
 
@@ -72,7 +72,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         {
             //设置排序
             sortList = new List<string>();
-            sortList.Add(TAKEIN00Table.Id + " asc");
+            sortList.Add(Material00Table.Id + " asc");
             //  sortList.Add(MenuInfoTable.Sort + " asc");
         }
         #endregion
@@ -81,7 +81,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         public override void Init()
         {
             //逻辑对象赋值
-            bll = TAKEIN00Bll.GetInstence();
+            bll = Material00Bll.GetInstence();
             //表格对象赋值
             grid = Grid1;
         }
@@ -183,8 +183,8 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
         /// </summary>
         public override void Add()
         {
-           // Window1.IFrameUrl = "ProductionWarehousingEdit.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
-          //  Window1.Hidden = false;
+            // Window1.IFrameUrl = "ProductionWarehousingEdit.aspx?" + MenuInfoBll.GetInstence().PageUrlEncryptString();
+            //  Window1.Hidden = false;
         }
         #endregion
 
@@ -252,7 +252,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             Window2.Hidden = false;
         }
 
-        protected void btnCancel_Click(object sender,EventArgs e)
+        protected void btnCancel_Click(object sender, EventArgs e)
         {
             Window2.Hidden = true;
         }
@@ -273,7 +273,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
 
             string Start_Time = "";
             string End_Time = "";
-             
+
             //参数
             Random ran = new Random();
             string SHOP_ID = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
@@ -307,9 +307,9 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
                 Start_Time = dt_expect_date_bg.ToString();
                 End_Time = dt_expect_date_end.ToString();
             }
- 
-            int ex_int = TAKEIN00Bll.GetInstence().LeadIntoProductPlanList(Start_Time,End_Time,IsTime.ToString(), SHOP_ID, manager_LoginName);
-            
+
+            int ex_int = TAKEIN00Bll.GetInstence().LeadIntoProductPlanList(Start_Time, End_Time, IsTime.ToString(), SHOP_ID, manager_LoginName);
+
             if (ex_int == 0)
             {
                 Alert.Show("引入成功！");
@@ -322,7 +322,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
 
             LoadData();
 
-            
+
 
         }
 
@@ -336,7 +336,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             string SHOP_ID = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
             string manager_LoginName = OnlineUsersBll.GetInstence().GetUserOnlineInfo("Manager_LoginName").ToString();//登录名
 
-            int result = TAKEIN00Bll.GetInstence().ApprovalProductToStock(SHOP_ID,takeinId,manager_LoginName);
+            int result = Material00Bll.GetInstence().ApprovalReduceStock(SHOP_ID, takeinId, manager_LoginName);
 
             if (result == 0)
             {
@@ -346,7 +346,7 @@ namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter
             {
                 Alert.Show("核准失败！请重新汇整");
             }
-             
+
         }
         //protected void ButtonApproval_Click(object sender, EventArgs e)
         //{

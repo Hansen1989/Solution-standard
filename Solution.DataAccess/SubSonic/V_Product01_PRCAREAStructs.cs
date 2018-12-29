@@ -545,6 +545,28 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "Purchase_UNIT_NAME"
                 });
 
+                Columns.Add(new DatabaseColumn("Purchase_PRICE", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "Purchase_PRICE"
+                });
+
+                Columns.Add(new DatabaseColumn("Purchase_CONVERT", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Int32,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "Purchase_CONVERT"
+                });
+
                 Columns.Add(new DatabaseColumn("Purchase_QUAN", this)
                 {
 	                IsPrimaryKey = false,
@@ -1002,6 +1024,20 @@ namespace Solution.DataAccess.DataModel {
             public IColumn Purchase_UNIT_NAME{
                 get{
                     return this.GetColumn("Purchase_UNIT_NAME");
+                }
+            }
+				
+            
+            public IColumn Purchase_PRICE{
+                get{
+                    return this.GetColumn("Purchase_PRICE");
+                }
+            }
+				
+            
+            public IColumn Purchase_CONVERT{
+                get{
+                    return this.GetColumn("Purchase_CONVERT");
                 }
             }
 				

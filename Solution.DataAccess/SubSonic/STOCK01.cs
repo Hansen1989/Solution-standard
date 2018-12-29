@@ -143,6 +143,12 @@ namespace Solution.DataAccess.DataModel
             LAST_UPDATE = readRecord.get_datetime("LAST_UPDATE",null);
                
             SHOP_ID = readRecord.get_string("SHOP_ID",null);
+               
+            COST = readRecord.get_decimal("COST",null);
+               
+            COST1 = readRecord.get_decimal("COST1",null);
+               
+            COST2 = readRecord.get_decimal("COST2",null);
                 }   
 
         partial void OnCreated();
@@ -619,6 +625,72 @@ namespace Solution.DataAccess.DataModel
                 if(_SHOP_ID!=value || _isLoaded){
                     _SHOP_ID=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="SHOP_ID");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        decimal _COST;
+		/// <summary>
+		/// 
+		/// </summary>
+        public decimal COST
+        {
+            get { return _COST; }
+            set
+            {
+                if(_COST!=value || _isLoaded){
+                    _COST=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="COST");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        decimal _COST1;
+		/// <summary>
+		/// 
+		/// </summary>
+        public decimal COST1
+        {
+            get { return _COST1; }
+            set
+            {
+                if(_COST1!=value || _isLoaded){
+                    _COST1=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="COST1");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        decimal _COST2;
+		/// <summary>
+		/// 
+		/// </summary>
+        public decimal COST2
+        {
+            get { return _COST2; }
+            set
+            {
+                if(_COST2!=value || _isLoaded){
+                    _COST2=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="COST2");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

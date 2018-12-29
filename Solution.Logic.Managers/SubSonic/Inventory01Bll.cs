@@ -276,6 +276,10 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.MEMO == (string)value);
                         expression = x => x.MEMO == (string)value;
                         break;
+					case "Hidden" :
+						model = list.SingleOrDefault(x => x.Hidden == (int)value);
+                        expression = x => x.Hidden == (int)value;
+                        break;
 
                     default :
                         return null;
@@ -451,6 +455,7 @@ namespace Solution.Logic.Managers {
                 QUAN2 = model.QUAN2,
                 QUAN_B = model.QUAN_B,
                 MEMO = model.MEMO,
+                Hidden = model.Hidden,
             };
         }
 
@@ -490,6 +495,7 @@ namespace Solution.Logic.Managers {
                 QUAN2 = model.QUAN2,
                 QUAN_B = model.QUAN_B,
                 MEMO = model.MEMO,
+                Hidden = model.Hidden,
             };
         }
 
@@ -569,6 +575,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "MEMO" :
 					model.MEMO = (string)value;
+                    break;
+				case "Hidden" :
+					model.Hidden = (int)value;
                     break;
             }
 		}
@@ -1145,6 +1154,8 @@ namespace Solution.Logic.Managers {
 					return model.QUAN_B;
 				case "MEMO" :
 					return model.MEMO;
+				case "Hidden" :
+					return model.Hidden;
 			}
 
 			return null;

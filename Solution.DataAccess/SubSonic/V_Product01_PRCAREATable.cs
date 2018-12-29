@@ -403,6 +403,22 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
+   			public static string Purchase_PRICE{
+			      get{
+        			return "Purchase_PRICE";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string Purchase_CONVERT{
+			      get{
+        			return "Purchase_CONVERT";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
    			public static string Purchase_QUAN{
 			      get{
         			return "Purchase_QUAN";

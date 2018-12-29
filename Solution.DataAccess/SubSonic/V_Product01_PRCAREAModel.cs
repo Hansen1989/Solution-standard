@@ -489,6 +489,26 @@ namespace Solution.DataAccess.Model
 			set { _Purchase_UNIT_NAME = value; }
 		}
 
+		decimal _Purchase_PRICE = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal Purchase_PRICE
+		{
+			get { return _Purchase_PRICE; }
+			set { _Purchase_PRICE = value; }
+		}
+
+		int _Purchase_CONVERT = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public int Purchase_CONVERT
+		{
+			get { return _Purchase_CONVERT; }
+			set { _Purchase_CONVERT = value; }
+		}
+
 		int _Purchase_QUAN = 0;
 		/// <summary>
 		/// 

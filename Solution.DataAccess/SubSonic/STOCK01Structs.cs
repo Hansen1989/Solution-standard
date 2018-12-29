@@ -170,6 +170,39 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 50,
 					PropertyName = "SHOP_ID"
                 });
+
+                Columns.Add(new DatabaseColumn("COST", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "COST"
+                });
+
+                Columns.Add(new DatabaseColumn("COST1", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "COST1"
+                });
+
+                Columns.Add(new DatabaseColumn("COST2", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Decimal,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "COST2"
+                });
                     
                 
                 
@@ -269,6 +302,27 @@ namespace Solution.DataAccess.DataModel {
             public IColumn SHOP_ID{
                 get{
                     return this.GetColumn("SHOP_ID");
+                }
+            }
+				
+            
+            public IColumn COST{
+                get{
+                    return this.GetColumn("COST");
+                }
+            }
+				
+            
+            public IColumn COST1{
+                get{
+                    return this.GetColumn("COST1");
+                }
+            }
+				
+            
+            public IColumn COST2{
+                get{
+                    return this.GetColumn("COST2");
                 }
             }
 				

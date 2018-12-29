@@ -7,10 +7,10 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace Solution.Web.Managers.WebManage.Systems.ProductionCenter {
+namespace Solution.Web.Managers.WebManage.Systems.StockCenter {
     
     
-    public partial class ProductionWarehousingList {
+    public partial class StoresRequisition {
         
         /// <summary>
         /// Head2 控件。
