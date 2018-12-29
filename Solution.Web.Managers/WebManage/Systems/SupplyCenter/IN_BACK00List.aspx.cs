@@ -573,7 +573,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 try
                 {
-                    var model2 = new IN_BACK01();
+                    int id = ConvertHelper.Cint(jarr[i]["values"]["Id01"].ToString());
+                    var model2 = new IN_BACK01(x=>x.Id==id);
                     //string str = jarr[i]["status"].ToString();
                     if (jarr[i]["status"].ToString().Equals("modified"))
                     {

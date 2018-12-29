@@ -227,7 +227,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCheck.Text = "反核准";
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
-                    ButtonCheck.Enabled = true;
+                    ButtonCheck.Enabled = false;
                     Toolbar21111.Enabled = false;
                     break;
                 case 3:
@@ -484,7 +484,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 try
                 {
-                    var model2 = new Inventory01();
+                    int id = ConvertHelper.Cint(jarr[i]["values"]["Id01"].ToString());
+                    var model2 = new Inventory01(x=>x.Id==id);
                     //string str = jarr[i]["status"].ToString();
                     if (jarr[i]["status"].ToString().Equals("modified"))
                     {

@@ -514,7 +514,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.NumberBox numSTD_PRICE;
+        protected global::FineUI.TextBox numSTD_PRICE;
         
         /// <summary>
         /// NumberBox3 控件。
@@ -550,7 +550,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.NumberBox numCOST;
+        protected global::FineUI.TextBox numCOST;
         
         /// <summary>
         /// costnumbox 控件。

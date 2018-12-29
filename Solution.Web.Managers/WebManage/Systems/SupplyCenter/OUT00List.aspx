@@ -235,7 +235,7 @@
                                          <f:RenderField Width="130px" ColumnID="STD_PRICE01" DataField="STD_PRICE" FieldType="String" Enabled="true"
                                                 HeaderText="出货单价">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" Enabled="false"></f:NumberBox>
+                                                    <f:TextBox runat="server" ID="numSTD_PRICE" Enabled="false"></f:TextBox>
                                                 </Editor>
                                          </f:RenderField>
 
@@ -262,7 +262,7 @@
                                          <f:RenderField Width="130px" ColumnID="COST01" DataField="COST" FieldType="string" Enabled="false"
                                                 HeaderText="出货成本">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numCOST" NoNegative="true" Enabled="false" ></f:NumberBox>
+                                                    <f:TextBox runat="server" ID="numCOST" Enabled="false" ></f:TextBox>
                                                 </Editor>
                                          </f:RenderField>
 
