@@ -288,6 +288,18 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.SHOP_ID == (string)value);
                         expression = x => x.SHOP_ID == (string)value;
                         break;
+					case "COST" :
+						model = list.SingleOrDefault(x => x.COST == (decimal)value);
+                        expression = x => x.COST == (decimal)value;
+                        break;
+					case "COST1" :
+						model = list.SingleOrDefault(x => x.COST1 == (decimal)value);
+                        expression = x => x.COST1 == (decimal)value;
+                        break;
+					case "COST2" :
+						model = list.SingleOrDefault(x => x.COST2 == (decimal)value);
+                        expression = x => x.COST2 == (decimal)value;
+                        break;
 
                     default :
                         return null;
@@ -466,6 +478,9 @@ namespace Solution.Logic.Managers {
                 MOD_USER_ID = model.MOD_USER_ID,
                 LAST_UPDATE = model.LAST_UPDATE,
                 SHOP_ID = model.SHOP_ID,
+                COST = model.COST,
+                COST1 = model.COST1,
+                COST2 = model.COST2,
             };
         }
 
@@ -508,6 +523,9 @@ namespace Solution.Logic.Managers {
                 MOD_USER_ID = model.MOD_USER_ID,
                 LAST_UPDATE = model.LAST_UPDATE,
                 SHOP_ID = model.SHOP_ID,
+                COST = model.COST,
+                COST1 = model.COST1,
+                COST2 = model.COST2,
             };
         }
 
@@ -596,6 +614,15 @@ namespace Solution.Logic.Managers {
                     break;
 				case "SHOP_ID" :
 					model.SHOP_ID = (string)value;
+                    break;
+				case "COST" :
+					model.COST = (decimal)value;
+                    break;
+				case "COST1" :
+					model.COST1 = (decimal)value;
+                    break;
+				case "COST2" :
+					model.COST2 = (decimal)value;
                     break;
             }
 		}
@@ -1178,6 +1205,12 @@ namespace Solution.Logic.Managers {
 					return model.LAST_UPDATE;
 				case "SHOP_ID" :
 					return model.SHOP_ID;
+				case "COST" :
+					return model.COST;
+				case "COST1" :
+					return model.COST1;
+				case "COST2" :
+					return model.COST2;
 			}
 
 			return null;

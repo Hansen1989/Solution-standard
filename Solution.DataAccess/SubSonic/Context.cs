@@ -162,6 +162,7 @@ namespace Solution.DataAccess.DataModel
         public Query<DataAccess.Model.IN01> IN01 { get; set; }
         public Query<DataAccess.Model.Information> Information { get; set; }
         public Query<DataAccess.Model.InformationClass> InformationClass { get; set; }
+        public Query<DataAccess.Model.Inventory_STOCKBAK> Inventory_STOCKBAK { get; set; }
         public Query<DataAccess.Model.Inventory00> Inventory00 { get; set; }
         public Query<DataAccess.Model.Inventory01> Inventory01 { get; set; }
         public Query<DataAccess.Model.LoginLog> LoginLog { get; set; }
@@ -220,13 +221,19 @@ namespace Solution.DataAccess.DataModel
         public Query<DataAccess.Model.UploadType> UploadType { get; set; }
         public Query<DataAccess.Model.UseLog> UseLog { get; set; }
         public Query<DataAccess.Model.V_COMPONENT01_PRODUCT00> V_COMPONENT01_PRODUCT00 { get; set; }
+        public Query<DataAccess.Model.V_IN_BACK00_SHOP00> V_IN_BACK00_SHOP00 { get; set; }
         public Query<DataAccess.Model.V_IN_BACK01_PRODUCT00> V_IN_BACK01_PRODUCT00 { get; set; }
-        public Query<DataAccess.Model.V_IN_BAKCK00_SHOP00> V_IN_BAKCK00_SHOP00 { get; set; }
+        public Query<DataAccess.Model.V_IN00_SHOP00> V_IN00_SHOP00 { get; set; }
         public Query<DataAccess.Model.V_IN01_PRODUCT01> V_IN01_PRODUCT01 { get; set; }
+        public Query<DataAccess.Model.V_Inventory00_SHOP00> V_Inventory00_SHOP00 { get; set; }
+        public Query<DataAccess.Model.V_Inventory01_PRODUCT00> V_Inventory01_PRODUCT00 { get; set; }
+        public Query<DataAccess.Model.V_ORDER00_SHOP00> V_ORDER00_SHOP00 { get; set; }
         public Query<DataAccess.Model.V_ORDER01_PRODUCT01> V_ORDER01_PRODUCT01 { get; set; }
         public Query<DataAccess.Model.V_ORDERDEP02_PRODDEP> V_ORDERDEP02_PRODDEP { get; set; }
         public Query<DataAccess.Model.V_OUT_BACK00_DETAILNAME> V_OUT_BACK00_DETAILNAME { get; set; }
+        public Query<DataAccess.Model.V_OUT_BACK00_DETAILNAME_bak> V_OUT_BACK00_DETAILNAME_bak { get; set; }
         public Query<DataAccess.Model.V_OUT_BACK01_PRODUCT00> V_OUT_BACK01_PRODUCT00 { get; set; }
+        public Query<DataAccess.Model.V_OUT00_SHOP00> V_OUT00_SHOP00 { get; set; }
         public Query<DataAccess.Model.V_OUT01_PRODUCT00> V_OUT01_PRODUCT00 { get; set; }
         public Query<DataAccess.Model.V_Position_Branch> V_Position_Branch { get; set; }
         public Query<DataAccess.Model.V_PROD_CATE> V_PROD_CATE { get; set; }
@@ -372,6 +379,7 @@ namespace Solution.DataAccess.DataModel
             IN01 = new Query<DataAccess.Model.IN01>(provider);
             Information = new Query<DataAccess.Model.Information>(provider);
             InformationClass = new Query<DataAccess.Model.InformationClass>(provider);
+            Inventory_STOCKBAK = new Query<DataAccess.Model.Inventory_STOCKBAK>(provider);
             Inventory00 = new Query<DataAccess.Model.Inventory00>(provider);
             Inventory01 = new Query<DataAccess.Model.Inventory01>(provider);
             LoginLog = new Query<DataAccess.Model.LoginLog>(provider);
@@ -430,13 +438,19 @@ namespace Solution.DataAccess.DataModel
             UploadType = new Query<DataAccess.Model.UploadType>(provider);
             UseLog = new Query<DataAccess.Model.UseLog>(provider);
             V_COMPONENT01_PRODUCT00 = new Query<DataAccess.Model.V_COMPONENT01_PRODUCT00>(provider);
+            V_IN_BACK00_SHOP00 = new Query<DataAccess.Model.V_IN_BACK00_SHOP00>(provider);
             V_IN_BACK01_PRODUCT00 = new Query<DataAccess.Model.V_IN_BACK01_PRODUCT00>(provider);
-            V_IN_BAKCK00_SHOP00 = new Query<DataAccess.Model.V_IN_BAKCK00_SHOP00>(provider);
+            V_IN00_SHOP00 = new Query<DataAccess.Model.V_IN00_SHOP00>(provider);
             V_IN01_PRODUCT01 = new Query<DataAccess.Model.V_IN01_PRODUCT01>(provider);
+            V_Inventory00_SHOP00 = new Query<DataAccess.Model.V_Inventory00_SHOP00>(provider);
+            V_Inventory01_PRODUCT00 = new Query<DataAccess.Model.V_Inventory01_PRODUCT00>(provider);
+            V_ORDER00_SHOP00 = new Query<DataAccess.Model.V_ORDER00_SHOP00>(provider);
             V_ORDER01_PRODUCT01 = new Query<DataAccess.Model.V_ORDER01_PRODUCT01>(provider);
             V_ORDERDEP02_PRODDEP = new Query<DataAccess.Model.V_ORDERDEP02_PRODDEP>(provider);
             V_OUT_BACK00_DETAILNAME = new Query<DataAccess.Model.V_OUT_BACK00_DETAILNAME>(provider);
+            V_OUT_BACK00_DETAILNAME_bak = new Query<DataAccess.Model.V_OUT_BACK00_DETAILNAME_bak>(provider);
             V_OUT_BACK01_PRODUCT00 = new Query<DataAccess.Model.V_OUT_BACK01_PRODUCT00>(provider);
+            V_OUT00_SHOP00 = new Query<DataAccess.Model.V_OUT00_SHOP00>(provider);
             V_OUT01_PRODUCT00 = new Query<DataAccess.Model.V_OUT01_PRODUCT00>(provider);
             V_Position_Branch = new Query<DataAccess.Model.V_Position_Branch>(provider);
             V_PROD_CATE = new Query<DataAccess.Model.V_PROD_CATE>(provider);
@@ -485,6 +499,7 @@ namespace Solution.DataAccess.DataModel
             	DataProvider.Schema.Tables.Add(new IN01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new InformationStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new InformationClassStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new Inventory_STOCKBAKStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new Inventory00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new Inventory01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new LoginLogStructs(DataProvider));
@@ -543,13 +558,19 @@ namespace Solution.DataAccess.DataModel
             	DataProvider.Schema.Tables.Add(new UploadTypeStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new UseLogStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_COMPONENT01_PRODUCT00Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new V_IN_BACK00_SHOP00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_IN_BACK01_PRODUCT00Structs(DataProvider));
-            	DataProvider.Schema.Tables.Add(new V_IN_BAKCK00_SHOP00Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new V_IN00_SHOP00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_IN01_PRODUCT01Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new V_Inventory00_SHOP00Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new V_Inventory01_PRODUCT00Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new V_ORDER00_SHOP00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_ORDER01_PRODUCT01Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_ORDERDEP02_PRODDEPStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_OUT_BACK00_DETAILNAMEStructs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new V_OUT_BACK00_DETAILNAME_bakStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_OUT_BACK01_PRODUCT00Structs(DataProvider));
+            	DataProvider.Schema.Tables.Add(new V_OUT00_SHOP00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_OUT01_PRODUCT00Structs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_Position_BranchStructs(DataProvider));
             	DataProvider.Schema.Tables.Add(new V_PROD_CATEStructs(DataProvider));

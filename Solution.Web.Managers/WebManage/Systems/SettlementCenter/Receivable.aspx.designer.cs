@@ -157,24 +157,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter {
         protected global::FineUI.Grid resultGrid;
         
         /// <summary>
-        /// receivableDetail 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.Panel receivableDetail;
-        
-        /// <summary>
-        /// itemGrid 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FineUI.Grid itemGrid;
-        
-        /// <summary>
         /// archiveWindow 控件。
         /// </summary>
         /// <remarks>
@@ -182,6 +164,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Window archiveWindow;
+        
+        /// <summary>
+        /// previewWindow 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Window previewWindow;
         
         /// <summary>
         /// payWindow 控件。

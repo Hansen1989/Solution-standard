@@ -35,9 +35,9 @@ namespace Solution.DataAccess.DataModel {
 			/// <summary>
 			/// 
 			/// </summary>
-   			public static string OUT_ID{
+   			public static string BILL_ID{
 			      get{
-        			return "OUT_ID";
+        			return "BILL_ID";
       			}
 		    }
 			/// <summary>
@@ -150,6 +150,14 @@ namespace Solution.DataAccess.DataModel {
    			public static string BILL_COST{
 			      get{
         			return "BILL_COST";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string BILL_TYPE{
+			      get{
+        			return "BILL_TYPE";
       			}
 		    }
                     

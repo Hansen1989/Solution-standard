@@ -29,14 +29,14 @@ namespace Solution.DataAccess.Model
 			set { _SHOP_ID = value; }
 		}
 
-		string _OUT_ID = "";
+		string _BILL_ID = "";
 		/// <summary>
 		/// 
 		/// </summary>
-		public string OUT_ID
+		public string BILL_ID
 		{
-			get { return _OUT_ID; }
-			set { _OUT_ID = value; }
+			get { return _BILL_ID; }
+			set { _BILL_ID = value; }
 		}
 
 		int _STATUS = 0;
@@ -177,6 +177,16 @@ namespace Solution.DataAccess.Model
 		{
 			get { return _BILL_COST; }
 			set { _BILL_COST = value; }
+		}
+
+		int _BILL_TYPE = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public int BILL_TYPE
+		{
+			get { return _BILL_TYPE; }
+			set { _BILL_TYPE = value; }
 		}
     } 
 

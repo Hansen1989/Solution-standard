@@ -32,6 +32,24 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("ISPP",ISPP,DbType.Int32);
             return sp;
         }
+        public static StoredProcedure ApprovalProductToStock(string shopId,string takeinId,string userId){
+            StoredProcedure sp=new StoredProcedure("ApprovalProductToStock");
+			
+
+            sp.Command.AddParameter("shopId",shopId,DbType.AnsiString);
+            sp.Command.AddParameter("takeinId",takeinId,DbType.AnsiString);
+            sp.Command.AddParameter("userId",userId,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure ApprovalReduceMaterial(string shopId,string maId,string userId){
+            StoredProcedure sp=new StoredProcedure("ApprovalReduceMaterial");
+			
+
+            sp.Command.AddParameter("shopId",shopId,DbType.AnsiString);
+            sp.Command.AddParameter("maId",maId,DbType.AnsiString);
+            sp.Command.AddParameter("userId",userId,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure Delete_COMPONENT00_01(string COM_ID){
             StoredProcedure sp=new StoredProcedure("Delete_COMPONENT00_01");
 			
@@ -155,12 +173,13 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
             return sp;
         }
-        public static StoredProcedure Get_Purchase00(string st,string et,int date_type){
+        public static StoredProcedure Get_Purchase00(string st,string et,string SHOP_ID,int date_type){
             StoredProcedure sp=new StoredProcedure("Get_Purchase00");
 			
 
             sp.Command.AddParameter("st",st,DbType.AnsiString);
             sp.Command.AddParameter("et",et,DbType.AnsiString);
+            sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
             sp.Command.AddParameter("date_type",date_type,DbType.Int32);
             return sp;
         }
@@ -189,6 +208,30 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("SEED_DATETIME",SEED_DATETIME,DbType.AnsiString);
             return sp;
         }
+        public static StoredProcedure ImportProductPlanOrders(DateTime beginTime,DateTime endTime){
+            StoredProcedure sp=new StoredProcedure("ImportProductPlanOrders");
+			
+
+            sp.Command.AddParameter("beginTime",beginTime,DbType.DateTime);
+            sp.Command.AddParameter("endTime",endTime,DbType.DateTime);
+            return sp;
+        }
+        public static StoredProcedure IN_ORDER00_OUT00(string ORDER_ID,string OUT_ID,string SHOP_ID){
+            StoredProcedure sp=new StoredProcedure("IN_ORDER00_OUT00");
+			
+
+            sp.Command.AddParameter("ORDER_ID",ORDER_ID,DbType.AnsiString);
+            sp.Command.AddParameter("OUT_ID",OUT_ID,DbType.AnsiString);
+            sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure IN_ORDER00_OUT00_Cancel(string OUT_ID){
+            StoredProcedure sp=new StoredProcedure("IN_ORDER00_OUT00_Cancel");
+			
+
+            sp.Command.AddParameter("OUT_ID",OUT_ID,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure IN_OUT01_IN01(string OUT_ID,string IN_ID,string SHOP_ID){
             StoredProcedure sp=new StoredProcedure("IN_OUT01_IN01");
 			
@@ -207,6 +250,13 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
             return sp;
         }
+        public static StoredProcedure IN_OUTBACK01_INBACK01_Cancel(string IB_ID){
+            StoredProcedure sp=new StoredProcedure("IN_OUTBACK01_INBACK01_Cancel");
+			
+
+            sp.Command.AddParameter("IB_ID",IB_ID,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure IN_Purchase00_TAKEIN11(string Purchase_ID,string TAKEIN_ID,string SHOP_ID){
             StoredProcedure sp=new StoredProcedure("IN_Purchase00_TAKEIN11");
 			
@@ -214,6 +264,13 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("Purchase_ID",Purchase_ID,DbType.AnsiString);
             sp.Command.AddParameter("TAKEIN_ID",TAKEIN_ID,DbType.AnsiString);
             sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure IN_Purchase00_TAKEIN11_Cancel(string TAKEIN_ID){
+            StoredProcedure sp=new StoredProcedure("IN_Purchase00_TAKEIN11_Cancel");
+			
+
+            sp.Command.AddParameter("TAKEIN_ID",TAKEIN_ID,DbType.AnsiString);
             return sp;
         }
         public static StoredProcedure Insert_PRODUCT01(string PROD_ID,string CRT_USER_ID){
@@ -231,6 +288,25 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("IB_ID",IB_ID,DbType.AnsiString);
             return sp;
         }
+        public static StoredProcedure Inventory00_Adjust00(string SHOP_ID,string INV_ID){
+            StoredProcedure sp=new StoredProcedure("Inventory00_Adjust00");
+			
+
+            sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
+            sp.Command.AddParameter("INV_ID",INV_ID,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure LeadIntoProductPlanList(string beginTime,string endTime,string isChoseTime,string shopId,string userId){
+            StoredProcedure sp=new StoredProcedure("LeadIntoProductPlanList");
+			
+
+            sp.Command.AddParameter("beginTime",beginTime,DbType.AnsiString);
+            sp.Command.AddParameter("endTime",endTime,DbType.AnsiString);
+            sp.Command.AddParameter("isChoseTime",isChoseTime,DbType.AnsiString);
+            sp.Command.AddParameter("shopId",shopId,DbType.AnsiString);
+            sp.Command.AddParameter("userId",userId,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure SplitOrders(string col_id,string ORD_USER){
             StoredProcedure sp=new StoredProcedure("SplitOrders");
 			
@@ -246,6 +322,12 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("PROD_ID",PROD_ID,DbType.AnsiString);
             sp.Command.AddParameter("P_PRICE",P_PRICE,DbType.Decimal);
             sp.Command.AddParameter("UNIT_TYPE",UNIT_TYPE,DbType.Int32);
+            return sp;
+        }
+        public static StoredProcedure TruncataTable(){
+            StoredProcedure sp=new StoredProcedure("TruncataTable");
+			
+
             return sp;
         }
         public static StoredProcedure Update_in_back00_stock01(string IB_id){
@@ -274,6 +356,22 @@ namespace Solution.DataAccess.DataModel{
 			
 
             sp.Command.AddParameter("IN_id",IN_id,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_Inventory_Tpye(string INV_ID,string INV_TYPE){
+            StoredProcedure sp=new StoredProcedure("Update_Inventory_Tpye");
+			
+
+            sp.Command.AddParameter("INV_ID",INV_ID,DbType.AnsiString);
+            sp.Command.AddParameter("INV_TYPE",INV_TYPE,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Update_Inventory_Tpye4(string INV_ID,string INV_TYPE){
+            StoredProcedure sp=new StoredProcedure("Update_Inventory_Tpye4");
+			
+
+            sp.Command.AddParameter("INV_ID",INV_ID,DbType.AnsiString);
+            sp.Command.AddParameter("INV_TYPE",INV_TYPE,DbType.AnsiString);
             return sp;
         }
         public static StoredProcedure Update_out_back00_stock01(string BK_id){

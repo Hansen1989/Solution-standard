@@ -137,6 +137,17 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 200,
 					PropertyName = "MEMO"
                 });
+
+                Columns.Add(new DatabaseColumn("Hidden", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Int32,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "Hidden"
+                });
                     
                 
                 
@@ -215,6 +226,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn MEMO{
                 get{
                     return this.GetColumn("MEMO");
+                }
+            }
+				
+            
+            public IColumn Hidden{
+                get{
+                    return this.GetColumn("Hidden");
                 }
             }
 				

@@ -240,9 +240,9 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.SHOP_ID == (string)value);
                         expression = x => x.SHOP_ID == (string)value;
                         break;
-					case "OUT_ID" :
-						model = list.SingleOrDefault(x => x.OUT_ID == (string)value);
-                        expression = x => x.OUT_ID == (string)value;
+					case "BILL_ID" :
+						model = list.SingleOrDefault(x => x.BILL_ID == (string)value);
+                        expression = x => x.BILL_ID == (string)value;
                         break;
 					case "STATUS" :
 						model = list.SingleOrDefault(x => x.STATUS == (int)value);
@@ -299,6 +299,10 @@ namespace Solution.Logic.Managers {
 					case "BILL_COST" :
 						model = list.SingleOrDefault(x => x.BILL_COST == (decimal)value);
                         expression = x => x.BILL_COST == (decimal)value;
+                        break;
+					case "BILL_TYPE" :
+						model = list.SingleOrDefault(x => x.BILL_TYPE == (int)value);
+                        expression = x => x.BILL_TYPE == (int)value;
                         break;
 
                     default :
@@ -466,7 +470,7 @@ namespace Solution.Logic.Managers {
             {
                 Id = model.Id,
                 SHOP_ID = model.SHOP_ID,
-                OUT_ID = model.OUT_ID,
+                BILL_ID = model.BILL_ID,
                 STATUS = model.STATUS,
                 INPUT_DATE = model.INPUT_DATE,
                 IN_SHOP = model.IN_SHOP,
@@ -481,6 +485,7 @@ namespace Solution.Logic.Managers {
                 LAST_UPDATE = model.LAST_UPDATE,
                 BILL_AMOUNT = model.BILL_AMOUNT,
                 BILL_COST = model.BILL_COST,
+                BILL_TYPE = model.BILL_TYPE,
             };
         }
 
@@ -511,7 +516,7 @@ namespace Solution.Logic.Managers {
             {
                 Id = model.Id,
                 SHOP_ID = model.SHOP_ID,
-                OUT_ID = model.OUT_ID,
+                BILL_ID = model.BILL_ID,
                 STATUS = model.STATUS,
                 INPUT_DATE = model.INPUT_DATE,
                 IN_SHOP = model.IN_SHOP,
@@ -526,6 +531,7 @@ namespace Solution.Logic.Managers {
                 LAST_UPDATE = model.LAST_UPDATE,
                 BILL_AMOUNT = model.BILL_AMOUNT,
                 BILL_COST = model.BILL_COST,
+                BILL_TYPE = model.BILL_TYPE,
             };
         }
 
@@ -579,8 +585,8 @@ namespace Solution.Logic.Managers {
 				case "SHOP_ID" :
 					model.SHOP_ID = (string)value;
                     break;
-				case "OUT_ID" :
-					model.OUT_ID = (string)value;
+				case "BILL_ID" :
+					model.BILL_ID = (string)value;
                     break;
 				case "STATUS" :
 					model.STATUS = (int)value;
@@ -623,6 +629,9 @@ namespace Solution.Logic.Managers {
                     break;
 				case "BILL_COST" :
 					model.BILL_COST = (decimal)value;
+                    break;
+				case "BILL_TYPE" :
+					model.BILL_TYPE = (int)value;
                     break;
             }
 		}
@@ -1181,8 +1190,8 @@ namespace Solution.Logic.Managers {
 					return model.Id;
 				case "SHOP_ID" :
 					return model.SHOP_ID;
-				case "OUT_ID" :
-					return model.OUT_ID;
+				case "BILL_ID" :
+					return model.BILL_ID;
 				case "STATUS" :
 					return model.STATUS;
 				case "INPUT_DATE" :
@@ -1211,6 +1220,8 @@ namespace Solution.Logic.Managers {
 					return model.BILL_AMOUNT;
 				case "BILL_COST" :
 					return model.BILL_COST;
+				case "BILL_TYPE" :
+					return model.BILL_TYPE;
 			}
 
 			return null;

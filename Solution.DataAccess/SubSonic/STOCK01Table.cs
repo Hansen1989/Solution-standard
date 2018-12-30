@@ -128,6 +128,30 @@ namespace Solution.DataAccess.DataModel {
         			return "SHOP_ID";
       			}
 		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string COST{
+			      get{
+        			return "COST";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string COST1{
+			      get{
+        			return "COST1";
+      			}
+		    }
+			/// <summary>
+			/// 
+			/// </summary>
+   			public static string COST2{
+			      get{
+        			return "COST2";
+      			}
+		    }
                     
         }
 }

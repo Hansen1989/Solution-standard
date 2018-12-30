@@ -120,7 +120,7 @@ namespace Solution.DataAccess.DataModel
                
             SHOP_ID = readRecord.get_string("SHOP_ID",null);
                
-            OUT_ID = readRecord.get_string("OUT_ID",null);
+            BILL_ID = readRecord.get_string("BILL_ID",null);
                
             STATUS = readRecord.get_int("STATUS",null);
                
@@ -149,6 +149,8 @@ namespace Solution.DataAccess.DataModel
             BILL_AMOUNT = readRecord.get_decimal("BILL_AMOUNT",null);
                
             BILL_COST = readRecord.get_decimal("BILL_COST",null);
+               
+            BILL_TYPE = readRecord.get_int("BILL_TYPE",null);
                 }   
 
         partial void OnCreated();
@@ -365,18 +367,18 @@ namespace Solution.DataAccess.DataModel
             }
         }
 
-        string _OUT_ID;
+        string _BILL_ID;
 		/// <summary>
 		/// 
 		/// </summary>
-        public string OUT_ID
+        public string BILL_ID
         {
-            get { return _OUT_ID; }
+            get { return _BILL_ID; }
             set
             {
-                if(_OUT_ID!=value || _isLoaded){
-                    _OUT_ID=value;
-                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="OUT_ID");
+                if(_BILL_ID!=value || _isLoaded){
+                    _BILL_ID=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="BILL_ID");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);
@@ -685,6 +687,28 @@ namespace Solution.DataAccess.DataModel
                 if(_BILL_COST!=value || _isLoaded){
                     _BILL_COST=value;
                     var col=tbl.Columns.SingleOrDefault(x=>x.Name=="BILL_COST");
+                    if(col!=null){
+                        if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
+                            _dirtyColumns.Add(col);
+                        }
+                    }
+                    OnChanged();
+                }
+            }
+        }
+
+        int _BILL_TYPE;
+		/// <summary>
+		/// 
+		/// </summary>
+        public int BILL_TYPE
+        {
+            get { return _BILL_TYPE; }
+            set
+            {
+                if(_BILL_TYPE!=value || _isLoaded){
+                    _BILL_TYPE=value;
+                    var col=tbl.Columns.SingleOrDefault(x=>x.Name=="BILL_TYPE");
                     if(col!=null){
                         if(!_dirtyColumns.Any(x=>x.Name==col.Name) && _isLoaded){
                             _dirtyColumns.Add(col);

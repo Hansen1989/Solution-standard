@@ -39,7 +39,7 @@ namespace Solution.DataAccess.DataModel {
 					PropertyName = "SHOP_ID"
                 });
 
-                Columns.Add(new DatabaseColumn("OUT_ID", this)
+                Columns.Add(new DatabaseColumn("BILL_ID", this)
                 {
 	                IsPrimaryKey = false,
 	                DataType = DbType.AnsiString,
@@ -47,7 +47,7 @@ namespace Solution.DataAccess.DataModel {
 	                AutoIncrement = false,
 	                IsForeignKey = false,
 	                MaxLength = 30,
-					PropertyName = "OUT_ID"
+					PropertyName = "BILL_ID"
                 });
 
                 Columns.Add(new DatabaseColumn("STATUS", this)
@@ -203,6 +203,17 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 0,
 					PropertyName = "BILL_COST"
                 });
+
+                Columns.Add(new DatabaseColumn("BILL_TYPE", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Int32,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 0,
+					PropertyName = "BILL_TYPE"
+                });
                     
                 
                 
@@ -222,9 +233,9 @@ namespace Solution.DataAccess.DataModel {
             }
 				
             
-            public IColumn OUT_ID{
+            public IColumn BILL_ID{
                 get{
-                    return this.GetColumn("OUT_ID");
+                    return this.GetColumn("BILL_ID");
                 }
             }
 				
@@ -323,6 +334,13 @@ namespace Solution.DataAccess.DataModel {
             public IColumn BILL_COST{
                 get{
                     return this.GetColumn("BILL_COST");
+                }
+            }
+				
+            
+            public IColumn BILL_TYPE{
+                get{
+                    return this.GetColumn("BILL_TYPE");
                 }
             }
 				

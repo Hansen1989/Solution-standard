@@ -118,6 +118,16 @@ namespace Solution.DataAccess.Model
 			get { return _MEMO; }
 			set { _MEMO = value; }
 		}
+
+		int _Hidden = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public int Hidden
+		{
+			get { return _Hidden; }
+			set { _Hidden = value; }
+		}
     } 
 
 }

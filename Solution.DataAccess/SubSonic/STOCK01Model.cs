@@ -148,6 +148,36 @@ namespace Solution.DataAccess.Model
 			get { return _SHOP_ID; }
 			set { _SHOP_ID = value; }
 		}
+
+		decimal _COST = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal COST
+		{
+			get { return _COST; }
+			set { _COST = value; }
+		}
+
+		decimal _COST1 = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal COST1
+		{
+			get { return _COST1; }
+			set { _COST1 = value; }
+		}
+
+		decimal _COST2 = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal COST2
+		{
+			get { return _COST2; }
+			set { _COST2 = value; }
+		}
     } 
 
 }
