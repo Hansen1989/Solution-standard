@@ -19,7 +19,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             if (!IsPostBack)
             {
-                //123
+                //1.1
                 DatePicker1.SelectedDate = DateTime.Now.AddMonths(-10);
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
                 LoadList();
@@ -666,7 +666,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 try
                 {
-                    var model2 = new OUT01();
+                    int id= ConvertHelper.Cint(jarr[i]["values"]["Id01"].ToString());
+                    var model2 = new OUT01(x=>x.Id==id);
                     //string str = jarr[i]["status"].ToString();
                     if (jarr[i]["status"].ToString().Equals("modified"))
                     {
@@ -702,6 +703,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     model2.MEMO = jarr[i]["values"]["MEMO01"].ToString();
                     model2.BAT_NO = jarr[i]["values"]["BAT_NO"].ToString();
                     model2.Exp_DateTime = DateTime.Now;
+                    //model2.SetIsLoaded(true);
                     OUT01Bll.GetInstence().Save(this, model2);
                 }
                 catch (Exception err)
