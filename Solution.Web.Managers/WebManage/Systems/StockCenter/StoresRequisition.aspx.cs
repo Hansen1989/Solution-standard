@@ -332,11 +332,11 @@ namespace Solution.Web.Managers.WebManage.Systems.StockCenter
         public override void Approval()
         {
 
-            string takeinId = GridViewHelper.GetSelectedKey(Grid1, true);
+            string ma_id = GridViewHelper.GetSelectedKey(Grid1, true);
             string SHOP_ID = OnlineUsersBll.GetInstence().GetUserOnlineInfo("SHOP_ID").ToString();
             string manager_LoginName = OnlineUsersBll.GetInstence().GetUserOnlineInfo("Manager_LoginName").ToString();//登录名
 
-            int result = Material00Bll.GetInstence().ApprovalReduceStock(SHOP_ID, takeinId, manager_LoginName);
+            int result = Material00Bll.GetInstence().ApprovalReduceStock(SHOP_ID, ma_id, manager_LoginName);
 
             if (result == 0)
             {

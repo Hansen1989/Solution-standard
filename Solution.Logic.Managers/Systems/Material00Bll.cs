@@ -25,12 +25,12 @@ namespace Solution.Logic.Managers
 
         //}
 
-        public int ApprovalReduceStock(string shopId, string takeinId, string userId)
+        public int ApprovalReduceStock(string shopId, string ma_id, string userId)
         {
             int error = 0;
             try
             {
-                SPs.ApprovalReduceMaterial(shopId, takeinId, userId).Execute();
+                SPs.ApprovalReduceMaterial(shopId, ma_id, userId).Execute();
 
             }
             catch (Exception)

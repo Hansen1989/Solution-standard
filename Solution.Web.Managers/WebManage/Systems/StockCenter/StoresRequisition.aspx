@@ -44,7 +44,7 @@
                     <Items>
              <f:Grid ID="Grid1" Title="生产计划入库" EnableFrame="false" EnableCollapse="true" 
                  ShowBorder="false" ShowHeader="false" runat="server" EnableCheckBoxSelect="True" EnableColumnLines="true"
-                 DataKeyNames="TAKEIN_ID"
+                 DataKeyNames="MA_ID"
                  EnableMultiSelect="false" EnableRowSelectEvent="true"  >  
                  <%--OnRowCommand="Grid1_RowCommand" OnPreRowDataBound="Grid1_PreRowDataBound" OnPageIndexChange="Grid1_PageIndexChange"--%>
                  <%--OnRowSelect="Grid1_RowSelect"--%>
