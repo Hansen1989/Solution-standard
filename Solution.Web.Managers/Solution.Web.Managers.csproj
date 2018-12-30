@@ -7614,6 +7614,7 @@
     <Content Include="WebManage\Systems\SettlementCenter\FinancialControl.aspx" />
     <Content Include="WebManage\Systems\SettlementCenter\Receivable.aspx" />
     <Content Include="WebManage\Systems\SettlementCenter\SettlementCenterPay.aspx" />
+    <Content Include="WebManage\Systems\StockCenter\StoresRequisition.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\Adjust00List.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\ArchiveOrdersEdit.aspx" />
     <Content Include="WebManage\Systems\SupplyCenter\ArchiveOrdersList.aspx" />
@@ -7978,6 +7979,13 @@
     </Compile>
     <Compile Include="WebManage\Systems\SettlementCenter\SettlementCenterPay.aspx.designer.cs">
       <DependentUpon>SettlementCenterPay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebManage\Systems\StockCenter\StoresRequisition.aspx.cs">
+      <DependentUpon>StoresRequisition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebManage\Systems\StockCenter\StoresRequisition.aspx.designer.cs">
+      <DependentUpon>StoresRequisition.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\Adjust00List.aspx.cs">
       <DependentUpon>Adjust00List.aspx</DependentUpon>

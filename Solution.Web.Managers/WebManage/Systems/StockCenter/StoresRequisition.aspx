@@ -1,6 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProductionWarehousingList.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.ProductionCenter.ProductionWarehousingList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StoresRequisition.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.StockCenter.StoresRequisition" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -44,7 +44,7 @@
                     <Items>
              <f:Grid ID="Grid1" Title="生产计划入库" EnableFrame="false" EnableCollapse="true" 
                  ShowBorder="false" ShowHeader="false" runat="server" EnableCheckBoxSelect="True" EnableColumnLines="true"
-                 DataKeyNames="TAKEIN_ID"
+                 DataKeyNames="MA_ID"
                  EnableMultiSelect="false" EnableRowSelectEvent="true"  >  
                  <%--OnRowCommand="Grid1_RowCommand" OnPreRowDataBound="Grid1_PreRowDataBound" OnPageIndexChange="Grid1_PageIndexChange"--%>
                  <%--OnRowSelect="Grid1_RowSelect"--%>
@@ -92,18 +92,16 @@
                   
                    
                     <f:BoundField Width="180px" DataField="SHOP_ID" DataFormatString="{0}" HeaderText="分店编号" />
-                    <f:BoundField Width="180px" DataField="TAKEIN_ID" DataFormatString="{0}" HeaderText="计划单号" />
+                    <f:BoundField Width="180px" DataField="MA_ID" DataFormatString="{0}" HeaderText="作业单号" />
                     <f:BoundField Width="180px" DataField="STATUS" DataFormatString="{0}" HeaderText="单据状态" />
                     <f:BoundField Width="180px" DataField="INPUT_DATE" DataFormatString="{0}" HeaderText="单据日期" />
+                    <f:BoundField Width="180px" DataField="DIV_ID" DataFormatString="{0}" HeaderText="领用部门" />
+                    <f:BoundField Width="180px" DataField="MAT_TYPE" DataFormatString="{0}" HeaderText="领用类型" />
+                    <f:BoundField Width="180px" DataField="STOCK_ID" DataFormatString="{0}" HeaderText="仓库编号" />
                     <f:BoundField Width="180px" DataField="USER_ID" DataFormatString="{0}" HeaderText="制单人" />
                     <f:BoundField Width="180px" DataField="APP_USER" DataFormatString="{0}" HeaderText="审核人" />
                     <f:BoundField Width="180px" DataField="APP_DATETIME" DataFormatString="{0}" HeaderText="审核时间" />
-                    <f:BoundField Width="180px" DataField="EXPECT_DATE" DataFormatString="{0}" HeaderText="期望日期" />
-                    <f:BoundField Width="180px" DataField="PREPARE_ID" DataFormatString="{0}" HeaderText="备料单号" />
-                    <f:BoundField Width="180px" DataField="EXPORTED" DataFormatString="{0}" HeaderText="引入标记" />
-                    <f:BoundField Width="180px" DataField="EXPORTED_ID" DataFormatString="{0}" HeaderText="引入单号" />
-                    <f:BoundField Width="180px" DataField="DIV_ID" DataFormatString="{0}" HeaderText="生产部门" />
-                    <f:BoundField Width="180px" DataField="STOCK_ID" DataFormatString="{0}" HeaderText="仓库编号" />
+                    <f:BoundField Width="180px" DataField="RELATE_ID" DataFormatString="{0}" HeaderText="关联单号" />
                     <f:BoundField Width="180px" DataField="Memo" DataFormatString="{0}" HeaderText="备注" />
 
                     <f:BoundField Width="180px" DataField="LOCKED" DataFormatString="{0}" HeaderText="月结锁定" />
@@ -113,8 +111,7 @@
                     <f:BoundField Width="180px" DataField="MOD_USER_ID" DataFormatString="{0}" HeaderText="修改人员" />
                     <f:BoundField Width="180px" DataField="LAST_UPDATE" DataFormatString="{0}" HeaderText="最后异动时间" />
                     <f:BoundField Width="180px" DataField="Trans_STATUS" DataFormatString="{0}" HeaderText="传输状态" />
-           
-                   
+ 
                 </Columns>
             </f:Grid>
                         <f:HiddenField runat="server" ID="PPhidId" Text="0"></f:HiddenField>

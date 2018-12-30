@@ -71,7 +71,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         public void SearchOrder()
         {
             //int type = ConvertHelper.Cint(FilterDateRadio.SelectedValue);
-            OUT_BACK00Bll.GetInstence().BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
+            V_OUT_BACK00_DETAILNAMEBll.GetInstence().BindGrid(Grid1, 0, 0, InquiryCondition(), sortList);
             //TAKEIN10Bll.GetInstence().BindOrderGrid(st, et, type, Grid1);
         }
 
@@ -82,8 +82,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         private List<ConditionFun.SqlqueryCondition> InquiryCondition()
         {
             List<ConditionFun.SqlqueryCondition> conditionList = new List<ConditionFun.SqlqueryCondition>();
-            //conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "1", Comparison.Equals, "1", false, false));
-            bool sFlag = true;
 
             var model = GetOnlineUserShop();
             string st = DatePicker1.Text;
@@ -91,15 +89,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string DateType = ddrDataType.SelectedValue;
             if (DateType.Equals("1"))
             {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT_BACK00Table.INPUT_DATE, Comparison.LessOrEquals, et, false, false));
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT_BACK00Table.INPUT_DATE, Comparison.GreaterOrEquals, st, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_OUT_BACK00_DETAILNAMETable.INPUT_DATE, Comparison.LessOrEquals, et, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_OUT_BACK00_DETAILNAMETable.INPUT_DATE, Comparison.GreaterOrEquals, st, false, false));
             }
             else
             {
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, OUT_BACK00Table.APP_DATETIME, Comparison.LessOrEquals, et, false, false));
-                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT_BACK00Table.APP_DATETIME, Comparison.GreaterOrEquals, st, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, V_OUT_BACK00_DETAILNAMETable.APP_DATETIME, Comparison.LessOrEquals, et, false, false));
+                conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_OUT_BACK00_DETAILNAMETable.APP_DATETIME, Comparison.GreaterOrEquals, st, false, false));
             }
-            conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, OUT_BACK00Table.SHOP_ID, Comparison.Equals, model.SHOP_ID, false, false));
+            conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, V_OUT_BACK00_DETAILNAMETable.SHOP_ID, Comparison.Equals, model.SHOP_ID, false, false));
 
             return conditionList;
         }
@@ -176,6 +174,35 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             OrderStatus2(model);
         }
+
+        /// <summary>
+        /// Grid2字段可编辑权限判定
+        /// </summary>
+        /// <param name="status"></param>
+        public void Grid2ColumnEdit(int status)
+        {
+            //Grid2控件权限判定
+            if (status == 1)
+            {
+                ddlSTD_TYPE01.Enabled = true;
+                numSTD_QUAN.Enabled = true;
+                numQUAN1.Enabled = true;
+                numQUAN2.Enabled = true;
+                tbxREASON_ID.Enabled = true;
+                tbxMEMO01.Enabled = true;
+                tbxBAT_NO.Enabled = true;
+            }
+            else
+            {
+                ddlSTD_TYPE01.Enabled = false;
+                numSTD_QUAN.Enabled = false;
+                numQUAN1.Enabled = false;
+                numQUAN2.Enabled = false;
+                tbxREASON_ID.Enabled = false;
+                tbxMEMO01.Enabled = false;
+                tbxBAT_NO.Enabled = false;
+            }
+        }
         /// <summary>
         /// 订单为存档，核准，作废的状态判定
         /// </summary>
@@ -186,6 +213,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             //1:存档 2：核准 3：作废 4：已引入
             //新增：ButtonAdd 保存：ButtonSave 更新：ButtonUpdate 核准：ButtonCheck 作废：ButtonCancel
             //Pur02新增：ButtonPur02Add
+            Grid2ColumnEdit(model.STATUS);
             switch (model.STATUS)
             {
                 case 1:
@@ -215,8 +243,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "取消作废";
                     ButtonCancel.Enabled = true;
                     Toolbar21111.Enabled = false;
-                    Grid2.Enabled = false;
-                    Grid2.AllowCellEditing = false;
                     break;
                 case 4:
                     ButtonSave.Enabled = false;
@@ -225,16 +251,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    Toolbar21111.Enabled = false;
-                    Grid2.Enabled = false;
-                    Grid2.AllowCellEditing = false; break;
+                    Toolbar21111.Enabled = false; break;
                 case 5:
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = false;
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    Grid2.Enabled = false;
-                    Grid2.AllowCellEditing = false;
                     Toolbar21111.Enabled = false; break;
                 default:
                     ButtonSave.Enabled = false;
@@ -243,8 +265,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    Toolbar21111.Enabled = false;
-                    Grid2.AllowCellEditing = true; break;
+                    Toolbar21111.Enabled = false;break;
             }
         }
 
@@ -316,7 +337,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             else
             {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                FineUI.Alert.ShowInParent("修改成功", FineUI.MessageBoxIcon.Error);
             }
         }
 
@@ -384,11 +405,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             else
             {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                string alterMssage = ButtonCheck.Text;
+                if (alterMssage == "反核准")
+                {
+                    FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    FineUI.Alert.ShowInParent("取消核准成功", FineUI.MessageBoxIcon.Error);
+                }
             }
-
-            LoadMAIN();
-            LoadDETAIL();
             //FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
@@ -428,12 +454,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             else
             {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+                string alterMssage = ButtonCancel.Text;
+                if (alterMssage == "取消作废")
+                {
+                    FineUI.Alert.ShowInParent("作废成功", FineUI.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    FineUI.Alert.ShowInParent("取消作废成功", FineUI.MessageBoxIcon.Error);
+                }
             }
-
-            LoadMAIN();
-            LoadDETAIL();
-            //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
 
         /// <summary>
@@ -456,6 +486,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     DataTable dt = new DataTable();
                     dt = (DataTable)SPs.Get_ORDER_SEED(_SHOP_ID, "OUT00").ExecuteDataTable();
                     _BK_ID = dt.Rows[0]["PLANE_ID"].ToString();
+                    tbxBK_ID.Text = _BK_ID;
                     //var model = Purchase00.SingleOrDefault(x => x.Purchase_ID == _Pur00_id);
 
                 }
@@ -482,6 +513,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 model.LAST_UPDATE = DateTime.Now;
                 model.Trans_STATUS = 0;
                 OUT_BACK00Bll.GetInstence().Save(this, model);
+                LoadMAIN();
             }
             catch (Exception err)
             {
@@ -504,7 +536,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 try
                 {
-                    var model2 = new OUT_BACK01();
+                    int id = ConvertHelper.Cint(jarr[i]["values"]["Id01"].ToString());
+                    var model2 = new OUT_BACK01(x=>x.Id==id);
                     //string str = jarr[i]["status"].ToString();
                     if (jarr[i]["status"].ToString().Equals("modified"))
                     {
@@ -549,6 +582,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     result = "明细保存失败" + n + "条";
                 }
             }
+            LoadDETAIL();
             return result;
         }
 
@@ -568,6 +602,44 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             B_BtnSearchCon.Hidden = false;
             B_BtnAddCon.Hidden = false;
             Window3.Hidden = false;
+        }
+
+        /// <summary>
+        /// 明细删除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void btn_DetailDelete(Object sender, EventArgs e)
+        {
+            string[] eCell = Grid2.SelectedCell;
+            if (eCell == null)
+            {
+                FineUI.Alert.ShowInParent("请先选中一个删除项", FineUI.MessageBoxIcon.Information);
+                return;
+            }
+            string a = Grid2.SelectedRowID;
+
+            JArray upJson = Grid2.GetMergedData();
+            DataTable da = new DataTable();
+            for (int i = 0; i < upJson.Count; i++)
+            {
+
+                if (upJson[i]["status"].ToString() != "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
+                {
+                    int _id = ConvertHelper.Cint(upJson[i]["values"]["Id01"].ToString());
+                    //FineUI.Alert.ShowInParent(_id.ToString(), FineUI.MessageBoxIcon.Information);
+                    Grid2.DeleteSelectedRows();
+                    OUT_BACK01Bll.GetInstence().Delete(this, _id);
+                    //hidORDDEP_ID.Text = "";
+                    break;
+                }
+                else if (upJson[i]["status"].ToString() == "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
+                {
+                    Grid2.DeleteSelectedRows();
+                    //hidORDDEP_ID.Text = "";
+                    break;
+                }
+            }
         }
 
         /// <summary>

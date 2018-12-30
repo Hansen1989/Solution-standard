@@ -294,16 +294,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
                 //if (model_SYS_PARAMATERS.COL_ORDER_TYPE == 0) //产品类型汇整
                 //{
-                //    if (model_ARCHIVEORDERS.PROD_TYPE == 0) { type = "自产型"; }
-                //    if (model_ARCHIVEORDERS.PROD_TYPE == 1) { type = "供应型"; }
-                //    if (model_ARCHIVEORDERS.PROD_TYPE == 2) { type = "委托加工型"; }
+                    if (model_ARCHIVEORDERS.PROD_TYPE == 0) { type = "自产型"; }
+                    if (model_ARCHIVEORDERS.PROD_TYPE == 1) { type = "供应型"; }
+                    if (model_ARCHIVEORDERS.PROD_TYPE == 2) { type = "委托加工型"; }
                 //}
 
                 //if (model_SYS_PARAMATERS.COL_ORDER_TYPE == 1) //产品类型汇整
                 //{
                 //    if (model_ARCHIVEORDERS.PROD_TYPE == 1) { type = "普通订货"; }
                 //    if (model_ARCHIVEORDERS.PROD_TYPE == 2) { type = "客户订货"; }
-               
+
                 //}
 
                 a_type.Text = type;
@@ -442,26 +442,26 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             var model_SHOP = new SHOP00(x => x.SHOP_ID == shop_id);
             string area_id = model_SHOP.SHOP_Area_ID.ToString();
 
-            var model_SYS_PARAMATERS = new SYS_PARAMATERS(x => x.Area_Id == area_id);  //根据参数表 显示信息
-            
+           // var model_SYS_PARAMATERS = new SYS_PARAMATERS(x => x.Area_Id == area_id);  //根据参数表 显示信息
+
             //if (model_SYS_PARAMATERS != null)
-            //{ 
-            //    if (model_SYS_PARAMATERS.COL_ORDER_TYPE == 0) //产品类型汇整
-            //    {
-            //        if (model_ARCHIVEORDERS.PROD_TYPE == 0) { PurchasePLANColumn1.Hidden = true; PPhidId.Text = "0"; }
-            //        if (model_ARCHIVEORDERS.PROD_TYPE == 1) { PurchasePLANColumn0.Hidden = true; PPhidId.Text = "1"; }
-            //        if (model_ARCHIVEORDERS.PROD_TYPE == 2) { PurchasePLANColumn0.Hidden = true; PPhidId.Text = "1"; }
-            //    }
+            //{
+                //if (model_SYS_PARAMATERS.COL_ORDER_TYPE == 0) //产品类型汇整
+               // {
+                    //if (model_ARCHIVEORDERS.PROD_TYPE == 0) { PurchasePLANColumn1.Hidden = true; PPhidId.Text = "0"; }
+                    //if (model_ARCHIVEORDERS.PROD_TYPE == 1) { PurchasePLANColumn0.Hidden = true; PPhidId.Text = "1"; }
+                    //if (model_ARCHIVEORDERS.PROD_TYPE == 2) { PurchasePLANColumn0.Hidden = true; PPhidId.Text = "1"; }
+               // }
 
-            //    if (model_SYS_PARAMATERS.COL_ORDER_TYPE == 1) //产品类型汇整
-            //    {
-            //        if (model_ARCHIVEORDERS.PROD_TYPE == 1) { PurchasePLANColumn0.Hidden = true; PPhidId.Text = "0"; }
-            //        if (model_ARCHIVEORDERS.PROD_TYPE == 2) { PurchasePLANColumn0.Hidden = true; PPhidId.Text = "1"; }
+                //if (model_SYS_PARAMATERS.COL_ORDER_TYPE == 1) //产品类型汇整
+                //{
+                //    if (model_ARCHIVEORDERS.PROD_TYPE == 1) { PurchasePLANColumn0.Hidden = true; PPhidId.Text = "0"; }
+                //    if (model_ARCHIVEORDERS.PROD_TYPE == 2) { PurchasePLANColumn0.Hidden = true; PPhidId.Text = "1"; }
 
-            //    }
- 
+                //}
 
-            //}
+
+           // }
 
         }
 

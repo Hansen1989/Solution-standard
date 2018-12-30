@@ -40,7 +40,7 @@
                                         <f:ListItem Text="存档" Value="1" Selected="true" />
                                         <f:ListItem Text="核准" Value="2" />
                                         <f:ListItem Text="作废" Value="3" />
-                                        <f:ListItem Text="已引入" Value="4" />
+                                        <f:ListItem Text="已引入(调拨入库)" Value="4" />
                                         <f:ListItem Text="关单" Value="5" />
                                     </f:DropDownList>                            
                                 </Items>
@@ -94,7 +94,7 @@
                              <f:Toolbar ID="Toolbar21111" runat="server">
                                <Items>
                                   <f:Button ID="ButtonDetailAdd" runat="server" Text="添加" Icon="Add" OnClick="btn_DetailAdd"></f:Button>
-                                   <f:Button ID="ButtonDetailDelete" runat="server" Text="删除" Icon="Delete" OnClick="btn_DetailDelete"></f:Button>
+                                  <f:Button ID="ButtonDetailDelete" runat="server" Text="删除" Icon="Delete" OnClick="btn_DetailDelete"></f:Button>
                                   <%--<f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add"></f:Button>--%>
                                </Items>
                              </f:Toolbar>
@@ -203,7 +203,7 @@
                                          <f:RenderField Width="130px" ColumnID="STD_CONVERT01" DataField="STD_CONVERT" FieldType="Int" Enabled="false" Hidden="false"
                                                 HeaderText="标准转换量">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numSTD_CONVERT"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numSTD_CONVERT" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
 
@@ -229,13 +229,13 @@
                                          <f:RenderField Width="130px" ColumnID="MIN_STD_QUAN01" DataField="MIN_STD_QUAN" FieldType="String" Hidden="true" Enabled="false"
                                                 HeaderText="最少出货量">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="NumberBox6" NoNegative="true"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="NumberBox6" NoNegative="true" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                          <f:RenderField Width="130px" ColumnID="STD_PRICE01" DataField="STD_PRICE" FieldType="String" Enabled="true"
                                                 HeaderText="出货单价">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" Enabled="true"></f:NumberBox>
+                                                    <f:TextBox runat="server" ID="numSTD_PRICE" Enabled="false"></f:TextBox>
                                                 </Editor>
                                          </f:RenderField>
 
@@ -262,7 +262,7 @@
                                          <f:RenderField Width="130px" ColumnID="COST01" DataField="COST" FieldType="string" Enabled="false"
                                                 HeaderText="出货成本">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numCOST" NoNegative="true" ></f:NumberBox>
+                                                    <f:TextBox runat="server" ID="numCOST" Enabled="false" ></f:TextBox>
                                                 </Editor>
                                          </f:RenderField>
 
@@ -428,7 +428,6 @@
                                      CompareOperator="GreaterThan" CompareMessage="结束日期应该大于开始日期" Label="结束日期"
                                      runat="server" ShowRedStar="True">
                                 </f:DatePicker>
-                                <f:DropDownList runat="server" Label="分店名称" ID="w4_ddlSHOP_NAME" Required="true" ShowRedStar="true" Enabled="true"></f:DropDownList>
                             </Items>
                         </f:Panel>
                     </Items>
@@ -448,7 +447,7 @@
                            <f:RowNumberField />
                            <f:BoundField Width="125px" DataField="ORDER_ID" HeaderText="要货单号码" ExpandUnusedSpace="true"  />
                            <f:BoundField Width="125px" DataField="SHOP_ID" HeaderText="分店编码" ExpandUnusedSpace="true"  />
-                           <f:BoundField Width="125px" DataField="SHOP_NAME" HeaderText="分店名称" ExpandUnusedSpace="true"  />
+                           <f:BoundField Width="125px" DataField="SHOP_NAME1" HeaderText="分店名称" ExpandUnusedSpace="true"  />
                            <f:BoundField Width="125px" DataField="INPUT_DATE" HeaderText="单据日期" ExpandUnusedSpace="true"  />
                            <f:BoundField Width="125px" DataField="EXPECT_DATE" HeaderText="期望日期" ExpandUnusedSpace="true"  />
                          </Columns>

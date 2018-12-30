@@ -20,13 +20,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             //这里更改了
             if (!IsPostBack)
             {
+                var model = GetOnlineUserShop();
                 DatePicker1.SelectedDate = DateTime.Now.AddDays(-90);
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
-                SHOP00Bll.GetInstence().BandDropDownListShowShop1(this, ddlSHOP_NAME);
+                SHOP00Bll.GetInstence().BindOnlineUser(this, model.SHOP_ID, ddlSHOP_NAME);
                 SUPPLIERSBll.GetInstence().BandDropDownListShowSup(this, ddlSUP_NAME);
                 LoadList();
                 LoadData();
-                Purchase00Status(-1);
+                Purchase00Status(new Purchase00());
             }
         }
         /// <summary>
@@ -43,11 +44,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         public override void LoadData()
         {
             int type = ConvertHelper.Cint(FilterDateRadio.SelectedValue);
+            var model = GetOnlineUserShop();
             string st = "";
             string et = "";
             st = DatePicker1.Text;
             et = DatePicker2.Text;
-            Purchase00Bll.GetInstence().BindPurchaesGrid(st, et, type, Grid1);
+            Purchase00Bll.GetInstence().BindPurchaesGrid(st, et, type,model.SHOP_ID, Grid1);
             //throw new NotImplementedException();
         }
 
@@ -58,10 +60,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <returns></returns>
         public override void SingleClick(GridRowClickEventArgs e)
         {
-            int _id = ConvertHelper.Cint0(GridViewHelper.GetSelectedKey(Grid1, true));
-            hidId.Text = _id.ToString();
+            string _tbxPurchase_ID = GridViewHelper.GetSelectedKey(Grid1, true);
+            //hidId.Text = _id.ToString();
+            tbxPurchase_ID.Text = _tbxPurchase_ID;
             tbxPurchase_ID.Enabled = false;
-            if (_id != 0)
+            if (!String.IsNullOrEmpty(_tbxPurchase_ID))
             {
                 LoadMain();
                 LoadDetail();
@@ -71,12 +74,28 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <summary>
         /// 根据单据状态来设置界面内容
         /// </summary>
-        public void Purchase00Status(int status)
+        public void Purchase00Status(Purchase00 model)
         {
+
+            //如果该订单已被其他订单引入，则无法进行任何操作
+            if (model.EXPORTED == 1)
+            {
+                Grid2ColumnEdit(0);
+                ButtonSave.Enabled = false;
+                ButtonUpdate.Enabled = false;
+                ButtonCheck.Text = "反核准";
+                ButtonCancel.Text = "作废";
+                ButtonCancel.Enabled = false;
+                ButtonCheck.Enabled = false;
+                Toolbar21111.Enabled = false;
+                return;
+            }
+
+            Grid2ColumnEdit(model.STATUS);
             //1:存档 2：核准 3：作废 4：已引入
             //新增：ButtonAdd 保存：ButtonSave 更新：ButtonUpdate 核准：ButtonCheck 作废：ButtonCancel
             //Pur02新增：ButtonPur02Add
-            switch (status)
+            switch (model.STATUS)
             {
                 case 1:
                     ButtonSave.Enabled = false;
@@ -85,9 +104,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCheck.Enabled = true;
                     ButtonCheck.Text = "核准";
                     ButtonCancel.Text = "作废";
-                    ButtonPur02Add.Enabled = true;
-                    Grid2.Enabled = true;
-                    Grid2.AllowCellEditing = true; break;
+                    ButtonPur02Add.Enabled = true; break;
                 case 2:
                     ButtonSave.Enabled = false;
                     ButtonUpdate.Enabled = false;
@@ -95,17 +112,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = true;
-                    ButtonPur02Add.Enabled = false;
-                    Grid2.Enabled = false; break;
+                    ButtonPur02Add.Enabled = false; break;
                 case 3:
                     ButtonSave.Enabled = false;
                     ButtonUpdate.Enabled = false;
                     ButtonCheck.Text = "核准";
                     ButtonCheck.Enabled = false;
                     ButtonCancel.Text = "取消作废";
-                    ButtonCheck.Enabled = true;
-                    Grid2.Enabled = false;
-                    Grid2.AllowCellEditing = false; break;
+                    ButtonCheck.Enabled = true; break;
                 case 4:
                     ButtonSave.Enabled = false;
                     ButtonUpdate.Enabled = false;
@@ -113,9 +127,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    ButtonPur02Add.Enabled = false;
-                    Grid2.Enabled = false;
-                    Grid2.AllowCellEditing = false; break;
+                    ButtonPur02Add.Enabled = false;break;
                 default:
                     ButtonSave.Enabled = false;
                     ButtonUpdate.Enabled = false;
@@ -123,19 +135,55 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    ButtonPur02Add.Enabled = false;
-                    Grid2.AllowCellEditing = true; break;
+                    ButtonPur02Add.Enabled = false; break;
+            }
+        }
+        /// <summary>
+        /// Grid2编辑字段判断
+        /// </summary>
+        /// <param name="status"></param>
+        public void Grid2ColumnEdit(int status)
+        {
+            if (status == 1)
+            {
+                ddlSTD_TYPE01.Enabled = true;
+                numQUAN1.Enabled = true;
+                numQUAN2.Enabled = true;
+                tbxMEMO01.Enabled = true;
+                numSTD_QUAN.Enabled = true;
+            }
+            else
+            {
+                ddlSTD_TYPE01.Enabled = false;
+                numQUAN1.Enabled = false;
+                numQUAN2.Enabled = false;
+                tbxMEMO01.Enabled = false;
+                numSTD_QUAN.Enabled = false;
             }
         }
 
         public void BtnSearchOrderDep_click(object sender, EventArgs e)
         {
-            int type = ConvertHelper.Cint(FilterDateRadio.SelectedValue);
-            string st = "";
-            string et = "";
-            st = DatePicker1.Text;
-            et = DatePicker2.Text;
-            Purchase00Bll.GetInstence().BindPurchaesGrid(st, et, type, Grid1);
+
+            LoadData();
+            //int type = ConvertHelper.Cint(FilterDateRadio.SelectedValue);
+            //string st = "";
+            //string et = "";
+            //st = DatePicker1.Text;
+            //et = DatePicker2.Text;
+            //Purchase00Bll.GetInstence().BindPurchaesGrid(st, et, type, model.SHOP_ID, Grid1);
+        }
+
+        /// <summary>
+        /// 根据当前账户，获取所属门店信息
+        /// </summary>
+        /// <returns></returns>
+        public SHOP00 GetOnlineUserShop()
+        {
+            var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
+            var shop_id = OlUser.SHOP_ID;
+            var model = new SHOP00(x => x.SHOP_ID == shop_id);
+            return model;
         }
         /// <summary>
         /// 加载采购订单界面
@@ -143,24 +191,27 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="id"></param>
         public void LoadMain()
         {
-            int id = ConvertHelper.Cint(hidId.Text);
-            if (id == 0)
+            //int id = ConvertHelper.Cint(hidId.Text);
+            string _Purchase_ID = tbxPurchase_ID.Text;
+            //if (id == 0)
+            //{
+            //    FineUI.Alert.ShowInParent("请重新选择采购单", FineUI.MessageBoxIcon.Error);
+            //}
+            if (String.IsNullOrEmpty(_Purchase_ID))
             {
                 FineUI.Alert.ShowInParent("请重新选择采购单", FineUI.MessageBoxIcon.Error);
             }
-            var model = Purchase00Bll.GetInstence().GetModel(id, false);
+            //var model = Purchase00Bll.GetInstence().GetModel(id, false);
+            var model = new Purchase00(x=>x.Purchase_ID== _Purchase_ID);
             if (model != null)
             {
                 tbxPurchase_ID.Text = model.Purchase_ID;
                 hidPurchase_ID.Text = model.Purchase_ID;
-                //string _shop_id = model.SHOP_ID;
-                //var shopModel = new SHOP00(x => x.SHOP_ID == model.SHOP_ID);
-                //tbxSHOP_ID.Text = model.SHOP_ID;
-                //tbxSHOP_NAME1.Text = shopModel.SHOP_NAME1;
                 ddlSHOP_NAME.SelectedValue = model.SHOP_ID;
                 ddlStatus.SelectedValue = model.STATUS.ToString();
                 dpINPUT_DATE.Text = model.INPUT_DATE.ToString("yyyy-MM-dd");
                 dpEXPECT_DATE.Text = model.EXPECT_DATE.ToString("yyyy-MM-dd");
+                string a = model.SUP_ID.ToString();
                 ddlSUP_NAME.SelectedValue = model.SUP_ID.ToString();
                 ddlPAY_STATUS.SelectedValue = model.PAY_STATUS.ToString();
                 tbxUSER_ID.Text = model.USER_ID;
@@ -186,7 +237,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 tbxMOD_DATETIME.Text = model.MOD_DATETIME.ToString("yyyy-MM-dd");
                 tbxMOD_USER_ID.Text = model.MOD_USER_ID;
                 tbxLAST_UPDATE.Text = model.LAST_UPDATE.ToString("yyyy-MM-dd");
-                Purchase00Status(model.STATUS);
+                Purchase00Status(model);
                 LockStatus(model.LOCKED);
             }
         }
@@ -200,7 +251,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 ButtonCheck.Enabled = false;
                 ButtonCheck.Enabled = false;
                 //Grid2.Enabled = false;
-                Grid2.AllowCellEditing = false;
+                //Grid2.AllowCellEditing = false;
+                Grid2ColumnEdit(2);
             }
         }
 
@@ -252,7 +304,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         public void BtnPur01_Add(Object sender, EventArgs e)
         {
             //tbxPurchase_ID.Enabled = true;
-            Purchase00Status(-1);
+            Purchase00Status(new Purchase00());
             ButtonSave.Enabled = true;
             hidId.Text = "";
             tbxPurchase_ID.Text = "";
@@ -434,7 +486,22 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             LoadMain();
             LoadDetail();
-            FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
+            if (result == "保存成功")
+            {
+                string alterMssage = ButtonCheck.Text;
+                if (alterMssage == "反核准")
+                {
+                    FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    FineUI.Alert.ShowInParent("取消核准成功", FineUI.MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
+            }
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
         /// <summary>
@@ -481,7 +548,22 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             }
             LoadMain();
             LoadDetail();
-            FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
+            if (result == "保存成功")
+            {
+                string alterMssage = ButtonCancel.Text;
+                if (alterMssage == "取消作废")
+                {
+                    FineUI.Alert.ShowInParent("作废成功", FineUI.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    FineUI.Alert.ShowInParent("取消作废成功", FineUI.MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
+            }
             //FineUI.Alert.ShowInParent("核准成功", FineUI.MessageBoxIcon.Information);
         }
         /// <summary>
@@ -530,6 +612,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
                     model = new Purchase00();
                     model.Purchase_ID = dt.Rows[0]["PLANE_ID"].ToString();
+                    tbxPurchase_ID.Text = model.Purchase_ID;
                     model.SHOP_ID = _SHOP_ID;
                     model.STATUS = 1;
                     model.INPUT_DATE = DateTime.Now;
@@ -555,6 +638,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     model.SetIsNew(true);
                     Purchase00Bll.GetInstence().Save(this, model);
                     LoackPur01();
+                    LoadMain();
                     //FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
                     return "保存成功";
                 }
@@ -651,13 +735,24 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string Pur_status = ddlStatus.SelectedValue;
             JArray pJson = Grid2.GetMergedData();
             string result = "";
-
             for (int i = 0; i < pJson.Count; i++)
             {
                 try
                 {
                     int _id = ConvertHelper.Cint(pJson[i]["values"]["Id01"].ToString());
                     var model = new Purchase01(x => x.Id == _id);
+                    if (pJson[i]["status"].ToString().Equals("modified"))
+                    {
+                        model.SetIsNew(false);
+                    }
+                    else if (pJson[i]["status"].ToString().Equals("unchanged"))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        model.SetIsNew(true);
+                    }
                     model.SHOP_ID = pJson[i]["values"]["SHOP_ID01"].ToString();
                     model.Purchase_ID = pJson[i]["values"]["Purchase_ID01"].ToString();
                     model.SNo = ConvertHelper.Cint(pJson[i]["values"]["SNo01"].ToString());
@@ -681,6 +776,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     return result;
                 }
             }
+            LoadDetail();
             if (String.IsNullOrEmpty(result))
             {
                 string _shop_id = ddlSHOP_NAME.SelectedValue;
@@ -904,28 +1000,29 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     deObject.Add("QUANTITY01", model.ORDER_QUAN);
                     deObject.Add("STD_UNIT01", model.Purchase_UNIT);
                     deObject.Add("STD_UNIT_NAME01", model.Purchase_UNIT_NAME);
-                    if (model.Purchase_UNIT == 2)
-                    {
-                        deObject.Add("STD_CONVERT01", model.PROD_CONVERT1);
-                    }
-                    else if (model.Purchase_UNIT == 3)
-                    {
-                        deObject.Add("STD_CONVERT01", model.PROD_CONVERT2);
-                    }
-                    else
-                    {
-                        deObject.Add("STD_CONVERT01", model.COST*model.ORDER_QUAN*model.Tax);
-                    }
+                    deObject.Add("STD_CONVERT01", model.Purchase_CONVERT);
+                    //if (model.Purchase_UNIT == 2)
+                    //{
+                    //    deObject.Add("STD_CONVERT01", model.PROD_CONVERT1);
+                    //}
+                    //else if (model.Purchase_UNIT == 3)
+                    //{
+                    //    deObject.Add("STD_CONVERT01", model.PROD_CONVERT2);
+                    //}
+                    //else
+                    //{
+                    //    deObject.Add("STD_CONVERT01", 1);
+                    //}
 
                     deObject.Add("STD_QUAN01", model.Purchase_QUAN);
-                    deObject.Add("STD_PRICE01", model.COST);
+                    deObject.Add("STD_PRICE01", model.Purchase_PRICE);
                     if (model.TAX_TYPE == '0')
                     {
                         deObject.Add("Tax01", 0);
                     }
                     else
                     {
-                        deObject.Add("Tax01", model.Tax*model.TAX_TYPE*0.01);
+                        deObject.Add("Tax01",ConvertHelper.Cdbl((model.Purchase_PRICE.ToString())) * ConvertHelper.Cdbl((model.Purchase_QUAN.ToString())) * ConvertHelper.Cdbl((model.Tax.ToString()))*0.01);
                     }
                     deObject.Add("QUAN101", 0);
                     deObject.Add("QUAN201", 0);

@@ -292,6 +292,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Button ButtonDetailAdd;
         
         /// <summary>
+        /// ButtonDetailDelete 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonDetailDelete;
+        
+        /// <summary>
         /// Grid2 控件。
         /// </summary>
         /// <remarks>
@@ -544,13 +553,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.NumberBox numQUAN2;
         
         /// <summary>
-        /// TextBox3 控件。
+        /// tbxREASON_ID01 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextBox TextBox3;
+        protected global::FineUI.TextBox tbxREASON_ID01;
         
         /// <summary>
         /// tbxMEMO01 控件。

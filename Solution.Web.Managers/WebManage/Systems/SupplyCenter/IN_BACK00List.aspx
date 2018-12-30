@@ -82,7 +82,8 @@
                              <f:Toolbar ID="Toolbar21111" runat="server">
                                <Items>
                                   <f:Button ID="ButtonDetailAdd" runat="server" Text="添加" Icon="Add" OnClick="btn_DetailAdd"></f:Button>
-                                  <%--<f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add"></f:Button>--%>
+                                  <f:Button ID="ButtonDetailDelete" runat="server" Text="删除" Icon="Delete" OnClick="btn_DetailDelete"></f:Button>
+                                   <%--<f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add"></f:Button>--%>
                                </Items>
                              </f:Toolbar>
                            </Toolbars>
@@ -188,7 +189,7 @@
                                          <f:RenderField Width="130px" ColumnID="STD_CONVERT01" DataField="STD_CONVERT" FieldType="Int" Enabled="false" Hidden="false"
                                                 HeaderText="标准转换量">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numSTD_CONVERT"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numSTD_CONVERT" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                           <f:RenderField Width="130px" ColumnID="PROD_CONVERT101" DataField="PROD_CONVERT1" FieldType="Int" Enabled="true" Hidden="true"
@@ -212,7 +213,7 @@
                                          <f:RenderField Width="130px" ColumnID="STD_PRICE01" DataField="STD_PRICE" FieldType="Float" Enabled="false"
                                                 HeaderText="入库单价">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numSTD_PRICE" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                           <f:RenderField Width="130px" ColumnID="S_RET_COST01" DataField="S_RET_COST" FieldType="Float" Enabled="true" Hidden="true"
@@ -236,7 +237,7 @@
                                          <f:RenderField Width="130px" ColumnID="COST01" DataField="COST" FieldType="Float" Enabled="false"
                                                 HeaderText="入库成本">
                                                 <Editor>
-                                                    <f:NumberBox runat="server" ID="numCOST" NoNegative="true" DecimalPrecision="6"></f:NumberBox>
+                                                    <f:NumberBox runat="server" ID="numCOST" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
                                           <f:RenderField Width="130px" ColumnID="R_COST01" DataField="COST" FieldType="Float" Enabled="true" Hidden="true"
@@ -273,7 +274,7 @@
                                          <f:RenderField Width="130px" ColumnID="REASON_ID01" DataField="REASON_ID" FieldType="String" Enabled="True"
                                                 HeaderText="退货理由">
                                                 <Editor>
-                                                    <f:TextBox ID="TextBox3" runat="server" Required="true" ShowRedStar="true">
+                                                    <f:TextBox ID="tbxREASON_ID01" runat="server" Required="true" ShowRedStar="true">
                                                     </f:TextBox>
                                                 </Editor>
                                          </f:RenderField>
@@ -287,7 +288,7 @@
                                           <f:RenderField Width="130px" ColumnID="BAT_NO" DataField="BAT_NO" FieldType="String" Enabled="True"
                                                 HeaderText="批号">
                                                 <Editor>
-                                                    <f:TextBox ID="tbxBAT_NO" runat="server" Required="true" ShowRedStar="true">
+                                                    <f:TextBox ID="tbxBAT_NO" runat="server" Required="true" ShowRedStar="true" Enabled="false">
                                                     </f:TextBox>
                                                 </Editor>
                                          </f:RenderField>
