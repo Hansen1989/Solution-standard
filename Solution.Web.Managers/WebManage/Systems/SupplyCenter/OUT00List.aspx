@@ -40,7 +40,7 @@
                                         <f:ListItem Text="存档" Value="1" Selected="true" />
                                         <f:ListItem Text="核准" Value="2" />
                                         <f:ListItem Text="作废" Value="3" />
-                                        <f:ListItem Text="已引入" Value="4" />
+                                        <f:ListItem Text="已引入(调拨入库)" Value="4" />
                                         <f:ListItem Text="关单" Value="5" />
                                     </f:DropDownList>                            
                                 </Items>
@@ -94,7 +94,7 @@
                              <f:Toolbar ID="Toolbar21111" runat="server">
                                <Items>
                                   <f:Button ID="ButtonDetailAdd" runat="server" Text="添加" Icon="Add" OnClick="btn_DetailAdd"></f:Button>
-                                   <f:Button ID="ButtonDetailDelete" runat="server" Text="删除" Icon="Delete" OnClick="btn_DetailDelete"></f:Button>
+                                  <f:Button ID="ButtonDetailDelete" runat="server" Text="删除" Icon="Delete" OnClick="btn_DetailDelete"></f:Button>
                                   <%--<f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add"></f:Button>--%>
                                </Items>
                              </f:Toolbar>

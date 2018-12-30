@@ -225,12 +225,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             if (model2.Id > 0)
             {
                 Grid2ColumnEdit(2);
+                ButtonYR.Text = "取消引入";
                 Toolbar21111.Enabled = false;
                 return;
             }
             else
             {
                 Grid2ColumnEdit(1);
+                ButtonYR.Text = "引入";
                 Toolbar21111.Enabled = true;
                 return;
             }
@@ -296,6 +298,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     //ButtonDetailAdd.Enabled = false;
                     break;
             }
+
+
+            //判断子表是否已经产生数据，数据已经产生，则无法引入
+            var model2 = new TAKEIN11(x => x.TAKEIN_ID == model.TAKEIN_ID);
+
+            if (!(model2 == null || String.IsNullOrEmpty(model2.TAKEIN_ID)))
+            {
+                ButtonYR.Enabled = false;
+            }
+
         }
 
         /// <summary>
@@ -343,6 +355,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="e"></param>
         public void BtnYR_Click(Object sender, EventArgs e)
         {
+            if (ButtonYR.Text.Equals("取消引入"))
+            {
+                SPs.IN_Purchase00_TAKEIN11_Cancel(tbxTAKEIN_ID.Text);
+                FineUI.Alert.ShowInParent("取消引入成功", FineUI.MessageBoxIcon.Information);
+                return;
+            }
             FineUI.DatePicker wst = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpSt") as FineUI.DatePicker;
             FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpEt") as FineUI.DatePicker;
             wst.SelectedDate = DateTime.Now.Date.AddDays(-1);
@@ -684,6 +702,45 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         }
 
         /// <summary>
+        /// 删除事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void btn_DetailDelete(Object sender, EventArgs e)
+        {
+            string[] eCell = Grid2.SelectedCell;
+            if (eCell == null)
+            {
+                FineUI.Alert.ShowInParent("请先选中一个删除项", FineUI.MessageBoxIcon.Information);
+                return;
+            }
+            string a = Grid2.SelectedRowID;
+            int iii = Grid2.SelectedRowIndex;
+
+            JArray upJson = Grid2.GetMergedData();
+            DataTable da = new DataTable();
+            for (int i = 0; i < upJson.Count; i++)
+            {
+
+                if (upJson[i]["status"].ToString() != "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
+                {
+                    int _id = ConvertHelper.Cint(upJson[i]["values"]["Id01"].ToString());
+                    FineUI.Alert.ShowInParent(_id.ToString(), FineUI.MessageBoxIcon.Information);
+                    Grid2.DeleteSelectedRows();
+                    TAKEIN01Bll.GetInstence().Delete(this, _id);
+                    //hidORDDEP_ID.Text = "";
+                    break;
+                }
+                else if (upJson[i]["status"].ToString() == "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
+                {
+                    Grid2.DeleteSelectedRows();
+                    //hidORDDEP_ID.Text = "";
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
         /// 商品查询
         /// </summary>
         /// <param name="sender"></param>
@@ -872,7 +929,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         }
         #endregion
 
-        #region WINDOW4 引入出货订单
+        #region WINDOW4 引入采购订单
         protected void ButtonOrderSearch_Click(Object sender, EventArgs e)
         {
             FineUI.Grid grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;

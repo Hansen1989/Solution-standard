@@ -188,8 +188,31 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="status"></param>
         public void OrderStatus(IN_BACK00 model)
         {
-
             OrderStatus2(model);
+        }
+
+        /// <summary>
+        /// 订单未引入出货单的情况
+        /// </summary>
+        /// <param name="model"></param>
+        public void OrderStatus1(IN_BACK00 model)
+        {
+            var _IB_ID = model.IB_ID;
+            var model2 = new OUT_BACK00(x => x.Exported_ID == _IB_ID);
+            if (model2.Id > 0)
+            {
+                Grid2ColumnEdit(2);
+                ButtonYR.Text = "取消引入";
+                Toolbar21111.Enabled = false;
+                return;
+            }
+            else
+            {
+                ButtonYR.Text = "引入";
+                Grid2ColumnEdit(1);
+                Toolbar21111.Enabled = true;
+                return;
+            }
         }
         public void OrderStatus2(IN_BACK00 model)
         {
@@ -200,6 +223,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             switch (model.STATUS)
             {
                 case 1:
+                    OrderStatus1(model);
                     ButtonSave.Enabled = false;
                     ButtonEdit.Enabled = true;
                     ButtonCancel.Enabled = true;
@@ -249,6 +273,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCheck.Enabled = false;
                     ButtonDetailAdd.Enabled = false;
                     break;
+            }
+            var model2 = new IN_BACK01(x => x.IB_ID == model.IB_ID);
+
+            if (!(model2 == null || String.IsNullOrEmpty(model2.IB_ID)))
+            {
+                ButtonYR.Enabled = false;
             }
         }
 
@@ -322,6 +352,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="e"></param>
         public void BtnYR_Click(Object sender, EventArgs e)
         {
+            if (ButtonYR.Text.Equals("取消引入"))
+            {
+                SPs.IN_OUTBACK01_INBACK01_Cancel(tbxIB_ID.Text);
+                FineUI.Alert.ShowInParent("取消引入成功", FineUI.MessageBoxIcon.Information);
+                return;
+            }
             FineUI.DatePicker wst = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpSt") as FineUI.DatePicker;
             FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpEt") as FineUI.DatePicker;
             wst.SelectedDate = DateTime.Now.Date.AddDays(-1);
@@ -651,6 +687,44 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             B_BtnSearchCon.Hidden = false;
             B_BtnAddCon.Hidden = false;
             Window3.Hidden = false;
+        }
+
+        /// <summary>
+        /// 明细删除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void btn_DetailDelete(Object sender, EventArgs e)
+        {
+            string[] eCell = Grid2.SelectedCell;
+            if (eCell == null)
+            {
+                FineUI.Alert.ShowInParent("请先选中一个删除项", FineUI.MessageBoxIcon.Information);
+                return;
+            }
+            string a = Grid2.SelectedRowID;
+
+            JArray upJson = Grid2.GetMergedData();
+            DataTable da = new DataTable();
+            for (int i = 0; i < upJson.Count; i++)
+            {
+
+                if (upJson[i]["status"].ToString() != "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
+                {
+                    int _id = ConvertHelper.Cint(upJson[i]["values"]["Id01"].ToString());
+                    //FineUI.Alert.ShowInParent(_id.ToString(), FineUI.MessageBoxIcon.Information);
+                    Grid2.DeleteSelectedRows();
+                    IN_BACK01Bll.GetInstence().Delete(this, _id);
+                    //hidORDDEP_ID.Text = "";
+                    break;
+                }
+                else if (upJson[i]["status"].ToString() == "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
+                {
+                    Grid2.DeleteSelectedRows();
+                    //hidORDDEP_ID.Text = "";
+                    break;
+                }
+            }
         }
 
         /// <summary>

@@ -216,6 +216,22 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("endTime",endTime,DbType.DateTime);
             return sp;
         }
+        public static StoredProcedure IN_ORDER00_OUT00(string ORDER_ID,string OUT_ID,string SHOP_ID){
+            StoredProcedure sp=new StoredProcedure("IN_ORDER00_OUT00");
+			
+
+            sp.Command.AddParameter("ORDER_ID",ORDER_ID,DbType.AnsiString);
+            sp.Command.AddParameter("OUT_ID",OUT_ID,DbType.AnsiString);
+            sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure IN_ORDER00_OUT00_Cancel(string OUT_ID){
+            StoredProcedure sp=new StoredProcedure("IN_ORDER00_OUT00_Cancel");
+			
+
+            sp.Command.AddParameter("OUT_ID",OUT_ID,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure IN_OUT01_IN01(string OUT_ID,string IN_ID,string SHOP_ID){
             StoredProcedure sp=new StoredProcedure("IN_OUT01_IN01");
 			
@@ -234,6 +250,13 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
             return sp;
         }
+        public static StoredProcedure IN_OUTBACK01_INBACK01_Cancel(string IB_ID){
+            StoredProcedure sp=new StoredProcedure("IN_OUTBACK01_INBACK01_Cancel");
+			
+
+            sp.Command.AddParameter("IB_ID",IB_ID,DbType.AnsiString);
+            return sp;
+        }
         public static StoredProcedure IN_Purchase00_TAKEIN11(string Purchase_ID,string TAKEIN_ID,string SHOP_ID){
             StoredProcedure sp=new StoredProcedure("IN_Purchase00_TAKEIN11");
 			
@@ -241,6 +264,13 @@ namespace Solution.DataAccess.DataModel{
             sp.Command.AddParameter("Purchase_ID",Purchase_ID,DbType.AnsiString);
             sp.Command.AddParameter("TAKEIN_ID",TAKEIN_ID,DbType.AnsiString);
             sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure IN_Purchase00_TAKEIN11_Cancel(string TAKEIN_ID){
+            StoredProcedure sp=new StoredProcedure("IN_Purchase00_TAKEIN11_Cancel");
+			
+
+            sp.Command.AddParameter("TAKEIN_ID",TAKEIN_ID,DbType.AnsiString);
             return sp;
         }
         public static StoredProcedure Insert_PRODUCT01(string PROD_ID,string CRT_USER_ID){
@@ -256,6 +286,14 @@ namespace Solution.DataAccess.DataModel{
 			
 
             sp.Command.AddParameter("IB_ID",IB_ID,DbType.AnsiString);
+            return sp;
+        }
+        public static StoredProcedure Inventory00_Adjust00(string SHOP_ID,string INV_ID){
+            StoredProcedure sp=new StoredProcedure("Inventory00_Adjust00");
+			
+
+            sp.Command.AddParameter("SHOP_ID",SHOP_ID,DbType.AnsiString);
+            sp.Command.AddParameter("INV_ID",INV_ID,DbType.AnsiString);
             return sp;
         }
         public static StoredProcedure LeadIntoProductPlanList(string beginTime,string endTime,string isChoseTime,string shopId,string userId){

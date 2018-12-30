@@ -605,6 +605,44 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         }
 
         /// <summary>
+        /// 明细删除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void btn_DetailDelete(Object sender, EventArgs e)
+        {
+            string[] eCell = Grid2.SelectedCell;
+            if (eCell == null)
+            {
+                FineUI.Alert.ShowInParent("请先选中一个删除项", FineUI.MessageBoxIcon.Information);
+                return;
+            }
+            string a = Grid2.SelectedRowID;
+
+            JArray upJson = Grid2.GetMergedData();
+            DataTable da = new DataTable();
+            for (int i = 0; i < upJson.Count; i++)
+            {
+
+                if (upJson[i]["status"].ToString() != "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
+                {
+                    int _id = ConvertHelper.Cint(upJson[i]["values"]["Id01"].ToString());
+                    //FineUI.Alert.ShowInParent(_id.ToString(), FineUI.MessageBoxIcon.Information);
+                    Grid2.DeleteSelectedRows();
+                    OUT_BACK01Bll.GetInstence().Delete(this, _id);
+                    //hidORDDEP_ID.Text = "";
+                    break;
+                }
+                else if (upJson[i]["status"].ToString() == "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
+                {
+                    Grid2.DeleteSelectedRows();
+                    //hidORDDEP_ID.Text = "";
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
         /// 商品查询
         /// </summary>
         /// <param name="sender"></param>

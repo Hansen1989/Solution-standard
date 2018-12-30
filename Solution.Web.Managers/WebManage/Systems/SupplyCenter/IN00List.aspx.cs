@@ -219,11 +219,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             if (model2.Id > 0)
             {
                 Grid2ColumnEdit(2);
+                ButtonYR.Text = "取消引入";
                 Toolbar21111.Enabled = false;
                 return;
             }
             else
             {
+                ButtonYR.Text = "引入";
                 Grid2ColumnEdit(1);
                 Toolbar21111.Enabled = true;
                 return;
@@ -359,6 +361,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="e"></param>
         public void BtnYR_Click(Object sender, EventArgs e)
         {
+            if (ButtonYR.Text.Equals("取消引入"))
+            {
+                SPs.IN_ORDER00_OUT00_Cancel(tbxIN_ID.Text);
+                FineUI.Alert.ShowInParent("取消引入成功", FineUI.MessageBoxIcon.Information);
+                return;
+            }
             FineUI.DatePicker wst = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpSt") as FineUI.DatePicker;
             FineUI.DatePicker wet = Window4.FindControl("PanelGrid5").FindControl("Panel_Search2").FindControl("dpEt") as FineUI.DatePicker;
             wst.SelectedDate = DateTime.Now.Date.AddDays(-100);

@@ -211,11 +211,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             var model2 = new ORDER00(x => x.EXPORTED_ID == _OUT_ID);
             if (model2.Id > 0)
             {
+                ButtonYR.Enabled = true;
+                ButtonYR.Text = "取消引入";
                 Toolbar21111.Enabled = false;
                 return;
             }
             else
             {
+                ButtonYR.Text = "引入";
+                ButtonYR.Enabled = true;
                 Toolbar21111.Enabled = true;
                 return;
             }
@@ -391,6 +395,12 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         {
             string _shopid = ddlIN_SHOP.SelectedValue;
             string _stock_id = ddlSTOCK_ID.SelectedValue;
+            if (ButtonYR.Text.Equals("取消引入"))
+            {
+                SPs.IN_ORDER00_OUT00_Cancel(tbxOUT_ID.Text);
+                FineUI.Alert.ShowInParent("取消引入成功", FineUI.MessageBoxIcon.Information);
+                return;
+            }
             if (string.IsNullOrEmpty(_shopid))
             {
                 FineUI.Alert.ShowInParent("到货分店不能为空", FineUI.MessageBoxIcon.Information);
@@ -757,16 +767,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 if (upJson[i]["status"].ToString() != "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
                 {
                     int _id = ConvertHelper.Cint(upJson[i]["values"]["Id01"].ToString());
-                    //FineUI.Alert.ShowInParent(_id.ToString(), FineUI.MessageBoxIcon.Information);
                     Grid2.DeleteSelectedRows();
                     OUT01Bll.GetInstence().Delete(this, _id);
-                    //hidORDDEP_ID.Text = "";
                     break;
                 }
                 else if (upJson[i]["status"].ToString() == "newadded" && upJson[i]["id"].ToString() == eCell[0].ToString())
                 {
                     Grid2.DeleteSelectedRows();
-                    //hidORDDEP_ID.Text = "";
                     break;
                 }
             }
@@ -1059,76 +1066,85 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             return orderCon;
         }
 
-
         protected void ButtonOrderAdd_Click(Object sender, EventArgs e)
         {
             FineUI.Grid Grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
             int[] selections = Grid4.SelectedRowIndexArray;
-            
-            string _Order_id = Grid4.DataKeys[selections[0]][0].ToString();
             //tbxRELATE_ID.Text = Grid4.DataKeys[0][0].ToString();
-            //foreach (int i in selections)
-            //{
-                List<ConditionFun.SqlqueryCondition> order00con = new List<ConditionFun.SqlqueryCondition>();
-                order00con.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER01Table.ORDER_ID, Comparison.Equals, _Order_id, false, false));
-                List<string> colList = new List<string>();
-                colList.Add("SHOP_ID");
-                colList.Add("PROD_ID");
-                colList.Add("QUANTITY");
-                colList.Add("STD_UNIT");
-                colList.Add("STD_CONVERT");
-                colList.Add("STD_QUAN");
-                colList.Add("STD_PRICE");
-                colList.Add("COST_PRICE");
-                colList.Add("PROD_NAME1");
-                colList.Add("SHOP_NAME1");
-                DataTable da = V_ORDER01_PRODUCT01Bll.GetInstence().GetDataTable(false, 0, colList, 0, 0, order00con, null);
-
-                foreach (DataRow dr in da.Rows)
-                {
-                    int rowCount = Grid2.Rows.Count;
-                    JObject deObject = new JObject();
-                    deObject.Add("Id01", "0");
-                    deObject.Add("SHOP_ID01", dr["SHOP_ID"].ToString());
-                    deObject.Add("SHOP_NAME101", dr["SHOP_NAME1"].ToString());
-                    deObject.Add("OUT_ID01", tbxOUT_ID.Text);
-                    deObject.Add("SNo01", rowCount + 1);
-                    deObject.Add("PROD_ID01", dr["PROD_ID"].ToString());
-                    deObject.Add("PROD_NAME01", dr["SHOP_NAME1"].ToString());
-                    deObject.Add("QUANTITY01", dr["QUANTITY"].ToString());
-                    deObject.Add("STD_UNIT01", dr["STD_UNIT"].ToString());
-                    deObject.Add("STD_CONVERT01", dr["STD_CONVERT"].ToString());
-                    deObject.Add("STD_QUAN01", dr["STD_QUAN"].ToString());
-                    deObject.Add("STD_PRICE01", dr["STD_PRICE"].ToString());
-                    deObject.Add("COST01", dr["COST_PRICE"].ToString());
-                    deObject.Add("QUAN101", dr["STD_QUAN"].ToString());
-                    deObject.Add("QUAN201", dr["STD_QUAN"].ToString());
-                    deObject.Add("MEMO01", "");
-                    deObject.Add("BAT_NO", "");
-                    Grid2.AddNewRecord(deObject, true);
-                    rowCount = rowCount + 1;
-                }
-                var modelOrder = new ORDER00(x => x.ORDER_ID == _Order_id);
-                modelOrder.EXPORTED_ID = tbxOUT_ID.Text;
-                modelOrder.EXPORTED = 1;
-                modelOrder.SetIsNew(false);
-                ORDER00Bll.GetInstence().Save(this,modelOrder);
-
-                string result = DetailEdit();
-                if (String.IsNullOrEmpty(result))
-                {
-                    result = MAINEdit();
-                }
-                if (!String.IsNullOrEmpty(result))
-                {
-                    FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
-                }
-                else
-                {
-                    FineUI.Alert.ShowInParent("引入成功", FineUI.MessageBoxIcon.Error);
-                }
-            //}
+            DataTable Inda = SPs.IN_ORDER00_OUT00(Grid4.DataKeys[selections[0]][0].ToString(), tbxOUT_ID.Text, ddlSHOP_NAME.SelectedValue).ExecuteDataTable();
+            Grid2.DataSource = Inda;
+            Grid2.DataBind();
+            Toolbar21111.Enabled = false;
         }
+        //protected void ButtonOrderAdd_Click(Object sender, EventArgs e)
+        //{
+        //    FineUI.Grid Grid4 = Window4.FindControl("PanelGrid5").FindControl("Grid4") as FineUI.Grid;
+        //    int[] selections = Grid4.SelectedRowIndexArray;
+
+        //    string _Order_id = Grid4.DataKeys[selections[0]][0].ToString();
+        //    //tbxRELATE_ID.Text = Grid4.DataKeys[0][0].ToString();
+        //    //foreach (int i in selections)
+        //    //{
+        //        List<ConditionFun.SqlqueryCondition> order00con = new List<ConditionFun.SqlqueryCondition>();
+        //        order00con.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, ORDER01Table.ORDER_ID, Comparison.Equals, _Order_id, false, false));
+        //        List<string> colList = new List<string>();
+        //        colList.Add("SHOP_ID");
+        //        colList.Add("PROD_ID");
+        //        colList.Add("QUANTITY");
+        //        colList.Add("STD_UNIT");
+        //        colList.Add("STD_CONVERT");
+        //        colList.Add("STD_QUAN");
+        //        colList.Add("STD_PRICE");
+        //        colList.Add("COST_PRICE");
+        //        colList.Add("PROD_NAME1");
+        //        colList.Add("SHOP_NAME1");
+        //        DataTable da = V_ORDER01_PRODUCT01Bll.GetInstence().GetDataTable(false, 0, colList, 0, 0, order00con, null);
+
+        //        foreach (DataRow dr in da.Rows)
+        //        {
+        //            int rowCount = Grid2.Rows.Count;
+        //            JObject deObject = new JObject();
+        //            deObject.Add("Id01", "0");
+        //            deObject.Add("SHOP_ID01", dr["SHOP_ID"].ToString());
+        //            deObject.Add("SHOP_NAME101", dr["SHOP_NAME1"].ToString());
+        //            deObject.Add("OUT_ID01", tbxOUT_ID.Text);
+        //            deObject.Add("SNo01", rowCount + 1);
+        //            deObject.Add("PROD_ID01", dr["PROD_ID"].ToString());
+        //            deObject.Add("PROD_NAME01", dr["SHOP_NAME1"].ToString());
+        //            deObject.Add("QUANTITY01", dr["QUANTITY"].ToString());
+        //            deObject.Add("STD_UNIT01", dr["STD_UNIT"].ToString());
+        //            deObject.Add("STD_CONVERT01", dr["STD_CONVERT"].ToString());
+        //            deObject.Add("STD_QUAN01", dr["STD_QUAN"].ToString());
+        //            deObject.Add("STD_PRICE01", dr["STD_PRICE"].ToString());
+        //            deObject.Add("COST01", dr["COST_PRICE"].ToString());
+        //            deObject.Add("QUAN101", dr["STD_QUAN"].ToString());
+        //            deObject.Add("QUAN201", dr["STD_QUAN"].ToString());
+        //            deObject.Add("MEMO01", "");
+        //            deObject.Add("BAT_NO", "");
+        //            Grid2.AddNewRecord(deObject, true);
+        //            rowCount = rowCount + 1;
+        //        }
+        //        var modelOrder = new ORDER00(x => x.ORDER_ID == _Order_id);
+        //        modelOrder.EXPORTED_ID = tbxOUT_ID.Text;
+        //        modelOrder.EXPORTED = 1;
+        //        modelOrder.SetIsNew(false);
+        //        ORDER00Bll.GetInstence().Save(this,modelOrder);
+
+        //        string result = DetailEdit();
+        //        if (String.IsNullOrEmpty(result))
+        //        {
+        //            result = MAINEdit();
+        //        }
+        //        if (!String.IsNullOrEmpty(result))
+        //        {
+        //            FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
+        //        }
+        //        else
+        //        {
+        //            FineUI.Alert.ShowInParent("引入成功", FineUI.MessageBoxIcon.Error);
+        //        }
+        //    //}
+        //}
         #endregion
 
     }
