@@ -1690,7 +1690,7 @@ namespace Solution.Logic.Managers {
             else
             {
                 //从数据库中查询
-                var model = OnlineUsers.SingleOrDefault(x => x.Id == pkValue);
+                var model = OnlineUsers.SingleOrDefault(x => x.Manager_Id == pkValue);
                 return model == null ? "" : model.Position_Name;
             }
         }
