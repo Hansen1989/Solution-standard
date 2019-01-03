@@ -40,13 +40,13 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter {
         protected global::FineUI.Panel panel4;
         
         /// <summary>
-        /// panelCenterRegion 控件。
+        /// areaPanel 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Panel panelCenterRegion;
+        protected global::FineUI.Panel areaPanel;
         
         /// <summary>
         /// queryForm 控件。
@@ -157,22 +157,22 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter {
         protected global::FineUI.Grid resultGrid;
         
         /// <summary>
-        /// receivableDetail 控件。
+        /// directStorePanel 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Panel receivableDetail;
+        protected global::FineUI.Panel directStorePanel;
         
         /// <summary>
-        /// itemGrid 控件。
+        /// directStoreForm 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Grid itemGrid;
+        protected global::FineUI.Form directStoreForm;
         
         /// <summary>
         /// archiveWindow 控件。
@@ -191,6 +191,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.Button ArchiveButton;
+        
+        /// <summary>
+        /// archivePreviewWindow 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Window archivePreviewWindow;
         
         /// <summary>
         /// confirmPayWindow 控件。

@@ -53,6 +53,8 @@
     <Compile Include="DbHelper\SelectHelper.cs" />
     <Compile Include="DbHelper\UpdateHelper.cs" />
     <Compile Include="Model\EnumObject\BillType.cs" />
+    <Compile Include="Model\EnumObject\ShopKind.cs" />
+    <Compile Include="Model\ObjectEntity\DueMain.cs" />
     <Compile Include="Model\ObjectEntity\ReceiveBillMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubSonic\ActiveRecord.cs">

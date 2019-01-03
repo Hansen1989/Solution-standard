@@ -610,11 +610,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
             }
             if(backTotal > 0)
             {
-                Alert.Show(string.Format("汇整成功, 出货单:{0}条，退货单:{1}条。", outTotal, backTotal));
+                Alert.Show(string.Format("汇整完成, 出货单:{0}条，退货单:{1}条。", outTotal, backTotal));
             }
             else
             {
-                Alert.Show(string.Format("汇整成功, 出货单:{0}条。", outTotal));
+                Alert.Show(string.Format("汇整完成, 出货单:{0}条。", outTotal));
             }
             previewWindow.Hidden = true;
         }
