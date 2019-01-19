@@ -3,7 +3,8 @@ using DotNet.Utilities.Constants;
 using FineUI;
 using Solution.DataAccess.DataModel;
 using Solution.DataAccess.DbHelper;
-
+using Solution.DataAccess.Model.EnumObject;
+using Solution.DataAccess.Model.ObjectEntity;
 using Solution.Logic.Managers;
 using Solution.Web.Managers.WebManage.Application;
 using SubSonic.Query;
@@ -59,6 +60,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
         /// </summary>
         private decimal thisTimeBillAmount = 0;
 
+        /// <summary>
+        /// 登陆的店铺类型
+        /// </summary>
+        private ShopKind shopKind;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -71,9 +77,26 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
         /// 加载数据
         /// </summary>
         public override void LoadData()
+        {            
+            switch (shopKind)
+            {
+                case ShopKind.Area:
+                    LoadAread();
+                    break;
+                case ShopKind.DirectStore:
+                case ShopKind.Franchisee:
+                    LoadShopData();
+                    break;
+            }            
+        }
+
+        /// <summary>
+        /// 加载区域中心的数据
+        /// </summary>
+        private void LoadAread()
         {
             int status = 0;
-            if(billStatus.SelectedIndex > 0)
+            if (billStatus.SelectedIndex > 0)
             {
                 status = Convert.ToInt32(billStatus.SelectedValue);
             }
@@ -83,11 +106,11 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
             conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "SHOP_ID", Comparison.Equals, shopId));
 
             //应付账单状态
-            if(status > 0)
+            if (status > 0)
             {
                 conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, "STATUS", Comparison.Equals, status));
             }
-            
+
             //供应商
             if (supDropdown.SelectedIndex >= 0)
             {
@@ -95,13 +118,21 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
             }
 
             //进货单单号
-            if(inId.Text.Trim().Length > 0)
+            if (inId.Text.Trim().Length > 0)
             {
                 conditionList.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, "TAKEIN_ID", Comparison.Like, inId.Text.Trim() + "%"));
             }
 
             //绑定查询
-            DUE00Bll.GetInstence().BindGrid(resultGrid, 0, 30, conditionList);
+            DUE00Bll.GetInstence().BindGrid(resultGrid, 0, 2000, conditionList);
+        }
+
+        /// <summary>
+        /// 加载店铺的数据
+        /// </summary>
+        private void LoadShopData()
+        {
+
         }
 
 
@@ -113,19 +144,52 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
             //获取用户所属shop
             shopId = OlUser.SHOP_ID;
 
+            var shop = new SHOP00(x => x.SHOP_ID == shopId);
+            shopKind = (ShopKind)shop.SHOP_KIND;
+            switch (shopKind)
+            {
+                case ShopKind.Area:
+                    InitArea();
+                    break;
+                case ShopKind.DirectStore:
+                case ShopKind.Franchisee:
+                    InitShop();
+                    break;
+            }
+
+        }
+        #endregion
+
+
+        /// <summary>
+        /// 门店初始化
+        /// </summary>
+        private void InitShop()
+        {
+            areaPanel.Hidden = true;
+            directStorePanel.Hidden = false;
+        }
+
+        /// <summary>
+        /// 区域中心初始化
+        /// </summary>
+        private void InitArea()
+        {
+            areaPanel.Hidden = false;
+            directStorePanel.Hidden = true;
             List<ConditionFun.SqlqueryCondition> wheres = new List<ConditionFun.SqlqueryCondition>();
             wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "SHOP_ID", Comparison.Equals, shopId, false, false));
 
             supList = selectHelper.Select<SHOP_SUPPLIER_RELATION>(false, 0, null, wheres).ExecuteTypedList<SHOP_SUPPLIER_RELATION>();
 
-            if(supList != null && supList.Count > 0)
+            if (supList != null && supList.Count > 0)
             {
-                foreach(SHOP_SUPPLIER_RELATION ssr in supList)
+                foreach (SHOP_SUPPLIER_RELATION ssr in supList)
                 {
                     supDic[ssr.SUP_ID] = ssr.SUP_NAME;
                 }
             }
-            
+
             supDropdown.DataTextField = "SUP_NAME";
             supDropdown.DataValueField = "SUP_ID";
             supDropdown.DataSource = supList;
@@ -138,9 +202,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
 
             DatePicker outEndDate = archiveWindow.FindControl("archiveDatePanel").FindControl("inEndDate") as DatePicker;
             outEndDate.SelectedDate = ConvertHelper.StringToDatetime(DateTime.Now.ToString("yyyy-MM-dd 00:00:00"));
-
         }
-        #endregion
 
         /// <summary>
         /// 汇整进货单
@@ -164,169 +226,158 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
 
             List<ConditionFun.SqlqueryCondition> wheres = QueryTakeinListCondition(shopId, dpStart.Text, dpEnd.Text);
 
-            while (true)
-            {                
-                List<TAKEIN10> inList = selectHelper.Select<TAKEIN10>(false, 0, null, 1, 100, wheres).ExecuteTypedList<TAKEIN10>();
-                if(inList == null || inList.Count == 0)
+
+            List<TAKEIN10> inList = selectHelper.Select<TAKEIN10>(false, 0, null, 1, 2000, wheres).ExecuteTypedList<TAKEIN10>();
+            if (inList == null || inList.Count == 0)
+            {
+                Alert.Show("选定时间段未查询到数据!");
+                return;
+            }
+
+            List<DueMain> payList = new List<DueMain>();
+            
+            //遍历进货单
+            foreach (TAKEIN10 row in inList)
+            {
+                try
                 {
-                    break;
-                }
-                //遍历进货单
-                foreach (TAKEIN10 row in inList)
-                {
+                    //更新进货单
+                    //int retValue = updaterHelper.Update(string.Format("update TAKEIN10 set STATUS = 5, LOCKED = 1 where Id = {0}", row.Id));
+                    //更新成功 则汇整进入总店应付账单表
+
+                    List<ConditionFun.SqlqueryCondition> conditions = new List<ConditionFun.SqlqueryCondition>();
+                    conditions.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "SHOP_ID", Comparison.Equals, row.SHOP_ID, false, false));
+                    conditions.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, "TAKEIN_ID", Comparison.Equals, row.TAKEIN_ID, false, false));
+                    //查询进货单明细
+                    List<TAKEIN11> itemList = selectHelper.Select<TAKEIN11>(false, 0, null, conditions).ExecuteTypedList<TAKEIN11>();
+                    if (itemList == null || itemList.Count == 0)
+                    {
+                        CommonBll.WriteLog(string.Format("进货单{0}未查询到明细", row.TAKEIN_ID), null);
+                        continue;
+                    }
+
+                    //采购总金额
+                    decimal amount = 0;
+                    //税额
+                    decimal tax = 0;
+                    //
+                    foreach (TAKEIN11 item in itemList)
+                    {
+                        DUE01 payItem = new DUE01();
+                        //批次号
+                        payItem.BAT_NO = item.BAT_NO;
+                        //采购金额
+                        payItem.COST = item.STD_PRICE * item.STD_QUAN;
+
+                        //税额
+                        payItem.TAX = item.Tax;
+
+                        //采购金额
+                        amount += payItem.COST;
+                        tax += payItem.TAX;
+                    }
+
+                    DueMain payMain = new DueMain();
+
+                    payMain.Id = row.Id;
+
+                    //进货单审核日期
+                    payMain.APP_DATETIME = row.APP_DATETIME;
+                    //进货单审核人
+                    payMain.APP_USER = row.APP_USER;
+                    //应付账单创建日期
+                    payMain.CRT_DATETIME = DateTime.Now;
+                    //应付账单创建人
+                    payMain.CRT_USER_ID = userId;
+                    //进货单日期
+                    payMain.INPUT_DATE = row.INPUT_DATE;
+                    //发票
+                    payMain.INVOICE_ID = row.INVOICE_ID;
+                    //应付账单最后修改日期
+                    payMain.LAST_UPDATE = DateTime.Now;
+                    //备注
+                    payMain.Memo = row.Memo;
+                    //更新时间
+                    payMain.MOD_DATETIME = DateTime.Now;
+                    //修改人
+                    payMain.MOD_USER_ID = userId;
+                    //预付款
+                    payMain.PRE_PAY = row.PRE_PAY;
+                    //预付款单号
+                    payMain.PRE_PAY_ID = row.PRE_PAY_ID;
+                    //关联ID
+                    payMain.RELATE_ID = row.RELATE_ID;
+                    //进货分店编号
+                    payMain.SHOP_ID = row.SHOP_ID;
+                    //待核准状态
+                    payMain.STATUS = 1;
+                    //供应商编号
+                    payMain.SUP_ID = row.SUP_ID;
+                    //进货单号
+                    payMain.TAKEIN_ID = row.TAKEIN_ID;
+                    //进货类型
+                    payMain.TAKEIN_TYPE = 1; //一般进货
+                                             //进货单金额
+                    payMain.TOT_AMOUNT = amount;
+                    //进货单数量
+                    payMain.TOT_QTY = row.TOT_QTY;
+                    //税额
+                    payMain.TOT_TAX = tax;
+                    payMain.USER_ID = userId;
+
+                    //保存主信息
+                    //payMain.Save();
+                    payList.Add(payMain);
+
+                    //供应商关系已经存在
+                    if (supDic.ContainsKey(payMain.SUP_ID))
+                    {
+                        continue;
+                    }
                     try
                     {
-                        //更新进货单
-                        int retValue = updaterHelper.Update(string.Format("update TAKEIN10 set STATUS = 5, LOCKED = 1 where Id = {0}", row.Id));
-                        //更新成功 则汇整进入总店应付账单表
-                        if (retValue == 1)
+                        //查询供应商
+                        var sup = selectHelper.SelectSingle<SUPPLIERS>(false, null,
+                            new List<ConditionFun.SqlqueryCondition>() { new ConditionFun.SqlqueryCondition(ConstraintType.Where, "SUP_ID", Comparison.Equals, payMain.SUP_ID) });
+                        if (sup != null)
                         {
-                            List<ConditionFun.SqlqueryCondition> conditions = new List<ConditionFun.SqlqueryCondition>();
-                            conditions.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "SHOP_ID", Comparison.Equals, row.SHOP_ID, false, false));
-                            conditions.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, "TAKEIN_ID", Comparison.Equals, row.TAKEIN_ID, false, false));
-                            //查询进货单明细
-                            List<TAKEIN11> itemList = selectHelper.Select<TAKEIN11>(false, 0, null, conditions).ExecuteTypedList<TAKEIN11>();
-                            if(itemList == null || itemList.Count == 0)
-                            {
-                                CommonBll.WriteLog(string.Format("进货单{0}未查询到明细", row.TAKEIN_ID), null);
-                                continue;
-                            }
+                            //缓存供应商
+                            supDic[sup.SUP_ID] = sup.SUP_NAME;
+                            //分店和供应商关系
+                            SHOP_SUPPLIER_RELATION relation = new SHOP_SUPPLIER_RELATION();
+                            relation.CRT_DATETIME = DateTime.Now;
+                            relation.MEMO = "来源汇整进货单";
+                            relation.SHOP_ID = payMain.SHOP_ID;
+                            relation.SUP_ID = sup.SUP_ID;
+                            relation.SUP_NAME = sup.SUP_NAME;
 
-                            //采购总金额
-                            decimal amount = 0;
-                            //税额
-                            decimal tax = 0;
+                            //保存关联关系
+                            relation.Save();
+
                             //
-                            foreach(TAKEIN11 item in itemList)
-                            {
-                                DUE01 payItem = new DUE01();
-                                //批次号
-                                payItem.BAT_NO = item.BAT_NO;
-                                //采购金额
-                                payItem.COST = item.STD_PRICE * item.STD_QUAN;
-                                //折价金额
-                                payItem.ITEM_DISC_AMT = item.Item_DISC_Amt;
-                                //备注
-                                payItem.MEMO = item.MEMO;
-                                //商品编号
-                                payItem.PROD_ID = item.PROD_ID;
-                                //采购量
-                                payItem.QUAN1 = item.QUAN1;
-                                //取消量
-                                payItem.QUAN2 = item.QUAN2;
-                                //分店编号
-                                payItem.SHOP_ID = item.SHOP_ID;
-                                //序号
-                                payItem.SNO = item.SNo;
-                                //标准单价
-                                payItem.STD_PRICE = item.STD_PRICE;
-                                //验收量
-                                payItem.STD_QUAN = item.STD_QUAN;
-                                //验收单位
-                                payItem.STD_UNIT = item.STD_UNIT;
-                                //进货单编号
-                                payItem.TAKEIN_ID = item.TAKEIN_ID;
-                                //税额
-                                payItem.TAX = item.Tax;
+                            supList.Add(relation);
 
-                                //采购金额
-                                amount += payItem.COST;
-
-
-                                payItem.Save();
-                            }
-
-                            DUE00 payMain = new DUE00();
-                            //进货单审核日期
-                            payMain.APP_DATETIME = row.APP_DATETIME;
-                            //进货单审核人
-                            payMain.APP_USER = row.APP_USER;
-                            //应付账单创建日期
-                            payMain.CRT_DATETIME = DateTime.Now;
-                            //应付账单创建人
-                            payMain.CRT_USER_ID = userId;
-                            //进货单日期
-                            payMain.INPUT_DATE = row.INPUT_DATE;
-                            //发票
-                            payMain.INVOICE_ID = row.INVOICE_ID;
-                            //应付账单最后修改日期
-                            payMain.LAST_UPDATE = DateTime.Now;
-                            //备注
-                            payMain.Memo = row.Memo;
-                            //更新时间
-                            payMain.MOD_DATETIME = DateTime.Now;
-                            //修改人
-                            payMain.MOD_USER_ID = userId;
-                            //预付款
-                            payMain.PRE_PAY = row.PRE_PAY;
-                            //预付款单号
-                            payMain.PRE_PAY_ID = row.PRE_PAY_ID;
-                            //关联ID
-                            payMain.RELATE_ID = row.RELATE_ID;
-                            //进货分店编号
-                            payMain.SHOP_ID = row.SHOP_ID;
-                            //待核准状态
-                            payMain.STATUS = 1;
-                            //供应商编号
-                            payMain.SUP_ID = row.SUP_ID;
-                            //进货单号
-                            payMain.TAKEIN_ID = row.TAKEIN_ID;
-                            //进货类型
-                            payMain.TAKEIN_TYPE = 1; //一般进货
-                            //进货单金额
-                            payMain.TOT_AMOUNT = amount;
-                            //进货单数量
-                            payMain.TOT_QTY = row.TOT_QTY;
-                            //税额
-                            payMain.TOT_TAX = tax;
-                            payMain.USER_ID = userId;
-
-                            //保存主信息
-                            payMain.Save();
-
-                            //供应商关系已经存在
-                            if (supDic.ContainsKey(payMain.SUP_ID))
-                            {
-                                continue;
-                            }
-                            try
-                            {
-                                //查询供应商
-                                var sup = selectHelper.SelectSingle<SUPPLIERS>(false, null, 
-                                    new List<ConditionFun.SqlqueryCondition>() { new ConditionFun.SqlqueryCondition(ConstraintType.Where, "SUP_ID", Comparison.Equals, payMain.SUP_ID) });
-                                if(sup != null)
-                                {
-                                    //缓存供应商
-                                    supDic[sup.SUP_ID] = sup.SUP_NAME;
-                                    //分店和供应商关系
-                                    SHOP_SUPPLIER_RELATION relation = new SHOP_SUPPLIER_RELATION();
-                                    relation.CRT_DATETIME = DateTime.Now;
-                                    relation.MEMO = "来源汇整进货单";
-                                    relation.SHOP_ID = payMain.SHOP_ID;
-                                    relation.SUP_ID = sup.SUP_ID;
-                                    relation.SUP_NAME = sup.SUP_NAME;
-                                    
-                                    //保存关联关系
-                                    relation.Save();
-
-                                    //
-                                    supList.Add(relation);
-
-                                    supDropdown.DataBind();
-                                }
-                            }catch(Exception ex)
-                            {
-                                CommonBll.WriteLog("查询供应商出错", ex);
-                            }
-                            //
+                            supDropdown.DataBind();
                         }
                     }
                     catch (Exception ex)
                     {
-                        CommonBll.WriteLog(string.Format("汇整进货单{0}发生异常", row.TAKEIN_ID), ex);
-                    }                    
+                        CommonBll.WriteLog("查询供应商出错", ex);
+                    }
+                    //
+
+                }
+                catch (Exception ex)
+                {
+                    CommonBll.WriteLog(string.Format("汇整进货单{0}发生异常", row.TAKEIN_ID), ex);
                 }
             }
+
+            Grid previewGrid = archivePreviewWindow.FindControl("previewDataPanel").FindControl("previewDataGrid") as Grid;
+            previewGrid.DataSource = payList;
+            previewGrid.DataBind();
+
+            archivePreviewWindow.Hidden = false;
         }
 
 
@@ -426,27 +477,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
                 CommonBll.WriteLog("核准应付账单发生错误", e);
                 Alert.Show("核准失败,核准发生异常，详情请见日志");
             }
-        }
-
-        /// <summary>
-        /// 行点击
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void resultGrid_RowClick(object sender, GridRowClickEventArgs e)
-        {
-            GridRow row = resultGrid.Rows[e.RowIndex];
-            //分店编号
-            string shopId = row.DataKeys[3].ToString();
-            //出货单号
-            string takeInId = row.DataKeys[2].ToString();
-
-            List<ConditionFun.SqlqueryCondition> wheres = new List<ConditionFun.SqlqueryCondition>();
-            wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "SHOP_ID", Comparison.Equals, shopId));
-            wheres.Add(new ConditionFun.SqlqueryCondition(ConstraintType.And, "TAKEIN_ID", Comparison.Equals, takeInId));
-
-            DUE01Bll.GetInstence().BindGrid(itemGrid, 0, 100, wheres);
-        }
+        }        
 
         /// <summary>
         /// 弹出汇整界面
@@ -564,6 +595,128 @@ namespace Solution.Web.Managers.WebManage.Systems.SettlementCenter
             //更新数据库中未结账的记录
             Confirm.Show("确认结账", "", MessageBoxIcon.Question);
             
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void Preview_Ok_Click(object sender, EventArgs e)
+        {
+            //获取登录用户
+            var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
+
+            //登录名
+            string userId = OlUser.Manager_LoginName;
+
+            Grid previewGrid = archivePreviewWindow.FindControl("previewDataPanel").FindControl("previewDataGrid") as Grid;
+
+            int[] seelctedRows = previewGrid.SelectedRowIndexArray;
+            if (seelctedRows == null || seelctedRows.Length == 0)
+            {
+                Alert.Show("请选择需要确认的账单!");
+                return;
+            }
+
+            int total = 0;
+            foreach (int rowIndex in seelctedRows)
+            {
+                long id = (long)previewGrid.DataKeys[rowIndex][0];
+                try
+                {
+                    int retValue = updaterHelper.Update(string.Format("update TAKEIN10 set STATUS = 5, LOCKED = 1 where Id = {0}", id));
+                    if(retValue == 1)
+                    {
+                        //查询进货单主信息
+                        List<ConditionFun.SqlqueryCondition> where = new List<ConditionFun.SqlqueryCondition>();
+                        where.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "Id", Comparison.Equals, id, false, false));
+                        TAKEIN10 tAKEIN10 = selectHelper.SelectSingle<TAKEIN10>(true, null, where, null);
+                        if(tAKEIN10 == null)
+                        {
+                            CommonBll.WriteLog("", null);
+                            continue;
+                        }
+                        List<ConditionFun.SqlqueryCondition> condition = new List<ConditionFun.SqlqueryCondition>();
+                        condition.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "TAKEIN_ID", Comparison.Equals, id, false, false));
+                        List<TAKEIN11> itemList = selectHelper.Select<TAKEIN11>(false, 5000, null, 0, 5000, condition, null).ExecuteTypedList<TAKEIN11>();
+
+                        decimal amount = 0;
+                        decimal tax = 0;
+                        //
+                        foreach (TAKEIN11 item in itemList)
+                        {
+                            DUE01 payItem = new DUE01();
+                            //批次号
+                            payItem.BAT_NO = item.BAT_NO;
+                            //采购金额
+                            payItem.COST = item.STD_PRICE * item.STD_QUAN;
+
+                            //税额
+                            payItem.TAX = item.Tax;
+
+                            //采购金额
+                            amount += payItem.COST;
+                            tax += payItem.TAX;
+                        }
+
+                        DUE00 payMain = new DUE00();                        
+
+                        //进货单审核日期
+                        payMain.APP_DATETIME = tAKEIN10.APP_DATETIME;
+                        //进货单审核人
+                        payMain.APP_USER = tAKEIN10.APP_USER;
+                        //应付账单创建日期
+                        payMain.CRT_DATETIME = DateTime.Now;
+                        //应付账单创建人
+                        payMain.CRT_USER_ID = userId;
+                        //进货单日期
+                        payMain.INPUT_DATE = tAKEIN10.INPUT_DATE;
+                        //发票
+                        payMain.INVOICE_ID = tAKEIN10.INVOICE_ID;
+                        //应付账单最后修改日期
+                        payMain.LAST_UPDATE = DateTime.Now;
+                        //备注
+                        payMain.Memo = tAKEIN10.Memo;
+                        //更新时间
+                        payMain.MOD_DATETIME = DateTime.Now;
+                        //修改人
+                        payMain.MOD_USER_ID = userId;
+                        //预付款
+                        payMain.PRE_PAY = tAKEIN10.PRE_PAY;
+                        //预付款单号
+                        payMain.PRE_PAY_ID = tAKEIN10.PRE_PAY_ID;
+                        //关联ID
+                        payMain.RELATE_ID = tAKEIN10.RELATE_ID;
+                        //进货分店编号
+                        payMain.SHOP_ID = tAKEIN10.SHOP_ID;
+                        //待核准状态
+                        payMain.STATUS = 1;
+                        //供应商编号
+                        payMain.SUP_ID = tAKEIN10.SUP_ID;
+                        //进货单号
+                        payMain.TAKEIN_ID = tAKEIN10.TAKEIN_ID;
+                        //进货类型
+                        payMain.TAKEIN_TYPE = 1; //一般进货
+                                                 //进货单金额
+                        payMain.TOT_AMOUNT = amount;
+                        //进货单数量
+                        payMain.TOT_QTY = tAKEIN10.TOT_QTY;
+                        //税额
+                        payMain.TOT_TAX = tax;
+                        payMain.USER_ID = userId;
+
+                        //保存主信息
+                        payMain.Save();
+                        total++;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    CommonBll.WriteLog(string.Format("处理进货单[{0}]发生异常", id), ex);
+                }
+                Alert.Show(string.Format("汇整完成，总共{0}条，成功{1}条", seelctedRows.Length, total));
+            }
         }
     }
 }
