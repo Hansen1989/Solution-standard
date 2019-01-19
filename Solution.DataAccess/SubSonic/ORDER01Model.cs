@@ -198,16 +198,6 @@ namespace Solution.DataAccess.Model
 			get { return _MOD_USER_ID; }
 			set { _MOD_USER_ID = value; }
 		}
-
-		string _STD_TYPE = "";
-		/// <summary>
-		/// 
-		/// </summary>
-		public string STD_TYPE
-		{
-			get { return _STD_TYPE; }
-			set { _STD_TYPE = value; }
-		}
     } 
 
 }

@@ -308,10 +308,6 @@ namespace Solution.Logic.Managers {
 						model = list.SingleOrDefault(x => x.MOD_USER_ID == (string)value);
                         expression = x => x.MOD_USER_ID == (string)value;
                         break;
-					case "STD_TYPE" :
-						model = list.SingleOrDefault(x => x.STD_TYPE == (string)value);
-                        expression = x => x.STD_TYPE == (string)value;
-                        break;
 
                     default :
                         return null;
@@ -495,7 +491,6 @@ namespace Solution.Logic.Managers {
                 CRT_USER_ID = model.CRT_USER_ID,
                 MOD_DATETIME = model.MOD_DATETIME,
                 MOD_USER_ID = model.MOD_USER_ID,
-                STD_TYPE = model.STD_TYPE,
             };
         }
 
@@ -543,7 +538,6 @@ namespace Solution.Logic.Managers {
                 CRT_USER_ID = model.CRT_USER_ID,
                 MOD_DATETIME = model.MOD_DATETIME,
                 MOD_USER_ID = model.MOD_USER_ID,
-                STD_TYPE = model.STD_TYPE,
             };
         }
 
@@ -647,9 +641,6 @@ namespace Solution.Logic.Managers {
                     break;
 				case "MOD_USER_ID" :
 					model.MOD_USER_ID = (string)value;
-                    break;
-				case "STD_TYPE" :
-					model.STD_TYPE = (string)value;
                     break;
             }
 		}
@@ -1242,8 +1233,6 @@ namespace Solution.Logic.Managers {
 					return model.MOD_DATETIME;
 				case "MOD_USER_ID" :
 					return model.MOD_USER_ID;
-				case "STD_TYPE" :
-					return model.STD_TYPE;
 			}
 
 			return null;
