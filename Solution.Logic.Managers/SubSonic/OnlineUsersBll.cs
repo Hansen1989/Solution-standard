@@ -1680,6 +1680,7 @@ namespace Solution.Logic.Managers {
         /// <returns></returns>
         public string GetPosition_Name(Page page, int pkValue, bool isCache = true)
         {
+            string pk = pkValue.ToString();
             //判断是否启用缓存
             if (isCache && CommonBll.IsUseCache())
             {
@@ -1690,7 +1691,7 @@ namespace Solution.Logic.Managers {
             else
             {
                 //从数据库中查询
-                var model = OnlineUsers.SingleOrDefault(x => x.Id == pkValue);
+                var model = OnlineUsers.SingleOrDefault(x => x.Position_Id == pk);
                 return model == null ? "" : model.Position_Name;
             }
         }

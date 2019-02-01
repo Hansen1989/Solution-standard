@@ -225,17 +225,6 @@ namespace Solution.DataAccess.DataModel {
 	                MaxLength = 10,
 					PropertyName = "MOD_USER_ID"
                 });
-
-                Columns.Add(new DatabaseColumn("STD_TYPE", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.AnsiString,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 50,
-					PropertyName = "STD_TYPE"
-                });
                     
                 
                 
@@ -370,13 +359,6 @@ namespace Solution.DataAccess.DataModel {
             public IColumn MOD_USER_ID{
                 get{
                     return this.GetColumn("MOD_USER_ID");
-                }
-            }
-				
-            
-            public IColumn STD_TYPE{
-                get{
-                    return this.GetColumn("STD_TYPE");
                 }
             }
 				

@@ -168,14 +168,6 @@ namespace Solution.DataAccess.DataModel {
         			return "MOD_USER_ID";
       			}
 		    }
-			/// <summary>
-			/// 
-			/// </summary>
-   			public static string STD_TYPE{
-			      get{
-        			return "STD_TYPE";
-      			}
-		    }
                     
         }
 }

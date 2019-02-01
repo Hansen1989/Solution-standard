@@ -419,33 +419,36 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
 
                     k = k + 1;
 
-                    var model_1 = new ORDER01(x => x.SNo == k && x.ORDER_ID == txtORDER_ID.Text.Trim());
- 
-                    model_1.SNo = k;// rowIndex + 1;
+                    try
+                    {
 
-                    model_1.SHOP_ID = ddlShop.SelectedValue;
-                    model_1.ORDER_ID = txtORDER_ID.Text.Trim();
+                        var model_1 = new ORDER01(x => x.SNo == k && x.ORDER_ID == txtORDER_ID.Text.Trim());
+ 
+                        model_1.SNo = k;// rowIndex + 1;
+
+                        model_1.SHOP_ID = ddlShop.SelectedValue;
+                        model_1.ORDER_ID = txtORDER_ID.Text.Trim();
                      
-                    model_1.PROD_ID = values.Value<string>("PROD_ID");
-                    model_1.QUANTITY = 0;
-                    model_1.ON_QUAN = ConvertHelper.StringToDecimal(values.Value<string>("ON_QUAN"));
-                    model_1.QUAN1 = ConvertHelper.StringToDecimal(values.Value<string>("QUAN1"));//小计
-                    model_1.QUAN2 = 0;
-                    model_1.COST_PRICE = ConvertHelper.StringToDecimal(values.Value<string>("STD_PRICE"));
+                        model_1.PROD_ID = values.Value<string>("PROD_ID");
+                        model_1.QUANTITY = 0;
+                        model_1.ON_QUAN = ConvertHelper.StringToDecimal(values.Value<string>("ON_QUAN"));
+                        model_1.QUAN1 = ConvertHelper.StringToDecimal(values.Value<string>("QUAN1"));//小计
+                        model_1.QUAN2 = 0;
+                        model_1.COST_PRICE = ConvertHelper.StringToDecimal(values.Value<string>("STD_PRICE"));
  
-                    model_1.STD_UNIT = "1";//最小订货单位  Prod_UnitList.UNIT_ID;
-                    model_1.STD_CONVERT = 0;
-                    model_1.STD_QUAN = ConvertHelper.StringToDecimal(values.Value<string>("ON_QUAN"));
-                    model_1.STD_PRICE = ConvertHelper.StringToDecimal(values.Value<string>("STD_PRICE"));
-                    model_1.Memo = "";
-                    model_1.CRT_DATETIME = DateTime.Now;
-                    model_1.CRT_USER_ID = txtCRT_USER_ID.Text;
-                    model_1.MOD_DATETIME = DateTime.Now;
-                    model_1.MOD_USER_ID = txtMOD_USER_ID.Text;
+                        model_1.STD_UNIT = "1";//最小订货单位  Prod_UnitList.UNIT_ID;
+                        model_1.STD_CONVERT = 0;
+                        model_1.STD_QUAN = ConvertHelper.StringToDecimal(values.Value<string>("ON_QUAN"));
+                        model_1.STD_PRICE = ConvertHelper.StringToDecimal(values.Value<string>("STD_PRICE"));
+                        model_1.Memo = "";
+                        model_1.CRT_DATETIME = DateTime.Now;
+                        model_1.CRT_USER_ID = txtCRT_USER_ID.Text;
+                        model_1.MOD_DATETIME = DateTime.Now;
+                        model_1.MOD_USER_ID = txtMOD_USER_ID.Text;
 
-                    model_1.STD_TYPE = "";
+                      //  model_1.STD_TYPE = "";
 
-                    try {
+                   
                         ORDER01Bll.GetInstence().Save(this, model_1);
                     } catch (Exception ee) {
                         result = "保存失败！";

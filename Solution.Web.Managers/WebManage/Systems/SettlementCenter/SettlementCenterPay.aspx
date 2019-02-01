@@ -12,8 +12,9 @@
         <f:Pagemanager id="PageManager1" runat="server" AutoSizePanelID="panel4" />
         <f:Panel ID="panel4" runat="server" ShowBorder="false" ShowHeader="false" Layout="Region">
             <Items>
-                <f:Panel runat="server" ID="panelCenterRegion" Title="应付管理" ShowBorder="true" ShowHeader="true" AutoScroll="true"
-                    RegionPosition="Top" RegionSplit="true" Height="500px">
+                <%-- 区域中心panel --%>
+                <f:Panel runat="server" ID="areaPanel" Title="应付管理" ShowBorder="true" ShowHeader="true" AutoScroll="true"
+                    RegionPosition="Center" RegionSplit="true" Height="500px">
                     <Items>
                         <%-- 查询面板 --%>                        
                         <f:Form runat="server" ID="queryForm" Title="查询表单" ShowHeader="false" ShowBorder="false" Width="780px" LabelWidth="100px" BodyPadding="5px" LabelAlign="Right" EnableCollapse="true">
@@ -56,7 +57,7 @@
                                 <%-- 查询结果--%>
                                 <f:Grid runat="server" ID="resultGrid" Title="总部应付账单" EnableMultiSelect="true" OnPreRowDataBound="resultGrid_PreRowDataBound"
                                     EnableCheckBoxSelect="True" DataKeyNames ="Id,SUP_ID,TAKEIN_ID,SHOP_ID"
-                                    EnableRowClickEvent="true" OnRowClick="resultGrid_RowClick">
+                                    EnableRowClickEvent="true">
                                     <Columns>
                                         <f:RowNumberField Width="30px" />
                                         <f:BoundField runat="server" Width="180px" ColumnID="SUP_NAME" DataField="SUP_NAME" DataFormatString="{0}" HeaderText="供应商" />
@@ -72,26 +73,23 @@
                             </Items>
                         </f:Panel>
                     </Items>
-                </f:Panel>
-                <f:Panel runat="server" RegionPosition="Center" ID="receivableDetail" Title="应收账单明细" ShowHeader="false" AutoScroll="true">
+                </f:Panel>  
+                <%-- 门店panel --%>
+                <f:Panel runat="server" ID="directStorePanel" Title="应付管理" ShowBorder="true" ShowHeader="true" AutoScroll="true"
+                    RegionPosition="Center" RegionSplit="true" Height="500px">
                     <Items>
-                        <f:Panel runat="server" Title="应付明细" ShowHeader="false">
-                            <Items>
+                        <f:Form runat="server" ID="directStoreForm" BodyPadding="5px">
+                            <Rows>
+                                <f:FormRow ColumnWidths="300px">
+                                    <Items>
+                                        <f:DatePicker runat="server" />
+                                    </Items>
+                                </f:FormRow>
+                            </Rows>
+                        </f:Form>
+                    </Items>
+                    <Items>
 
-                            </Items>
-                            <Items>
-                                <f:Grid runat="server" ID="itemGrid" Title="应付明细">
-                                    <Columns>
-                                        <f:BoundField runat="server" Width="180px" DataField="SNo" HeaderText="序号" DataFormatString="{0}"/>
-                                        <f:BoundField runat="server" Width="180px" DataField="PROD_ID" HeaderText="商品编号" DataFormatString="{0}"/>
-                                        <f:BoundField runat="server" Width="180px" DataField="STD_QUAN" HeaderText="数量" DataFormatString="{0}"/>
-                                        <f:BoundField runat="server" Width="180px" DataField="STD_PRICE" HeaderText="单价" DataFormatString="{0}"/>
-                                        <f:BoundField runat="server" Width="180px" DataField="COST" HeaderText="金额" DataFormatString="{0}"/>
-                                        <f:BoundField runat="server" Width="180px" DataField="BAT_NO" HeaderText="批次号" DataFormatString="{0}"/>
-                                    </Columns>
-                                </f:Grid>
-                            </Items>
-                        </f:Panel>
                     </Items>
                 </f:Panel>
             </Items>
@@ -114,8 +112,7 @@
                         <%-- 出货单时间 --%>
                         <f:Label runat="server" Width="140px" Text="进货单日期" ShowLabel="false"></f:Label>
                         <f:DatePicker runat="server" Label="进货单开始日期" ShowLabel="false" ID="inStartDate" CompareControl="inEndDate" CompareOperator="LessThanEqual"
-                            CompareMessage="开始日期应小于等于结束日期"
-                            ></f:DatePicker>
+                            CompareMessage="开始日期应小于等于结束日期"></f:DatePicker>
                         <f:Label runat="server" Text="至" ShowLabel="false"></f:Label>
                         <f:DatePicker runat="server" Label="进货单结束日期" ShowLabel="false" CompareControl="inStartDate" CompareOperator="GreaterThanEqual"
                             CompareMessage="结束日期应该大于等于开始日期！"  Width="150px" ID="inEndDate"></f:DatePicker>
@@ -123,6 +120,40 @@
                 </f:Panel>
             </Content>
         </f:Window>   
+        <%-- 汇整预览 --%>
+        <f:Window runat="server" ID="archivePreviewWindow" enableresize="true" bodypadding="5px" enableframe="True" enableclose="true" IsModal="True" Width="1000px"
+            Hidden="true" Layout="Fit" Title="选择账单">
+            <Toolbars>
+                <f:Toolbar runat="server">
+                    <Items>
+                        <f:Button runat="server"  Icon="Accept" Text="确定" EnableAjaxLoading="true" AjaxLoadingType="Mask" OnClick="Preview_Ok_Click"/>
+                    </Items>
+                </f:Toolbar>                
+            </Toolbars>
+            <Content>
+                <f:Panel runat="server" ID="previewDataPanel" ShowHeader="false" ShowBorder="false" Layout="Fit" CssClass="formitem">
+                    <Items>
+                        <f:Grid runat="server" ID="previewDataGrid" ShowHeader="false" CheckBoxSelectOnly="true" EnableCheckBoxSelect="true" AutoScroll="true"
+                            MinHeight="300px" DataKeyNames="Id" AllowPaging="false">
+                            <Columns>
+                                <f:RowNumberField Width="30px" />
+                                <f:BoundField runat="server" Width="120px" ColumnID="CRT_DATETIME" DataField="CRT_DATETIME" DataFormatString="{0}" HeaderText="建档时间" />
+                                <f:BoundField runat="server" Width="120px" ColumnID="INPUT_DATE" DataField="INPUT_DATE" DataFormatString="{0}" HeaderText="单据日期" />
+                                <f:BoundField runat="server" Width="180px" ColumnID="SUP_ID" DataField="SUP_ID" DataFormatString="{0}" HeaderText="供应商名称" />                                
+                                <f:BoundField runat="server" Width="140px" ColumnID="TAKEIN_ID" DataField="TAKEIN_ID"  DataFormatString="{0}" HeaderText="进货单号"/>
+                                <f:BoundField runat="server" Width="180px" ColumnID="TAKEIN_TYPE" DataField="TAKEIN_TYPE" DataFormatString="{0}" HeaderText="进货类型"/>
+                                <f:BoundField runat="server" Width="120px" ColumnID="TOT_AMOUNT" DataField="BILL_AMOUNT"  DataFormatString="{0}" HeaderText="出货总价"/>
+                                <f:BoundField runat="server" Width="120px" ColumnID="BILL_COST" DataField="BILL_COST" DataFormatString="{0}" HeaderText="进货单金额"/>
+                                <f:BoundField runat="server" Width="100px" ColumnID="TOT_QTY" DataField="TOT_QTY" DataFormatString="{0}" HeaderText="进货数量"/>
+                                <f:BoundField runat="server" Width="150px" ColumnID="PRE_PAY_ID" DataField="PRE_PAY_ID" DataFormatString="{0}" HeaderText="预付款单号"/>
+                                <f:BoundField runat="server" Width="100px" ColumnID="TOT_TAX" DataField="TOT_TAX" DataFormatString="{0}" HeaderText="税额"/>
+                                <f:BoundField runat="server" Width="180px" ColumnID="MEMO" DataField="MEMO" DataFormatString="{0}" HeaderText="备注"/>
+                            </Columns>
+                        </f:Grid>
+                    </Items>
+                </f:Panel>
+            </Content>
+        </f:Window>
         <%-- 应付信息核对 --%>  
         <f:Window ID="confirmPayWindow" runat="server" enableresize="true" bodypadding="5px" enableframe="True" enableclose="true" IsModal="True" Width="525px"
             Hidden="true" Layout="Fit" Title="账单信息确认"> 
