@@ -82,7 +82,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 Grid2ColumnEdit(0);
                 ButtonSave.Enabled = false;
-                ButtonUpdate.Enabled = false;
+                //ButtonUpdate.Enabled = false;
                 ButtonCheck.Text = "反核准";
                 ButtonCancel.Text = "作废";
                 ButtonCancel.Enabled = false;
@@ -99,7 +99,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 case 1:
                     ButtonSave.Enabled = false;
-                    ButtonUpdate.Enabled = true;
+                    //ButtonUpdate.Enabled = true;
                     ButtonCancel.Enabled = true;
                     ButtonCheck.Enabled = true;
                     ButtonCheck.Text = "核准";
@@ -107,7 +107,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonPur02Add.Enabled = true; break;
                 case 2:
                     ButtonSave.Enabled = false;
-                    ButtonUpdate.Enabled = false;
+                    //ButtonUpdate.Enabled = false;
                     ButtonCheck.Text = "反核准";
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
@@ -115,14 +115,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonPur02Add.Enabled = false; break;
                 case 3:
                     ButtonSave.Enabled = false;
-                    ButtonUpdate.Enabled = false;
+                    //ButtonUpdate.Enabled = false;
                     ButtonCheck.Text = "核准";
                     ButtonCheck.Enabled = false;
                     ButtonCancel.Text = "取消作废";
                     ButtonCheck.Enabled = true; break;
                 case 4:
                     ButtonSave.Enabled = false;
-                    ButtonUpdate.Enabled = false;
+                    //ButtonUpdate.Enabled = false;
                     ButtonCheck.Text = "反核准";
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
@@ -130,7 +130,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonPur02Add.Enabled = false;break;
                 default:
                     ButtonSave.Enabled = false;
-                    ButtonUpdate.Enabled = false;
+                    //ButtonUpdate.Enabled = false;
                     ButtonCheck.Text = "核准";
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
@@ -247,7 +247,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             if (flag == 1)
             {
                 ButtonSave.Enabled = false;
-                ButtonUpdate.Enabled = false;
+                //ButtonUpdate.Enabled = false;
                 ButtonCheck.Enabled = false;
                 ButtonCheck.Enabled = false;
                 //Grid2.Enabled = false;
@@ -347,21 +347,29 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="e"></param>
         public void BtnPur01_Save(Object sender, EventArgs e)
         {
-            string result = Pur_Save();
+            string result = "";
+            if (String.IsNullOrEmpty(tbxPurchase_ID.Text))
+            {
+                result = Pur_Save();
+            }
+            else
+            {
+                result = Pur_Edit();
+            }
             FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
 
         }
-        /// <summary>
-        /// 更新按钮
-        /// </summary>
-        public void BtnPur01_Edit(Object sender, EventArgs e)
-        {
-            string result = Pur_Edit();
-            if (!String.IsNullOrEmpty(result))
-            {
-                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
-            }
-        }
+        ///// <summary>
+        ///// 更新按钮
+        ///// </summary>
+        //public void BtnPur01_Edit(Object sender, EventArgs e)
+        //{
+        //    string result = Pur_Edit();
+        //    if (!String.IsNullOrEmpty(result))
+        //    {
+        //        FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
+        //    }
+        //}
         /// <summary>
         /// 新增按钮触发事件
         /// </summary>

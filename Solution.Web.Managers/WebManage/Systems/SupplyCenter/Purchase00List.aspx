@@ -41,7 +41,7 @@
                       <Items>
                           <f:Button ID="ButtonAdd" runat="server" Text="新增" Icon="Add" OnClick="BtnPur01_Add"></f:Button>
                           <f:Button ID="ButtonSave" runat="server" Text="保存" Icon="Disk" OnClick="BtnPur01_Save"></f:Button>
-                          <f:Button ID="ButtonUpdate" runat="server" Text="修改" Icon="Disk" OnClick="BtnPur01_Edit"></f:Button>
+<%--                          <f:Button ID="ButtonUpdate" runat="server" Text="修改" Icon="Disk" OnClick="BtnPur01_Edit"></f:Button>--%>
                           <f:Button ID="ButtonCheck" runat="server" Text="核准" Icon="Disk" OnClick="BtnPur00_Approval"></f:Button>
                           <f:Button ID="ButtonCancel" runat="server" Text="作废" Icon="Disk"></f:Button>
                       </Items>
@@ -213,7 +213,7 @@
                                                     <f:NumberBox runat="server" ID="numQUANTITY" NoNegative="true" DecimalPrecision="6" Enabled="false"></f:NumberBox>
                                                 </Editor>
                                          </f:RenderField>
-                                         <f:RenderField Width="130px" ColumnID="STD_UNIT01" DataField="STD_UNIT" FieldType="String" Enabled="false"
+                                         <f:RenderField Width="130px" ColumnID="STD_UNIT01" DataField="STD_UNIT" FieldType="String" Enabled="false" Hidden="true"
                                                 HeaderText="采购单位类别" RendererFunction="renderSTD_UNIT0101">
                                                 <Editor>
                                                     <f:DropDownList ID="ddlSTD_TYPE01" runat="server" Enabled="true">

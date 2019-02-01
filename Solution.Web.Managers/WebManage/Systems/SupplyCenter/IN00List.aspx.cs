@@ -247,7 +247,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 case 1:
                     OrderStatus1(model);
                     ButtonSave.Enabled = false;
-                    ButtonEdit.Enabled = true;
+                    //ButtonEdit.Enabled = true;
                     ButtonCancel.Enabled = true;
                     ButtonCheck.Enabled = true;
                     ButtonYR.Enabled = true;
@@ -255,7 +255,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废"; break;
                 case 2:
                     ButtonSave.Enabled = false;
-                    ButtonEdit.Enabled = false;
+                    //ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "反核准";
                     ButtonYR.Enabled = false;
                     ButtonCancel.Text = "作废";
@@ -267,7 +267,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     break;
                 case 3:
                     ButtonSave.Enabled = false;
-                    ButtonEdit.Enabled = false;
+                    //ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "核准";
                     ButtonYR.Enabled = false;
                     ButtonCheck.Enabled = false;
@@ -277,7 +277,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     break;
                 case 4:
                     ButtonSave.Enabled = false;
-                    ButtonEdit.Enabled = false;
+                    //ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "反核准";
                     ButtonYR.Enabled = false;
                     ButtonCancel.Text = "作废";
@@ -287,14 +287,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     break;
                 case 5:
                     ButtonSave.Enabled = false;
-                    ButtonEdit.Enabled = false;
+                    //ButtonEdit.Enabled = false;
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
                     ButtonYR.Enabled = false;
                     Toolbar21111.Enabled = false; break;
                 default:
                     ButtonSave.Enabled = false;
-                    ButtonEdit.Enabled = false;
+                    //ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "核准";
                     ButtonYR.Enabled = false;
                     ButtonCancel.Text = "作废";
@@ -381,32 +381,48 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="e"></param>
         public void BtnSave_Click(Object sender, EventArgs e)
         {
-            string result = MAINEdit();
-            if (String.IsNullOrEmpty(result))
-            {
-                FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// 修改按钮
-        /// </summary>
-        public void Btn_MainEdit(Object sender, EventArgs e)
-        {
-            string result = DetailEdit();
-            if (String.IsNullOrEmpty(result))
+            string result = "";
+            if (String.IsNullOrEmpty(tbxIN_ID.Text))
             {
                 result = MAINEdit();
             }
-            if (!String.IsNullOrEmpty(result))
-            {
-                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
-            }
             else
+            {
+                result = DetailEdit();
+                if (String.IsNullOrEmpty(result))
+                {
+                    result = MAINEdit();
+                }
+            }
+            if (String.IsNullOrEmpty(result))
             {
                 FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
             }
+            else
+            {
+                FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
+            }
         }
+
+        ///// <summary>
+        ///// 修改按钮
+        ///// </summary>
+        //public void Btn_MainEdit(Object sender, EventArgs e)
+        //{
+        //    string result = DetailEdit();
+        //    if (String.IsNullOrEmpty(result))
+        //    {
+        //        result = MAINEdit();
+        //    }
+        //    if (!String.IsNullOrEmpty(result))
+        //    {
+        //        FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
+        //    }
+        //    else
+        //    {
+        //        FineUI.Alert.ShowInParent("保存成功", FineUI.MessageBoxIcon.Error);
+        //    }
+        //}
 
         /// <summary>
         /// 核准按钮

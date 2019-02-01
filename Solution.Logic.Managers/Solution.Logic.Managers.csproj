@@ -430,7 +430,7 @@
     <Compile Include="Systems\SUPPLIERSBll.cs" />
     <Compile Include="Systems\TABLE_SEEDBll.cs" />
     <Compile Include="Systems\TAKEIN00Bll.cs" />
-    <Compile Include="Systems\TAKEIN10Bll.cs" />
+    <Compile Include="TAKEIN10Bll.cs" />
     <Compile Include="Systems\UseLogBll.cs" />
     <Compile Include="Systems\PositionBll.cs" />
   </ItemGroup>
