@@ -51,8 +51,7 @@
                                     <f:DropDownList runat="server" Label="出货分店" ID="ddlOUT_SHOP" Required="true" ShowRedStar="true" Enabled="false"></f:DropDownList>
                                     <f:TextBox runat="server" Label="制单人" ID="tbxUSER_ID" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
                                     <f:TextBox runat="server" Label="审核人" ID="tbxAPP_USER" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
-                                    <f:DatePicker ID="dpAPP_DATETIME" Label="审核时间" Required="true" Readonly="false" DateFormatString="yyyy-MM-dd" runat="server" ShowRedStar="True" Enabled="false">
-                                    </f:DatePicker>
+                                    <f:TextBox runat="server" Label="审核日期" ID="tbxAPP_DATETIME" Readonly="true" Enabled="false"></f:TextBox>
                                 </Items>
                             </f:FormRow>
 

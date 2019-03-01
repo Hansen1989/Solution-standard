@@ -143,11 +143,10 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 ddlSTOCK_ID.SelectedValue = model.STOCK_ID;
                 tbxUSER_ID.Text = model.USER_ID;
                 tbxAPP_USER.Text = model.APP_USER;
-                dpAPP_DATETIME.SelectedDate = model.APP_DATETIME;
-
+                tbxAPP_DATETIME.Text = model.APP_DATETIME.ToString("yyyy-MM-dd HH:mm:ss") == "1900-01-01 00:00:00" ? "" : model.APP_DATETIME.ToString("yyyy-MM-dd HH:mm:ss");
                 tbxRELATE_ID.Text = model.RELATE_ID;
                 tbxMemo.Text = model.Memo;
-                ckLOCKED.Checked = model.LOCKED == '0' ? false : true;
+                ckLOCKED.Checked = model.LOCKED == 0 ? true : false;
                 if (!String.IsNullOrEmpty(model.RELATE_ID))
                 {
                     ButtonYR.Enabled = false;
@@ -247,8 +246,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             switch (model.STATUS)
             {
                 case 1:
-                    ButtonSave.Enabled = false;
-                    //ButtonEdit.Enabled = true;
+                    ButtonSave.Enabled = true;
                     ButtonCancel.Enabled = true;
                     ButtonCheck.Enabled = true;
                     ButtonYR.Enabled = true;
@@ -258,24 +256,19 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     break;
                 case 2:
                     ButtonSave.Enabled = false;
-                    //ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "反核准";
                     ButtonYR.Enabled = false;
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = true;
-                    //ButtonDetailAdd.Enabled = false;
                     break;
                 case 3:
                     ButtonSave.Enabled = false;
-                    //ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "核准";
                     ButtonYR.Enabled = false;
                     ButtonCheck.Enabled = false;
                     ButtonCancel.Text = "取消作废";
                     ButtonCancel.Enabled = true;
-                    //ButtonDetailAdd.Enabled = false;
-                    //Grid2.AllowCellEditing = false;
                     break;
                 case 4:
                     ButtonSave.Enabled = false;
@@ -285,17 +278,14 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    //ButtonDetailAdd.Enabled = false;
                     break;
                 default:
                     ButtonSave.Enabled = false;
-                    //ButtonEdit.Enabled = false;
                     ButtonCheck.Text = "核准";
                     ButtonYR.Enabled = false;
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
-                    //ButtonDetailAdd.Enabled = false;
                     break;
             }
 
@@ -330,7 +320,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             ddlSTOCK_ID.SelectedIndex = 0;
             tbxUSER_ID.Text = "";
             tbxAPP_USER.Text = "";
-            dpAPP_DATETIME.SelectedDate = DateTime.Parse("1900-01-01 00:00:00");
+            tbxAPP_DATETIME.Text = "";
 
 
             tbxRELATE_ID.Text = "";
@@ -461,6 +451,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string result = DetailEdit();
             if (String.IsNullOrEmpty(result))
             {
+                tbxAPP_DATETIME.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 result = MAINEdit();
             }
             if (String.IsNullOrEmpty(result))
@@ -584,8 +575,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 model.STOCK_ID = ddlSTOCK_ID.SelectedValue;
                 model.USER_ID = OlUser.Manager_LoginName;
                 model.APP_USER = OlUser.Manager_LoginName;
-                model.APP_DATETIME = DateTime.Now;
-
+                model.APP_DATETIME = tbxAPP_DATETIME.Text == "" ? DateTime.Parse("1900-01-01 00:00:00") : DateTime.Now;
 
                 string _RELATE_ID = tbxRELATE_ID.Text;
                 model.RELATE_ID = _RELATE_ID;
@@ -715,6 +705,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             B_BtnSearchCon.Hidden = false;
             B_BtnAddCon.Hidden = false;
             Window3.Hidden = false;
+            FineUI.Grid Grid4 = Window3.FindControl("PanelGrid4").FindControl("Grid4") as FineUI.Grid;
+            Grid4.DataSource = null;
+            Grid4.DataBind();
         }
 
         /// <summary>

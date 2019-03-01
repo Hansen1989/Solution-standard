@@ -247,3 +247,4 @@ ModelManifest.xml
 /Solution.Logic.Managers/SubSonic/V_ORDER01_PRODUCT01Bll.cs
 /Solution.DataAccess/SubSonic
 /Solution.Logic.Managers/SubSonic
+/Solution.Logic.Managers/Systems/V_Product01_PRCAREABll.cs

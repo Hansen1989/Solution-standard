@@ -1188,7 +1188,7 @@ namespace Solution.Web.Managers.WebManage.Systems.DataCenter
         //    GridRow row = Grid2.Rows[o];
 
         //    System.Web.UI.WebControls.TextBox asdf = (System.Web.UI.WebControls.TextBox)row.FindControl("tBOM_NAME123");
-            
+
         //    asdf.Text = "更改了";
         //    asdf.Focus();
 
@@ -1200,5 +1200,18 @@ namespace Solution.Web.Managers.WebManage.Systems.DataCenter
         #endregion
 
         #endregion
+
+        protected void PROD_TYPE_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PROD_TYPE.SelectedValue == "0")
+            {
+                ddlSENDTYPE.SelectedValue = "1";
+                ddlSENDTYPE.Enabled = true;
+            }
+            else
+            {
+                ddlSENDTYPE.Enabled = false;
+            }
+        }
     }
 }

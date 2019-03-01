@@ -97,8 +97,7 @@
                             <f:FormRow ColumnWidths="300px">
                                 <Items>
                                     <f:TextBox runat="server" Label="审核人" ID="tbxAPP_USER" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
-                                    <f:DatePicker ID="dpAPP_DATETIME" Label="审核时间" Required="true" Readonly="true" Enabled="false" DateFormatString="yyyy-MM-dd" runat="server">
-                                    </f:DatePicker>
+                                    <f:TextBox runat="server" Label="审核日期" ID="tbxAPP_DATETIME" Readonly="true" Enabled="false"></f:TextBox>
                                     <f:NumberBox ID="numTOT_AMOUNT" Label="采购总金额" runat="server" NoDecimal="false" DecimalPrecision="6" Enabled="false" ></f:NumberBox>
                                 </Items>
                             </f:FormRow>

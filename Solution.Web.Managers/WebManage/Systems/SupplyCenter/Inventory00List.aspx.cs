@@ -542,6 +542,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             FineUI.DropDownList ddlstock = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("window_ddl_Stock") as FineUI.DropDownList;
             STOCKBll.GetInstence().BandDropDownListStock(this, ddlstock);
             Window3.Hidden = false;
+            FineUI.Grid Grid4 = Window3.FindControl("PanelGrid4").FindControl("Grid4") as FineUI.Grid;
+            Grid4.DataSource = null;
+            Grid4.DataBind();
         }
 
         /// <summary>

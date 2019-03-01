@@ -53,7 +53,7 @@
                                              EnableSimulateTree="true" runat="server" Width="250px" >
                                         </f:DropDownList>
                                         <f:DropDownList ID="PROD_TYPE" Label="商品属性" AutoPostBack="true" Required="true" CompareType="String"
-                                             EnableSimulateTree="true" runat="server" Width="250px" ShowRedStar="true">
+                                             EnableSimulateTree="true" runat="server" Width="250px" ShowRedStar="true" OnSelectedIndexChanged="PROD_TYPE_SelectedIndexChanged" >
                                             <f:ListItem Text="自产类" Value="0" Selected="true"  />
                                             <f:ListItem Text="供应类" Value="1" />
                                             <f:ListItem Text="委托加工类" Value="2" />

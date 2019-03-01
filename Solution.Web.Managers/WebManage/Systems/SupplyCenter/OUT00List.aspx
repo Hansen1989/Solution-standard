@@ -50,8 +50,7 @@
                                 <Items>
                                     <f:TextBox runat="server" Label="制单人" ID="tbxUSER_ID" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
                                     <f:TextBox runat="server" Label="审核人" ID="tbxAPP_USER" Required="true" ShowRedStar="true" Width="250px" Enabled="false"></f:TextBox>
-                                    <f:DatePicker ID="dpAPP_DATETIME" Label="审核时间" Required="true" Readonly="false" DateFormatString="yyyy-MM-dd" runat="server" ShowRedStar="True" Enabled="false">
-                                    </f:DatePicker>
+                                    <f:TextBox runat="server" Label="审核时间" ID="tbxAPP_DATETIME" Required="true" Readonly="false" Enabled="false" ></f:TextBox>
                                     <f:DatePicker ID="dpEXPECT_DATE" Label="期望日期" Required="true" Readonly="false" DateFormatString="yyyy-MM-dd" runat="server" ShowRedStar="True" Enabled="false">
                                     </f:DatePicker>
                                 </Items>

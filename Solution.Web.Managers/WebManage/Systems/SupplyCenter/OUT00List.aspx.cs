@@ -144,20 +144,19 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 ddlSTOCK_ID.SelectedValue = model.STOCK_ID;
                 tbxUSER_ID.Text = model.USER_ID;
                 tbxAPP_USER.Text = model.APP_USER;
-                dpAPP_DATETIME.SelectedDate = model.APP_DATETIME;
+                string a = model.APP_DATETIME.ToString("yyyy-MM-dd HH:mm:ss");
+                tbxAPP_DATETIME.Text = model.APP_DATETIME.ToString("yyyy-MM-dd HH:mm:ss") == "1900-01-01 00:00:00" ? "": model.APP_DATETIME.ToString("yyyy-MM-dd HH:mm:ss");
                 dpEXPECT_DATE.SelectedDate = model.EXPECT_DATE;
 
                 cbExported.Checked = model.Exported == 1 ? true : false;
                 tbxExported_ID.Text = model.Exported_ID;
                 tbxRELATE_ID.Text = model.RELATE_ID;
                 tbxMemo.Text = model.Memo;
-                ckLOCKED.Checked = model.LOCKED == '0' ? false : true;
+                ckLOCKED.Checked = model.LOCKED == 0 ? false : true;
                 if (!String.IsNullOrEmpty(model.RELATE_ID))
                 {
                     ButtonYR.Enabled = false;
                 }
-
-
                 tbxCRT_DATETIME.Text = model.CRT_DATETIME.ToString();
                 tbxCRT_USER_ID.Text = model.CRT_USER_ID;
                 tbxMOD_DATETIME.Text = model.MOD_DATETIME.ToString();
@@ -258,7 +257,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 Grid2ColumnEdit(0);
                 ButtonSave.Enabled = false;
-                //ButtonEdit.Enabled = false;
                 ButtonCheck.Text = "反核准";
                 ButtonYR.Enabled = false;
                 ButtonCancel.Text = "作废";
@@ -277,7 +275,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             {
                 case 1:
                     OrderStatus1(model);
-                    ButtonSave.Enabled = false;
+                    ButtonSave.Enabled = true;
                     //ButtonEdit.Enabled = true;
                     ButtonCancel.Enabled = true;
                     ButtonCheck.Enabled = true;
@@ -319,8 +317,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
                     ButtonYR.Enabled = false;
-                    Grid2.Enabled = false;
-                    Grid2.AllowCellEditing = false;
                     Toolbar21111.Enabled = false; break;
                 default:
                     ButtonSave.Enabled = false;
@@ -366,7 +362,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             ddlSTOCK_ID.SelectedIndex = 0;
             tbxUSER_ID.Text = "";
             tbxAPP_USER.Text = "";
-            dpAPP_DATETIME.SelectedDate = DateTime.Parse("1900-01-01 00:00:00");
+            tbxAPP_DATETIME.Text = "";
             dpEXPECT_DATE.SelectedDate = DateTime.Now;
 
             cbExported.Checked = false;
@@ -523,6 +519,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string result = DetailEdit();
             if (String.IsNullOrEmpty(result))
             {
+                tbxAPP_DATETIME.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 result = MAINEdit();
             }
 
@@ -649,7 +646,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 model.STOCK_ID = ddlSTOCK_ID.SelectedValue;
                 model.USER_ID = OlUser.Manager_LoginName;
                 model.APP_USER = OlUser.Manager_LoginName;
-                model.APP_DATETIME = DateTime.Now;
+                model.APP_DATETIME = tbxAPP_DATETIME.Text == "" ? DateTime.Parse("1900-01-01 00:00:00") : DateTime.Now;
                 model.EXPECT_DATE = ConvertHelper.StringToDatetime(dpEXPECT_DATE.SelectedDate.ToString());
 
                 model.Exported = ConvertHelper.StringToByte(cbExported.Checked ? "1" : "0");
@@ -759,6 +756,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             B_BtnSearchCon.Hidden = false;
             B_BtnAddCon.Hidden = false;
             Window3.Hidden = false;
+            FineUI.Grid Grid4 = Window3.FindControl("PanelGrid4").FindControl("Grid4") as FineUI.Grid;
+            Grid4.DataSource = null;
+            Grid4.DataBind();
         }
         /// <summary>
         /// 明细删除

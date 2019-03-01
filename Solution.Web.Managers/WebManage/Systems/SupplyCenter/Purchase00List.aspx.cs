@@ -81,8 +81,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             if (model.EXPORTED == 1)
             {
                 Grid2ColumnEdit(0);
-                ButtonSave.Enabled = false;
-                //ButtonUpdate.Enabled = false;
+                ButtonSave.Enabled = true;
                 ButtonCheck.Text = "反核准";
                 ButtonCancel.Text = "作废";
                 ButtonCancel.Enabled = false;
@@ -98,7 +97,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             switch (model.STATUS)
             {
                 case 1:
-                    ButtonSave.Enabled = false;
+                    ButtonSave.Enabled = true;
                     //ButtonUpdate.Enabled = true;
                     ButtonCancel.Enabled = true;
                     ButtonCheck.Enabled = true;
@@ -191,12 +190,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         /// <param name="id"></param>
         public void LoadMain()
         {
-            //int id = ConvertHelper.Cint(hidId.Text);
             string _Purchase_ID = tbxPurchase_ID.Text;
-            //if (id == 0)
-            //{
-            //    FineUI.Alert.ShowInParent("请重新选择采购单", FineUI.MessageBoxIcon.Error);
-            //}
             if (String.IsNullOrEmpty(_Purchase_ID))
             {
                 FineUI.Alert.ShowInParent("请重新选择采购单", FineUI.MessageBoxIcon.Error);
@@ -216,7 +210,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 ddlPAY_STATUS.SelectedValue = model.PAY_STATUS.ToString();
                 tbxUSER_ID.Text = model.USER_ID;
                 tbxAPP_USER.Text = model.APP_USER;
-                dpAPP_DATETIME.Text = model.APP_DATETIME.ToString("yyyy-MM-dd");
+                tbxAPP_DATETIME.Text = model.APP_DATETIME.ToString("yyyy-MM-dd HH:mm:ss") == "1900-01-01 00:00:00" ? "" : model.APP_DATETIME.ToString("yyyy-MM-dd HH:mm:ss");
                 numTOT_AMOUNT.Text = model.TOT_AMOUNT.ToString();
                 numTOT_TAX.Text = model.TOT_TAX.ToString();
                 numTOT_QTY.Text = model.TOT_QTY.ToString();
@@ -321,7 +315,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             ddlPAY_STATUS.SelectedIndex = 0;
             tbxUSER_ID.Text = "";
             tbxAPP_USER.Text = "";
-            dpAPP_DATETIME.Text = "";
+            tbxAPP_DATETIME.Text = "";
             numTOT_AMOUNT.Text = "0";
             numTOT_TAX.Text = "0";
             numTOT_QTY.Text = "0";
@@ -385,6 +379,9 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             B_BtnSearchCon.Hidden = false;
             B_BtnAddCon.Hidden = false;
             Window3.Hidden = false;
+            FineUI.Grid Grid4 = Window3.FindControl("PanelGrid4").FindControl("Grid4") as FineUI.Grid;
+            Grid4.DataSource = null;
+            Grid4.DataBind();
         }
 
         /// <summary>
@@ -477,6 +474,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             model.MOD_DATETIME = DateTime.Now;
             model.LAST_UPDATE = DateTime.Now;
             model.MOD_USER_ID = OlUser.Manager_LoginName;
+            model.APP_DATETIME = DateTime.Now;
             string result = "";
             try
             {
@@ -882,16 +880,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             List<ConditionFun.SqlqueryCondition> conditionProdduct00List = new List<ConditionFun.SqlqueryCondition>();
             bool sFlag = true;
             string _SUP_ID = ddlSUP_NAME.SelectedValue;
-
+            conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Or, V_Product01_PRCAREATable.PROD_TYPE, Comparison.In, new string[2] { "1", "2" }, true, true));
             if (!String.IsNullOrEmpty(_SUP_ID))
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.SUP_ID, Comparison.Like, _SUP_ID, false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.SUP_ID, Comparison.Like, _SUP_ID, true, false));
                 sFlag = false;
             }
 
             if (!String.IsNullOrEmpty(model.SHOP_Price_Area))
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PRCAREA_ID, Comparison.Like, model.SHOP_Price_Area, false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PRCAREA_ID, Comparison.Equals, model.SHOP_Price_Area, true, true));
                 sFlag = false;
             }
             //conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(ConstraintType.Where, "1", Comparison.Equals, "1", false, false));
@@ -900,7 +898,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             var _PROD_ID = cPROD_ID.Text;
             if (!String.IsNullOrEmpty(cPROD_ID.Text))
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_ID, Comparison.Like, "%" + _PROD_ID + "%", false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_ID, Comparison.Like, "%" + _PROD_ID + "%", true, true));
                 sFlag = false;
             }
 
@@ -908,21 +906,21 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             var _PROD_NAME = cPROD_NAME.Text;
             if (!String.IsNullOrEmpty(_PROD_NAME))
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_NAME1, Comparison.Like, "%" + _PROD_NAME + "%", false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_NAME1, Comparison.Like, "%" + _PROD_NAME + "%", true, true));
                 sFlag = false;
             }
             FineUI.TextBox cPROD_NAME_SPELLING = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_NAME_SPELLING") as FineUI.TextBox;
             var _PROD_NAME_SPELLING = cPROD_NAME_SPELLING.Text;
             if (!String.IsNullOrEmpty(_PROD_NAME_SPELLING))
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_NAME1_SPELLING, Comparison.Like, "%" + _PROD_NAME_SPELLING + "%", false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_NAME1_SPELLING, Comparison.Like, "%" + _PROD_NAME_SPELLING + "%", true, true));
                 sFlag = false;
             }
             FineUI.DropDownList cPROD_KIND = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_KIND") as FineUI.DropDownList;
             var _cPROD_KIND = cPROD_KIND.SelectedValue;
             if (!String.IsNullOrEmpty(_cPROD_KIND) && _cPROD_KIND != "0")
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_KIND, Comparison.Equals, _cPROD_KIND, false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_KIND, Comparison.Equals, _cPROD_KIND, true, true));
                 sFlag = false;
             }
 
@@ -930,22 +928,16 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             var _PROD_DEP = cPROD_DEP.SelectedValue;
             if (!String.IsNullOrEmpty(_PROD_NAME) && _PROD_DEP != "0")
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_DEP, Comparison.Equals, _PROD_DEP, false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_DEP, Comparison.Equals, _PROD_DEP, true, true));
                 sFlag = false;
             }
             FineUI.DropDownList cPROD_CATE = Window3.FindControl("PanelGrid4").FindControl("Panel_Search").FindControl("ccPROD_CATE") as FineUI.DropDownList;
             var _PROD_CATE = cPROD_CATE.SelectedValue;
             if (!String.IsNullOrEmpty(_PROD_CATE) && _PROD_CATE != "0")
             {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_CATE, Comparison.Equals, _PROD_CATE, false, false));
+                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), V_Product01_PRCAREATable.PROD_CATE, Comparison.Equals, _PROD_CATE, true, true));
                 sFlag = false;
             }
-
-            if (sFlag)
-            {
-                conditionProdduct00List.Add(new ConditionFun.SqlqueryCondition(WhereOrAnd(sFlag), "1", Comparison.Equals, "1", false, false));
-            }
-
             return conditionProdduct00List;
         }
 
