@@ -25,6 +25,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 DatePicker2.SelectedDate = DateTime.Now.AddDays(1);
                 SHOP00Bll.GetInstence().BindOnlineUser(this, model.SHOP_ID, ddlSHOP_NAME);
                 SUPPLIERSBll.GetInstence().BandDropDownListShowSup(this, ddlSUP_NAME);
+                V_Product01_PRCAREABll.GetInstence().BandDropDownListPurchase(this, ddlProd_Name01,model.SHOP_Price_Area);
                 LoadList();
                 LoadData();
                 Purchase00Status(new Purchase00());
@@ -103,6 +104,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCheck.Enabled = true;
                     ButtonCheck.Text = "核准";
                     ButtonCancel.Text = "作废";
+                    ButtonPur02AddSingle.Enabled = true;
+                    ButtonPur02Delete.Enabled = true;
                     ButtonPur02Add.Enabled = true; break;
                 case 2:
                     ButtonSave.Enabled = false;
@@ -111,6 +114,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = true;
+                    ButtonPur02AddSingle.Enabled = false;
+                    ButtonPur02Delete.Enabled = false;
                     ButtonPur02Add.Enabled = false; break;
                 case 3:
                     ButtonSave.Enabled = false;
@@ -118,6 +123,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCheck.Text = "核准";
                     ButtonCheck.Enabled = false;
                     ButtonCancel.Text = "取消作废";
+                    ButtonPur02AddSingle.Enabled = true;
+                    ButtonPur02Delete.Enabled = true;
                     ButtonCheck.Enabled = true; break;
                 case 4:
                     ButtonSave.Enabled = false;
@@ -126,6 +133,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
+                    ButtonPur02AddSingle.Enabled = false;
+                    ButtonPur02Delete.Enabled = false;
                     ButtonPur02Add.Enabled = false;break;
                 default:
                     ButtonSave.Enabled = false;
@@ -134,6 +143,8 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     ButtonCancel.Text = "作废";
                     ButtonCancel.Enabled = false;
                     ButtonCheck.Enabled = false;
+                    ButtonPur02AddSingle.Enabled = false;
+                    ButtonPur02Delete.Enabled = false;
                     ButtonPur02Add.Enabled = false; break;
             }
         }
@@ -150,6 +161,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 numQUAN2.Enabled = true;
                 tbxMEMO01.Enabled = true;
                 numSTD_QUAN.Enabled = true;
+                ddlProd_Name01.Enabled = true;
             }
             else
             {
@@ -158,6 +170,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                 numQUAN2.Enabled = false;
                 tbxMEMO01.Enabled = false;
                 numSTD_QUAN.Enabled = false;
+                ddlProd_Name01.Enabled = false;
             }
         }
 
@@ -364,6 +377,54 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
         //        FineUI.Alert.ShowInParent(result, FineUI.MessageBoxIcon.Error);
         //    }
         //}
+        /// <summary>
+        /// 新增一个按钮触发事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void btn_Pur02AddSingle(Object sender, EventArgs e)
+        {
+            string _Shop_ID = ddlSHOP_NAME.SelectedValue;
+            string _Shop_Name = ddlSHOP_NAME.SelectedText;
+            string _Pur00_ID = tbxPurchase_ID.Text;
+            JObject deObject = new JObject();
+            int rowCount = Grid2.Rows.Count;
+            deObject.Add("Id01", "0");
+            deObject.Add("SHOP_ID01", _Shop_ID);
+            deObject.Add("SHOP_NAME01", "");
+            deObject.Add("SHOP_NAME02", "");
+            deObject.Add("Purchase_ID01", _Pur00_ID);
+            deObject.Add("SNo01", rowCount + 1);
+            deObject.Add("PROD_ID01", "");
+            deObject.Add("PROD_NAME01", "");
+            deObject.Add("QUANTITY01", "");
+            deObject.Add("STD_UNIT01", "");
+            deObject.Add("STD_UNIT_NAME01", "");
+            deObject.Add("STD_CONVERT01", "");
+
+            deObject.Add("STD_QUAN01", "");
+            deObject.Add("STD_PRICE01", "");
+            deObject.Add("Tax01", 0);
+            deObject.Add("QUAN101", 0);
+            deObject.Add("QUAN201", 0);
+            deObject.Add("Item_DISC_Amt01", 0);
+            deObject.Add("MEMO", "");
+
+            deObject.Add("UNIT_NAME01", "");
+            deObject.Add("UNIT_NAME101", "");
+            deObject.Add("UNIT_NAME201", "");
+            deObject.Add("PROD_CONVERT101","");
+            deObject.Add("PROD_CONVERT201", "");
+            deObject.Add("SUP_COST01", "");
+            deObject.Add("SUP_COST101", "");
+            deObject.Add("SUP_COST201", "");
+            deObject.Add("Tax_Num01", "");
+            deObject.Add("Tax_Type01", "");
+            Grid2.AddNewRecord(deObject, true);
+
+
+        }
+
         /// <summary>
         /// 新增按钮触发事件
         /// </summary>
@@ -768,6 +829,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     model.STD_CONVERT = ConvertHelper.Cint(pJson[i]["values"]["STD_CONVERT01"].ToString());
                     model.STD_QUAN = ConvertHelper.StringToDecimal(pJson[i]["values"]["STD_QUAN01"].ToString());
                     model.STD_PRICE = ConvertHelper.StringToDecimal(pJson[i]["values"]["STD_PRICE01"].ToString());
+                    string a = pJson[i]["values"]["Tax01"].ToString();
                     model.Tax = ConvertHelper.StringToDecimal(pJson[i]["values"]["Tax01"].ToString());
                     model.QUAN1 = ConvertHelper.StringToDecimal(pJson[i]["values"]["QUAN101"].ToString());
                     model.QUAN2 = ConvertHelper.StringToDecimal(pJson[i]["values"]["QUAN201"].ToString());
@@ -974,6 +1036,7 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
             string result = "";
             var m_Shop = new SHOP00(x => x.SHOP_ID == _Shop_ID);
             string _priceArea_id = m_Shop.SHOP_Price_Area;
+            int rowCount = Grid2.Rows.Count;
             if (!String.IsNullOrEmpty(_Pur00_ID))
             {
                 foreach (int i in selections)
@@ -988,31 +1051,20 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     }
                     string _shop_id = ddlSHOP_NAME.SelectedValue;
                     var model = new V_Product01_PRCAREA(x => x.PROD_ID == _Prod_ID && x.PRCAREA_ID == _priceArea_id);
-                    int rowCount = Grid2.Rows.Count;
                     JObject deObject = new JObject();
                     deObject.Add("Id01", "0");
                     deObject.Add("SHOP_ID01", _Shop_ID);
                     deObject.Add("SHOP_NAME01", _Shop_Name);
                     deObject.Add("Purchase_ID01", _Pur00_ID);
-                    deObject.Add("SNo01", rowCount + 1);
+                    rowCount = rowCount + 1;
+                    deObject.Add("SNo01", rowCount);
                     deObject.Add("PROD_ID01", _Prod_ID);
                     deObject.Add("PROD_NAME01", model.PROD_NAME1);
+                    deObject.Add("PROD_NAME02", model.PROD_NAME1);
                     deObject.Add("QUANTITY01", model.ORDER_QUAN);
                     deObject.Add("STD_UNIT01", model.Purchase_UNIT);
                     deObject.Add("STD_UNIT_NAME01", model.Purchase_UNIT_NAME);
                     deObject.Add("STD_CONVERT01", model.Purchase_CONVERT);
-                    //if (model.Purchase_UNIT == 2)
-                    //{
-                    //    deObject.Add("STD_CONVERT01", model.PROD_CONVERT1);
-                    //}
-                    //else if (model.Purchase_UNIT == 3)
-                    //{
-                    //    deObject.Add("STD_CONVERT01", model.PROD_CONVERT2);
-                    //}
-                    //else
-                    //{
-                    //    deObject.Add("STD_CONVERT01", 1);
-                    //}
 
                     deObject.Add("STD_QUAN01", model.Purchase_QUAN);
                     deObject.Add("STD_PRICE01", model.Purchase_PRICE);
@@ -1039,12 +1091,6 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter
                     deObject.Add("SUP_COST201", model.SUP_COST2);
                     deObject.Add("Tax_Num01", model.Tax);
                     deObject.Add("Tax_Type01", model.TAX_TYPE);
-                    //var OlUser = OnlineUsersBll.GetInstence().GetModelForCache(x => x.UserHashKey == Session[OnlineUsersTable.UserHashKey].ToString());
-                    //string lgname = OlUser.Manager_LoginName;
-                    //deObject.Add("CRT_USER_ID1", lgname);
-                    //deObject.Add("CRT_DATETIME1", DateTime.Now.ToString());
-                    //deObject.Add("MOD_USER_ID1", OlUser.Manager_LoginName);
-                    //deObject.Add("MOD_DATETIME1", DateTime.Now.ToString());
                     Grid2.AddNewRecord(deObject, true);
                 }
             }

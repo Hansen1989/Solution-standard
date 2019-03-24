@@ -7,6 +7,9 @@ using DotNet.Utilities;
 using Solution.DataAccess.DataModel;
 using System.Data;
 using System.Linq.Expressions;
+using SubSonic.Query;
+using Solution.DataAccess.DbHelper;
+
 
 namespace Solution.Logic.Managers
 {
@@ -138,12 +141,14 @@ namespace Solution.Logic.Managers
        
        }
 
-       /// <summary>
-       /// 
-       /// </summary>
-       /// <param name="prod_id"></param>
-       /// <returns></returns>
-       public DataTable Insert_PRODUCT01(string prod_id, string crt_user_id)
+       
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="prod_id"></param>
+        /// <returns></returns>
+        public DataTable Insert_PRODUCT01(string prod_id, string crt_user_id)
        {
            DataTable dt = null;
            dt = (DataTable)SPs.Insert_PRODUCT01(prod_id, crt_user_id).ExecuteDataTable();

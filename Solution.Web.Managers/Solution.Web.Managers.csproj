@@ -7567,6 +7567,7 @@
     </Content>
     <Content Include="WebManage\Css\loginback.jpg" />
     <Content Include="WebManage\Help\wannianli.htm" />
+    <Content Include="WebManage\Js\Base64.js" />
     <Content Include="WebManage\Js\cycle.js" />
     <Content Include="WebManage\Js\json2.js" />
     <Content Include="WebManage\Js\json_parse.js" />
@@ -8130,6 +8131,9 @@
     <Compile Include="WebManage\Systems\SupplyCenter\Purchase00List.aspx.designer.cs">
       <DependentUpon>Purchase00List.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebManage\Systems\SupplyCenter\PurHandler.ashx.cs">
+      <DependentUpon>PurHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="WebManage\Systems\SupplyCenter\TAKEN10List.aspx.cs">
       <DependentUpon>TAKEN10List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8294,6 +8298,7 @@
     <Content Include="WebManage\Systems\DataCenter\Prodcut00Handler.ashx" />
     <Content Include="WebManage\Systems\DataCenter\SUPPLIERSHander.ashx" />
     <Content Include="WebManage\Systems\DataCenter\ProdDepHandler.ashx" />
+    <Content Include="WebManage\Systems\SupplyCenter\PurHandler.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

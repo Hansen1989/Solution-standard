@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Purchase00List.aspx.cs" Inherits="Solution.Web.Managers.WebManage.Systems.SupplyCenter.Purchase00List" %>
 
-<!DOCTYPE html>
+<%--<!DOCTYPE html>--%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -145,7 +146,8 @@
                            <Toolbars>
                              <f:Toolbar ID="Toolbar21111" runat="server">
                                <Items>
-                                  <f:Button ID="ButtonPur02Add" runat="server" Text="添加" Icon="Add" OnClick="btn_Pur02Add"></f:Button>
+                                  <f:Button ID="ButtonPur02AddSingle" runat="server" Text="新增一条" Icon="Add" OnClick="btn_Pur02AddSingle"></f:Button>
+                                  <f:Button ID="ButtonPur02Add" runat="server" Text="批量新增" Icon="Add" OnClick="btn_Pur02Add"></f:Button>
                                   <f:Button ID="ButtonPur02Delete" runat="server" Text="删除" Icon="Delete" OnClick="btn_Pur02Delete"></f:Button>
 <%--                                  <f:Button ID="Button_Replace" runat="server" Text="替换" Icon="Add" OnClick="btn_Replace"></f:Button>--%>
                                </Items>
@@ -174,6 +176,8 @@
                                         <f:RenderField Width="130px" ColumnID="SHOP_NAME01" DataField="SHOP_ID" FieldType="String" Enabled="false" Hidden="true"
                                                 HeaderText="采购分店名称">
                                                 <Editor>
+<%--                                                    <f:DropDownList ID="ddlShop_Name01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
+                                                    </f:DropDownList>--%>
                                                     <f:TextBox ID="TextBox2" runat="server" Required="true" ShowRedStar="true" Enabled="false">
                                                     </f:TextBox>
                                                 </Editor>
@@ -201,6 +205,15 @@
                                          </f:RenderField>
                                           <f:RenderField Width="130px" ColumnID="PROD_NAME01" DataField="PROD_NAME1" FieldType="String" Enabled="false"
                                                 HeaderText="商品名称">
+                                                <Editor>
+                                                    <f:DropDownList ID="ddlProd_Name01" runat="server" Required="true" ShowRedStar="true" Enabled="false">
+                                                    </f:DropDownList>
+<%--                                                    <f:TextBox ID="TextBox1" runat="server" Required="true" ShowRedStar="true" Enabled="false">
+                                                    </f:TextBox>--%>
+                                                </Editor>
+                                         </f:RenderField>
+                                         <f:RenderField Width="130px" ColumnID="PROD_NAME02" DataField="PROD_NAME1" FieldType="String" Enabled="false" Hidden="true"
+                                                HeaderText="商品名称2">
                                                 <Editor>
                                                     <f:TextBox ID="TextBox1" runat="server" Required="true" ShowRedStar="true" Enabled="false">
                                                     </f:TextBox>
@@ -440,7 +453,8 @@
             </Content>
         </f:Window>
     </form>
-    <script>
+    <script type="text/javascript">
+
         function renderSTD_UNIT0101(value) {
             switch (value)
             {
@@ -452,61 +466,131 @@
 
         function onGridAfterEdit(editor, params) {
             var me = this, columnId = params.column.id, rowId = params.record.getId();
-            var strSTD_TYPE01 = me.f_getCellValue(rowId, 'STD_UNIT01');
-            var strUnit = me.f_getCellValue(rowId, 'UNIT_NAME01');
-            var strUnit1 = me.f_getCellValue(rowId, 'UNIT_NAME101');
-            var strUnit2 = me.f_getCellValue(rowId, 'UNIT_NAME201');
 
-            var convert1 = me.f_getCellValue(rowId, 'PROD_CONVERT101');
-            var convert2 = me.f_getCellValue(rowId, 'PROD_CONVERT201');
+            var strProd_Name = me.f_getCellValue(rowId, 'PROD_NAME01');
+            var strProd_Name2 = me.f_getCellValue(rowId, 'PROD_NAME02');
+            var shop_id = F('<%= ddlSHOP_NAME.ClientID %>').value;
 
-            var cost = me.f_getCellValue(rowId, 'SUP_COST01');
-            var cost1 = me.f_getCellValue(rowId, 'SUP_COST101');
-            var cost2 = me.f_getCellValue(rowId, 'SUP_COST201');
-
-            var std_quan = me.f_getCellValue(rowId, 'STD_QUAN01');
-            var tax_num = me.f_getCellValue(rowId, 'Tax_Num01');
-            var tax_type = me.f_getCellValue(rowId, 'Tax_Type');
-            var tax
-            if (tax_type == 0) {
-                tax = 0;
-            }
-            else {
-                tax = tax_num.toFixed(4) * std_quan.toFixed(4);
-            }
-            if (columnId == 'STD_UNIT01') {
-                switch (strSTD_TYPE01) {
-                    case '1': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit);
-                        me.f_updateCellValue(rowId, 'STD_CONVERT01', 0);
-                        me.f_updateCellValue(rowId, 'STD_PRICE01', cost.toFixed(4));
-                        me.f_updateCellValue(rowId, 'Tax01', cost.toFixed(4) * tax.toFixed(4) * 0.01);
-                        return;
-                    case '2': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit1);
-                        me.f_updateCellValue(rowId, 'STD_CONVERT01', convert1);
-                        me.f_updateCellValue(rowId, 'STD_PRICE01', cost1.toFixed(4));
-                        me.f_updateCellValue(rowId, 'Tax01', cost1.toFixed(4) * tax.toFixed(4) * 0.01);
-                        return;
-                    case '3': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit2);
-                        me.f_updateCellValue(rowId, 'STD_CONVERT01', convert2);
-                        me.f_updateCellValue(rowId, 'STD_PRICE01', cost2.toFixed(4));
-                        me.f_updateCellValue(rowId, 'Tax01', cost2.toFixed(4) * tax.toFixed(4) * 0.01);
-                        return;
-                }
+            if (strProd_Name == "" || strProd_Name == null) {
+                return "";
             }
 
-            if (columnId == 'STD_QUAN01')
-            {
-                if (std_quan == "0")
+
+            if (columnId === "PROD_NAME01") {
+                if(strProd_Name==strProd_Name2)
                 {
-                    //return false;
+                    return "";
                 }
-                var std_price = me.f_getCellValue(rowId, 'STD_PRICE01');
-                var sum_tax = std_price.toFixed(4) * tax.toFixed(4)*0.01;
-                me.f_updateCellValue(rowId, 'Tax01', sum_tax.toFixed(4));
-            }
+                var xmlhttp;
+                if (window.XMLHttpRequest) {
+                    //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else {
+                    // IE6, IE5 浏览器执行代码
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            var strResult = xmlhttp.responseText;
+                            var obj = JSON.parse(strResult);
+                            //alert(strResult);
+                            me.f_updateCellValue(rowId, 'Id01', 0);
+                            me.f_updateCellValue(rowId, 'PROD_ID01', obj[0].PROD_ID);
+                            me.f_updateCellValue(rowId, 'PROD_NAME02', obj[0].PROD_NAME1);
+                            me.f_updateCellValue(rowId, 'QUANTITY01', obj[0].ORDER_QUAN);
+                            me.f_updateCellValue(rowId, 'STD_UNIT01', obj[0].Purchase_UNIT);
+                            me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', obj[0].Purchase_UNIT_NAME);
+                            me.f_updateCellValue(rowId, 'STD_CONVERT01', obj[0].Purchase_CONVERT);
+                            me.f_updateCellValue(rowId, 'STD_QUAN01', obj[0].Purchase_QUAN);
+                            me.f_updateCellValue(rowId, 'STD_PRICE01', obj[0].Purchase_PRICE);
+
+                            if (obj[0].TAX_TYPE == '0') {
+                                me.f_updateCellValue(rowId, 'Tax01', obj[0].Purchase_PRICE);
+                            }
+                            else {
+                                var _tax01 = obj[0].Purchase_PRICE.toFixed(4) * obj[0].Purchase_QUAN.toFixed(4) * obj[0].Tax.toFixed(4) * 0.01;
+                                me.f_updateCellValue(rowId, 'Tax01', _tax01);
+                            }
+                            me.f_updateCellValue(rowId, 'UNIT_NAME01', obj[0].UNIT_NAME);
+                            me.f_updateCellValue(rowId, 'UNIT_NAME101', obj[0].UNIT_NAME1);
+                            me.f_updateCellValue(rowId, 'UNIT_NAME201', obj[0].UNIT_NAME2);
+                            me.f_updateCellValue(rowId, 'PROD_CONVERT101', obj[0].PROD_CONVERT1);
+                            me.f_updateCellValue(rowId, 'PROD_CONVERT201', obj[0].PROD_CONVERT2);
+                            me.f_updateCellValue(rowId, 'SUP_COST01', obj[0].SUP_COST);
+                            me.f_updateCellValue(rowId, 'SUP_COST101', obj[0].SUP_COST1);
+                            me.f_updateCellValue(rowId, 'SUP_COST201', obj[0].SUP_COST2);
+                            me.f_updateCellValue(rowId, 'Tax_Num01', obj[0].Tax);
+                            me.f_updateCellValue(rowId, 'Tax_Type01', obj[0].TAX_TYPE);
+                        }
+                        else {
+                            me.f_updateCellValue(rowId, 'PROD_NAME1', xmlhttp.responseText);
+                            //return "失败了";
+                            //}
+                        }
+                }
+                xmlhttp.open("POST", "PurHandler.ashx", true);
+                xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+                //var nstrProd_Name2 = encodeURI(encodeURI(strProd_Name));
+                xmlhttp.send("value=" + strProd_Name + "&value1=" + shop_id + "");
+                    return "";
+                }
+
+                var strSTD_TYPE01 = me.f_getCellValue(rowId, 'STD_UNIT01');
+                var strUnit = me.f_getCellValue(rowId, 'UNIT_NAME01');
+                var strUnit1 = me.f_getCellValue(rowId, 'UNIT_NAME101');
+                var strUnit2 = me.f_getCellValue(rowId, 'UNIT_NAME201');
+
+                var convert1 = me.f_getCellValue(rowId, 'PROD_CONVERT101');
+                var convert2 = me.f_getCellValue(rowId, 'PROD_CONVERT201');
+
+                var cost = me.f_getCellValue(rowId, 'SUP_COST01');
+                var cost1 = me.f_getCellValue(rowId, 'SUP_COST101');
+                var cost2 = me.f_getCellValue(rowId, 'SUP_COST201');
+
+                var std_quan = me.f_getCellValue(rowId, 'STD_QUAN01');
+                var tax_num = me.f_getCellValue(rowId, 'Tax_Num01');
+                var tax_type = me.f_getCellValue(rowId, 'Tax_Type');
+                var tax
+                if (tax_type == 0) {
+                    tax = 0;
+                }
+                else {
+                    tax = tax_num.toFixed(4) * std_quan.toFixed(4);
+                }
+                if (columnId == 'STD_UNIT01') {
+                    switch (strSTD_TYPE01) {
+                        case '1': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit);
+                            me.f_updateCellValue(rowId, 'STD_CONVERT01', 0);
+                            me.f_updateCellValue(rowId, 'STD_PRICE01', cost.toFixed(4));
+                            me.f_updateCellValue(rowId, 'Tax01', cost.toFixed(4) * tax.toFixed(4) * 0.01);
+                            return;
+                        case '2': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit1);
+                            me.f_updateCellValue(rowId, 'STD_CONVERT01', convert1);
+                            me.f_updateCellValue(rowId, 'STD_PRICE01', cost1.toFixed(4));
+                            me.f_updateCellValue(rowId, 'Tax01', cost1.toFixed(4) * tax.toFixed(4) * 0.01);
+                            return;
+                        case '3': me.f_updateCellValue(rowId, 'STD_UNIT_NAME01', strUnit2);
+                            me.f_updateCellValue(rowId, 'STD_CONVERT01', convert2);
+                            me.f_updateCellValue(rowId, 'STD_PRICE01', cost2.toFixed(4));
+                            me.f_updateCellValue(rowId, 'Tax01', cost2.toFixed(4) * tax.toFixed(4) * 0.01);
+                            return;
+                    }
+                }
+
+                if (columnId == 'STD_QUAN01') {
+                    if (std_quan == "0") {
+                        //return false;
+                    }
+                    var std_price = me.f_getCellValue(rowId, 'STD_PRICE01');
+                    alert(std_price);
+                    alert(tax);
+                    var sum_tax = std_price.toFixed(4) * tax.toFixed(4) * 0.01;
+                    alert(sum_tax);
+                    me.f_updateCellValue(rowId, 'Tax01', sum_tax.toFixed(4));
+                }
         }
 
-        
 
     </script>
 </body>

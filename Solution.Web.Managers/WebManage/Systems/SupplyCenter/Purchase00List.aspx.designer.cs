@@ -355,6 +355,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         protected global::FineUI.Toolbar Toolbar21111;
         
         /// <summary>
+        /// ButtonPur02AddSingle 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Button ButtonPur02AddSingle;
+        
+        /// <summary>
         /// ButtonPur02Add 控件。
         /// </summary>
         /// <remarks>
@@ -434,6 +443,15 @@ namespace Solution.Web.Managers.WebManage.Systems.SupplyCenter {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FineUI.TextBox tbxPROD_ID;
+        
+        /// <summary>
+        /// ddlProd_Name01 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.DropDownList ddlProd_Name01;
         
         /// <summary>
         /// TextBox1 控件。
